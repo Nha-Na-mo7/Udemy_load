@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // トップページ
@@ -19,3 +20,7 @@ Route::get('/', function () {
 });
 //
 Route::get('/{any?}', fn() => view('index'))->where('any', '.+');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ccf61480-9b83-4302-9179-ea3657d9c9c6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +135,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1obz9cAkvoGFAokmQa2CY4bGqAj" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="追加" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -147,7 +165,7 @@
       <updated>1613569929015</updated>
       <workItem from="1613569930421" duration="610000" />
       <workItem from="1613573923240" duration="1040000" />
-      <workItem from="1613576528791" duration="1500000" />
+      <workItem from="1613576528791" duration="1830000" />
     </task>
     <servers />
   </component>
@@ -166,6 +184,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="237" y="520" key="ComposerInitDialogKey" timestamp="1613577908474">
+      <screen x="0" y="23" width="1920" height="1177" />
+    </state>
+    <state x="237" y="520" key="ComposerInitDialogKey/0.23.1920.1177@0.23.1920.1177" timestamp="1613577908474" />
     <state width="1581" height="307" key="GridCell.Tab.0.bottom" timestamp="1613577078991">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
