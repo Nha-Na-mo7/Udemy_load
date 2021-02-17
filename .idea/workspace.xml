@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccf61480-9b83-4302-9179-ea3657d9c9c6" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +125,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -145,11 +147,40 @@
       <updated>1613569929015</updated>
       <workItem from="1613569930421" duration="610000" />
       <workItem from="1613573923240" duration="1040000" />
-      <workItem from="1613576528791" duration="499000" />
+      <workItem from="1613576528791" duration="1500000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1581" height="307" key="GridCell.Tab.0.bottom" timestamp="1613577078991">
+      <screen x="0" y="23" width="1920" height="1177" />
+    </state>
+    <state width="1581" height="307" key="GridCell.Tab.0.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1613577078991" />
+    <state width="1581" height="307" key="GridCell.Tab.0.center" timestamp="1613577078990">
+      <screen x="0" y="23" width="1920" height="1177" />
+    </state>
+    <state width="1581" height="307" key="GridCell.Tab.0.center/0.23.1920.1177@0.23.1920.1177" timestamp="1613577078990" />
+    <state width="1581" height="307" key="GridCell.Tab.0.left" timestamp="1613577078989">
+      <screen x="0" y="23" width="1920" height="1177" />
+    </state>
+    <state width="1581" height="307" key="GridCell.Tab.0.left/0.23.1920.1177@0.23.1920.1177" timestamp="1613577078989" />
+    <state width="1581" height="307" key="GridCell.Tab.0.right" timestamp="1613577078990">
+      <screen x="0" y="23" width="1920" height="1177" />
+    </state>
+    <state width="1581" height="307" key="GridCell.Tab.0.right/0.23.1920.1177@0.23.1920.1177" timestamp="1613577078990" />
   </component>
 </project>
