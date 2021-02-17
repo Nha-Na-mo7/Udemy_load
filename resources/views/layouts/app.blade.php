@@ -7,7 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- タイトル -->
+    <title>@yield('title') | UdemyLoad</title>
+
+    <!-- デスクリプション -->
+    <meta name="description" itemprop="description" content="@yield('description')">
+    <!-- キーワード -->
+    <meta name="keyword" itemprop="keyword" content="@yield('keyword')">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,6 +24,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">

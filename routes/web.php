@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // トップページ
-Route::get('/', function () {
-    return view('welcome');
-});
-//
 Route::get('/{any?}', fn() => view('index'))->where('any', '.+');
 
 Auth::routes();
