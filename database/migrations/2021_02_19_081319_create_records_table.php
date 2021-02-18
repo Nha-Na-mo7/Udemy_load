@@ -15,6 +15,9 @@ class CreateRecordsTable extends Migration
     {
         Schema::create('records', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->comment('投稿者ID');
+            $table->string('title')->comment('投稿タイトル');
+            $table->text('description')->comment('概要・説明');
             $table->timestamps();
         });
     }
