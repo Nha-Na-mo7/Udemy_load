@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Auth::routes();
 // トップページ
-Route::get('/{any?}', fn() => view('index'))->where('any', '.+');
-
+Route::get('/{any?}', fn() => view('home'))->where('any', '.+');
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
