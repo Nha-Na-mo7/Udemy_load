@@ -4,8 +4,14 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+// ルーティングの定義
+import router from './router.js';
+// ルートコンポーネント
+import App from './App.vue';
+
 // Vueインスタンスを作成するメソッド
 const createApp = () => {
+    // id="app"がHTMLに存在する時のみVueインスタンスを作成
     if (document.getElementById('app') != null) {
         new Vue({
             el: '#app',

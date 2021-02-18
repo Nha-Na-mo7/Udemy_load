@@ -29,10 +29,10 @@ const routes = [
     path: '/login',
     component: Login
   },
-  {
-    path: '*',
-    component: NotFound404,
-  },
+  // {
+  //   path: '*',
+  //   component: NotFound404,
+  // },
 ];
 
 const router = new VueRouter({

@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 
 // トップページ
-Route::get('/{any?}', fn() => view('home'))->where('any', '.+');
+Route::get('/{any?}', fn() => view('pages.records'))->where('any', '.+');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
