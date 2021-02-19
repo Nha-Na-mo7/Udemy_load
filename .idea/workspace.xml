@@ -20,9 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ccf61480-9b83-4302-9179-ea3657d9c9c6" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Loading.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/Mypage/Mypage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_19_081319_create_records_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_19_081319_create_records_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +150,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -172,7 +173,7 @@
       <updated>1613569929015</updated>
       <workItem from="1613569930421" duration="610000" />
       <workItem from="1613573923240" duration="1040000" />
-      <workItem from="1613576528791" duration="11374000" />
+      <workItem from="1613576528791" duration="13069000" />
     </task>
     <servers />
   </component>
@@ -211,6 +212,10 @@
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
     <state width="1581" height="307" key="GridCell.Tab.0.right/0.23.1920.1177@0.23.1920.1177" timestamp="1613577078990" />
+    <state x="923" y="236" key="SettingsEditor" timestamp="1613692380919">
+      <screen x="0" y="23" width="1920" height="1177" />
+    </state>
+    <state x="923" y="236" key="SettingsEditor/0.23.1920.1177@0.23.1920.1177" timestamp="1613692380919" />
     <state x="308" y="292" width="670" height="676" key="search.everywhere.popup" timestamp="1613690126557">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
