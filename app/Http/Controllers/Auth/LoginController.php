@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,5 +37,40 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    
+    // =========================================
+    // フォームからのログイン(トレイトをオーバーライド)
+    // =========================================
+    protected function authenticated(Request $request, $user)
+    {
+      // ログイン処理後にリダイレクトする先を指定する
+      return $user;
+    }
+    
+    // ===================================
+    // バリデーション (トレイトのオーバーライド)
+    // ===================================
+    protected function validateLogin(Request $request)
+    {
+      $request->validate([
+          $this->username() => 'required|email:strict,spoof|max:100',
+          'password' => 'required|string|min:8|max:50|regex:/^[a-zA-Z0-9]+$/',
+      ]);
+    }
+    
+    // ===================================
+    // ログアウト
+    // ===================================
+    // 本来はログアウト後のリダイレクト先を設定するトレイト。
+    // AuthenticatesUsersトレイトの logout メソッド内、
+    // loggetOutメソッドのオーバーライドでレスポンスにセッションの再生成を含ませる。
+    protected function loggedOut(Request $request)
+    {
+      // セッションの再生成
+      $request->session()->regenerate();
+      
+      // jsonを返却 要検討
+      return response()->json();
     }
 }

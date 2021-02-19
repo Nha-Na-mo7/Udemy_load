@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -49,11 +50,15 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $message = [
+            'email.unique' => '入力されたメールアドレスは無効です。他のメールアドレスをご利用ください。'
+        ];
+        
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'name' => ['required', 'string', 'max:30'],
+            'email' => ['required', 'string', 'email:strict,dns,spoof', 'max:100', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'max:50', 'confirmed',  'regex:/^[a-zA-Z0-9]+$/'],
+        ], $message);
     }
 
     /**
@@ -69,5 +74,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+  
+    // registeredメソッドを上書き
+    protected function registered(Request $request, $user)
+    {
+        return $user;
     }
 }
