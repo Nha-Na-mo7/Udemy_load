@@ -1,11 +1,8 @@
-require('./bootstrap');
-
-window.Vue = require('vue');
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+import Vue from 'vue';
 // ルーティングの定義
 import router from './router.js';
+// ストアのインポート
+import store from './store';
 // ルートコンポーネント
 import App from './App.vue';
 
@@ -15,7 +12,8 @@ const createApp = () => {
     if (document.getElementById('app') != null) {
         new Vue({
             el: '#app',
-            router, // ルーティング定義の読み込み
+            router, // ルーティング定義
+            store, // ストア
             components: { App }, // ルートコンポーネントの使用宣言
             template: '<App />' //ルートコンポーネントの描画
         });
