@@ -1,0 +1,55 @@
+// ==============
+//  c-paginate
+//  =============
+.c-paginate {
+  display: flex;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 80%;
+  justify-content: center;
+  overflow-x: hidden;
+  @include mq() {
+    width: 100%;
+  }
+  &__item {
+    background: #ffffff;
+    border: 1px solid #cdcdcd;
+    border-radius: 4px;
+    margin: 5px;
+    position: relative;
+    @include mq() {
+      width: 35px;
+      font-size: 12px;
+      margin: 4px;
+    }
+    &:hover {
+      background: #cdcdcd;
+    }
+    &--active {
+      background: #646464;
+      color: $font-color_white;
+      font-weight: bold;
+    }
+    &--break-view {
+      background: none;
+      border: unset;
+      margin: 5px -5px;
+      pointer-events: none;
+      &:hover {
+        background: unset;
+      }
+      @include mq() {
+        display: none;
+      }
+    }
+  }
+  &__link {
+    padding: 10px 10px;
+    display: block;
+    @include mq() {
+      text-align: center;
+      padding: 12px 0;
+    }
+  }
+}

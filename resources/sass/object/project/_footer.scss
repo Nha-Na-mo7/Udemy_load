@@ -1,0 +1,16 @@
+//  =============
+//  p-footer
+//  =============
+.p-footer {
+  border-top: 1px solid #cdcdcd;
+  box-shadow: 0 -2px 10px #cdcdcd;
+  margin: 0 auto;
+  color: #09093e;
+
+  &__copyright {
+    text-align: center;
+    font-size: 1rem;
+    padding: 25px 12px;
+    line-height: 140%;
+  }
+}

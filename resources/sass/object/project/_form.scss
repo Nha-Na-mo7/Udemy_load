@@ -1,0 +1,42 @@
+// ==============
+//  p-form
+//  =============
+.p-form {
+  padding: $space_xxl 0;
+  @include mq() {
+    padding: 0 $space_l;
+  }
+  &__auth {
+    width: 450px;
+    margin: 0 auto;
+    @include mq() {
+      width: 100%;
+    }
+  }
+  &__title {
+    font-size: $font-size_xl;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: $space_l;
+  }
+  &__description {
+    margin-bottom: $space_xl;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+  &__send {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 50px;
+    line-height: 1.4;
+    &--msg {
+      font-size: $font-size_xxl;
+      font-weight: bold;
+      @include mq() {
+        font-size: 15px;
+        margin-bottom: 12px;
+      }
+    }
+  }
+}

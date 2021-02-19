@@ -1,0 +1,58 @@
+// ==============
+//  c-input
+//  =============
+.c-input {
+  border-radius: 4px;
+  font-size: 20px;
+  height: 100%;
+  padding: 0 10px;
+  width: 90%;
+
+  &::placeholder {
+    opacity: 0.5;
+  }
+  /* 旧Edge対応 */
+  &::-ms-input-placeholder {
+    opacity: 0.5;
+  }
+  /* IE対応 */
+  &:-ms-input-placeholder {
+    opacity: 0.5;
+  }
+  &__searcharea {
+    width: 100%;
+    height: 100%;
+  }
+  // 入力内容を消去したり検索するためのボタン
+  &__btn {
+    &-area {
+      height: 100%;
+      width: 60px;
+      z-index: 2;
+
+      font-size: 25px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &__reset {
+        right: 0;
+        position: absolute;
+      }
+    }
+    &-circle {
+      border-radius: 50%;
+      transition: all 0.2s;
+      text-align: center;
+
+      width: 40px;
+      height: 40px;
+
+      &:hover {
+        background: #dbdbdb;
+        cursor: pointer;
+      }
+    }
+  }
+}

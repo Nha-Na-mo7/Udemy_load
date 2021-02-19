@@ -1,0 +1,69 @@
+// =========================
+//  variable 変数まとめ
+// =========================
+
+// -----------
+// base-color
+// -----------
+$font-color_default: #1f1f1f;
+$font-color_white: #ffffff;
+$font-color_success: #b6e395;
+$font-color_error: #c7004c;
+
+$color_twitter: #55acee;
+$color_Primary: #c4edf5;
+
+// 背景
+$background-color_base: #f6f6f6;
+$background-color_content-title: #52a5e3;
+$background-color_header: #c7dbee;
+$background-color_footer: #c7dbee;
+$background-color_success: #acdb8b;
+$background-color_error: #e08a8e;
+
+// ボタン
+$btn-color_auth: #bef5e2;
+$btn-color_twitter: #55acee;
+$btn-color_twitter-hover: #257cc4;
+$btn-color_unfollow: #f66d9b;
+$btn-color_unfollow-hover: #c4256f;
+$btn-color_scroll: #ddb3d1;
+
+// フォームのフォーカス時
+$input-color: #f66d9b;
+// new!!アイコン
+$icon-color-new: #f6e47d;
+
+// -----------------
+// font-size
+// -----------------
+$font-size_ss: 10px;
+$font-size_s: 12px;
+$font-size_m: 14px;
+$font-size_default: 16px;
+$font-size_l: 18px;
+$font-size_xl: 24px;
+$font-size_xxl: 30px;
+$font-size_3l: 38px;
+
+// -----------------
+// space
+// -----------------
+$space_s: 5px;
+$space_m: 10px;
+$space_l: 15px;
+$space_xl: 20px;
+$space_xxl: 30px;
+$space_3l: 40px;
+
+// -----------------
+// breakpoint
+// -----------------
+// メディアクエリのブレークポイント設定
+$breakpoints: (
+  'ss': 'screen and (max-width: 320px)',
+  // iPhone5(iOS10)
+  'sm': 'screen and (max-width: 414px)',
+  'md': 'screen and (max-width: 768px)',
+  'lg': 'screen and (max-width: 1024px)',
+) !default;

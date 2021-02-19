@@ -1,0 +1,48 @@
+// ==============
+//  c-form
+//  =============
+.c-form {
+  &__input {
+    border: 1px solid #666;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: $space_xl;
+    font-size: $font-size_l;
+    &:focus {
+      border: 1px solid $input-color;
+      box-shadow: 0 0 5px $input-color;
+    }
+    @include mq() {
+      padding: 8px;
+      margin-bottom: 12px;
+    }
+  }
+  &__info {
+    margin-bottom: $space_s;
+    display: inline-block;
+    @include mq() {
+      font-size: $font-size_s;
+    }
+  }
+  &__checkbox {
+    margin-top: 12px;
+    margin-bottom: 20px;
+    margin-left: 3px;
+    @include mq() {
+      margin-top: 8px;
+      margin-bottom: 20px;
+    }
+    &--check {
+      transform: scale(1.5) translateY(-0.5px);
+      margin-right: 4px;
+    }
+  }
+  &__submit {
+    margin-top: 32px;
+    text-align: center;
+    @include mq() {
+      margin-top: 24px;
+    }
+  }
+}

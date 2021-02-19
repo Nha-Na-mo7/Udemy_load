@@ -1,0 +1,20 @@
+// =========
+// u-color
+// =========
+.u-bg {
+  &-blue {
+    background: #f5f6ff;
+  }
+  &-purple {
+    background: #efe7fb;
+  }
+  &-green {
+    background: #f0f5e7;
+  }
+}
+
+.u-color{
+  &--red {
+    color: $font-color_error;
+  }
+}

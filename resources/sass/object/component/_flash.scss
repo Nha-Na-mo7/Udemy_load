@@ -1,0 +1,47 @@
+// ==============
+//  c-flash
+//  =============
+.c-flash {
+  background: #d6f0ff;
+  border-radius: 4px;
+  box-shadow: 0 3px 10px #cdcdcd;
+  top: 60px;
+  right: 15px;
+  min-height: 50px;
+  width: 460px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0.8;
+  color: $font-color_default;
+  text-shadow: 0 0 2px $font-color_white;
+  line-height: 1.2;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  transition: all 3s;
+  z-index: 5;
+
+  @include mq() {
+    min-height: 50px;
+    width: 240px;
+  }
+  &--column {
+    display: flex;
+    flex-direction: column;
+  }
+  &__text {
+    font-size: $font-size_l;
+    word-break: break-word;
+    @include mq() {
+      font-size: $font-size_m;
+    }
+  }
+
+  &__success {
+    background: $background-color_success;
+  }
+  &__error {
+    background: $background-color_error;
+  }
+}
