@@ -21,10 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ccf61480-9b83-4302-9179-ea3657d9c9c6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/_variables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +173,7 @@
       <updated>1613569929015</updated>
       <workItem from="1613569930421" duration="610000" />
       <workItem from="1613573923240" duration="1040000" />
-      <workItem from="1613576528791" duration="14679000" />
+      <workItem from="1613576528791" duration="18174000" />
     </task>
     <servers />
   </component>
@@ -194,10 +192,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="640" y="351" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1613694662982">
+    <state x="640" y="351" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1613695277869">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state x="640" y="351" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1613694662982" />
+    <state x="640" y="351" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1613695277869" />
     <state x="237" y="520" key="ComposerInitDialogKey" timestamp="1613577908474">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
