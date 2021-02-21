@@ -38675,6 +38675,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _pages_Records_RecordList_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Records/RecordList.vue */ "./resources/js/pages/Records/RecordList.vue");
 /* harmony import */ var _pages_Auth_Login_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Auth/Login.vue */ "./resources/js/pages/Auth/Login.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -38685,6 +38686,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // コンポーネントのインストール
 
 
+ // storeのインポート
+
  // VueRouterプラグインの使用
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]); // vue-routerからvuexを参照するには直接インポートする
@@ -38692,7 +38695,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 function requireLogin(_x, _x2, _x3) {
   return _requireLogin.apply(this, arguments);
-} // パスとコンポーネントをマッピング
+} // ナビゲーションガード用
 
 
 function _requireLogin() {
@@ -38721,12 +38724,40 @@ function _requireLogin() {
   return _requireLogin.apply(this, arguments);
 }
 
+function checkAuth(_x4, _x5, _x6) {
+  return _checkAuth.apply(this, arguments);
+} // パスとコンポーネントをマッピング
+
+
+function _checkAuth() {
+  _checkAuth = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(to, from, next) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            if (_store__WEBPACK_IMPORTED_MODULE_5__["default"].getters['auth/check']) {
+              next('/');
+            } else {
+              next();
+            }
+
+          case 1:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+  return _checkAuth.apply(this, arguments);
+}
+
 var routes = [{
   path: '/',
   component: _pages_Records_RecordList_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   path: '/login',
-  component: _pages_Auth_Login_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  component: _pages_Auth_Login_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+  beforeEnter: checkAuth
 } // {
 //   path: '*',
 //   component: NotFound404,

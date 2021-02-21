@@ -5,6 +5,8 @@ import VueRouter from 'vue-router';
 import RecordList from './pages/Records/RecordList.vue';
 import Login from './pages/Auth/Login.vue';
 
+// storeのインポート
+import store from './store'
 // VueRouterプラグインの使用
 Vue.use(VueRouter);
 
@@ -18,6 +20,15 @@ async function requireLogin(to, from, next) {
     document.location.reload();
   }
 }
+// ナビゲーションガード用
+async function checkAuth(to, from ,next) {
+  if (store.getters['auth/check']) {
+    next('/')
+  } else {
+    next()
+  }
+}
+
 
 // パスとコンポーネントをマッピング
 const routes = [
@@ -27,7 +38,8 @@ const routes = [
   },
   {
     path: '/login',
-    component: Login
+    component: Login,
+    beforeEnter: checkAuth
   },
   // {
   //   path: '*',
