@@ -47,6 +47,12 @@ const actions = {
     const response = await axios.post('logout', data)
     context.commit('setUser', null)
   },
+  // 現在ログイン中のユーザーを取得しセットする
+  async currentUser(context) {
+    const response = await axios.post('user')
+    const user = response.data || null
+    context.commit('setUser', user)
+  },
 };
 
 // ================
