@@ -1994,7 +1994,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    isLogin: function isLogin() {
+      return this.$store.getters['auth/check'];
+    },
+    username: function username() {
+      return this.$store.getters['auth/username'];
+    }
+  },
   methods: {
     // ログアウト
     logout: function logout() {
@@ -21288,28 +21305,35 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "p-header__menu" }, [
-        _vm._m(0),
+        _vm.isLogin
+          ? _c("div", { staticClass: "p-header__item" }, [_vm._m(0)])
+          : _vm._e(),
         _vm._v(" "),
-        _c("span", { staticClass: "p-header__item" }, [
-          _vm._v("\n      username\n    ")
-        ]),
+        _vm.isLogin
+          ? _c("span", { staticClass: "p-header__item" }, [
+              _vm._v("\n      " + _vm._s(_vm.username) + "\n    ")
+            ])
+          : _vm._e(),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "p-header__item" },
-          [
-            _c(
-              "RouterLink",
-              { staticClass: "c-btn button--link", attrs: { to: "/login" } },
-              [_vm._v("\n        ログイン / 新規登録\n      ")]
+        _vm.isLogin
+          ? _c("button", { staticClass: "c-btn", on: { click: _vm.logout } }, [
+              _vm._v("ログアウト")
+            ])
+          : _c(
+              "div",
+              { staticClass: "p-header__item" },
+              [
+                _c(
+                  "RouterLink",
+                  {
+                    staticClass: "c-btn button--link",
+                    attrs: { to: "/login" }
+                  },
+                  [_vm._v("\n        ログイン / 新規登録\n      ")]
+                )
+              ],
+              1
             )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("button", { staticClass: "c-btn", on: { click: _vm.logout } }, [
-          _vm._v("ログアウト")
-        ])
       ])
     ],
     1
@@ -21320,11 +21344,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-header__item" }, [
-      _c("button", { staticClass: "c-btn" }, [
-        _c("i", {}),
-        _vm._v("\n        投稿する\n      ")
-      ])
+    return _c("button", { staticClass: "c-btn" }, [
+      _c("i", {}),
+      _vm._v("\n        投稿する\n      ")
     ])
   }
 ]
@@ -38724,7 +38746,16 @@ var state = function state() {
 // ===============
 
 
-var getters = {}; // ===============
+var getters = {
+  // ログインチェック
+  check: function check(state) {
+    return !!state.user;
+  },
+  // ログインユーザーのnameを返し、それがnullの場合は空文字を返す
+  username: function username(state) {
+    return state.user ? state.user.name : '';
+  }
+}; // ===============
 // mutations
 // ===============
 

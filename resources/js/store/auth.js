@@ -11,7 +11,12 @@ const state = () => ({
 // ===============
 // getter
 // ===============
-const getters = {};
+const getters = {
+  // ログインチェック
+  check: state => !!state.user,
+  // ログインユーザーのnameを返し、それがnullの場合は空文字を返す
+  username: state => state.user ? state.user.name: ''
+};
 
 // ===============
 // mutations
