@@ -49,7 +49,7 @@ const actions = {
   },
   // 現在ログイン中のユーザーを取得しセットする
   async currentUser(context) {
-    const response = await axios.post('user')
+    const response = await axios.get('user')
     const user = response.data || null
     context.commit('setUser', user)
   },

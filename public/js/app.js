@@ -38910,7 +38910,7 @@ var actions = {
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return axios.post('user');
+              return axios.get('user');
 
             case 2:
               response = _context4.sent;
