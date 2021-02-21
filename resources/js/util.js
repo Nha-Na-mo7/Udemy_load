@@ -36,7 +36,8 @@ export function getCookieValue(searchKey) {
 // --------------------------------
 export function isArrayExists(array, value) {
   // 配列の最後までループ、値があればtrueを、なければfalseを返す
-  for (var i = 0, len = array.length; i < len; i++) {
+  let i = 0, len = array.length;
+  for (; i < len; i++) {
     if (value === array[i]) {
       return true;
     }
