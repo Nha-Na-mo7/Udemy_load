@@ -5,6 +5,9 @@ import VueRouter from 'vue-router';
 import RecordList from './pages/Records/RecordList.vue';
 import Login from './pages/Auth/Login.vue';
 
+// エラーコンポーネント
+import SystemError from './pages/Errors/500_System.vue';
+
 // storeのインポート
 import store from './store'
 // VueRouterプラグインの使用
@@ -40,6 +43,10 @@ const routes = [
     path: '/login',
     component: Login,
     beforeEnter: checkAuth
+  },
+  {
+    path: '/500',
+    component:  SystemError,
   },
   // {
   //   path: '*',
