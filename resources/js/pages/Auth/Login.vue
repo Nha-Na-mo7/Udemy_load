@@ -95,11 +95,21 @@ export default {
     }
   },
   methods: {
-    login() {
-      console.log(this.loginForm)
+    // --------------------------------------
+    // 新規会員登録(authストアのregisterアクション)
+    // --------------------------------------
+    async register() {
+      await this.$store.dispatch('auth/register', this.registerForm)
+      // 遷移
+      this.$router.push('/')
     },
-    register() {
-      console.log(this.registerForm)
+    // ---------
+    // ログイン
+    // ---------
+    async login() {
+      await this.$store.dispatch('auth/login', this.loginForm)
+      // 遷移
+      this.$router.push('/')
     },
   }
 }
