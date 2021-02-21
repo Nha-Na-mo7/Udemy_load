@@ -18,6 +18,24 @@
           ログイン / 新規登録
         </RouterLink>
       </div>
+
+      <button
+          class="c-btn"
+          @click="logout"
+      >ログアウト</button>
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  methods: {
+    // ログアウト
+    async logout() {
+      await this.$store.dispatch('auth/logout')
+
+      this.$router.push('/login')
+    }
+  }
+}
+</script>
