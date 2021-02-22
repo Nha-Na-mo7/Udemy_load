@@ -16,10 +16,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: ' 404_NotFound.vue',
-};
-</script>
+<script></script>
 
 <style scoped></style>
