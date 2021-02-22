@@ -12,4 +12,12 @@
   &__checkbox {
     margin-bottom: $space_xl;
   }
+  &__tab {
+    display: flex;
+    justify-content: center;
+    @include mq() {
+      margin-top: 12px;
+      width: 100%;
+    }
+  }
 }

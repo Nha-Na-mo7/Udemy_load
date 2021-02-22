@@ -648,6 +648,18 @@ input[type=checkbox] {
   margin-bottom: 20px;
 }
 
+.p-auth__tab {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 414px) {
+  .p-auth__tab {
+    margin-top: 12px;
+    width: 100%;
+  }
+}
+
 .p-documentbox {
   border-radius: 4px;
   margin-bottom: 30px;

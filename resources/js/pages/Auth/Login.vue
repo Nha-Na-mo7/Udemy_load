@@ -1,6 +1,6 @@
 <template>
   <div class="l-container__auth">
-    <ul class="c-tab">
+    <ul class="p-auth__tab c-tab">
       <li
           class="c-tab__item"
           :class="{'c-tab__item--active': tab === 1 }"

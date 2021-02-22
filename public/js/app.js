@@ -21529,7 +21529,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "l-container__auth" }, [
-    _c("ul", { staticClass: "c-tab" }, [
+    _c("ul", { staticClass: "p-auth__tab c-tab" }, [
       _c(
         "li",
         {
