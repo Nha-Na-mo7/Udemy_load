@@ -21,5 +21,11 @@ Route::get('/', 'HomeController@index')->name('home.index');
 // ログインユーザーを返す
 Route::get('/user', fn() => Auth::user())->name('user');
 
+// トークンリフレッシュ
+Route::get('/reflesh-token', function (Illuminate\Http\Request $request){
+  $request->session()->regenerateToken();
+  return response()->json();
+});
+
 Route::get('/{any?}', fn() => view('pages.records'))->where('any', '.+');
 Auth::routes();
