@@ -18,7 +18,7 @@
 
 <script>
 import Header from './components/Header.vue';
-import { INTERNAL_SERVER_ERROR } from './util.js';
+import { UNAUTHORIZED , INTERNAL_SERVER_ERROR } from './util.js';
 export default {
   computed: {
     errorCode() {
@@ -30,9 +30,17 @@ export default {
   },
   watch: {
     errorCode: {
-      handler(val) {
+      async handler(val) {
+        // 500エラーの時
         if (val === INTERNAL_SERVER_ERROR) {
           this.$router.push('/500')
+        }else if (val === UNAUTHORIZED) {
+          // 認証切れの時・トークンリフレッシュ
+          await axios.get('/refresh-token')
+          // ストアのuserをクリアする
+          this.$store.commit('auth/setUser', null)
+          // ログイン画面に遷移
+          this.$router.push('/login')
         }
       },
       // 初期化時にも判定させる
