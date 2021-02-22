@@ -46,10 +46,26 @@ const actions = {
     const response = await axios.post('register', data)
     context.commit('setUser', response.data)
   },
+  // ===========
   // ログイン
+  // ===========
   async login(context, data) {
+    // APIステータスストアをnullでリセット
+    context.commit('setApiStatus', null)
+    
     const response = await axios.post('login', data)
-    context.commit('setUser', response.data)
+        .catch(err => err.response || err)
+    
+    // 呼び出し成功時
+    if (response.status === OK) {
+      context.commit('setApiStatus', true)
+      context.commit('setUser', response.data)
+      return false
+    }
+    
+    // 失敗時
+    context.commit('setApiStatus', false)
+    context.commit('error/setCode', response.status, { root: true })
   },
   // ログアウト
   async logout(context, data) {
