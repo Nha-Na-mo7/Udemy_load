@@ -39086,7 +39086,7 @@ var actions = {
             case 3:
               response = _context.sent;
 
-              if (!(response.status === CREATED)) {
+              if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
                 _context.next = 8;
                 break;
               }
@@ -39161,22 +39161,40 @@ var actions = {
       }, _callee2);
     }))();
   },
+  // ===========
   // ログアウト
-  logout: function logout(context, data) {
+  // ===========
+  logout: function logout(context) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _context3.next = 2;
-              return axios.post('logout', data);
+              context.commit('setApiStatus', null);
+              _context3.next = 3;
+              return axios.post('logout');
 
-            case 2:
+            case 3:
               response = _context3.sent;
-              context.commit('setUser', null);
 
-            case 4:
+              if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context3.next = 8;
+                break;
+              }
+
+              context.commit('setApiStatus', true);
+              context.commit('setUser', null);
+              return _context3.abrupt("return", false);
+
+            case 8:
+              // 失敗時
+              context.commit('setApiStatus', false);
+              context.commit('error/setCode', response.status, {
+                root: true
+              });
+
+            case 10:
             case "end":
               return _context3.stop();
           }
@@ -39184,7 +39202,9 @@ var actions = {
       }, _callee3);
     }))();
   },
-  // 現在ログイン中のユーザーを取得しセットする
+  // ==================================
+  // 現在ログイン中のユーザーを取得する
+  // ==================================
   currentUser: function currentUser(context) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var response, user;
@@ -39192,15 +39212,31 @@ var actions = {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              _context4.next = 2;
+              context.commit('setApiStatus', null);
+              _context4.next = 3;
               return axios.get('user');
 
-            case 2:
+            case 3:
               response = _context4.sent;
-              user = response.data || null;
-              context.commit('setUser', user);
+              user = response.data || null; // 取得成功時
 
-            case 5:
+              if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context4.next = 9;
+                break;
+              }
+
+              context.commit('setApiStatus', true);
+              context.commit('setUser', user);
+              return _context4.abrupt("return", false);
+
+            case 9:
+              // 取得失敗時
+              context.commit('setApiStatus', false);
+              context.commit('error/setCode', response.status, {
+                root: true
+              });
+
+            case 11:
             case "end":
               return _context4.stop();
           }

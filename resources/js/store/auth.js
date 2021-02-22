@@ -2,7 +2,7 @@
 // ログインユーザー情報
 // ====================
 
-import { OK, UNPROCESSABLE_ENTITY } from '../util.js';
+import { OK, CREATED, UNPROCESSABLE_ENTITY } from '../util.js';
 
 // ===============
 // state
@@ -102,16 +102,41 @@ const actions = {
       context.commit('error/setCode', response.status, { root: true })
     }
   },
+  // ===========
   // ログアウト
-  async logout(context, data) {
-    const response = await axios.post('logout', data)
-    context.commit('setUser', null)
+  // ===========
+  async logout(context) {
+    context.commit('setApiStatus', null)
+    const response = await axios.post('logout')
+    
+    // ログアウト処理成功時
+    if (response.status === OK) {
+      context.commit('setApiStatus', true)
+      context.commit('setUser', null)
+      return false
+    }
+    // 失敗時
+    context.commit('setApiStatus', false)
+    context.commit('error/setCode', response.status, { root: true })
   },
-  // 現在ログイン中のユーザーを取得しセットする
+  
+  // ==================================
+  // 現在ログイン中のユーザーを取得する
+  // ==================================
   async currentUser(context) {
+    context.commit('setApiStatus', null)
     const response = await axios.get('user')
     const user = response.data || null
-    context.commit('setUser', user)
+    
+    // 取得成功時
+    if (response.status === OK) {
+      context.commit('setApiStatus', true)
+      context.commit('setUser', user)
+      return false
+    }
+    // 取得失敗時
+    context.commit('setApiStatus', false)
+    context.commit('error/setCode', response.status, { root: true })
   },
 };
 
