@@ -39,19 +39,24 @@
 <script>
 export default {
   computed: {
+    apiStatus() {
+      return this.$store.state.auth.apiStatus
+    },
     isLogin() {
       return this.$store.getters['auth/check']
     },
     username() {
       return this.$store.getters['auth/username']
-    }
+    },
   },
   methods: {
     // ログアウト
     async logout() {
       await this.$store.dispatch('auth/logout')
-
-      this.$router.push('/login')
+      // 処理成功時のみ遷移
+      if (this.apiStatus) {
+        this.$router.push('/login')
+      }
     }
   }
 }
