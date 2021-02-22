@@ -21938,9 +21938,36 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v("500 ERROR システムエラーが発生しました。")])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-error__container" }, [
+      _c("div", { staticClass: "p-error" }, [
+        _c("div", { staticClass: "p-error__statusCode" }, [
+          _c("span", { staticClass: "p-error__statusCode--code" }, [
+            _vm._v("500")
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "p-error__statusCode--text" }, [
+            _vm._v("Server Error")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "p-error__description" }, [
+          _c("span", [
+            _vm._v(
+              "サーバーで問題が発生しました。お手数ですが、しばらく時間を置いてからやり直してください。"
+            )
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
