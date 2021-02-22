@@ -2,10 +2,15 @@
 // ログインユーザー情報
 // ====================
 
+import { OK } from '../util.js';
+
+// ===============
 // state
 // ===============
 const state = () => ({
-  user: null
+  user: null,
+  // APIの呼び出しが成功したかの判定
+  apiStatus: null
 });
 
 // ===============
@@ -25,6 +30,10 @@ const mutations = {
   // ユーザーの情報をセット
   setUser(state, user) {
     state.user = user
+  },
+  // API呼び出し成否をセット
+  setApiStatus(state, status) {
+    state.apiStatus = status
   }
 };
 

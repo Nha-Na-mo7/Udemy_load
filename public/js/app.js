@@ -38871,6 +38871,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util.js */ "./resources/js/util.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -38880,11 +38881,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 // ====================
 // ログインユーザー情報
 // ====================
+ // ===============
 // state
 // ===============
+
 var state = function state() {
   return {
-    user: null
+    user: null,
+    // APIの呼び出しが成功したかの判定
+    apiStatus: null
   };
 }; // ===============
 // getter
@@ -38908,6 +38913,10 @@ var mutations = {
   // ユーザーの情報をセット
   setUser: function setUser(state, user) {
     state.user = user;
+  },
+  // API呼び出し成否をセット
+  setApiStatus: function setApiStatus(state, status) {
+    state.apiStatus = status;
   }
 }; // ===============
 // actions
