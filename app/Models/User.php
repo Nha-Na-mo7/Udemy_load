@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * リレーション - recordsテーブル
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function api_limit()
+    {
+      return $this->hasMany('App\Models\Record');
+    }
 }
