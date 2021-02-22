@@ -1921,6 +1921,7 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Header_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Header.vue */ "./resources/js/components/Header.vue");
+/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util.js */ "./resources/js/util.js");
 //
 //
 //
@@ -1940,9 +1941,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    errorCode: function errorCode() {
+      return this.$store.state.error.code;
+    }
+  },
   components: {
     Header: _components_Header_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  watch: {
+    errorCode: {
+      handler: function handler(val) {
+        if (val === _util_js__WEBPACK_IMPORTED_MODULE_1__["INTERNAL_SERVER_ERROR"]) {
+          this.$router.push('/500');
+        }
+      },
+      // 初期化時にも判定させる
+      immediate: true
+    },
+    $route: function $route() {
+      this.$store.commit('error/setCode', null);
+    }
   }
 });
 
@@ -2153,6 +2174,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
+  computed: {
+    apiStatus: function apiStatus() {
+      return this.$store.state.auth.apiStatus;
+    }
+  },
   methods: {
     // --------------------------------------
     // 新規会員登録(authストアのregisterアクション)
@@ -2195,8 +2221,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.$store.dispatch('auth/login', _this2.loginForm);
 
               case 2:
-                // 遷移
-                _this2.$router.push('/');
+                // ログイン成功時、遷移させる
+                if (_this2.apiStatus) {
+                  _this2.$router.push('/');
+                }
 
               case 3:
               case "end":

@@ -94,6 +94,11 @@ export default {
       },
     }
   },
+  computed: {
+    apiStatus() {
+      return this.$store.state.auth.apiStatus
+    }
+  },
   methods: {
     // --------------------------------------
     // 新規会員登録(authストアのregisterアクション)
@@ -108,8 +113,10 @@ export default {
     // ---------
     async login() {
       await this.$store.dispatch('auth/login', this.loginForm)
-      // 遷移
-      this.$router.push('/')
+      // ログイン成功時、遷移させる
+      if (this.apiStatus) {
+        this.$router.push('/')
+      }
     },
   }
 }

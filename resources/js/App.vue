@@ -18,9 +18,29 @@
 
 <script>
 import Header from './components/Header.vue';
+import { INTERNAL_SERVER_ERROR } from './util.js';
 export default {
+  computed: {
+    errorCode() {
+    return this.$store.state.error.code
+    }
+  },
   components: {
     Header,
   },
+  watch: {
+    errorCode: {
+      handler(val) {
+        if (val === INTERNAL_SERVER_ERROR) {
+          this.$router.push('/500')
+        }
+      },
+      // 初期化時にも判定させる
+      immediate: true
+    },
+    $route() {
+      this.$store.commit('error/setCode', null)
+    }
+  }
 };
 </script>
