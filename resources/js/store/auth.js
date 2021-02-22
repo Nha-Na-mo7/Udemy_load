@@ -83,7 +83,6 @@ const actions = {
   // ===========
   async login(context, data) {
     context.commit('setApiStatus', null)
-    
     const response = await axios.post('login', data)
     
     // ログイン成功時

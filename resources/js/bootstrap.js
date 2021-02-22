@@ -19,7 +19,7 @@ window.axios.interceptors.request.use((config) => {
     config.headers['X-XSRF-TOKEN'] = getCookieValue('XSRF-TOKEN');
     
     return config;
-});
+})
 
 // エラーレスポンスが帰ってきた時、レスポンスオブジェクトを返す処理に変更
 window.axios.interceptors.response.use(
