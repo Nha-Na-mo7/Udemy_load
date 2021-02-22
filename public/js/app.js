@@ -38497,6 +38497,12 @@ window.axios.interceptors.request.use(function (config) {
   // cookieからXSRF-TOKENを取り出し、ヘッダーに添付
   config.headers['X-XSRF-TOKEN'] = Object(_util__WEBPACK_IMPORTED_MODULE_0__["getCookieValue"])('XSRF-TOKEN');
   return config;
+}); // エラーレスポンスが帰ってきた時、レスポンスオブジェクトを返す処理に変更
+
+window.axios.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  return error.response || error;
 });
 
 /***/ }),

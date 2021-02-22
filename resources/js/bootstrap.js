@@ -20,3 +20,9 @@ window.axios.interceptors.request.use((config) => {
     
     return config;
 });
+
+// エラーレスポンスが帰ってきた時、レスポンスオブジェクトを返す処理に変更
+window.axios.interceptors.response.use(
+    response => response,
+    error => error.response || error
+)
