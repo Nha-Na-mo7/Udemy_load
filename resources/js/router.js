@@ -7,6 +7,7 @@ import Login from './pages/Auth/Login.vue';
 
 // エラーコンポーネント
 import SystemError from './pages/Errors/500_System.vue';
+import NotFound from './pages/Errors/404_NotFound.vue';
 
 // storeのインポート
 import store from './store'
@@ -48,10 +49,10 @@ const routes = [
     path: '/500',
     component:  SystemError,
   },
-  // {
-  //   path: '*',
-  //   component: NotFound404,
-  // },
+  {
+    path: '*',
+    component: NotFound,
+  },
 ];
 
 const router = new VueRouter({
