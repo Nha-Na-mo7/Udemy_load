@@ -26,6 +26,7 @@ Route::get('/reflesh-token', function (Illuminate\Http\Request $request){
   $request->session()->regenerateToken();
   return response()->json();
 });
-
-Route::get('/{any?}', fn() => view('pages.records'))->where('any', '.+');
 Auth::routes();
+
+Route::get('/{any?}', 'IndexController@error')->where('any', '.+')->name('home.error');
+
