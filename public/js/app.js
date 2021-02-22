@@ -2179,6 +2179,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2198,6 +2201,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     apiStatus: function apiStatus() {
       return this.$store.state.auth.apiStatus;
+    },
+    registerErrors: function registerErrors() {
+      return this.$store.state.auth.registerErrorMessages;
     },
     loginErrors: function loginErrors() {
       return this.$store.state.auth.loginErrorMessages;
@@ -2219,8 +2225,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.$store.dispatch('auth/register', _this.registerForm);
 
               case 2:
-                // 遷移
-                _this.$router.push('/');
+                // ログイン成功時、遷移させる
+                if (_this.apiStatus) {
+                  _this.$router.push('/');
+                }
 
               case 3:
               case "end":
@@ -2245,7 +2253,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.$store.dispatch('auth/login', _this2.loginForm);
 
               case 2:
-                // ログイン成功時、遷移させる
                 if (_this2.apiStatus) {
                   _this2.$router.push('/');
                 }
@@ -2262,6 +2269,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // エラーメッセージのクリア
     // --------------------
     clearError: function clearError() {
+      this.$store.commit('auth/setRegisterErrorMessages', null);
       this.$store.commit('auth/setLoginErrorMessages', null);
     }
   },
@@ -21495,9 +21503,7 @@ var render = function() {
                     ? _c(
                         "ul",
                         _vm._l(_vm.loginErrors.email, function(msg) {
-                          return _c("li", { key: msg }, [
-                            _vm._v(_vm._s(msg) + "\n          ")
-                          ])
+                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
                         }),
                         0
                       )
@@ -21507,9 +21513,7 @@ var render = function() {
                     ? _c(
                         "ul",
                         _vm._l(_vm.loginErrors.password, function(msg) {
-                          return _c("li", { key: msg }, [
-                            _vm._v(_vm._s(msg) + "\n          ")
-                          ])
+                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
                         }),
                         0
                       )
@@ -21601,6 +21605,40 @@ var render = function() {
             }
           },
           [
+            _vm.registerErrors
+              ? _c("div", { staticClass: "c-errors" }, [
+                  _vm.registerErrors.name
+                    ? _c(
+                        "ul",
+                        _vm._l(_vm.registerErrors.name, function(msg) {
+                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                        }),
+                        0
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.registerErrors.email
+                    ? _c(
+                        "ul",
+                        _vm._l(_vm.registerErrors.email, function(msg) {
+                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                        }),
+                        0
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.registerErrors.password
+                    ? _c(
+                        "ul",
+                        _vm._l(_vm.registerErrors.password, function(msg) {
+                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                        }),
+                        0
+                      )
+                    : _vm._e()
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c("label", { attrs: { for: "username" } }, [
               _vm._v("ユーザーネーム")
             ]),
@@ -38985,6 +39023,8 @@ var state = function state() {
     user: null,
     // APIの呼び出しが成功したかの判定
     apiStatus: null,
+    // 新規登録時のエラーメッセージ
+    registerErrorMessages: null,
     // ログイン時のエラーメッセージ
     loginErrorMessages: null
   };
@@ -39015,6 +39055,10 @@ var mutations = {
   setApiStatus: function setApiStatus(state, status) {
     state.apiStatus = status;
   },
+  // 新規登録エラーメッセージをセット
+  setRegisterErrorMessages: function setRegisterErrorMessages(state, messages) {
+    state.registerErrorMessages = messages;
+  },
   // ログインエラーメッセージをセット
   setLoginErrorMessages: function setLoginErrorMessages(state, messages) {
     state.loginErrorMessages = messages;
@@ -39024,7 +39068,9 @@ var mutations = {
 // ===============
 
 var actions = {
+  // ==========
   // 会員登録
+  // ==========
   register: function register(context, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var response;
@@ -39032,14 +39078,36 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              // APIステータスストアをnullでリセット
+              context.commit('setApiStatus', null);
+              _context.next = 3;
               return axios.post('register', data);
 
-            case 2:
+            case 3:
               response = _context.sent;
-              context.commit('setUser', response.data);
 
-            case 4:
+              if (!(response.status === CREATED)) {
+                _context.next = 8;
+                break;
+              }
+
+              context.commit('setApiStatus', true);
+              context.commit('setUser', response.data);
+              return _context.abrupt("return", false);
+
+            case 8:
+              // 失敗時、apiStatusをfalseにセット
+              context.commit('setApiStatus', false); // バリデーションエラー時
+
+              if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
+                context.commit('setRegisterErrorMessages', response.data.errors);
+              } else {
+                context.commit('error/setCode', response.status, {
+                  root: true
+                });
+              }
+
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -39057,12 +39125,9 @@ var actions = {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              // APIステータスストアをnullでリセット
               context.commit('setApiStatus', null);
               _context2.next = 3;
-              return axios.post('login', data)["catch"](function (err) {
-                return err.response || err;
-              });
+              return axios.post('login', data);
 
             case 3:
               response = _context2.sent;

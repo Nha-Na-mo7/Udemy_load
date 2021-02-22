@@ -11,8 +11,10 @@ const state = () => ({
   user: null,
   // APIの呼び出しが成功したかの判定
   apiStatus: null,
+  // 新規登録時のエラーメッセージ
+  registerErrorMessages: null,
   // ログイン時のエラーメッセージ
-  loginErrorMessages: null
+  loginErrorMessages: null,
 });
 
 // ===============
@@ -37,32 +39,54 @@ const mutations = {
   setApiStatus(state, status) {
     state.apiStatus = status
   },
+  // 新規登録エラーメッセージをセット
+  setRegisterErrorMessages(state, messages) {
+    state.registerErrorMessages = messages
+  },
   // ログインエラーメッセージをセット
   setLoginErrorMessages(state, messages) {
     state.loginErrorMessages = messages
-  }
+  },
 };
 
 // ===============
 // actions
 // ===============
 const actions = {
+  // ==========
   // 会員登録
+  // ==========
   async register(context, data) {
+    // APIステータスストアをnullでリセット
+    context.commit('setApiStatus', null)
+    
     const response = await axios.post('register', data)
-    context.commit('setUser', response.data)
+    
+    // 新規登録成功時
+    if (response.status === CREATED) {
+      context.commit('setApiStatus', true)
+      context.commit('setUser', response.data)
+      return false
+    }
+    
+    // 失敗時、apiStatusをfalseにセット
+    context.commit('setApiStatus', false)
+    // バリデーションエラー時
+    if (response.status === UNPROCESSABLE_ENTITY) {
+      context.commit('setRegisterErrorMessages', response.data.errors)
+    }else{
+      context.commit('error/setCode', response.status, { root: true })
+    }
   },
   // ===========
   // ログイン
   // ===========
   async login(context, data) {
-    // APIステータスストアをnullでリセット
     context.commit('setApiStatus', null)
     
     const response = await axios.post('login', data)
-        .catch(err => err.response || err)
     
-    // 呼び出し成功時
+    // ログイン成功時
     if (response.status === OK) {
       context.commit('setApiStatus', true)
       context.commit('setUser', response.data)

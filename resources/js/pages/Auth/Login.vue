@@ -20,23 +20,12 @@
           @submit.prevent="login"
       >
         <!-- エラーメッセージ -->
-        <div
-            v-if="loginErrors"
-            class="c-errors"
-        >
+        <div v-if="loginErrors" class="c-errors">
           <ul v-if="loginErrors.email">
-            <li
-                v-for="msg in loginErrors.email"
-                :key="msg"
-            >{{ msg }}
-            </li>
+            <li v-for="msg in loginErrors.email" :key="msg">{{ msg }}</li>
           </ul>
           <ul v-if="loginErrors.password">
-            <li
-                v-for="msg in loginErrors.password"
-                :key="msg"
-            >{{ msg }}
-            </li>
+            <li v-for="msg in loginErrors.password" :key="msg">{{ msg }}</li>
           </ul>
         </div>
 
@@ -63,6 +52,20 @@
     <!-- 新規登録フォーム -->
     <div class="c-panel" v-show="tab === 2">
       <form class="p-form__auth" @submit.prevent="register">
+
+        <!-- エラーメッセージ -->
+        <div v-if="registerErrors" class="c-errors">
+          <ul v-if="registerErrors.name">
+            <li v-for="msg in registerErrors.name" :key="msg">{{ msg }}</li>
+          </ul>
+          <ul v-if="registerErrors.email">
+            <li v-for="msg in registerErrors.email" :key="msg">{{ msg }}</li>
+          </ul>
+          <ul v-if="registerErrors.password">
+            <li v-for="msg in registerErrors.password" :key="msg">{{ msg }}</li>
+          </ul>
+        </div>
+
         <label for="username">ユーザーネーム</label>
         <input type="text"
                class="c-input"
@@ -119,9 +122,12 @@ export default {
     apiStatus() {
       return this.$store.state.auth.apiStatus
     },
+    registerErrors() {
+      return this.$store.state.auth.registerErrorMessages
+    },
     loginErrors() {
       return this.$store.state.auth.loginErrorMessages
-    }
+    },
   },
   methods: {
     // --------------------------------------
@@ -129,15 +135,16 @@ export default {
     // --------------------------------------
     async register() {
       await this.$store.dispatch('auth/register', this.registerForm)
-      // 遷移
-      this.$router.push('/')
+      // ログイン成功時、遷移させる
+      if (this.apiStatus) {
+        this.$router.push('/')
+      }
     },
     // ---------
     // ログイン
     // ---------
     async login() {
       await this.$store.dispatch('auth/login', this.loginForm)
-      // ログイン成功時、遷移させる
       if (this.apiStatus) {
         this.$router.push('/')
       }
@@ -146,6 +153,7 @@ export default {
     // エラーメッセージのクリア
     // --------------------
     clearError() {
+      this.$store.commit('auth/setRegisterErrorMessages', null)
       this.$store.commit('auth/setLoginErrorMessages', null)
     }
   },
