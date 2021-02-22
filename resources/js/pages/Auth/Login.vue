@@ -19,6 +19,27 @@
           class="p-form__auth"
           @submit.prevent="login"
       >
+        <!-- エラーメッセージ -->
+        <div
+            v-if="loginErrors"
+            class="c-errors"
+        >
+          <ul v-if="loginErrors.email">
+            <li
+                v-for="msg in loginErrors.email"
+                :key="msg"
+            >{{ msg }}
+            </li>
+          </ul>
+          <ul v-if="loginErrors.password">
+            <li
+                v-for="msg in loginErrors.password"
+                :key="msg"
+            >{{ msg }}
+            </li>
+          </ul>
+        </div>
+
         <label for="login-email">メールアドレス</label>
         <input
             type="text"
@@ -97,6 +118,9 @@ export default {
   computed: {
     apiStatus() {
       return this.$store.state.auth.apiStatus
+    },
+    loginErrors() {
+      return this.$store.state.auth.loginErrorMessages
     }
   },
   methods: {
@@ -118,6 +142,15 @@ export default {
         this.$router.push('/')
       }
     },
+    // --------------------
+    // エラーメッセージのクリア
+    // --------------------
+    clearError() {
+      this.$store.commit('auth/setLoginErrorMessages', null)
+    }
+  },
+  created() {
+    this.clearError()
   }
 }
 </script>

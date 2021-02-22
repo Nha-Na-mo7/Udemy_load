@@ -2158,6 +2158,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2177,6 +2198,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     apiStatus: function apiStatus() {
       return this.$store.state.auth.apiStatus;
+    },
+    loginErrors: function loginErrors() {
+      return this.$store.state.auth.loginErrorMessages;
     }
   },
   methods: {
@@ -2233,7 +2257,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    // --------------------
+    // エラーメッセージのクリア
+    // --------------------
+    clearError: function clearError() {
+      this.$store.commit('auth/setLoginErrorMessages', null);
     }
+  },
+  created: function created() {
+    this.clearError();
   }
 });
 
@@ -21456,6 +21489,34 @@ var render = function() {
             }
           },
           [
+            _vm.loginErrors
+              ? _c("div", { staticClass: "c-errors" }, [
+                  _vm.loginErrors.email
+                    ? _c(
+                        "ul",
+                        _vm._l(_vm.loginErrors.email, function(msg) {
+                          return _c("li", { key: msg }, [
+                            _vm._v(_vm._s(msg) + "\n          ")
+                          ])
+                        }),
+                        0
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.loginErrors.password
+                    ? _c(
+                        "ul",
+                        _vm._l(_vm.loginErrors.password, function(msg) {
+                          return _c("li", { key: msg }, [
+                            _vm._v(_vm._s(msg) + "\n          ")
+                          ])
+                        }),
+                        0
+                      )
+                    : _vm._e()
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c("label", { attrs: { for: "login-email" } }, [
               _vm._v("メールアドレス")
             ]),
@@ -38923,7 +38984,9 @@ var state = function state() {
   return {
     user: null,
     // APIの呼び出しが成功したかの判定
-    apiStatus: null
+    apiStatus: null,
+    // ログイン時のエラーメッセージ
+    loginErrorMessages: null
   };
 }; // ===============
 // getter
@@ -38951,6 +39014,10 @@ var mutations = {
   // API呼び出し成否をセット
   setApiStatus: function setApiStatus(state, status) {
     state.apiStatus = status;
+  },
+  // ログインエラーメッセージをセット
+  setLoginErrorMessages: function setLoginErrorMessages(state, messages) {
+    state.loginErrorMessages = messages;
   }
 }; // ===============
 // actions
@@ -39010,11 +39077,16 @@ var actions = {
               return _context2.abrupt("return", false);
 
             case 8:
-              // 失敗時
-              context.commit('setApiStatus', false);
-              context.commit('error/setCode', response.status, {
-                root: true
-              });
+              // 失敗時、apiStatusをfalseにセット
+              context.commit('setApiStatus', false); // バリデーションエラー時
+
+              if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
+                context.commit('setLoginErrorMessages', response.data.errors);
+              } else {
+                context.commit('error/setCode', response.status, {
+                  root: true
+                });
+              }
 
             case 10:
             case "end":

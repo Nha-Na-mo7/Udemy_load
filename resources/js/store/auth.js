@@ -2,7 +2,7 @@
 // ログインユーザー情報
 // ====================
 
-import { OK } from '../util.js';
+import { OK, UNPROCESSABLE_ENTITY } from '../util.js';
 
 // ===============
 // state
@@ -10,7 +10,9 @@ import { OK } from '../util.js';
 const state = () => ({
   user: null,
   // APIの呼び出しが成功したかの判定
-  apiStatus: null
+  apiStatus: null,
+  // ログイン時のエラーメッセージ
+  loginErrorMessages: null
 });
 
 // ===============
@@ -34,6 +36,10 @@ const mutations = {
   // API呼び出し成否をセット
   setApiStatus(state, status) {
     state.apiStatus = status
+  },
+  // ログインエラーメッセージをセット
+  setLoginErrorMessages(state, messages) {
+    state.loginErrorMessages = messages
   }
 };
 
@@ -63,9 +69,14 @@ const actions = {
       return false
     }
     
-    // 失敗時
+    // 失敗時、apiStatusをfalseにセット
     context.commit('setApiStatus', false)
-    context.commit('error/setCode', response.status, { root: true })
+    // バリデーションエラー時
+    if (response.status === UNPROCESSABLE_ENTITY) {
+      context.commit('setLoginErrorMessages', response.data.errors)
+    }else{
+      context.commit('error/setCode', response.status, { root: true })
+    }
   },
   // ログアウト
   async logout(context, data) {
