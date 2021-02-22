@@ -28,5 +28,8 @@ Route::get('/reflesh-token', function (Illuminate\Http\Request $request){
 });
 Auth::routes();
 
+// レコードの投稿
+Route::post('/records', 'RecordController@create')->name('record.create');
+
 Route::get('/{any?}', 'IndexController@error')->where('any', '.+')->name('home.error');
 
