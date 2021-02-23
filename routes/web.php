@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 // トップページ
 Route::get('/', 'HomeController@index')->name('home.index');
 
+
 // ログインユーザーを返す
 Route::get('/user', fn() => Auth::user())->name('user');
 
@@ -27,7 +28,10 @@ Route::get('/reflesh-token', function (Illuminate\Http\Request $request){
   return response()->json();
 });
 Auth::routes();
-
+/* TODO Auth::routes()の後に/loginでのルートのビューを指定しないと元のlogin.blade.phpを参照してしまう
+後で修正をすること */
+// ログイン
+Route::get('/login', 'HomeController@index')->name('home.index');
 // レコードの投稿
 Route::post('/records', 'RecordController@create')->name('record.create');
 
