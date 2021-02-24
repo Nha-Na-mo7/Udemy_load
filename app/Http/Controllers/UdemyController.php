@@ -8,11 +8,6 @@ use GuzzleHttp\Client;
 
 class UdemyController extends Controller
 {
-  public function __construct()
-  {
-    $this->middleware('auth');
-  }
-  
   // ===========================
   // ビューを返却する
   // ===========================
@@ -25,10 +20,10 @@ class UdemyController extends Controller
    * ============================
    * $keyword: 検索のキーワード
    */
-  public function get_lesson(){
+  public function get_course(){
     
     Log::debug('================================');
-    Log::debug('Udemy_C:get_lesson 講座情報を取得');
+    Log::debug('Udemy_C:get_course 講座情報を取得');
     Log::debug('================================');
     // ------------------
     // APIアクセス前準備
@@ -40,7 +35,7 @@ class UdemyController extends Controller
 
     // APIへのリクエストURLを作成
     // キーワード検索時のベースとなるURL
-    $API_BASE_URL = 'https://www.udemy.com/api-2.0/courses/?search=';
+    $API_BASE_URL = 'https://www.udemy.com/api-2.0/courses/?language=ja&search=';
     // 検索キーワードの文字コードを変更
     $query = urlencode(mb_convert_encoding($keywords, "UTF-8", "auto"));
   
@@ -82,6 +77,6 @@ class UdemyController extends Controller
     // Log::debug('レスポンスする記事の配列: '. print_r($scraped_entry_list, true));
     
     // 取得したニュースの配列を返却
-    return true;
+    return 'OK';
   }
 }
