@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Client;
 
 class UdemyController extends Controller
 {
@@ -26,27 +27,37 @@ class UdemyController extends Controller
    */
   public function get_lesson(){
     
-    Log::debug('============================================');
-    Log::debug('Udemy_C/get_lesson 講座情報を取得します');
-    Log::debug('============================================');
+    Log::debug('================================');
+    Log::debug('Udemy_C:get_lesson 講座情報を取得');
+    Log::debug('================================');
     // ------------------
     // APIアクセス前準備
     // ------------------
     // GETパラメータの値を元に、講座情報を取得する
-    $keywords = filter_input(INPUT_GET, 'keywords') ? filter_input(INPUT_GET, 'keywords') : 'Ruby on Rails';
+    $keywords = filter_input(INPUT_GET, 'keywords') ? filter_input(INPUT_GET, 'keywords') : '';
     
     Log::debug('検索ワード: '.$keywords);
-    
-    // 最大実行時間・90秒。
-    set_time_limit(90);
-    
+
     // APIへのリクエストURLを作成
-    // $api_url = 111111111;
-    // Log::debug('APIリクエストURL :'.$api_url);
+    // キーワード検索時のベースとなるURL
+    $API_BASE_URL = 'https://www.udemy.com/api-2.0/courses/?search=';
+    // 検索キーワードの文字コードを変更
+    $query = urlencode(mb_convert_encoding($keywords, "UTF-8", "auto"));
+  
+    // APIへのリクエストURLを作成
+    $api_url = $API_BASE_URL . $query;
     
     // --------------------
     // APIへリクエストを飛ばす
     // --------------------
+    // リクエストのたびにBasic認証が必要なので、クライアントIDとパスワードを参照する
+    $client = new Client();
+    $request = $client->get($api_url);
+    $request->setAuth(
+        config('services.udemy')['client_id'],
+        config('services.udemy')['client_password']
+    );
+    $request->send();
     
     // ----------------------
     // 必要な情報をレスポンスする
