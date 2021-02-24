@@ -50,15 +50,17 @@ class UdemyController extends Controller
     // --------------------
     // APIへリクエストを飛ばす
     // --------------------
-    // リクエストのたびにBasic認証が必要なので、クライアントIDとパスワードを参照する
+    // リクエストのたびにBasic認証が必要なので、クライアントIDとパスワードを付与する
     $client = new Client();
-    $request = $client->get($api_url);
-    $request->setAuth(
-        config('services.udemy')['client_id'],
-        config('services.udemy')['client_password']
-    );
-    $request->send();
-    
+    $response = $client->request('GET', $api_url, [
+        'auth' => [
+            config('services.udemy')['client_id'],
+            config('services.udemy')['client_password']
+        ]
+    ]);
+    $body = $response->getBody();
+    $data = json_decode($body, true);
+
     // ----------------------
     // 必要な情報をレスポンスする
     // ----------------------
