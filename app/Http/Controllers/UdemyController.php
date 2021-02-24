@@ -42,9 +42,9 @@ class UdemyController extends Controller
     // APIへのリクエストURLを作成
     $api_url = $API_BASE_URL . $query;
     
-    // --------------------
-    // APIへリクエストを飛ばす
-    // --------------------
+    // ----------------------------------
+    // APIへリクエストを飛ばし、コース一覧を取得
+    // ----------------------------------
     // リクエストのたびにBasic認証が必要なので、クライアントIDとパスワードを付与する
     $client = new Client();
     $response = $client->request('GET', $api_url, [
@@ -56,27 +56,23 @@ class UdemyController extends Controller
     $body = $response->getBody();
     $data = json_decode($body, true);
     
-    Log::debug($data);
+    // Log::debug($data);
+    // Log::debug($data['count']);
+    Log::debug($data['results']);
 
     // ----------------------
     // 必要な情報をレスポンスする
     // ----------------------
-    // 講座情報一覧を取得
-    
     // 講座数をカウント、0の場合は空のままレスポンスする
-    // if(count($data)) {
-    //   Log::debug('見つけた記事数: '. count($data));
-    // } else {
-    //   Log::debug('記事は0件でした。');
-    //   return $data;
-    // }
-    
-    // "title"などの必要情報を取り出して、配列に格納する
-    
+    if(!!$data['count']) {
+      Log::debug('コース総数: '. $data['count']);
+    } else {
+      Log::debug('見つかりませんでした、検索ワードを変えてください');
+    }
     // レスポンスする記事の配列
     // Log::debug('レスポンスする記事の配列: '. print_r($scraped_entry_list, true));
     
     // 取得したニュースの配列を返却
-    return 'OK';
+    return $data;
   }
 }

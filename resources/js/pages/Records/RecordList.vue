@@ -42,6 +42,8 @@ export default {
       const params = this.searchData;
       const response = await axios.get('/udemy/course/get', { params });
 
+      console.log(response)
+
       this.isSearching = false;
       console.log('メソッド finished!')
     }

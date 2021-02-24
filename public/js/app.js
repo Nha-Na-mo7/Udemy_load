@@ -2444,10 +2444,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 7:
                 response = _context.sent;
+                console.log(response);
                 _this.isSearching = false;
                 console.log('メソッド finished!');
 
-              case 10:
+              case 11:
               case "end":
                 return _context.stop();
             }
