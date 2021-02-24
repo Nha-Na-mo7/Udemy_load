@@ -60,30 +60,28 @@ class UdemyController extends Controller
     ]);
     $body = $response->getBody();
     $data = json_decode($body, true);
+    
+    Log::debug($data);
 
     // ----------------------
     // 必要な情報をレスポンスする
     // ----------------------
     // 講座情報一覧を取得
-    $data = [1, 2, 3, 4, 5];
     
     // 講座数をカウント、0の場合は空のままレスポンスする
-    if(count($data)) {
-      Log::debug('見つけた記事数: '. count($data));
-    } else {
-      Log::debug('記事は0件でした。');
-      return $data;
-    }
+    // if(count($data)) {
+    //   Log::debug('見つけた記事数: '. count($data));
+    // } else {
+    //   Log::debug('記事は0件でした。');
+    //   return $data;
+    // }
     
     // "title"などの必要情報を取り出して、配列に格納する
-    
-    // 記事を並べ替える。
-    $lesson_list = [7, 5, 3];
     
     // レスポンスする記事の配列
     // Log::debug('レスポンスする記事の配列: '. print_r($scraped_entry_list, true));
     
     // 取得したニュースの配列を返却
-    return $lesson_list;
+    return true;
   }
 }
