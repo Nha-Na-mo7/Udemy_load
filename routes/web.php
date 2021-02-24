@@ -32,6 +32,14 @@ Auth::routes();
 後で修正をすること */
 // ログイン
 Route::get('/login', 'HomeController@index')->name('home.index');
+
+
+// =================
+// UdemyAPI関連
+// =================
+// 指定したワードでUdemyAPIを使用し、レッスン一覧を取得する
+Route::get('/udemy/course/get', 'UdemyController@get_course');
+
 // レコードの投稿
 Route::post('/records', 'RecordController@create')->name('record.create');
 
