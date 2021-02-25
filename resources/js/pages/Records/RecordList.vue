@@ -45,7 +45,7 @@ export default {
 <style scoped>
   .f_page {
     font-size: 20px;
-    margin-top: 60px;
+    margin-top: 120px;
     height: 320px;
     background: #dffcf2;
   }
