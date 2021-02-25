@@ -3,16 +3,7 @@
     <h1>Record List 学習の記録</h1>
 
     <div>
-      <h2>UDEMY講座検索</h2>
-      <form action="">
-        <label>
-          <input type="text" v-model="searchData.keywords">
-        </label></form>
-      <button
-          class="c-btn"
-          @click="searchCourse"
-      >講座検索
-      </button>
+      <h2>登録講座一覧</h2>
     </div>
   </div>
 </template>

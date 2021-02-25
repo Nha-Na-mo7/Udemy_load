@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 // トップページ
 Route::get('/', 'HomeController@index')->name('home.index');
 
-
 // ログインユーザーを返す
 Route::get('/user', fn() => Auth::user())->name('user');
 
