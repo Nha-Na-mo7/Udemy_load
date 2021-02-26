@@ -52,3 +52,5 @@ export const NOT_FOUND = 404;
 export const UNAUTHORIZED = 419; //認証切れ(Laravel独自のコード)
 export const UNPROCESSABLE_ENTITY = 422; //バリデーションエラー
 export const INTERNAL_SERVER_ERROR = 500;
+
+export const UDEMY_BASE_URL = 'https://www.udemy.com'

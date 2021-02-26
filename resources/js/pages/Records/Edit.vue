@@ -5,7 +5,7 @@
       <p>コースを選択し、レコードに追加してください</p>
       <form action="">
         <label>
-          <input type="text" v-model="searchData.keywords">
+          <input type="text" class="c-input" v-model="searchData.keywords">
         </label></form>
       <button
           class="c-btn"
@@ -13,10 +13,21 @@
       >講座検索
       </button>
     </div>
+
+    // 検索結果
+    <div v-if="!!responseData">
+      <Course
+          v-for="Course in responseData"
+          :key="Course.id"
+          :course="Course"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import Course from './Course.vue';
+
 export default {
   data() {
     return {
@@ -24,7 +35,8 @@ export default {
       isSearching: false,
       searchData: {
         keywords: '',
-      }
+      },
+      responseData: [],
     }
   },
   methods: {
@@ -42,10 +54,14 @@ export default {
       const response = await axios.get('/udemy/course/get', { params });
 
       console.log(response)
+      this.responseData = response.data.results;
 
       this.isSearching = false;
       console.log('メソッド finished!')
     }
+  },
+  components: {
+    Course,
   }
 }
 
