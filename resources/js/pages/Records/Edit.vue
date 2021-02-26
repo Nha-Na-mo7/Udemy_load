@@ -14,17 +14,27 @@
       </button>
     </div>
 
-    <div v-if="!!responseData">
-      <Course
-          v-for="Course in responseData"
-          :key="Course.id"
-          :course="Course"
-      />
+    <!-- 検索結果一覧 -->
+    <div id="courselist" class="p-course__list">
+      <!-- 検索中 -->
+      <div v-if="isSearching">
+        <Loading />
+      </div>
+
+      <!-- 結果コンポーネント一覧 -->
+      <div v-else>
+        <Course
+            v-for="Course in responseData"
+            :key="Course.id"
+            :course="Course"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Loading from '../../components/Loading.vue';
 import Course from './Course.vue';
 
 export default {
@@ -60,6 +70,7 @@ export default {
     }
   },
   components: {
+    Loading,
     Course,
   }
 }
