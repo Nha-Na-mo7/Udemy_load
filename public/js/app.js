@@ -2397,6 +2397,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2445,7 +2447,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -2650,7 +2651,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.p-course__item[data-v-5ac15e71] {\n  -webkit-animation: fadeIn-data-v-5ac15e71 1s;\n          animation: fadeIn-data-v-5ac15e71 1s;\n}\n@-webkit-keyframes fadeIn-data-v-5ac15e71 {\n0% {\n    opacity: 0;\n}\n100% {\n    opacity: 1;\n}\n}\n@keyframes fadeIn-data-v-5ac15e71 {\n0% {\n    opacity: 0;\n}\n100% {\n    opacity: 1;\n}\n}\n", ""]);
+exports.push([module.i, "\n.p-course__item[data-v-5ac15e71] {\n  padding: 12px;\n  border: 1px solid #000000;\n  margin-bottom: 5px;\n  -webkit-animation: fadeIn-data-v-5ac15e71 1s;\n          animation: fadeIn-data-v-5ac15e71 1s;\n}\n.p-course__item--title[data-v-5ac15e71] {\n  font-size: 1.6rem;\n  font-weight: 700;\n  line-height: 1.2;\n  letter-spacing: -.02rem;\n}\n.p-course__item--instructor[data-v-5ac15e71] {\n  font-size: 1.2rem;\n}\n@-webkit-keyframes fadeIn-data-v-5ac15e71 {\n0% {\n    opacity: 0;\n}\n100% {\n    opacity: 1;\n}\n}\n@keyframes fadeIn-data-v-5ac15e71 {\n0% {\n    opacity: 0;\n}\n100% {\n    opacity: 1;\n}\n}\n", ""]);
 
 // exports
 
@@ -22337,6 +22338,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-course__item" }, [
+    _c("img", { attrs: { src: _vm.getImage, alt: "" } }),
+    _vm._v(" "),
     _c("div", { staticClass: "p-course__item--title" }, [
       _c("h2", [
         _c(
@@ -22353,9 +22356,9 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.getInstructor))]),
-      _vm._v(" "),
-      _c("img", { attrs: { src: _vm.getImage, alt: "" } })
+      _c("p", { staticClass: "p-course__item--instructor" }, [
+        _vm._v(_vm._s(_vm.getInstructor))
+      ])
     ])
   ])
 }
@@ -22417,7 +22420,7 @@ var render = function() {
         _vm._v("講座検索\n    ")
       ])
     ]),
-    _vm._v("\n\n  // 検索結果\n  "),
+    _vm._v(" "),
     !!_vm.responseData
       ? _c(
           "div",

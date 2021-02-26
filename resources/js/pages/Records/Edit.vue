@@ -14,7 +14,6 @@
       </button>
     </div>
 
-    // 検索結果
     <div v-if="!!responseData">
       <Course
           v-for="Course in responseData"

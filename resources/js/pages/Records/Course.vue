@@ -2,7 +2,9 @@
 <template>
   <div class="p-course__item">
 
-    <!-- 記事のタイトル -->
+    <!-- サムネイル -->
+    <img :src="getImage" alt="">
+    <!-- 講座名とリンク -->
     <div class="p-course__item--title">
       <h2>
         <a
@@ -13,8 +15,8 @@
         >{{ getTitle }}</a
         >
       </h2>
-      <p>{{ getInstructor }}</p>
-      <img :src="getImage" alt="">
+      <!-- 講師名 -->
+      <p class="p-course__item--instructor">{{ getInstructor }}</p>
     </div>
 
   </div>
@@ -53,7 +55,19 @@ export default {
 
 <style scoped>
 .p-course__item {
+  padding: 12px;
+  border: 1px solid #000000;
+  margin-bottom: 5px;
   animation: fadeIn 1s;
+}
+.p-course__item--title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.02rem;
+}
+.p-course__item--instructor {
+  font-size: 1.2rem;
 }
 @keyframes fadeIn {
   0% {
