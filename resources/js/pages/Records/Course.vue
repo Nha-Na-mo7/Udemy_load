@@ -19,6 +19,11 @@
       <p class="p-course__item--instructor">{{ getInstructor }}</p>
     </div>
 
+    <!-- 追加するボタン -->
+    <div>
+      <button class="c-btn" @click="addCourse">追加する</button>
+    </div>
+
   </div>
 </template>
 
@@ -50,6 +55,11 @@ export default {
       return this.course.image_240x135;
     }
   },
+  methods: {
+    addCourse() {
+      console.log(this.course)
+    }
+  }
 };
 </script>
 

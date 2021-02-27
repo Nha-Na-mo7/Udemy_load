@@ -46,6 +46,7 @@ export default {
         keywords: '',
       },
       responseData: [],
+      selectedCourses: [],
     }
   },
   methods: {

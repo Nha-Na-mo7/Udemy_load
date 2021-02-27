@@ -2424,6 +2424,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2448,6 +2453,11 @@ __webpack_require__.r(__webpack_exports__);
     // 画像
     getImage: function getImage() {
       return this.course.image_240x135;
+    }
+  },
+  methods: {
+    addCourse: function addCourse() {
+      console.log(this.course);
     }
   }
 });
@@ -2518,7 +2528,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       searchData: {
         keywords: ''
       },
-      responseData: []
+      responseData: [],
+      selectedCourses: []
     };
   },
   methods: {
@@ -22446,6 +22457,12 @@ var render = function() {
       _vm._v(" "),
       _c("p", { staticClass: "p-course__item--instructor" }, [
         _vm._v(_vm._s(_vm.getInstructor))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("button", { staticClass: "c-btn", on: { click: _vm.addCourse } }, [
+        _vm._v("追加する")
       ])
     ])
   ])
