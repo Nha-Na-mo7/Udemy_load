@@ -14,6 +14,8 @@
       </button>
     </div>
 
+    <!-- 追加するボタンが押されたら一度検索窓はリセットされる-->
+
     <!-- 検索結果一覧 -->
     <div id="courselist" class="p-course__list">
       <!-- 検索中 -->
