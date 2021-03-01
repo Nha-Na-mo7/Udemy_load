@@ -2520,6 +2520,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -22528,6 +22531,8 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "p-course__list", attrs: { id: "courselist" } }, [
       _vm.isSearching
         ? _c("div", [_c("Loading")], 1)
@@ -22541,7 +22546,16 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "selected" } }, [
+      _c("p", [_vm._v("ここに選択したコースが表示され、編集が可能になります")])
+    ])
+  }
+]
 render._withStripped = true
 
 

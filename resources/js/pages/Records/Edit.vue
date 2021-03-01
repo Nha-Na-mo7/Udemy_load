@@ -15,6 +15,9 @@
     </div>
 
     <!-- 追加するボタンが押されたら一度検索窓はリセットされる-->
+    <div id="selected">
+      <p>ここに選択したコースが表示され、編集が可能になります</p>
+    </div>
 
     <!-- 検索結果一覧 -->
     <div id="courselist" class="p-course__list">
