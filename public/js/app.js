@@ -2523,12 +2523,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       searchWord: '',
+      modalFlg: false,
       isSearching: false,
       searchData: {
         keywords: ''
@@ -2579,6 +2586,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    // モーダルフラグを切り替え
+    toggleModalFlg: function toggleModalFlg() {
+      this.modalFlg = !this.modalFlg;
     }
   },
   components: {
@@ -22498,64 +22509,74 @@ var render = function() {
     _c("h1", [_vm._v("講座登録")]),
     _vm._v(" "),
     _c("div", [
-      _c("p", [_vm._v("コースを選択し、レコードに追加してください")]),
-      _vm._v(" "),
-      _c("form", { attrs: { action: "" } }, [
-        _c("label", [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.searchData.keywords,
-                expression: "searchData.keywords"
-              }
-            ],
-            staticClass: "c-input",
-            attrs: { type: "text" },
-            domProps: { value: _vm.searchData.keywords },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.searchData, "keywords", $event.target.value)
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "c-btn", on: { click: _vm.searchCourse } }, [
-        _vm._v("講座検索\n    ")
-      ])
+      _c(
+        "button",
+        { staticClass: "c-btn", on: { click: _vm.toggleModalFlg } },
+        [_vm._v("\n      コースを追加する\n    ")]
+      )
     ]),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "p-course__list", attrs: { id: "courselist" } }, [
-      _vm.isSearching
-        ? _c("div", [_c("Loading")], 1)
-        : _c(
+    _vm.modalFlg
+      ? _c("div", [
+          _c("div", [
+            _c("p", [_vm._v("コースを選択し、レコードに追加してください")]),
+            _vm._v(" "),
+            _c("form", { attrs: { action: "" } }, [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.searchData.keywords,
+                      expression: "searchData.keywords"
+                    }
+                  ],
+                  staticClass: "c-input",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.searchData.keywords },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.searchData, "keywords", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "c-btn", on: { click: _vm.searchCourse } },
+              [_vm._v("講座検索\n      ")]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
             "div",
-            _vm._l(_vm.responseData, function(Course) {
-              return _c("Course", { key: Course.id, attrs: { course: Course } })
-            }),
-            1
+            { staticClass: "p-course__list", attrs: { id: "courselist" } },
+            [
+              _vm.isSearching
+                ? _c("div", [_c("Loading")], 1)
+                : _c(
+                    "div",
+                    _vm._l(_vm.responseData, function(Course) {
+                      return _c("Course", {
+                        key: Course.id,
+                        attrs: { course: Course }
+                      })
+                    }),
+                    1
+                  )
+            ]
           )
-    ])
+        ])
+      : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "selected" } }, [
-      _c("p", [_vm._v("ここに選択したコースが表示され、編集が可能になります")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

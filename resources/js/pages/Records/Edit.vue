@@ -1,38 +1,44 @@
 <template>
   <div class="f_page">
     <h1>講座登録</h1>
+
+    <!-- コースを追加する -->
     <div>
-      <p>コースを選択し、レコードに追加してください</p>
-      <form action="">
-        <label>
-          <input type="text" class="c-input" v-model="searchData.keywords">
-        </label></form>
-      <button
-          class="c-btn"
-          @click="searchCourse"
-      >講座検索
+      <button class="c-btn" @click="toggleModalFlg">
+        コースを追加する
       </button>
     </div>
 
-    <!-- 追加するボタンが押されたら一度検索窓はリセットされる-->
-    <div id="selected">
-      <p>ここに選択したコースが表示され、編集が可能になります</p>
-    </div>
-
-    <!-- 検索結果一覧 -->
-    <div id="courselist" class="p-course__list">
-      <!-- 検索中 -->
-      <div v-if="isSearching">
-        <Loading />
+    <!-- モーダルがONになったら表示される -->
+    <!-- TODO コンポーネントわけすること -->
+    <div v-if="modalFlg">
+      <div>
+        <p>コースを選択し、レコードに追加してください</p>
+        <form action="">
+          <label>
+            <input type="text" class="c-input" v-model="searchData.keywords">
+          </label></form>
+        <button
+            class="c-btn"
+            @click="searchCourse"
+        >講座検索
+        </button>
       </div>
+      <!-- 検索結果一覧 -->
+      <div id="courselist" class="p-course__list">
+        <!-- 検索中 -->
+        <div v-if="isSearching">
+          <Loading />
+        </div>
 
-      <!-- 結果コンポーネント一覧 -->
-      <div v-else>
-        <Course
-            v-for="Course in responseData"
-            :key="Course.id"
-            :course="Course"
-        />
+        <!-- 結果コンポーネント一覧 -->
+        <div v-else>
+          <Course
+              v-for="Course in responseData"
+              :key="Course.id"
+              :course="Course"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -46,6 +52,7 @@ export default {
   data() {
     return {
       searchWord: '',
+      modalFlg: false,
       isSearching: false,
       searchData: {
         keywords: '',
@@ -73,7 +80,11 @@ export default {
 
       this.isSearching = false;
       console.log('メソッド finished!')
-    }
+    },
+    // モーダルフラグを切り替え
+    toggleModalFlg() {
+      this.modalFlg = !this.modalFlg;
+    },
   },
   components: {
     Loading,
