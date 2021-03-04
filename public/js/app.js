@@ -2545,6 +2545,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -2623,6 +2624,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.plusarr(e);
       this.resetSearchWord();
       this.toggleModalFlg();
+    },
+    // オブジェクトを削除する
+    deleteCourseObject: function deleteCourseObject(index) {
+      this.selectedCourses.splice(index, 1);
     }
   },
   components: {
@@ -2753,6 +2758,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2781,6 +2795,11 @@ __webpack_require__.r(__webpack_exports__);
     // オブジェクトそのもの
     getCourseObject: function getCourseObject() {
       return this.course;
+    }
+  },
+  methods: {
+    deleteCourse: function deleteCourse() {
+      this.$emit('deleteCourse');
     }
   }
 });
@@ -22613,10 +22632,15 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      _vm._l(_vm.selectedCourses, function(Course) {
+      _vm._l(_vm.selectedCourses, function(Course, index) {
         return _c("SelectedCourse", {
           key: Course.id,
-          attrs: { course: Course }
+          attrs: { course: Course },
+          on: {
+            deleteCourse: function($event) {
+              return _vm.deleteCourseObject(index)
+            }
+          }
         })
       }),
       1
@@ -22771,6 +22795,12 @@ var render = function() {
       _vm._v(" "),
       _c("p", { staticClass: "p-course__item--instructor" }, [
         _vm._v(_vm._s(_vm.getInstructor))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("button", { staticClass: "c-btn", on: { click: _vm.deleteCourse } }, [
+        _vm._v("削除する")
       ])
     ])
   ])

@@ -5,9 +5,10 @@
     <!-- 現在追加されているコース-->
     <div>
       <SelectedCourse
-        v-for="Course in selectedCourses"
+        v-for="(Course, index) in selectedCourses"
         :key="Course.id"
         :course="Course"
+        @deleteCourse="deleteCourseObject(index)"
       />
     </div>
 
@@ -111,7 +112,11 @@ export default {
       this.plusarr(e)
       this.resetSearchWord()
       this.toggleModalFlg()
-    }
+    },
+    // オブジェクトを削除する
+    deleteCourseObject(index) {
+      this.selectedCourses.splice(index, 1)
+    },
   },
   components: {
     Loading,

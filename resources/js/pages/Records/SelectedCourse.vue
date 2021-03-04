@@ -20,6 +20,15 @@
       <!-- 講師名 -->
       <p class="p-course__item--instructor">{{ getInstructor }}</p>
     </div>
+
+    <!-- 削除ボタン -->
+    <div>
+      <button
+          class="c-btn"
+          @click="deleteCourse"
+      >削除する</button>
+    </div>
+
   </div>
 </template>
 
@@ -55,6 +64,11 @@ export default {
       return this.course
     }
   },
+  methods: {
+    deleteCourse() {
+      this.$emit('deleteCourse')
+    }
+  }
 }
 </script>
 
