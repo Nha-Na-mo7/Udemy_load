@@ -4,7 +4,11 @@
 
     <!-- 現在追加されているコース-->
     <div>
-      <p>{{ selectedCourses }}</p>
+      <SelectedCourse
+        v-for="Course in selectedCourses"
+        :key="Course.id"
+        :course="Course"
+      />
     </div>
 
     <!-- コースを追加する -->
@@ -53,6 +57,7 @@
 <script>
 import Loading from '../../components/Loading.vue';
 import Course from './Course.vue';
+import SelectedCourse from './SelectedCourse.vue';
 
 export default {
   data() {
@@ -111,6 +116,7 @@ export default {
   components: {
     Loading,
     Course,
+    SelectedCourse
   }
 }
 
