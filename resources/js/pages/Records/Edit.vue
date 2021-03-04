@@ -2,6 +2,11 @@
   <div class="f_page">
     <h1>講座登録</h1>
 
+    <!-- 現在追加されているコース-->
+    <div>
+      <p>{{ selectedCourses }}</p>
+    </div>
+
     <!-- コースを追加する -->
     <div>
       <button class="c-btn" @click="toggleModalFlg">
@@ -37,6 +42,7 @@
               v-for="Course in responseData"
               :key="Course.id"
               :course="Course"
+              @addCourse="plusarr"
           />
         </div>
       </div>
@@ -84,6 +90,10 @@ export default {
     // モーダルフラグを切り替え
     toggleModalFlg() {
       this.modalFlg = !this.modalFlg;
+    },
+    // TODO 配列追加検証用の仮メソッド
+    plusarr(e) {
+      this.selectedCourses.push(e);
     },
   },
   components: {

@@ -2457,7 +2457,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addCourse: function addCourse() {
-      console.log(this.course);
+      this.$emit("addCourse", this.getTitle);
     }
   }
 });
@@ -2483,6 +2483,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2590,6 +2596,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // モーダルフラグを切り替え
     toggleModalFlg: function toggleModalFlg() {
       this.modalFlg = !this.modalFlg;
+    },
+    // TODO 配列追加検証用の仮メソッド
+    plusarr: function plusarr(e) {
+      this.selectedCourses.push(e);
     }
   },
   components: {
@@ -22508,6 +22518,8 @@ var render = function() {
   return _c("div", { staticClass: "f_page" }, [
     _c("h1", [_vm._v("講座登録")]),
     _vm._v(" "),
+    _c("div", [_c("p", [_vm._v(_vm._s(_vm.selectedCourses))])]),
+    _vm._v(" "),
     _c("div", [
       _c(
         "button",
@@ -22565,7 +22577,8 @@ var render = function() {
                     _vm._l(_vm.responseData, function(Course) {
                       return _c("Course", {
                         key: Course.id,
-                        attrs: { course: Course }
+                        attrs: { course: Course },
+                        on: { addCourse: _vm.plusarr }
                       })
                     }),
                     1

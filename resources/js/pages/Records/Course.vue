@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     addCourse() {
-      console.log(this.course)
+      this.$emit("addCourse", this.getTitle);
     }
   }
 };
