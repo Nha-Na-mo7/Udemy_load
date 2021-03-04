@@ -53,11 +53,16 @@ export default {
     // 画像
     getImage() {
       return this.course.image_240x135;
+    },
+    // オブジェクトそのもの
+    getCourseObject() {
+      return this.course
     }
   },
   methods: {
     addCourse() {
-      this.$emit("addCourse", this.getTitle);
+      // 親コンポーネントの配列にコースオブジェクトを格納する
+      this.$emit("addCourse", this.getCourseObject);
     }
   }
 };

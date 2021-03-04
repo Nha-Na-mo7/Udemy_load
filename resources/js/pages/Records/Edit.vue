@@ -42,7 +42,7 @@
               v-for="Course in responseData"
               :key="Course.id"
               :course="Course"
-              @addCourse="plusarr"
+              @addCourse="addCourseObject"
           />
         </div>
       </div>
@@ -87,6 +87,12 @@ export default {
       this.isSearching = false;
       console.log('メソッド finished!')
     },
+    // 検索をリセット
+    resetSearchWord() {
+      this.searchWord = ''
+      this.searchData.keywords = ''
+      this.responseData = []
+    },
     // モーダルフラグを切り替え
     toggleModalFlg() {
       this.modalFlg = !this.modalFlg;
@@ -95,6 +101,12 @@ export default {
     plusarr(e) {
       this.selectedCourses.push(e);
     },
+    // オブジェクトを配列に追加する一連の流れ
+    addCourseObject(e) {
+      this.plusarr(e)
+      this.resetSearchWord()
+      this.toggleModalFlg()
+    }
   },
   components: {
     Loading,

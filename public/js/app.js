@@ -2453,11 +2453,16 @@ __webpack_require__.r(__webpack_exports__);
     // 画像
     getImage: function getImage() {
       return this.course.image_240x135;
+    },
+    // オブジェクトそのもの
+    getCourseObject: function getCourseObject() {
+      return this.course;
     }
   },
   methods: {
     addCourse: function addCourse() {
-      this.$emit("addCourse", this.getTitle);
+      // 親コンポーネントの配列にコースオブジェクトを格納する
+      this.$emit("addCourse", this.getCourseObject);
     }
   }
 });
@@ -2593,6 +2598,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    // 検索をリセット
+    resetSearchWord: function resetSearchWord() {
+      this.searchWord = '';
+      this.searchData.keywords = '';
+      this.responseData = [];
+    },
     // モーダルフラグを切り替え
     toggleModalFlg: function toggleModalFlg() {
       this.modalFlg = !this.modalFlg;
@@ -2600,6 +2611,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // TODO 配列追加検証用の仮メソッド
     plusarr: function plusarr(e) {
       this.selectedCourses.push(e);
+    },
+    // オブジェクトを配列に追加する一連の流れ
+    addCourseObject: function addCourseObject(e) {
+      this.plusarr(e);
+      this.resetSearchWord();
+      this.toggleModalFlg();
     }
   },
   components: {
@@ -22578,7 +22595,7 @@ var render = function() {
                       return _c("Course", {
                         key: Course.id,
                         attrs: { course: Course },
-                        on: { addCourse: _vm.plusarr }
+                        on: { addCourse: _vm.addCourseObject }
                       })
                     }),
                     1
