@@ -1,35 +1,38 @@
 <!-- コース検索用モーダルコンポーネント -->
 <template>
   <div>
-    <!-- コース検索フォーム-->
-    <div>
-      <p>コースを選択し、レコードに追加してください</p>
-      <form action="">
-        <label>
-          <input type="text" class="c-input" v-model="searchData.keywords">
-        </label></form>
-      <button
-          class="c-btn"
-          @click="searchCourse"
-      >講座検索
-      </button>
-    </div>
-
-    <!-- 検索結果一覧 -->
-    <div id="courselist" class="p-course__list">
-      <!-- 検索中 -->
-      <div v-if="isSearching">
-        <Loading />
+    <div class="c-modal__cover"></div>
+    <div class="c-modal">
+      <!-- コース検索フォーム-->
+      <div class="">
+        <p>コースを選択し、レコードに追加してください</p>
+        <form action="">
+          <label>
+            <input type="text" class="c-input" v-model="searchData.keywords">
+          </label></form>
+        <button
+            class="c-btn"
+            @click="searchCourse"
+        >講座検索
+        </button>
       </div>
 
-      <!-- 結果コンポーネント一覧 -->
-      <div v-else>
-        <Course
-            v-for="Course in responseData"
-            :key="Course.id"
-            :course="Course"
-            @addCourse="addCourseObject"
-        />
+      <!-- 検索結果一覧 -->
+      <div id="courselist" class="p-course__list">
+        <!-- 検索中 -->
+        <div v-if="isSearching">
+          <Loading />
+        </div>
+
+        <!-- 結果コンポーネント一覧 -->
+        <div v-else>
+          <Course
+              v-for="Course in responseData"
+              :key="Course.id"
+              :course="Course"
+              @addCourse="addCourseObject"
+          />
+        </div>
       </div>
     </div>
   </div>

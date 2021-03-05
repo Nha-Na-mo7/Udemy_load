@@ -2691,6 +2691,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -22852,54 +22855,64 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
-      _c("p", [_vm._v("コースを選択し、レコードに追加してください")]),
-      _vm._v(" "),
-      _c("form", { attrs: { action: "" } }, [
-        _c("label", [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.searchData.keywords,
-                expression: "searchData.keywords"
-              }
-            ],
-            staticClass: "c-input",
-            attrs: { type: "text" },
-            domProps: { value: _vm.searchData.keywords },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+    _c("div", { staticClass: "c-modal__cover" }),
+    _vm._v(" "),
+    _c("div", { staticClass: "c-modal" }, [
+      _c("div", {}, [
+        _c("p", [_vm._v("コースを選択し、レコードに追加してください")]),
+        _vm._v(" "),
+        _c("form", { attrs: { action: "" } }, [
+          _c("label", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchData.keywords,
+                  expression: "searchData.keywords"
                 }
-                _vm.$set(_vm.searchData, "keywords", $event.target.value)
+              ],
+              staticClass: "c-input",
+              attrs: { type: "text" },
+              domProps: { value: _vm.searchData.keywords },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.searchData, "keywords", $event.target.value)
+                }
               }
-            }
-          })
-        ])
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          { staticClass: "c-btn", on: { click: _vm.searchCourse } },
+          [_vm._v("講座検索\n      ")]
+        )
       ]),
       _vm._v(" "),
-      _c("button", { staticClass: "c-btn", on: { click: _vm.searchCourse } }, [
-        _vm._v("講座検索\n    ")
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "p-course__list", attrs: { id: "courselist" } }, [
-      _vm.isSearching
-        ? _c("div", [_c("Loading")], 1)
-        : _c(
-            "div",
-            _vm._l(_vm.responseData, function(Course) {
-              return _c("Course", {
-                key: Course.id,
-                attrs: { course: Course },
-                on: { addCourse: _vm.addCourseObject }
-              })
-            }),
-            1
-          )
+      _c(
+        "div",
+        { staticClass: "p-course__list", attrs: { id: "courselist" } },
+        [
+          _vm.isSearching
+            ? _c("div", [_c("Loading")], 1)
+            : _c(
+                "div",
+                _vm._l(_vm.responseData, function(Course) {
+                  return _c("Course", {
+                    key: Course.id,
+                    attrs: { course: Course },
+                    on: { addCourse: _vm.addCourseObject }
+                  })
+                }),
+                1
+              )
+        ]
+      )
     ])
   ])
 }
