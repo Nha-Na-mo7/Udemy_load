@@ -48,31 +48,6 @@ export default {
     }
   },
   methods: {
-    async searchCourse() {
-      // 検索中に重複して呼び出せないようにする
-      if ( this.isSearching ) {
-        return false;
-      }
-      console.log('search START!!!')
-      // 検索開始
-      this.isSearching = true;
-
-      // 検索ワードを元にUdemyAPIにリクエストする
-      const params = this.searchData;
-      const response = await axios.get('/udemy/course/get', { params });
-
-      console.log(response)
-      this.responseData = response.data.results;
-
-      this.isSearching = false;
-      console.log('メソッド finished!')
-    },
-    // 検索をリセット
-    resetSearchWord() {
-      this.searchWord = ''
-      this.searchData.keywords = ''
-      this.responseData = []
-    },
     // モーダルフラグを切り替え
     toggleModalFlg() {
       this.modalFlg = !this.modalFlg;
@@ -80,12 +55,6 @@ export default {
     // 選択済みコースに追加する
     pushCourseObjToSelectedCoursesArr(e) {
       this.selectedCourses.push(e);
-    },
-    // オブジェクトを配列に追加する一連の流れ
-    addCourseObject(e) {
-      this.pushCourseObjToSelectedCoursesArr(e)
-      this.resetSearchWord()
-      this.toggleModalFlg()
     },
     // オブジェクトを削除する
     deleteCourseObject(index) {

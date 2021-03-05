@@ -2478,17 +2478,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
-/* harmony import */ var _SelectedCourse_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SelectedCourse.vue */ "./resources/js/pages/Records/SelectedCourse.vue");
-/* harmony import */ var _SearchModal_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SearchModal.vue */ "./resources/js/pages/Records/SearchModal.vue");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
+/* harmony import */ var _SelectedCourse_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SelectedCourse.vue */ "./resources/js/pages/Records/SelectedCourse.vue");
+/* harmony import */ var _SearchModal_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SearchModal.vue */ "./resources/js/pages/Records/SearchModal.vue");
 //
 //
 //
@@ -2537,54 +2529,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    searchCourse: function searchCourse() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var params, response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (!_this.isSearching) {
-                  _context.next = 2;
-                  break;
-                }
-
-                return _context.abrupt("return", false);
-
-              case 2:
-                console.log('search START!!!'); // 検索開始
-
-                _this.isSearching = true; // 検索ワードを元にUdemyAPIにリクエストする
-
-                params = _this.searchData;
-                _context.next = 7;
-                return axios.get('/udemy/course/get', {
-                  params: params
-                });
-
-              case 7:
-                response = _context.sent;
-                console.log(response);
-                _this.responseData = response.data.results;
-                _this.isSearching = false;
-                console.log('メソッド finished!');
-
-              case 12:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    // 検索をリセット
-    resetSearchWord: function resetSearchWord() {
-      this.searchWord = '';
-      this.searchData.keywords = '';
-      this.responseData = [];
-    },
     // モーダルフラグを切り替え
     toggleModalFlg: function toggleModalFlg() {
       this.modalFlg = !this.modalFlg;
@@ -2593,21 +2537,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     pushCourseObjToSelectedCoursesArr: function pushCourseObjToSelectedCoursesArr(e) {
       this.selectedCourses.push(e);
     },
-    // オブジェクトを配列に追加する一連の流れ
-    addCourseObject: function addCourseObject(e) {
-      this.pushCourseObjToSelectedCoursesArr(e);
-      this.resetSearchWord();
-      this.toggleModalFlg();
-    },
     // オブジェクトを削除する
     deleteCourseObject: function deleteCourseObject(index) {
       this.selectedCourses.splice(index, 1);
     }
   },
   components: {
-    Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    SelectedCourse: _SelectedCourse_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    SearchModal: _SearchModal_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    SelectedCourse: _SelectedCourse_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    SearchModal: _SearchModal_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
 });
 
