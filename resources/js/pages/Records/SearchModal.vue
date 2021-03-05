@@ -1,10 +1,10 @@
 <!-- コース検索用モーダルコンポーネント -->
 <template>
   <div>
-    <div class="c-modal__cover"></div>
+    <div class="c-modal__cover" @click="closeModal"></div>
     <div class="c-modal">
       <!-- コース検索フォーム-->
-      <div class="">
+      <div class="c-modal__searchform">
         <p>コースを選択し、レコードに追加してください</p>
         <form action="">
           <label>
@@ -80,10 +80,14 @@ export default {
       this.searchData.keywords = ''
       this.responseData = []
     },
-    // オブジェクトを配列に追加する一連の流れ
+    // オブジェクトを配列に追加した上でモーダルを閉じる
     addCourseObject(e) {
-      this.resetSearchWord()
       this.$emit('pushCourseObjToSelectedCoursesArr', e)
+      this.closeModal()
+    },
+    // モーダルを閉じる処理
+    closeModal() {
+      this.resetSearchWord()
       this.$emit('toggleModal')
     },
   },

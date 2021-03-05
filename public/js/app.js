@@ -2757,10 +2757,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.searchData.keywords = '';
       this.responseData = [];
     },
-    // オブジェクトを配列に追加する一連の流れ
+    // オブジェクトを配列に追加した上でモーダルを閉じる
     addCourseObject: function addCourseObject(e) {
-      this.resetSearchWord();
       this.$emit('pushCourseObjToSelectedCoursesArr', e);
+      this.closeModal();
+    },
+    // モーダルを閉じる処理
+    closeModal: function closeModal() {
+      this.resetSearchWord();
       this.$emit('toggleModal');
     }
   },
@@ -22855,10 +22859,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "c-modal__cover" }),
+    _c("div", { staticClass: "c-modal__cover", on: { click: _vm.closeModal } }),
     _vm._v(" "),
     _c("div", { staticClass: "c-modal" }, [
-      _c("div", {}, [
+      _c("div", { staticClass: "c-modal__searchform" }, [
         _c("p", [_vm._v("コースを選択し、レコードに追加してください")]),
         _vm._v(" "),
         _c("form", { attrs: { action: "" } }, [
