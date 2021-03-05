@@ -660,6 +660,42 @@ input[type=checkbox] {
   }
 }
 
+.p-course {
+  display: block;
+}
+
+.p-course:nth-of-type(3n) {
+  background: #d6fbff;
+}
+
+.p-course:nth-of-type(3n-1) {
+  background: #e1ffd6;
+}
+
+.p-course:nth-of-type(3n-2) {
+  background: #fff;
+}
+
+.p-course__selected {
+  padding: 5px;
+  border: 1px solid #000;
+  margin-bottom: 12px;
+}
+
+.p-course__item--title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.p-course__item--title--link:hover {
+  text-decoration: underline;
+}
+
+.p-course__item--instructor {
+  font-size: 12px;
+}
+
 .p-documentbox {
   border-radius: 4px;
   margin-bottom: 30px;

@@ -1,0 +1,40 @@
+// ==========
+//  p-course
+//  =========
+.p-course {
+  display: block;
+  &:nth-of-type(3n) {
+    background: #d6fbff;
+  }
+  &:nth-of-type(3n-1) {
+    background: #e1ffd6;
+  }
+  &:nth-of-type(3n-2) {
+    background: #fff;
+  }
+  // 選択されたコース
+  &__selected {
+    padding: 5px;
+    border: 1px solid #000;
+    margin-bottom: 12px;
+  }
+
+  &__item {
+    // 講座タイトル
+    &--title {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 4px;
+      // 講座タイトルリンク
+      &--link {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    // 講師名
+    &--instructor {
+      font-size: 12px;
+    }
+  }
+}
