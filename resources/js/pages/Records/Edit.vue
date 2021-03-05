@@ -1,6 +1,6 @@
 <template>
   <div class="f_page">
-    <h1>講座登録</h1>
+    <h2>講座登録</h2>
 
     <!-- 現在追加されているコース-->
     <div>
@@ -22,54 +22,28 @@
     <!-- モーダルがONになったら表示される -->
     <!-- TODO コンポーネントわけすること -->
     <div v-if="modalFlg">
-      <div>
-        <p>コースを選択し、レコードに追加してください</p>
-        <form action="">
-          <label>
-            <input type="text" class="c-input" v-model="searchData.keywords">
-          </label></form>
-        <button
-            class="c-btn"
-            @click="searchCourse"
-        >講座検索
-        </button>
-      </div>
-      <!-- 検索結果一覧 -->
-      <div id="courselist" class="p-course__list">
-        <!-- 検索中 -->
-        <div v-if="isSearching">
-          <Loading />
-        </div>
+      <SearchModal
+          @pushCourseObjToSelectedCoursesArr="pushCourseObjToSelectedCoursesArr"
+          @toggleModal="toggleModalFlg"
+      />
+    </div>
 
-        <!-- 結果コンポーネント一覧 -->
-        <div v-else>
-          <Course
-              v-for="Course in responseData"
-              :key="Course.id"
-              :course="Course"
-              @addCourse="addCourseObject"
-          />
-        </div>
-      </div>
+    <!-- 投稿する -->
+    <div>
+      <button class="c-btn">投稿する</button>
     </div>
   </div>
 </template>
 
 <script>
 import Loading from '../../components/Loading.vue';
-import Course from './Course.vue';
 import SelectedCourse from './SelectedCourse.vue';
+import SearchModal from './SearchModal.vue';
 
 export default {
   data() {
     return {
-      searchWord: '',
       modalFlg: false,
-      isSearching: false,
-      searchData: {
-        keywords: '',
-      },
-      responseData: [],
       selectedCourses: [],
     }
   },
@@ -103,13 +77,13 @@ export default {
     toggleModalFlg() {
       this.modalFlg = !this.modalFlg;
     },
-    // TODO 配列追加検証用の仮メソッド
-    plusarr(e) {
+    // 選択済みコースに追加する
+    pushCourseObjToSelectedCoursesArr(e) {
       this.selectedCourses.push(e);
     },
     // オブジェクトを配列に追加する一連の流れ
     addCourseObject(e) {
-      this.plusarr(e)
+      this.pushCourseObjToSelectedCoursesArr(e)
       this.resetSearchWord()
       this.toggleModalFlg()
     },
@@ -120,8 +94,8 @@ export default {
   },
   components: {
     Loading,
-    Course,
-    SelectedCourse
+    SelectedCourse,
+    SearchModal
   }
 }
 
