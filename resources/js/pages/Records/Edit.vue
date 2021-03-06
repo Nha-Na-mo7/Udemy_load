@@ -20,7 +20,6 @@
     </div>
 
     <!-- モーダルがONになったら表示される -->
-    <!-- TODO コンポーネントわけすること -->
     <div v-if="modalFlg">
       <SearchModal
           @pushCourseObjToSelectedCoursesArr="pushCourseObjToSelectedCoursesArr"

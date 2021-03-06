@@ -1307,8 +1307,8 @@ input[type=checkbox] {
   border-radius: 4px;
   font-size: 20px;
   height: 100%;
-  padding: 0 10px;
-  width: 90%;
+  padding: 5px 10px;
+  width: 100%;
   border: 1px solid #8a8a8a;
   /* 旧Edge対応 */
   /* IE対応 */

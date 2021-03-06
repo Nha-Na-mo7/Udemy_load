@@ -18,7 +18,7 @@
       </div>
 
       <!-- 検索結果一覧 -->
-      <div id="courselist" class="p-course__list">
+      <div id="courselist" class="p-course__list c-modal__searchResult">
         <!-- 検索中 -->
         <div v-if="isSearching">
           <Loading />

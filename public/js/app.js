@@ -2517,7 +2517,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -22900,7 +22899,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "p-course__list", attrs: { id: "courselist" } },
+        {
+          staticClass: "p-course__list c-modal__searchResult",
+          attrs: { id: "courselist" }
+        },
         [
           _vm.isSearching
             ? _c("div", [_c("Loading")], 1)
