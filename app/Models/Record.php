@@ -45,4 +45,20 @@ class Record extends Model
     {
         $this->attributes['id'] = $this->makeRandomId();
     }
+  
+  
+    /**
+     * リレーション - usersテーブル
+     */
+    public function owner()
+    {
+      return $this->belongsTo('App\User', 'user_id', 'id', 'users');
+    }
+    
+    /**
+     * リレーション - recordsテーブル
+     */
+    public function courses() {
+      return $this->hasMany('App\Models\Record');
+    }
 }
