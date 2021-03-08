@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 // コンポーネントのインストール
 import RecordList from './pages/Records/RecordList.vue';
 import RecordEdit from './pages/Records/Edit.vue';
+import RecordDetail from './pages/Records/RecordDetail.vue';
 import Login from './pages/Auth/Login.vue';
 
 // エラーコンポーネント
@@ -58,6 +59,12 @@ const routes = [
     path: '/record/new',
     component: RecordEdit,
     beforeEnter: requireAuth
+  },
+  {
+    // コースレコード詳細ページ
+    path: '/records/:id',
+    component: RecordDetail,
+    props: true
   },
   {
     path: '/500',
