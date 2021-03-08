@@ -40,7 +40,9 @@ Route::get('/login', 'HomeController@index')->name('home.index');
 Route::get('/udemy/course/get', 'UdemyController@get_course');
 
 // レコードの投稿
-Route::post('/records', 'RecordController@create')->name('record.create');
+Route::post('/records/create', 'RecordController@create')->name('record.create');
+// レコードの詳細画面
+Route::post('/records/{id}', 'RecordController@show')->name('record.show');
 
 Route::get('/{any?}', 'IndexController@error')->where('any', '.+')->name('home.error');
 
