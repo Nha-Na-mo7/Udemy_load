@@ -7,12 +7,10 @@
     </header>
 
     <!-- メインコンテンツ -->
-    <main>
-      <div>
-        <!-- 実際にコンポーネントが切り替わるエリア -->
-        <RouterView />
-      </div>
-    </main>
+    <div class="f_space">
+      <!-- 実際にコンポーネントが切り替わるエリア -->
+      <RouterView />
+    </div>
   </div>
 </template>
 
@@ -55,3 +53,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.f_space {
+  margin-top: 120px;
+  margin-bottom: 120px;
+}
+</style>

@@ -7,10 +7,9 @@
 
       <!-- 投稿ボタン(仮)(ログイン中の場合) -->
       <div v-if="isLogin" class="p-header__item">
-        <button class="c-btn">
-          <i class=""></i>
+        <RouterLink class="c-btn" to="/record/new">
           投稿する
-        </button>
+        </RouterLink>
       </div>
 
       <!-- ユーザーネーム(ログイン中の場合) -->
@@ -27,7 +26,7 @@
 
       <!-- ログインボタン(未ログイン時) -->
       <div v-else class="p-header__item">
-        <RouterLink class="c-btn button--link" to="/login">
+        <RouterLink class="c-btn" to="/login">
           ログイン / 新規登録
         </RouterLink>
       </div>

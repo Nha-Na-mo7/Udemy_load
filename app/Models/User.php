@@ -41,7 +41,7 @@ class User extends Authenticatable
      * リレーション - recordsテーブル
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function api_limit()
+    public function records()
     {
       return $this->hasMany('App\Models\Record');
     }

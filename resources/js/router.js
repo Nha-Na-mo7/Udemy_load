@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 
 // コンポーネントのインストール
 import RecordList from './pages/Records/RecordList.vue';
+import RecordEdit from './pages/Records/Edit.vue';
+import RecordDetail from './pages/Records/RecordDetail.vue';
 import Login from './pages/Auth/Login.vue';
 
 // エラーコンポーネント
@@ -16,7 +18,7 @@ Vue.use(VueRouter);
 
 // vue-routerからvuexを参照するには直接インポートする
 // 認証切れの場合に"/login"へ遷移させる
-async function requireLogin(to, from, next) {
+async function checkLoginToken(to, from, next) {
   await auth.actions.check_authenticate();
   if (!auth.state.authenticate) {
     next(true);
@@ -24,12 +26,20 @@ async function requireLogin(to, from, next) {
     document.location.reload();
   }
 }
-// ナビゲーションガード用
+// ナビゲーションガード用/ログイン済みの場合は見ることができない
 async function checkAuth(to, from ,next) {
   if (store.getters['auth/check']) {
     next('/')
   } else {
     next()
+  }
+}
+// ログインしていない場合、ログイン画面に遷移させる
+async function requireAuth(to, from ,next) {
+  if (store.getters['auth/check']) {
+    next()
+  } else {
+    next('/login')
   }
 }
 
@@ -44,6 +54,17 @@ const routes = [
     path: '/login',
     component: Login,
     beforeEnter: checkAuth
+  },
+  {
+    path: '/record/new',
+    component: RecordEdit,
+    beforeEnter: requireAuth
+  },
+  {
+    // コースレコード詳細ページ
+    path: '/records/:id',
+    component: RecordDetail,
+    props: true
   },
   {
     path: '/500',

@@ -7,6 +7,9 @@ use Illuminate\Support\Arr;
 
 class Record extends Model
 {
+    // fill
+    protected $fillable = ['user_id', 'title', 'description'];
+  
     // プライマリーキーの型をstringに
     protected $keyType = 'string';
     
@@ -44,5 +47,21 @@ class Record extends Model
     private function setId()
     {
         $this->attributes['id'] = $this->makeRandomId();
+    }
+  
+  
+    /**
+     * リレーション - usersテーブル
+     */
+    public function owner()
+    {
+      return $this->belongsTo('App\User', 'user_id', 'id', 'users');
+    }
+    
+    /**
+     * リレーション - recordsテーブル
+     */
+    public function courses() {
+      return $this->hasMany('App\Models\Record');
     }
 }

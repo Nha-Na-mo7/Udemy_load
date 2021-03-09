@@ -6,6 +6,9 @@
   @include mq() {
     padding: 0 $space_l;
   }
+  &__item {
+    border: 1px solid #000;
+  }
   &__auth {
     width: 450px;
     margin: 0 auto;
