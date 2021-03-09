@@ -7,6 +7,9 @@ use Illuminate\Support\Arr;
 
 class Record extends Model
 {
+    // fill
+    protected $fillable = ['user_id', 'title', 'description'];
+  
     // プライマリーキーの型をstringに
     protected $keyType = 'string';
     
