@@ -21,6 +21,7 @@ class CreateCoursesTable extends Migration
             $table->string('title')->comment('コースのタイトル');
             $table->string('instructor')->comment('講師名');
             $table->text('description')->comment('コースごとの説明');
+            $table->text('url')->comment('コースのURL');
             $table->text('image_url')->comment('コースの画像URL');
             $table->timestamps();
   
