@@ -4,21 +4,28 @@
 
     <!-- 紹介したいコースについてのフォーム -->
     <div>
-      <form class="p-form">
+      <form class="p-form" v-on:submit.prevent="submitCourse">
         <label for="record_title">タイトル</label>
-        <input type="text" id="record_title" class="p-form__title p-form__item" v-model="recordForm.title" placeholder="タイトルは必須です。">
+        <input type="text" id="record_title" class="p-form__title p-form__item" v-model="createData.recordForm.title" placeholder="タイトルは必須です。">
 
         <label for="record_description">説明</label>
-        <input type="text" id="record_description" class="p-form__description p-form__item" v-model="recordForm.description" placeholder="説明文を入力してください。">
+        <input type="text" id="record_description" class="p-form__description p-form__item" v-model="createData.recordForm.description" placeholder="説明文を入力してください。">
+
+        <!-- 投稿する -->
+        <div>
+          <button class="c-btn">投稿する</button>
+        </div>
       </form>
     </div>
 
     <!-- 現在追加されているコース-->
     <div>
       <SelectedCourse
-        v-for="(Course, index) in selectedCourses"
+        v-for="(Course, index) in createData.selectedCourses"
         :key="Course.id"
         :course="Course"
+        :value="Course.description"
+        @input="Course.description = $event"
         @deleteCourse="deleteCourseObject(index)"
       />
     </div>
@@ -37,11 +44,6 @@
           @toggleModal="toggleModalFlg"
       />
     </div>
-
-    <!-- 投稿する -->
-    <div>
-      <button class="c-btn">投稿する</button>
-    </div>
   </div>
 </template>
 
@@ -56,10 +58,12 @@ export default {
   data() {
     return {
       modalFlg: false,
-      selectedCourses: [],
-      recordForm: {
-        title: '',
-        description: ''
+      createData: {
+        selectedCourses: [],
+        recordForm: {
+          title: '',
+          description: ''
+        },
       }
     }
   },
@@ -68,32 +72,38 @@ export default {
     toggleModalFlg() {
       this.modalFlg = !this.modalFlg;
     },
-    // 選択済みコースに追加する
+    // 選択済みコースにコースオブジェクトを追加する
     pushCourseObjToSelectedCoursesArr(e) {
-      this.selectedCourses.push(e);
+      this.createData.selectedCourses.push(e);
     },
     // オブジェクトを削除する
     deleteCourseObject(index) {
-      this.selectedCourses.splice(index, 1)
+      this.createData.selectedCourses.splice(index, 1)
     },
     // コースのレコードを投稿する
     async submitCourse() {
-      const response = await axios.post('../records/create', this.recordForm);
 
-      // バリデーションエラー
-      if (response.status === UNPROCESSABLE_ENTITY) {
-        this.errors = response.data.errors;
+      // コースが1つもない場合は警告してfalseを返す
+      if (!this.createData.selectedCourses.length) {
         return false
       }
 
-      // 作成完了
-      if (response.status !== CREATED) {
-        this.$store.commit('error/setErrorCode', response.status)
-        return false
-      }
+      const response = await axios.post('../records/create', this.createData);
 
-      // 投稿後にその詳細ページへ遷移させる
-      this.$router.push(`/records/${response.data.id}`)
+      // // バリデーションエラー
+      // if (response.status === UNPROCESSABLE_ENTITY) {
+      //   this.errors = response.data.errors;
+      //   return false
+      // }
+      //
+      // // 作成完了
+      // if (response.status !== CREATED) {
+      //   this.$store.commit('error/setErrorCode', response.status)
+      //   return false
+      // }
+      //
+      // // 投稿後にその詳細ページへ遷移させる
+      // this.$router.push(`/records/${response.data.id}`)
     }
   },
   components: {

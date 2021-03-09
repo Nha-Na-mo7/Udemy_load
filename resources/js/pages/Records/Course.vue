@@ -37,6 +37,14 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      courseData: {
+        courseObject: this.course,
+        description: ''
+      }
+    }
+  },
   computed: {
     // コース名
     getTitle() {
@@ -62,7 +70,7 @@ export default {
   methods: {
     addCourse() {
       // 親コンポーネントの配列にコースオブジェクトを格納する
-      this.$emit("addCourse", this.getCourseObject);
+      this.$emit("addCourse", this.courseData);
     }
   }
 };

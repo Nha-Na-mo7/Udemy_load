@@ -26,7 +26,8 @@
       <textarea
           name=""
           id=""
-          v-model="courseDescription"
+          :value="courseDescription"
+          @input="$emit('input', $event.target.value)"
           class="c-textarea f-textarea"
           placeholder="説明(このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？)"
           maxlength="200"
@@ -56,30 +57,34 @@ export default {
   },
   data() {
     return {
-      courseDescription: ''
+      courseDescription: this.course.description
     }
   },
   computed: {
+    // コースオブジェクト
+    getCourseObj() {
+      return this.course.courseObject
+    },
     // コース名
     getTitle() {
-      return this.course.title;
+      return this.getCourseObj.title;
     },
     // コースのURL(ベースのURLを前に付与しなければならない)
     getUrl() {
-      return UDEMY_BASE_URL + this.course.url;
+      return UDEMY_BASE_URL + this.getCourseObj.url;
     },
     // 講師名
     getInstructor() {
-      return this.course.visible_instructors[0].title;
+      return this.getCourseObj.visible_instructors[0].title;
     },
     // 画像
     getImage() {
-      return this.course.image_240x135;
+      return this.getCourseObj.image_240x135;
     },
     // オブジェクトそのもの
     getCourseObject() {
-      return this.course
-    }
+      return this.getCourseObj
+    },
   },
   methods: {
     deleteCourse() {

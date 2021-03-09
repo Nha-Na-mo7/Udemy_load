@@ -2437,6 +2437,14 @@ __webpack_require__.r(__webpack_exports__);
       required: true
     }
   },
+  data: function data() {
+    return {
+      courseData: {
+        courseObject: this.course,
+        description: ''
+      }
+    };
+  },
   computed: {
     // コース名
     getTitle: function getTitle() {
@@ -2462,7 +2470,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addCourse: function addCourse() {
       // 親コンポーネントの配列にコースオブジェクトを格納する
-      this.$emit("addCourse", this.getCourseObject);
+      this.$emit("addCourse", this.courseData);
     }
   }
 });
@@ -2537,6 +2545,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -2545,10 +2555,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       modalFlg: false,
-      selectedCourses: [],
-      recordForm: {
-        title: '',
-        description: ''
+      createData: {
+        selectedCourses: [],
+        recordForm: {
+          title: '',
+          description: ''
+        }
       }
     };
   },
@@ -2557,13 +2569,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     toggleModalFlg: function toggleModalFlg() {
       this.modalFlg = !this.modalFlg;
     },
-    // 選択済みコースに追加する
+    // 選択済みコースにコースオブジェクトを追加する
     pushCourseObjToSelectedCoursesArr: function pushCourseObjToSelectedCoursesArr(e) {
-      this.selectedCourses.push(e);
+      this.createData.selectedCourses.push(e);
     },
     // オブジェクトを削除する
     deleteCourseObject: function deleteCourseObject(index) {
-      this.selectedCourses.splice(index, 1);
+      this.createData.selectedCourses.splice(index, 1);
     },
     // コースのレコードを投稿する
     submitCourse: function submitCourse() {
@@ -2575,35 +2587,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.post('../records/create', _this.recordForm);
+                if (_this.createData.selectedCourses.length) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return", false);
 
               case 2:
+                _context.next = 4;
+                return axios.post('../records/create', _this.createData);
+
+              case 4:
                 response = _context.sent;
 
-                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
-                  _context.next = 6;
-                  break;
-                }
-
-                _this.errors = response.data.errors;
-                return _context.abrupt("return", false);
-
-              case 6:
-                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context.next = 9;
-                  break;
-                }
-
-                _this.$store.commit('error/setErrorCode', response.status);
-
-                return _context.abrupt("return", false);
-
-              case 9:
-                // 投稿後にその詳細ページへ遷移させる
-                _this.$router.push("/records/".concat(response.data.id));
-
-              case 10:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -2985,6 +2983,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2995,29 +2994,33 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      courseDescription: ''
+      courseDescription: this.course.description
     };
   },
   computed: {
+    // コースオブジェクト
+    getCourseObj: function getCourseObj() {
+      return this.course.courseObject;
+    },
     // コース名
     getTitle: function getTitle() {
-      return this.course.title;
+      return this.getCourseObj.title;
     },
     // コースのURL(ベースのURLを前に付与しなければならない)
     getUrl: function getUrl() {
-      return _util__WEBPACK_IMPORTED_MODULE_0__["UDEMY_BASE_URL"] + this.course.url;
+      return _util__WEBPACK_IMPORTED_MODULE_0__["UDEMY_BASE_URL"] + this.getCourseObj.url;
     },
     // 講師名
     getInstructor: function getInstructor() {
-      return this.course.visible_instructors[0].title;
+      return this.getCourseObj.visible_instructors[0].title;
     },
     // 画像
     getImage: function getImage() {
-      return this.course.image_240x135;
+      return this.getCourseObj.image_240x135;
     },
     // オブジェクトそのもの
     getCourseObject: function getCourseObject() {
-      return this.course;
+      return this.getCourseObj;
     }
   },
   methods: {
@@ -22903,72 +22906,99 @@ var render = function() {
     _c("h2", [_vm._v("講座登録")]),
     _vm._v(" "),
     _c("div", [
-      _c("form", { staticClass: "p-form" }, [
-        _c("label", { attrs: { for: "record_title" } }, [_vm._v("タイトル")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.recordForm.title,
-              expression: "recordForm.title"
-            }
-          ],
-          staticClass: "p-form__title p-form__item",
-          attrs: {
-            type: "text",
-            id: "record_title",
-            placeholder: "タイトルは必須です。"
-          },
-          domProps: { value: _vm.recordForm.title },
+      _c(
+        "form",
+        {
+          staticClass: "p-form",
           on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.recordForm, "title", $event.target.value)
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submitCourse($event)
             }
           }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "record_description" } }, [_vm._v("説明")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.recordForm.description,
-              expression: "recordForm.description"
-            }
-          ],
-          staticClass: "p-form__description p-form__item",
-          attrs: {
-            type: "text",
-            id: "record_description",
-            placeholder: "説明文を入力してください。"
-          },
-          domProps: { value: _vm.recordForm.description },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        },
+        [
+          _c("label", { attrs: { for: "record_title" } }, [_vm._v("タイトル")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.createData.recordForm.title,
+                expression: "createData.recordForm.title"
               }
-              _vm.$set(_vm.recordForm, "description", $event.target.value)
+            ],
+            staticClass: "p-form__title p-form__item",
+            attrs: {
+              type: "text",
+              id: "record_title",
+              placeholder: "タイトルは必須です。"
+            },
+            domProps: { value: _vm.createData.recordForm.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.createData.recordForm,
+                  "title",
+                  $event.target.value
+                )
+              }
             }
-          }
-        })
-      ])
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "record_description" } }, [
+            _vm._v("説明")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.createData.recordForm.description,
+                expression: "createData.recordForm.description"
+              }
+            ],
+            staticClass: "p-form__description p-form__item",
+            attrs: {
+              type: "text",
+              id: "record_description",
+              placeholder: "説明文を入力してください。"
+            },
+            domProps: { value: _vm.createData.recordForm.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.createData.recordForm,
+                  "description",
+                  $event.target.value
+                )
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
     ]),
     _vm._v(" "),
     _c(
       "div",
-      _vm._l(_vm.selectedCourses, function(Course, index) {
+      _vm._l(_vm.createData.selectedCourses, function(Course, index) {
         return _c("SelectedCourse", {
           key: Course.id,
-          attrs: { course: Course },
+          attrs: { course: Course, value: Course.description },
           on: {
+            input: function($event) {
+              Course.description = $event
+            },
             deleteCourse: function($event) {
               return _vm.deleteCourseObject(index)
             }
@@ -23000,9 +23030,7 @@ var render = function() {
           ],
           1
         )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm._m(0)
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -23217,14 +23245,6 @@ var render = function() {
       _c("label", { attrs: { for: "" } }),
       _vm._v(" "),
       _c("textarea", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.courseDescription,
-            expression: "courseDescription"
-          }
-        ],
         staticClass: "c-textarea f-textarea",
         attrs: {
           name: "",
@@ -23236,10 +23256,7 @@ var render = function() {
         domProps: { value: _vm.courseDescription },
         on: {
           input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.courseDescription = $event.target.value
+            return _vm.$emit("input", $event.target.value)
           }
         }
       })
