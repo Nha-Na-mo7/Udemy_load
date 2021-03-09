@@ -53,12 +53,19 @@ class UdemyController extends Controller
             config('services.udemy')['client_password']
         ]
     ]);
+    
+    // TODO UdemyAPI側に問題があった場合はエラーメッセージを返却させる
+    if ($response->getStatusCode() === 500) {
+      return response()->json(['error' => 'UdemyAPIにエラーが発生しました。しばらく時間をおいてやり直してください。'], 500);
+    }
+    
+    // 帰ってきた検索データをjsonに
     $body = $response->getBody();
     $data = json_decode($body, true);
     
     // Log::debug($data);
     // Log::debug($data['count']);
-    Log::debug($data['results']);
+    // Log::debug($data['results']);
 
     // ----------------------
     // 必要な情報をレスポンスする
