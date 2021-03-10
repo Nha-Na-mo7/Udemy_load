@@ -2600,8 +2600,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 response = _context.sent;
+                console.log(response); // // バリデーションエラー
+                // if (response.status === UNPROCESSABLE_ENTITY) {
+                //   this.errors = response.data.errors;
+                //   return false
+                // }
+                // 作成完了
 
-              case 5:
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
+                  _context.next = 9;
+                  break;
+                }
+
+                _this.$store.commit('error/setErrorCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 9:
+                // 投稿後にその詳細ページへ遷移させる
+                _this.$router.push("/records/".concat(response.data.id));
+
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -2642,6 +2661,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2655,17 +2684,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       record: null
     };
   },
+  computed: {
+    title: function title() {
+      return this.record.title;
+    },
+    description: function description() {
+      return this.record.description;
+    }
+  },
   methods: {
-    // レコードの情報をDBから取得する
+    // レコードの情報をDBから取得
     fetchRecord: function fetchRecord() {
+      var _this = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log('レコード情報を取得しました。');
+                console.log('レコード情報を取得しました。'); // レコード情報を取得
 
-              case 1:
+                _context.next = 3;
+                return axios.get("/record/".concat(_this.id));
+
+              case 3:
+                response = _context.sent;
+
+                if (!(response.status !== _util_js__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 7:
+                // 格納
+                _this.record = response.data;
+
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -2677,7 +2736,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       handler: function handler() {
-        var _this = this;
+        var _this2 = this;
 
         return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -2685,7 +2744,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               switch (_context2.prev = _context2.next) {
                 case 0:
                   _context2.next = 2;
-                  return _this.fetchRecord();
+                  return _this2.fetchRecord();
 
                 case 2:
                 case "end":
@@ -23064,16 +23123,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "p-container" }, [
+    _c("h2", [_vm._v("レコードの詳細画面です")]),
+    _vm._v(" "),
+    _c("p", [_vm._v("ID: " + _vm._s(this.id))]),
+    _vm._v(" "),
+    _c("div", { staticClass: "p-record__detail" }, [
+      _c("h2", { staticClass: "p-record__detail--title" }, [
+        _vm._v(_vm._s(this.record.title))
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "p-record__detail--description" }, [
+        _vm._v(_vm._s(this.record.description))
+      ])
+    ])
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h2", [_vm._v("レコードの詳細画面です")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
