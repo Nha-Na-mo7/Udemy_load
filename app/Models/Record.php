@@ -55,13 +55,13 @@ class Record extends Model
      */
     public function owner()
     {
-      return $this->belongsTo('App\User', 'user_id', 'id', 'users');
+      return $this->belongsTo('App\Models\User', 'user_id', 'id', 'users');
     }
     
     /**
      * リレーション - recordsテーブル
      */
     public function courses() {
-      return $this->hasMany('App\Models\Record');
+      return $this->hasMany('App\Models\Course');
     }
 }
