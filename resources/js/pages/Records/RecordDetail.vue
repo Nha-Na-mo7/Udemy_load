@@ -12,6 +12,7 @@
 
       <!-- コースコンポーネント -->
       <div class="p-record__detail--list">
+        <!-- TODO INDEXによる並び替えをサーバサイドで行う処理を書いてください-->
         <CourseDetail
           v-for="Course in this.record.courses"
           :key="Course.id"

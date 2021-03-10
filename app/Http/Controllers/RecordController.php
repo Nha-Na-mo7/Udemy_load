@@ -70,6 +70,7 @@ class RecordController extends Controller
       // IDに合致するレコード情報を取得
       $record = Record::where('id', $id)->with(['owner', 'courses'])->first();
       
+      // TODO course内のindex項目による並び替えを行ってからreturnしてください
       // レコードを返すが、存在しない場合は404を返す
       return $record ?? abort(404);
     }
