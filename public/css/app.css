@@ -997,6 +997,20 @@ input[type=checkbox] {
   }
 }
 
+.p-record__detail--title {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.p-record__detail--description {
+  font-size: 1.2rem;
+}
+
+.p-record__detail--list {
+  background: #efefef;
+  padding: 12px;
+}
+
 .c-border {
   text-align: center;
 }

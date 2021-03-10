@@ -12,29 +12,32 @@ class RecordController extends Controller
 {
     public function __construct()
     {
-        // 認証必須
-        $this->middleware('auth');
+        // 基本的に認証必須 / expectは認証不要
+        $this->middleware('auth')->except(['show']);
     }
     
     // レコードの投稿
+    // TODO 未実装項目: IDが被った時に再抽選する機能、
     public function create(Request $request)
     {
         Log::debug('==============');
         Log::debug(' レコードの投稿');
         Log::debug('==============');
         
-        Log::debug('$request');
-        Log::debug(print_r($request->input('selectedCourses'), true));
-        Log::debug(print_r($request->input('recordForm'), true));
-        // 選択されたコースの個数
-        Log::debug(count($request->selectedCourses));
+        // Log::debug('$request');
+        // Log::debug(print_r($request->input('selectedCourses'), true));
+        // Log::debug(print_r($request->input('recordForm'), true));
+        // // 選択されたコースの個数
+        // Log::debug(count($request->selectedCourses));
         
         $record = new Record();
         $keep_id = $record->id;
         
         // recordsテーブルにtitleとdescriptionを格納
         Auth::user()->records()->save($record->fill($request->recordForm));
-        Log::debug($record->id);
+        // idが0になるのでkeep_idを格納
+        $record->id = $keep_id;
+        // Log::debug($record->id);
         
         // coursesテーブルに選択されたコース、コースの説明、レコードの何番目かなどの情報を格納する
         for ($i = 0, $iMax = count($request->selectedCourses); $i < $iMax; $i++) {
@@ -43,8 +46,6 @@ class RecordController extends Controller
           
           $courseData = $request->get('selectedCourses')[$i];
           $courseObj = $courseData['courseObject'];
-          
-          Log::debug('index : ' . ($i + 1));
           
           // contentsテーブルへ本文を格納
           $course->record_id = $keep_id;
@@ -59,5 +60,18 @@ class RecordController extends Controller
         }
         
         return response($record, 201);
+    }
+    
+    // レコード詳細の取得
+    public function show(string $id) {
+      Log::debug('==================================');
+      Log::debug('レコード詳細取得/ID:'.$id);
+      Log::debug('==================================');
+      // IDに合致するレコード情報を取得
+      $record = Record::where('id', $id)->with(['owner', 'courses'])->first();
+      
+      // TODO course内のindex項目による並び替えを行ってからreturnしてください
+      // レコードを返すが、存在しない場合は404を返す
+      return $record ?? abort(404);
     }
 }

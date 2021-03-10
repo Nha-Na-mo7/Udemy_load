@@ -1,7 +1,8 @@
-<!--コース検索結果で表示させるコンポーネント-->
+
+<!-- コース詳細画面でのコースコンポーネント -->
+
 <template>
   <div class="p-course__item">
-
     <!-- サムネイル -->
     <img :src="getImage" alt="">
     <!-- 講座名とリンク -->
@@ -18,12 +19,9 @@
       <!-- 講師名 -->
       <p class="p-course__item--instructor">{{ getInstructor }}</p>
     </div>
-
-    <!-- 追加するボタン -->
     <div>
-      <button class="c-btn" @click="addCourse">追加する</button>
+      <p class="p-course__item--description">{{ getDescription }}</p>
     </div>
-
   </div>
 </template>
 
@@ -37,14 +35,6 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      courseData: {
-        courseObject: this.course,
-        description: ''
-      }
-    }
-  },
   computed: {
     // コース名
     getTitle() {
@@ -56,45 +46,24 @@ export default {
     },
     // 講師名
     getInstructor() {
-      return this.course.visible_instructors[0].title;
+      return this.course.instructor;
     },
     // 画像
     getImage() {
-      return this.course.image_240x135;
+      return this.course.image_url;
+    },
+    // 説明
+    getDescription() {
+      return this.course.description;
     },
     // オブジェクトそのもの
     getCourseObject() {
       return this.course
     }
   },
-  methods: {
-    addCourse() {
-      // 親コンポーネントの配列にコースオブジェクトを格納する
-      this.$emit("addCourse", this.courseData);
-    }
-  }
 };
 </script>
 
 <style scoped>
-.p-course__item {
-  padding: 12px;
-  border: 1px solid #000000;
-  margin-bottom: 5px;
-  animation: fadeIn 1s;
-}
-.p-course__item--title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -.02rem;
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+
 </style>

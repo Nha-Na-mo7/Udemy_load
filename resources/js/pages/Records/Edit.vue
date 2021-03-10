@@ -90,20 +90,20 @@ export default {
 
       const response = await axios.post('../records/create', this.createData);
 
+      console.log(response)
+
       // // バリデーションエラー
       // if (response.status === UNPROCESSABLE_ENTITY) {
       //   this.errors = response.data.errors;
       //   return false
       // }
-      //
-      // // 作成完了
-      // if (response.status !== CREATED) {
-      //   this.$store.commit('error/setErrorCode', response.status)
-      //   return false
-      // }
-      //
-      // // 投稿後にその詳細ページへ遷移させる
-      // this.$router.push(`/records/${response.data.id}`)
+      // 作成完了
+      if (response.status !== CREATED) {
+        this.$store.commit('error/setErrorCode', response.status)
+        return false
+      }
+      // 投稿後にその詳細ページへ遷移させる
+      this.$router.push(`/records/${response.data.id}`)
     }
   },
   components: {
