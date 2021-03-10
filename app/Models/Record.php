@@ -9,6 +9,11 @@ class Record extends Model
 {
     // fill
     protected $fillable = ['user_id', 'title', 'description'];
+    
+    // Jsonで表示させる項目
+    protected $visible = [
+        'id', 'user_id', 'title', 'description', 'owner', 'courses'
+    ];
   
     // プライマリーキーの型をstringに
     protected $keyType = 'string';

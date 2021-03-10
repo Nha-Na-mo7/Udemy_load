@@ -6,9 +6,9 @@
     <!-- 詳細 -->
     <div class="p-record__detail">
       <!-- タイトル -->
-      <h2 class="p-record__detail--title">{{ this.record.title }}</h2>
+      <h2 class="p-record__detail--title">{{ this.title }}</h2>
       <!-- Description -->
-      <p class="p-record__detail--description">{{ this.record.description }}</p>
+      <p class="p-record__detail--description">{{ this.description }}</p>
     </div>
 
   </div>
@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      record: null,
+      record: {},
     }
   },
   computed: {

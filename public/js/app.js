@@ -2681,7 +2681,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      record: null
+      record: {}
     };
   },
   computed: {
@@ -23130,11 +23130,11 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "p-record__detail" }, [
       _c("h2", { staticClass: "p-record__detail--title" }, [
-        _vm._v(_vm._s(this.record.title))
+        _vm._v(_vm._s(this.title))
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "p-record__detail--description" }, [
-        _vm._v(_vm._s(this.record.description))
+        _vm._v(_vm._s(this.description))
       ])
     ])
   ])
