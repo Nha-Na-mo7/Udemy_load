@@ -9,6 +9,15 @@
       <h2 class="p-record__detail--title">{{ this.title }}</h2>
       <!-- Description -->
       <p class="p-record__detail--description">{{ this.description }}</p>
+
+      <!-- コースコンポーネント -->
+      <div class="p-record__detail--list">
+        <CourseDetail
+          v-for="Course in this.record.courses"
+          :key="Course.id"
+          :course="Course"
+        />
+      </div>
     </div>
 
   </div>
@@ -16,6 +25,7 @@
 <script>
 
 import { OK } from '../../util.js'
+import CourseDetail from './CourseDetail'
 
 export default {
   props: {
@@ -51,6 +61,9 @@ export default {
       // 格納
       this.record = response.data
     }
+  },
+  components: {
+    CourseDetail
   },
   watch: {
     $route: {
