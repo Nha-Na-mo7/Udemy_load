@@ -13,7 +13,7 @@ class RecordController extends Controller
     public function __construct()
     {
         // 基本的に認証必須 / expectは認証不要
-        $this->middleware('auth')->except(['show']);
+        $this->middleware('auth')->except(['show', 'index']);
     }
     
     // レコードの投稿
