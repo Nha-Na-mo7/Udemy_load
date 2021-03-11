@@ -1,42 +1,51 @@
 <template>
   <div class="f_page">
     <h1>Record List 学習の記録</h1>
-
-    <div>
-      <h2>登録講座一覧</h2>
+    <div class="f_records__list--container">
+      <Record
+          v-for="Record in records"
+          :key="Record.id"
+          :item="Record"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import { OK } from '../../util.js'
+import Record from "./Record";
 export default {
   data() {
     return {
-      searchWord: '',
-      isSearching: false,
-      searchData: {
-        keywords: '',
-      }
+      records: [],
+      currentPage: 0,
+      lastPage: 0,
     }
   },
   methods: {
-    async searchCourse() {
-      // 検索中に重複して呼び出せないようにする
-      if ( this.isSearching ) {
-        return false;
-      }
-      console.log('search START!!!')
-      // 検索開始
-      this.isSearching = true;
+    // コースレコード一覧の取得
+    async fetchCourse() {
+      const response = await axios.get(`/records/index`);
 
-      // 検索ワードを元にUdemyAPIにリクエストする
-      const params = this.searchData;
-      const response = await axios.get('/udemy/course/get', { params });
+      // エラー時
+      if (response.status !== OK) {
+        this.$store.commit('error/setCode', response.status)
+        return false
+      }
 
       console.log(response)
-
-      this.isSearching = false;
-      console.log('メソッド finished!')
+      this.records = response.data.data
+    }
+  },
+  components: {
+    Record
+  },
+  watch: {
+    $route: {
+      async handler() {
+        await this.fetchCourse()
+      },
+      immediate: true
     }
   }
 }
@@ -48,5 +57,10 @@ export default {
     margin-top: 120px;
     height: 320px;
     background: #dffcf2;
+  }
+  .f_records__list--container {
+    padding: 12px;
+    background: #deecec;
+    border: 1px solid #000;
   }
 </style>

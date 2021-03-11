@@ -74,4 +74,27 @@ class RecordController extends Controller
       // レコードを返すが、存在しない場合は404を返す
       return $record ?? abort(404);
     }
+    
+    // レコード一覧の取得
+    public function index($user_id = null) {
+      Log::debug('==============');
+      Log::debug('レコード一覧取得');
+      Log::debug('==============');
+      // ユーザーIDがない場合、全てのレコードを取得する
+      if ($user_id === null) {
+        Log::debug('USER_ID:'.$user_id);
+        $records = Record::with(['owner'])
+            ->orderBy(Course::CREATED_AT, 'desc')
+            ->paginate();
+  
+        return $records;
+      }
+      // ユーザーIDがある場合、そのユーザーが投稿したレコードに絞って取得する
+      $records = Record::where('user_id', $user_id)
+          ->with(['owner'])
+          ->orderBy(Record::CREATED_AT, 'desc')
+          ->paginate();
+      
+      return $records;
+    }
 }
