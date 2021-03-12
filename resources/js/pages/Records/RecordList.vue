@@ -1,7 +1,6 @@
 <template>
-  <div class="f_page">
-    <h1>Record List 学習の記録</h1>
-    <div class="f_records__list--container">
+  <div class="p-record__list">
+    <div class="p-record__list--inner">
       <Record
           v-for="Record in records"
           :key="Record.id"
@@ -52,15 +51,5 @@ export default {
 </script>
 
 <style scoped>
-  .f_page {
-    font-size: 20px;
-    margin-top: 120px;
-    height: 320px;
-    background: #dffcf2;
-  }
-  .f_records__list--container {
-    padding: 12px;
-    background: #deecec;
-    border: 1px solid #000;
-  }
+
 </style>

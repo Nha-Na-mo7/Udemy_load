@@ -1,15 +1,17 @@
 <template>
-  <div class="p-container">
-    <h2>レコードの詳細画面です</h2>
-    <p>ID: {{ this.id }}</p>
+  <div class="p-record">
+
+    <div class="p-record__info">
+      <div class="p-record__info--inner">
+        <!-- タイトル -->
+        <h2 class="p-record__info--title">{{ this.title }}</h2>
+        <!-- Description -->
+        <p class="p-record__info--description">{{ this.description }}</p>
+      </div>
+    </div>
 
     <!-- 詳細 -->
     <div class="p-record__detail">
-      <!-- タイトル -->
-      <h2 class="p-record__detail--title">{{ this.title }}</h2>
-      <!-- Description -->
-      <p class="p-record__detail--description">{{ this.description }}</p>
-
       <!-- コースコンポーネント -->
       <div class="p-record__detail--list">
         <!-- TODO INDEXによる並び替えをサーバサイドで行う処理を書いてください-->

@@ -682,6 +682,24 @@ input[type=checkbox] {
   margin-bottom: 12px;
 }
 
+.p-course__item {
+  box-shadow: #cdcdcd 0 3px 5px;
+  margin-bottom: 12px;
+  padding: 5px 10px;
+}
+
+.p-course__item:nth-of-type(3n) {
+  background: #d6fbff;
+}
+
+.p-course__item:nth-of-type(3n-1) {
+  background: #e1ffd6;
+}
+
+.p-course__item:nth-of-type(3n-2) {
+  background: #fff;
+}
+
 .p-course__item--title {
   font-weight: bold;
   font-size: 20px;
@@ -997,18 +1015,74 @@ input[type=checkbox] {
   }
 }
 
-.p-record__detail--title {
-  font-size: 1.6rem;
-  font-weight: bold;
+.p-record {
+  background: #e6f7ff;
 }
 
-.p-record__detail--description {
-  font-size: 1.2rem;
+.p-record__list--inner {
+  width: 50%;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.p-record__list-item {
+  padding: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.p-record__list-item--title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.p-record__list-item--title :hover {
+  border-bottom: 1px solid #000;
+}
+
+.p-record__list-item--description {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.p-record__detail {
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .p-record__detail--list {
   background: #efefef;
   padding: 12px;
+}
+
+.p-record__info {
+  background: #1c1e1f;
+  padding: 24px 0;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.p-record__info--inner {
+  width: 80%;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.p-record__info--title {
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1.5;
+  word-break: break-all;
+  margin-bottom: 5px;
+}
+
+.p-record__info--description {
+  font-size: 20px;
+  letter-spacing: 2.5px;
+  min-height: 240px;
 }
 
 .c-border {

@@ -2,20 +2,65 @@
 //  p-record
 //  =============
 .p-record {
+  background: #e6f7ff;
+  // 一覧
+  &__list {
+    &--inner {
+      width: 50%;
+      margin: 0 auto;
+      padding: 5px;
+    }
+    &-item {
+      padding: 15px;
+      border-top: 1px solid rgba(0, 0, 0, .12);
+      &--title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        line-height: 1.5;
+        word-break: break-all;
+        :hover {
+          border-bottom: 1px solid #000;
+        }
+      }
+      &--description {
+        font-size: 14px;
+        line-height: 1.8;
+      }
+    }
+  }
+  // レコード詳細画面
   &__detail {
-    &--title {
-      font-size: 1.6rem;
-      font-weight: bold;
-    }
-
-    &--description {
-      font-size: 1.2rem;
-    }
-
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
     &--list {
       background: #efefef;
       padding: 12px;
     }
-
+  }
+  // 詳細画面のインフォメーション
+  &__info {
+    background: #1c1e1f;
+    padding: 24px 0;
+    color: #fff;
+    margin-bottom: 20px;
+    &--inner {
+      width: 80%;
+      margin: 0 auto;
+      padding: 5px;
+    }
+    &--title {
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 1.5;
+      word-break: break-all;
+      margin-bottom: 5px;
+    }
+    &--description {
+      font-size: 20px;
+      letter-spacing: 2.5px;
+      min-height: 240px;
+    }
   }
 }
