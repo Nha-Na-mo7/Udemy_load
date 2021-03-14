@@ -23274,9 +23274,10 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("p", { staticClass: "p-record__list-item--description" }, [
-      _vm._v(_vm._s(this.description))
-    ])
+    _c("p", {
+      staticClass: "p-record__list-item--description",
+      domProps: { innerHTML: _vm._s(_vm.description) }
+    })
   ])
 }
 var staticRenderFns = []
@@ -23308,9 +23309,10 @@ var render = function() {
           _vm._v(_vm._s(this.title))
         ]),
         _vm._v(" "),
-        _c("p", { staticClass: "p-record__info--description" }, [
-          _vm._v(_vm._s(this.description))
-        ])
+        _c("p", {
+          staticClass: "p-record__info--description",
+          domProps: { innerHTML: _vm._s(_vm.description) }
+        })
       ])
     ]),
     _vm._v(" "),

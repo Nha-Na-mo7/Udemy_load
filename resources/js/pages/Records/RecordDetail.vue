@@ -6,7 +6,7 @@
         <!-- タイトル -->
         <h2 class="p-record__info--title">{{ this.title }}</h2>
         <!-- Description -->
-        <p class="p-record__info--description">{{ this.description }}</p>
+        <p v-html="description" class="p-record__info--description"></p>
       </div>
     </div>
 
@@ -63,7 +63,7 @@ export default {
       }
       // 格納
       this.record = response.data
-    }
+    },
   },
   components: {
     CourseDetail
