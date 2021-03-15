@@ -24,12 +24,8 @@ class RecordController extends Controller
         Log::debug(' レコードの投稿');
         Log::debug('==============');
         
-        // Log::debug('$request');
         // Log::debug(print_r($request->input('selectedCourses'), true));
         // Log::debug(print_r($request->input('recordForm'), true));
-        // // 選択されたコースの個数
-        // Log::debug(count($request->selectedCourses));
-        
         $record = new Record();
         $keep_id = $record->id;
         
@@ -37,7 +33,6 @@ class RecordController extends Controller
         Auth::user()->records()->save($record->fill($request->recordForm));
         // idが0になるのでkeep_idを格納
         $record->id = $keep_id;
-        // Log::debug($record->id);
         
         // coursesテーブルに選択されたコース、コースの説明、レコードの何番目かなどの情報を格納する
         for ($i = 0, $iMax = count($request->selectedCourses); $i < $iMax; $i++) {
