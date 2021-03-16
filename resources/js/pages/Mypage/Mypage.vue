@@ -3,99 +3,84 @@
 <!--=========================-->
 <template>
   <div class="l-container__content">
-
-    <h2>マイページ {{ id }}</h2>
-
     <!-- 読み込み中の時 -->
     <div v-if="isLoading">
       <Loading />
     </div>
 
     <!-- メインレイアウト -->
-    <div v-else class="p-container dummyflex">
+    <div v-else class="p-container">
       <div class="p-mypage">
+        <!-- プロフィール -->
         <div class="p-mypage__column">
-          <!-- メールアドレス -->
-          <div class="p-documentbox c-documentbox">
-            <div class="c-documentbox__header">
-              <h2 class="c-documentbox__title">
-                <i class="far fa-envelope"></i>
-                メールアドレス
-              </h2>
-              <RouterLink to="/mypage/profile">設定する ></RouterLink>
-            </div>
-            <div class="c-documentbox__body">
-              <h2 class="c-documentbox__item c-documentbox__item--info">
-                登録メールアドレス
-              </h2>
-              <p class="c-documentbox__item">{{ this.authMail }}</p>
-            </div>
-          </div>
+          <h2>{{ this.userName }}さんのマイページ</h2>
+          <pre>プロフィール400文字まで</pre>
+          <span>ホームページ</span>
+          <span>所属・組織</span>
+          <span>住んでいるところ</span>
+        </div>
 
-          <!-- パスワード -->
-          <div class="p-documentbox c-documentbox">
-            <div class="c-documentbox__header">
-              <h2 class="c-documentbox__title">
-                <i class="fas fa-key"></i>
-                パスワード</h2>
-              <RouterLink to="/mypage/password">設定する ></RouterLink>
-            </div>
-            <div class="c-documentbox__body" v-if="isExistPassword">
-              <!-- 実際の桁数に関係なく********とする -->
-              <h2 class="c-documentbox__item c-documentbox__item--info">
-                パスワード設定済
-              </h2>
-              <p class="c-documentbox__item">＊＊＊＊＊＊＊＊</p>
-            </div>
-            <div class="c-documentbox__body" v-else>
-              <h2 class="c-documentbox__item c-documentbox__item--info">
-                パスワードは設定されていません
-              </h2>
-            </div>
-          </div>
+        <!-- 投稿記事一覧 -->
+        <!-- TODO 投稿した記事・コメントした記事をタブで切り替えられるようにする -->
+        <div class="p-mypage__column">
+
         </div>
       </div>
+
     </div>
+
   </div>
 </template>
 
 <script>
 import Loading from '../../components/Loading.vue';
+import {OK} from "../../util";
 
 export default {
   props: {
-    id: {
+    username: {
       type: String,
-      required: true
+      required: true,
     }
   },
   data() {
     return {
-      loading: true,
-      password: false,
-      mail: '',
-      test_user_flg: false
+      user: {},
+      loading: false,
     };
   },
   computed: {
-    pageTitle() {
-      return PAGE_TITLE;
+    userName() {
+      return this.username;
     },
     isLoading() {
       return this.loading;
     },
-    isExistPassword() {
-      return this.password;
-    },
-    isTestUserFlg() {
-      return this.test_user_flg;
-    },
-    authMail() {
-      return this.mail;
-    },
+  },
+  methods: {
+    // 指定したユーザーの情報を取得する
+    async fetchUser() {
+      const response = await axios.get(`/user/info/${this.userName}`)
+      // エラー時の処理
+      if (response.status !== OK) {
+        this.$store.commit('error/setCode', response.status);
+        return false
+      }
+
+      console.log(response.data)
+      this.user = response.data
+    }
   },
   components: {
     Loading,
   },
+  watch: {
+    $route: {
+      async handler() {
+        await this.fetchUser()
+      },
+      immediate: true
+    }
+  }
 };
 </script>

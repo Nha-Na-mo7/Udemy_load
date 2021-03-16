@@ -62,7 +62,7 @@ const routes = [
   },
   {
     // マイページ
-    path: '/mypage/:id',
+    path: '/mypage/:username',
     component: Mypage,
     props: true
   },
