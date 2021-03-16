@@ -28,7 +28,12 @@
         <!-- 投稿記事一覧 -->
         <!-- TODO 投稿した記事・コメントした記事をタブで切り替えられるようにする -->
         <div class="p-mypage__column">
-
+          <h2>投稿履歴</h2>
+          <!-- TODO ユーザーIDの取得 -->
+          <UserRecordList
+              :name="`${this.userName}`"
+              :id=1
+          />
         </div>
       </div>
 
@@ -40,6 +45,7 @@
 <script>
 import Loading from '../../components/Loading.vue';
 import NothingUser from './NothingUser.vue';
+import UserRecordList from './UserRecordList.vue';
 import {NOT_FOUND, OK} from "../../util";
 
 export default {
@@ -82,13 +88,13 @@ export default {
         this.$store.commit('error/setCode', response.status);
         return false
       }
-      console.log(response.data)
       this.user = response.data
     }
   },
   components: {
     Loading,
     NothingUser,
+    UserRecordList
   },
   watch: {
     $route: {

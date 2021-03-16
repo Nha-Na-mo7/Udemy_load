@@ -78,6 +78,7 @@ class RecordController extends Controller
         Log::debug('==============');
         // ユーザーIDがない場合、全てのレコードを取得する
         if ($user_id === null) {
+            Log::debug('USER_ID:'.$user_id);
             $records = Record::with(['owner'])
                 ->orderBy(Course::CREATED_AT, 'desc')
                 ->paginate();
@@ -85,12 +86,11 @@ class RecordController extends Controller
             return $records;
         }
         // ユーザーIDがある場合、そのユーザーが投稿したレコードに絞って取得する
-        Log::debug('USER_ID:'.$user_id);
-        
+      
         $records = Record::where('user_id', $user_id)
-              ->with(['owner'])
-              ->orderBy(Record::CREATED_AT, 'desc')
-              ->paginate();
+            ->with(['owner'])
+            ->orderBy(Record::CREATED_AT, 'desc')
+            ->paginate();
         
         return $records;
     }
