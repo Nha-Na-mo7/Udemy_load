@@ -19,14 +19,10 @@ import { OK } from '../../util.js'
 import Record from "../Records/Record";
 export default {
   props: {
-    name: {
-      type: String,
+    user: {
+      type: Object,
       required: true
-    },
-    id: {
-      type: Number,
-      required: true
-    },
+    }
   },
   data() {
     return {
@@ -37,10 +33,10 @@ export default {
   },
   computed: {
     userName() {
-      return this.name
+      return this.user.name
     },
     userId() {
-      return this.id
+      return this.user.id
     }
   },
   methods: {
@@ -53,8 +49,6 @@ export default {
         this.$store.commit('error/setCode', response.status)
         return false
       }
-
-      console.log(response)
       this.records = response.data.data
     }
   },

@@ -29,16 +29,13 @@
         <!-- TODO 投稿した記事・コメントした記事をタブで切り替えられるようにする -->
         <div class="p-mypage__column">
           <h2>投稿履歴</h2>
-          <!-- TODO ユーザーIDの取得 -->
           <UserRecordList
-              :name="`${this.userName}`"
-              :id=1
+              v-if="isExistUserObj"
+              :user="this.user"
           />
         </div>
       </div>
-
     </div>
-
   </div>
 </template>
 
@@ -63,6 +60,9 @@ export default {
     };
   },
   computed: {
+    isExistUserObj() {
+      return !!Object.keys(this.user).length
+    },
     userName() {
       return this.username;
     },

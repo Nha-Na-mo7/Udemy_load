@@ -2460,9 +2460,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -2482,6 +2479,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   computed: {
+    isExistUserObj: function isExistUserObj() {
+      return !!Object.keys(this.user).length;
+    },
     userName: function userName() {
       return this.username;
     },
@@ -2636,12 +2636,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    name: {
-      type: String,
-      required: true
-    },
-    id: {
-      type: Number,
+    user: {
+      type: Object,
       required: true
     }
   },
@@ -2654,10 +2650,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     userName: function userName() {
-      return this.name;
+      return this.user.name;
     },
     userId: function userId() {
-      return this.id;
+      return this.user.id;
     }
   },
   methods: {
@@ -2687,10 +2683,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 6:
-                console.log(response);
                 _this.records = response.data.data;
 
-              case 8:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -24031,9 +24026,9 @@ var render = function() {
               [
                 _c("h2", [_vm._v("投稿履歴")]),
                 _vm._v(" "),
-                _c("UserRecordList", {
-                  attrs: { name: "" + this.userName, id: 1 }
-                })
+                _vm.isExistUserObj
+                  ? _c("UserRecordList", { attrs: { user: this.user } })
+                  : _vm._e()
               ],
               1
             )
