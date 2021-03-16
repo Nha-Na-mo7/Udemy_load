@@ -10,9 +10,8 @@ use Illuminate\Support\Facades\Log;
 class UserController extends Controller
 {
     public function __construct(){
-      $this->middleware('auth');
+      $this->middleware('auth')->except(['get_user']);
     }
-    
     // =========================================================
     // 指定したユーザーの情報を返却する。指定がない場合は自分の情報を返却する
     // =========================================================
