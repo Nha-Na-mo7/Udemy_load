@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 // コンポーネントのインストール
 import RecordList from './pages/Records/RecordList.vue';
+import Mypage from './pages/Mypage/Mypage.vue';
 import RecordEdit from './pages/Records/Edit.vue';
 import RecordDetail from './pages/Records/RecordDetail.vue';
 import Login from './pages/Auth/Login.vue';
@@ -54,6 +55,19 @@ const routes = [
     path: '/login',
     component: Login,
     beforeEnter: checkAuth
+  },
+  {
+    path: '/mypage/:user_id',
+    component: Mypage,
+    props: (route) => {
+      const page = route.query.page
+      return {
+        // 整数でない値を1扱いにする
+        page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1,
+        // mypage/:user_id のuser_idの部分
+        user_id: Number(route.params.user_id)
+      }
+    }
   },
   {
     path: '/records/new',
