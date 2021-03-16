@@ -43,8 +43,8 @@ Route::get('/udemy/course/get', 'UdemyController@get_course');
 Route::post('/records/create', 'RecordController@create')->name('record.create');
 // レコードの詳細画面
 Route::get('/record/{id}', 'RecordController@show')->name('record.show');
-// レコードの一覧取得
-Route::get('/records/index', 'RecordController@index')->name('record.index');
+// レコードの一覧取得(ユーザーIDは任意)
+Route::get('/records/index/{id?}', 'RecordController@index')->where('id', '[0-9]+')->name('record.index');
 
 Route::get('/{any?}', 'IndexController@error')->where('any', '.+')->name('home.error');
 
