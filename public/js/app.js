@@ -2460,6 +2460,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2490,6 +2497,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     isNothingUser: function isNothingUser() {
       return this.nothingUser;
+    },
+    // マイページが認証中のユーザー(=自分)と同一か
+    isAuthUser: function isAuthUser() {
+      return this.userName === this.$store.getters['auth/username'];
     }
   },
   methods: {
@@ -24017,7 +24028,24 @@ var render = function() {
               _vm._v(" "),
               _c("span", [_vm._v("所属・組織")]),
               _vm._v(" "),
-              _c("span", [_vm._v("住んでいるところ")])
+              _c("span", [_vm._v("住んでいるところ")]),
+              _vm._v(" "),
+              _vm.isAuthUser
+                ? _c("div", [
+                    _c(
+                      "button",
+                      { staticClass: "c-btn" },
+                      [
+                        _c(
+                          "RouterLink",
+                          { attrs: { to: "/settings/profile" } },
+                          [_vm._v("プロフィール設定")]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c(

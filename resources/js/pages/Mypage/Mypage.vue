@@ -23,6 +23,13 @@
           <span>ホームページ</span>
           <span>所属・組織</span>
           <span>住んでいるところ</span>
+
+          <!-- プロフィール編集 -->
+          <div v-if="isAuthUser">
+            <button class="c-btn">
+              <RouterLink to="/settings/profile">プロフィール設定</RouterLink>
+            </button>
+          </div>
         </div>
 
         <!-- 投稿記事一覧 -->
@@ -72,6 +79,10 @@ export default {
     isNothingUser() {
       return this.nothingUser;
     },
+    // マイページが認証中のユーザー(=自分)と同一か
+    isAuthUser() {
+      return this.userName === this.$store.getters['auth/username']
+    }
   },
   methods: {
     // 指定したユーザーの情報を取得する
