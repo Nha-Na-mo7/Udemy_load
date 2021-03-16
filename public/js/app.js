@@ -22470,7 +22470,7 @@ var render = function() {
               [
                 _c(
                   "RouterLink",
-                  { staticClass: "c-btn", attrs: { to: "/record/new" } },
+                  { staticClass: "c-btn", attrs: { to: "/records/new" } },
                   [_vm._v("\n        投稿する\n      ")]
                 )
               ],
@@ -41427,7 +41427,7 @@ var routes = [{
   component: _pages_Auth_Login_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
   beforeEnter: checkAuth
 }, {
-  path: '/record/new',
+  path: '/records/new',
   component: _pages_Records_Edit_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   beforeEnter: requireAuth
 }, {

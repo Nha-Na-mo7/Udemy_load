@@ -56,7 +56,7 @@ const routes = [
     beforeEnter: checkAuth
   },
   {
-    path: '/record/new',
+    path: '/records/new',
     component: RecordEdit,
     beforeEnter: requireAuth
   },

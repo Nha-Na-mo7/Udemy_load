@@ -7,7 +7,7 @@
 
       <!-- 投稿ボタン(仮)(ログイン中の場合) -->
       <div v-if="isLogin" class="p-header__item">
-        <RouterLink class="c-btn" to="/record/new">
+        <RouterLink class="c-btn" to="/records/new">
           投稿する
         </RouterLink>
       </div>
