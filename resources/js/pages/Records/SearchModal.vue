@@ -26,7 +26,7 @@
 
         <!-- 結果コンポーネント一覧 -->
         <div v-else>
-          <Course
+          <SearchResultCourse
               v-for="Course in responseData"
               :key="Course.id"
               :course="Course"
@@ -40,7 +40,7 @@
 
 <script>
 import Loading from '../../components/Loading.vue';
-import Course from './Course.vue';
+import SearchResultCourse from './SearchResultCourse.vue';
 
 export default {
   data() {
@@ -93,7 +93,7 @@ export default {
   },
   components: {
     Loading,
-    Course
+    SearchResultCourse
   }
 }
 
