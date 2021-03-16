@@ -5,7 +5,11 @@
   <article class="p-record__list-item">
     <div class="p-record__list-item__main">
     <!--  <span class="p-record__list-item__date">{{ item.created_at }}</span> -->
-      <span class="p-record__list-item__username">ユーザー名: {{ this.ownerName }}</span>
+      <RouterLink
+          class="p-record__list-item__username"
+          :to="`/mypage/${ this.ownerName }`"
+      >ユーザー名: {{ this.ownerName }}
+      </RouterLink>
     </div>
     <h2 class="p-record__list-item--title">
       <RouterLink

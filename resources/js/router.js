@@ -57,17 +57,9 @@ const routes = [
     beforeEnter: checkAuth
   },
   {
-    path: '/mypage/:user_id',
+    path: '/mypage/:id',
     component: Mypage,
-    props: (route) => {
-      const page = route.query.page
-      return {
-        // 整数でない値を1扱いにする
-        page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1,
-        // mypage/:user_id のuser_idの部分
-        user_id: Number(route.params.user_id)
-      }
-    }
+    props: true
   },
   {
     path: '/records/new',

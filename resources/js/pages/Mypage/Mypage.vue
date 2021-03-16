@@ -4,6 +4,8 @@
 <template>
   <div class="l-container__content">
 
+    <h2>マイページ {{ id }}</h2>
+
     <!-- 読み込み中の時 -->
     <div v-if="isLoading">
       <Loading />
@@ -84,6 +86,12 @@ import Loading from '../../components/Loading.vue';
 const PAGE_TITLE = 'マイページ';
 
 export default {
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       loading: true,

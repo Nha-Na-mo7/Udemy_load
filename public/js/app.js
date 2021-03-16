@@ -2075,6 +2075,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     apiStatus: function apiStatus() {
@@ -2113,6 +2116,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    }
+  },
+  filters: {
+    addAtSign: function addAtSign(username) {
+      return '@' + username;
     }
   }
 });
@@ -2489,9 +2497,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 var PAGE_TITLE = 'マイページ';
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
   data: function data() {
     return {
       loading: true,
@@ -2812,6 +2828,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -2888,6 +2908,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2903,6 +2929,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   computed: {
+    ownerName: function ownerName() {
+      return this.record.owner.name;
+    },
     title: function title() {
       return this.record.title;
     },
@@ -22634,9 +22663,27 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm.isLogin
-          ? _c("span", { staticClass: "p-header__item" }, [
-              _vm._v("\n      " + _vm._s(_vm.username) + "\n    ")
-            ])
+          ? _c(
+              "span",
+              { staticClass: "p-header__item" },
+              [
+                _c(
+                  "RouterLink",
+                  {
+                    staticClass: "c-btn",
+                    attrs: { to: "/mypage/" + this.username }
+                  },
+                  [
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(_vm._f("addAtSign")(_vm.username)) +
+                        "\n      "
+                    )
+                  ]
+                )
+              ],
+              1
+            )
           : _vm._e(),
         _vm._v(" "),
         _vm.isLogin
@@ -23195,6 +23242,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "l-container__content" }, [
+    _c("h2", [_vm._v("マイページ " + _vm._s(_vm.id))]),
+    _vm._v(" "),
     _vm.isLoading
       ? _c("div", [_c("Loading")], 1)
       : _c("div", { staticClass: "p-container dummyflex" }, [
@@ -23581,11 +23630,21 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("article", { staticClass: "p-record__list-item" }, [
-    _c("div", { staticClass: "p-record__list-item__main" }, [
-      _c("span", { staticClass: "p-record__list-item__username" }, [
-        _vm._v("ユーザー名: " + _vm._s(this.ownerName))
-      ])
-    ]),
+    _c(
+      "div",
+      { staticClass: "p-record__list-item__main" },
+      [
+        _c(
+          "RouterLink",
+          {
+            staticClass: "p-record__list-item__username",
+            attrs: { to: "/mypage/" + this.ownerName }
+          },
+          [_vm._v("ユーザー名: " + _vm._s(this.ownerName) + "\n    ")]
+        )
+      ],
+      1
+    ),
     _vm._v(" "),
     _c(
       "h2",
@@ -23630,16 +23689,30 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-record" }, [
     _c("div", { staticClass: "p-record__info" }, [
-      _c("div", { staticClass: "p-record__info--inner" }, [
-        _c("h2", { staticClass: "p-record__info--title" }, [
-          _vm._v(_vm._s(this.title))
-        ]),
-        _vm._v(" "),
-        _c("p", {
-          staticClass: "p-record__info--description",
-          domProps: { innerHTML: _vm._s(_vm.description) }
-        })
-      ])
+      _c(
+        "div",
+        { staticClass: "p-record__info--inner" },
+        [
+          _c("h2", { staticClass: "p-record__info--title" }, [
+            _vm._v(_vm._s(this.title))
+          ]),
+          _vm._v(" "),
+          _c(
+            "RouterLink",
+            {
+              staticClass: "p-record__list-item__username",
+              attrs: { to: "/mypage/" + this.ownerName }
+            },
+            [_vm._v("ユーザー名: " + _vm._s(this.ownerName) + "\n      ")]
+          ),
+          _vm._v(" "),
+          _c("p", {
+            staticClass: "p-record__info--description",
+            domProps: { innerHTML: _vm._s(_vm.description) }
+          })
+        ],
+        1
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "p-record__detail" }, [
@@ -41824,17 +41897,9 @@ var routes = [{
   component: _pages_Auth_Login_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
   beforeEnter: checkAuth
 }, {
-  path: '/mypage/:user_id',
+  path: '/mypage/:id',
   component: _pages_Mypage_Mypage_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-  props: function props(route) {
-    var page = route.query.page;
-    return {
-      // 整数でない値を1扱いにする
-      page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1,
-      // mypage/:user_id のuser_idの部分
-      user_id: Number(route.params.user_id)
-    };
-  }
+  props: true
 }, {
   path: '/records/new',
   component: _pages_Records_Edit_vue__WEBPACK_IMPORTED_MODULE_5__["default"],

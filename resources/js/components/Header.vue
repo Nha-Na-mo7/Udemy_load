@@ -14,7 +14,10 @@
 
       <!-- ユーザーネーム(ログイン中の場合) -->
       <span v-if="isLogin" class="p-header__item">
-        {{ username }}
+        <RouterLink class="c-btn" :to="`/mypage/${ this.username }`">
+          {{ username | addAtSign }}
+        </RouterLink>
+
       </span>
 
       <!-- ログアウトボタン -->
@@ -56,6 +59,11 @@ export default {
       if (this.apiStatus) {
         this.$router.push('/login')
       }
+    }
+  },
+  filters: {
+    addAtSign: function (username) {
+      return '@' + username
     }
   }
 }

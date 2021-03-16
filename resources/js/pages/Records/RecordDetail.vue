@@ -5,6 +5,12 @@
       <div class="p-record__info--inner">
         <!-- タイトル -->
         <h2 class="p-record__info--title">{{ this.title }}</h2>
+        <!-- 投稿者 -->
+        <RouterLink
+            class="p-record__list-item__username"
+            :to="`/mypage/${ this.ownerName }`"
+        >ユーザー名: {{ this.ownerName }}
+        </RouterLink>
         <!-- Description -->
         <p v-html="description" class="p-record__info--description"></p>
       </div>
@@ -43,6 +49,9 @@ export default {
     }
   },
   computed: {
+    ownerName() {
+      return this.record.owner.name
+    },
     title() {
       return this.record.title
     },
