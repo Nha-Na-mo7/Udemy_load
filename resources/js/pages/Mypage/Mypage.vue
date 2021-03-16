@@ -54,28 +54,6 @@
             </div>
           </div>
         </div>
-
-        <div class="p-mypage__column">
-          <!-- 退会処理 -->
-          <div class="p-documentbox c-documentbox">
-            <div class="c-documentbox__header">
-              <h2 class="c-documentbox__title">
-                <i class="fas fa-sign-out-alt"></i>
-                退会する
-              </h2>
-            </div>
-            <div class="c-documentbox__body">
-              <div class="c-documentbox__item">
-                <p>
-                  退会するとサービスがご利用いただけなくなります。
-                </p>
-              </div>
-              <div class="c-documentbox__footer">
-                <button class="c-btn" @click="withdraw">退会する</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -83,7 +61,6 @@
 
 <script>
 import Loading from '../../components/Loading.vue';
-const PAGE_TITLE = 'マイページ';
 
 export default {
   props: {
@@ -115,19 +92,6 @@ export default {
     },
     authMail() {
       return this.mail;
-    },
-  },
-  methods: {
-    // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
-    async withdraw() {
-      if (
-          confirm(
-              '【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。',
-          )
-      )
-      {
-        console.log('ここで退会処理が行われます')
-      }
     },
   },
   components: {
