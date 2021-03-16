@@ -8,6 +8,11 @@
       <Loading />
     </div>
 
+    <!-- ユーザーが存在しない時 -->
+    <div v-else-if="isNothingUser" class="p-container">
+      <NothingUser />
+    </div>
+
     <!-- メインレイアウト -->
     <div v-else class="p-container">
       <div class="p-mypage">
@@ -34,7 +39,8 @@
 
 <script>
 import Loading from '../../components/Loading.vue';
-import {OK} from "../../util";
+import NothingUser from './NothingUser.vue';
+import {NOT_FOUND, OK} from "../../util";
 
 export default {
   props: {
@@ -47,6 +53,7 @@ export default {
     return {
       user: {},
       loading: false,
+      nothingUser: false,
     };
   },
   computed: {
@@ -56,23 +63,32 @@ export default {
     isLoading() {
       return this.loading;
     },
+    isNothingUser() {
+      return this.nothingUser;
+    },
   },
   methods: {
     // 指定したユーザーの情報を取得する
     async fetchUser() {
       const response = await axios.get(`/user/info/${this.userName}`)
-      // エラー時の処理
+
+      // ユーザーが存在しなかった時の処理
+      if (response.status === NOT_FOUND) {
+        this.nothingUser = true
+        return false
+      }
+      // その他エラー時の処理
       if (response.status !== OK) {
         this.$store.commit('error/setCode', response.status);
         return false
       }
-
       console.log(response.data)
       this.user = response.data
     }
   },
   components: {
     Loading,
+    NothingUser,
   },
   watch: {
     $route: {

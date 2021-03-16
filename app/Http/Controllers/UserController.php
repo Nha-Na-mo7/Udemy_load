@@ -22,7 +22,7 @@ class UserController extends Controller
         Log::debug('$usernameがnullなので自分の情報を返却します');
         return Auth::user();
       }
-      Log::debug('$username : '.$username);
-      return User::where('name', $username)->first();
+      Log::debug('$username : '.$username . 'で検索し、存在しなければ404を返します');
+      return User::where('name', $username)->firstOrFail();
     }
 }
