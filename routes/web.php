@@ -48,11 +48,15 @@ Route::get('/udemy/course/get', 'UdemyController@get_course');
 // =============
 // レコード関連
 // =============
-// レコードの投稿
+// 投稿
 Route::post('/records/create', 'RecordController@create')->name('record.create');
-// レコードの詳細画面
+// 詳細画面
 Route::get('/record/{id}', 'RecordController@show')->name('record.show');
-// レコードの一覧取得(ユーザーIDは任意)
+// コメントの投稿
+Route::post('/record/{id}/comments', 'RecordController@addComment')->name('record.comment');
+// 削除(論理)
+Route::post('/record/{id}/delete', 'RecordController@delete')->name('record.delete');
+// 一覧取得(ユーザーIDは任意)
 Route::get('/records/index/{id?}', 'RecordController@index')->where('id', '[\w]+')->name('record.index');
 
 
