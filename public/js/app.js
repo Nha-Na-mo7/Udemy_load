@@ -2881,6 +2881,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3089,6 +3093,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3100,10 +3127,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      record: {}
+      record: {},
+      commentContent: '',
+      commentErrors: null
     };
   },
   computed: {
+    isLogin: function isLogin() {
+      return this.$store.getters['auth/check'];
+    },
     ownerName: function ownerName() {
       return this.record.owner.name;
     },
@@ -3153,6 +3185,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    // コメントを投稿
+    addComment: function addComment() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.post("/record/".concat(_this2.id, "/comments"), {
+                  content: _this2.commentContent
+                });
+
+              case 2:
+                response = _context2.sent;
+
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                _this2.commentErrors = response.data.errors;
+                return _context2.abrupt("return", false);
+
+              case 6:
+                // 投稿後テキストエリア、エラーメッセージを空にする
+                _this2.commentContent = '';
+                _this2.commentErrors = null; // それ以外のエラー
+
+                if (!(response.status !== _util_js__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
+                  _context2.next = 11;
+                  break;
+                }
+
+                _this2.$store.commit('error/setCode', response.status);
+
+                return _context2.abrupt("return", false);
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
   components: {
@@ -3161,22 +3241,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       handler: function handler() {
-        var _this2 = this;
+        var _this3 = this;
 
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
             while (1) {
-              switch (_context2.prev = _context2.next) {
+              switch (_context3.prev = _context3.next) {
                 case 0:
-                  _context2.next = 2;
-                  return _this2.fetchRecord();
+                  _context3.next = 2;
+                  return _this3.fetchRecord();
 
                 case 2:
                 case "end":
-                  return _context2.stop();
+                  return _context3.stop();
               }
             }
-          }, _callee2);
+          }, _callee3);
         }))();
       },
       immediate: true
@@ -4246,7 +4326,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.f-textarea[data-v-327cc96c] {\n  border: 1px solid #000;\n  padding: 12px;\n  font-size: 16px;\n  width: 100%;\n  border-radius: 4px;\n  line-height: 1.5;\n  resize: none;\n}\n", ""]);
+exports.push([module.i, "\n.f-textarea[data-v-327cc96c] {\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -24263,11 +24343,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "record_description" } }, [
-            _vm._v("説明")
-          ]),
+          _c("label", { attrs: { for: "record_description" } }),
           _vm._v(" "),
-          _c("input", {
+          _c("textarea", {
             directives: [
               {
                 name: "model",
@@ -24276,9 +24354,8 @@ var render = function() {
                 expression: "createData.recordForm.description"
               }
             ],
-            staticClass: "p-form__description p-form__item",
+            staticClass: "p-form__description p-form__item c-form__textarea",
             attrs: {
-              type: "text",
               id: "record_description",
               placeholder: "説明文を入力してください。"
             },
@@ -24475,10 +24552,68 @@ var render = function() {
         }),
         1
       )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "p-record__comment" }, [
+      _c("h3", [_vm._v("コメント")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "p-record__comment--list" }),
+      _vm._v(" "),
+      _vm.isLogin
+        ? _c("div", [
+            _c("h3", [_vm._v("投稿する")]),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                staticClass: "c-form",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.addComment($event)
+                  }
+                }
+              },
+              [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.commentContent,
+                      expression: "commentContent"
+                    }
+                  ],
+                  staticClass: "p-record__comment--textarea c-form__textarea",
+                  domProps: { value: _vm.commentContent },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.commentContent = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(0)
+              ]
+            )
+          ])
+        : _vm._e()
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "c-form__button" }, [
+      _c("button", { staticClass: "c-btn" }, [_vm._v("コメントを投稿")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -24701,7 +24836,7 @@ var render = function() {
       _c("label", { attrs: { for: "" } }),
       _vm._v(" "),
       _c("textarea", {
-        staticClass: "c-textarea f-textarea",
+        staticClass: "c-form__textarea f-textarea",
         attrs: {
           name: "",
           id: "",

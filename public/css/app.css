@@ -1085,6 +1085,11 @@ input[type=checkbox] {
   min-height: 240px;
 }
 
+.p-record__comment--textarea {
+  min-width: 640px;
+  min-height: 180px;
+}
+
 .c-border {
   text-align: center;
 }
@@ -1364,6 +1369,22 @@ input[type=checkbox] {
   .c-form__info {
     font-size: 12px;
   }
+}
+
+.c-form__textarea {
+  box-sizing: border-box;
+  background: #f6f6f6;
+  resize: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  margin: 10px 0;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+
+.c-form__textarea:focus {
+  border: #f66d9b 2px solid;
+  box-shadow: #f66d9b 0 0 10px;
 }
 
 .c-form__checkbox {

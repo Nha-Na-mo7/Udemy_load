@@ -63,4 +63,12 @@
       min-height: 240px;
     }
   }
+  // コメント関連
+  &__comment {
+
+    &--textarea {
+      min-width: 640px;
+      min-height: 180px;
+    }
+  }
 }

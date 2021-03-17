@@ -28,7 +28,7 @@
           id=""
           :value="courseDescription"
           @input="$emit('input', $event.target.value)"
-          class="c-textarea f-textarea"
+          class="c-form__textarea f-textarea"
           placeholder="説明(このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？)"
           maxlength="200"
       ></textarea>
@@ -99,12 +99,6 @@ export default {
 
 <style scoped>
 .f-textarea {
-  border: 1px solid #000;
-  padding: 12px;
-  font-size: 16px;
   width: 100%;
-  border-radius: 4px;
-  line-height: 1.5;
-  resize: none;
 }
 </style>
