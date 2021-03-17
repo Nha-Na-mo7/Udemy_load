@@ -45,7 +45,7 @@
             class="p-record__comment--item"
         >
           <p class="p-record__comment--author">{{ Comment.author.name }} さんが{{ Comment.created_at }}に投稿</p>
-          <p class="p-record__comment--content">{{ Comment.content }}</p>
+          <pre class="p-record__comment--content">{{ Comment.content }}</pre>
         </li>
       </ul>
 

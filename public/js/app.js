@@ -24612,7 +24612,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "p-record__comment--content" }, [
+                  _c("pre", { staticClass: "p-record__comment--content" }, [
                     _vm._v(_vm._s(Comment.content))
                   ])
                 ]
