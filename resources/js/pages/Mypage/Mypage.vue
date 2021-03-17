@@ -3,76 +3,43 @@
 <!--=========================-->
 <template>
   <div class="l-container__content">
-
     <!-- 読み込み中の時 -->
     <div v-if="isLoading">
       <Loading />
     </div>
 
-    <!-- メインレイアウト -->
-    <div v-else class="p-container dummyflex">
-      <div class="p-mypage">
-        <div class="p-mypage__column">
-          <!-- メールアドレス -->
-          <div class="p-documentbox c-documentbox">
-            <div class="c-documentbox__header">
-              <h2 class="c-documentbox__title">
-                <i class="far fa-envelope"></i>
-                メールアドレス
-              </h2>
-              <RouterLink to="/mypage/profile">設定する ></RouterLink>
-            </div>
-            <div class="c-documentbox__body">
-              <h2 class="c-documentbox__item c-documentbox__item--info">
-                登録メールアドレス
-              </h2>
-              <p class="c-documentbox__item">{{ this.authMail }}</p>
-            </div>
-          </div>
+    <!-- ユーザーが存在しない時 -->
+    <div v-else-if="isNothingUser" class="p-container">
+      <NothingUser />
+    </div>
 
-          <!-- パスワード -->
-          <div class="p-documentbox c-documentbox">
-            <div class="c-documentbox__header">
-              <h2 class="c-documentbox__title">
-                <i class="fas fa-key"></i>
-                パスワード</h2>
-              <RouterLink to="/mypage/password">設定する ></RouterLink>
-            </div>
-            <div class="c-documentbox__body" v-if="isExistPassword">
-              <!-- 実際の桁数に関係なく********とする -->
-              <h2 class="c-documentbox__item c-documentbox__item--info">
-                パスワード設定済
-              </h2>
-              <p class="c-documentbox__item">＊＊＊＊＊＊＊＊</p>
-            </div>
-            <div class="c-documentbox__body" v-else>
-              <h2 class="c-documentbox__item c-documentbox__item--info">
-                パスワードは設定されていません
-              </h2>
-            </div>
+    <!-- メインレイアウト -->
+    <div v-else class="p-container">
+      <div class="p-mypage">
+        <!-- プロフィール -->
+        <div class="p-mypage__column">
+          <h2>{{ this.userName }}さんのマイページ</h2>
+          <pre>プロフィール400文字まで</pre>
+          <span>ホームページ</span>
+          <span>所属・組織</span>
+          <span>住んでいるところ</span>
+
+          <!-- プロフィール編集 -->
+          <div v-if="isAuthUser">
+            <button class="c-btn">
+              <RouterLink to="/settings/profile">プロフィール設定</RouterLink>
+            </button>
           </div>
         </div>
 
+        <!-- 投稿記事一覧 -->
+        <!-- TODO 投稿した記事・コメントした記事をタブで切り替えられるようにする -->
         <div class="p-mypage__column">
-          <!-- 退会処理 -->
-          <div class="p-documentbox c-documentbox">
-            <div class="c-documentbox__header">
-              <h2 class="c-documentbox__title">
-                <i class="fas fa-sign-out-alt"></i>
-                退会する
-              </h2>
-            </div>
-            <div class="c-documentbox__body">
-              <div class="c-documentbox__item">
-                <p>
-                  退会するとサービスがご利用いただけなくなります。
-                </p>
-              </div>
-              <div class="c-documentbox__footer">
-                <button class="c-btn" @click="withdraw">退会する</button>
-              </div>
-            </div>
-          </div>
+          <h2>投稿履歴</h2>
+          <UserRecordList
+              v-if="isExistUserObj"
+              :user="this.user"
+          />
         </div>
       </div>
     </div>
@@ -81,49 +48,72 @@
 
 <script>
 import Loading from '../../components/Loading.vue';
-const PAGE_TITLE = 'マイページ';
+import NothingUser from './NothingUser.vue';
+import UserRecordList from './UserRecordList.vue';
+import {NOT_FOUND, OK} from "../../util";
 
 export default {
+  props: {
+    username: {
+      type: String,
+      required: true,
+    }
+  },
   data() {
     return {
-      loading: true,
-      password: false,
-      mail: '',
-      test_user_flg: false
+      user: {},
+      loading: false,
+      nothingUser: false,
     };
   },
   computed: {
-    pageTitle() {
-      return PAGE_TITLE;
+    isExistUserObj() {
+      return !!Object.keys(this.user).length
+    },
+    userName() {
+      return this.username;
     },
     isLoading() {
       return this.loading;
     },
-    isExistPassword() {
-      return this.password;
+    isNothingUser() {
+      return this.nothingUser;
     },
-    isTestUserFlg() {
-      return this.test_user_flg;
-    },
-    authMail() {
-      return this.mail;
-    },
+    // マイページが認証中のユーザー(=自分)と同一か
+    isAuthUser() {
+      return this.userName === this.$store.getters['auth/username']
+    }
   },
   methods: {
-    // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
-    async withdraw() {
-      if (
-          confirm(
-              '【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。',
-          )
-      )
-      {
-        console.log('ここで退会処理が行われます')
+    // 指定したユーザーの情報を取得する
+    async fetchUser() {
+      const response = await axios.get(`/user/info/${this.userName}`)
+
+      // ユーザーが存在しなかった時の処理
+      if (response.status === NOT_FOUND) {
+        this.nothingUser = true
+        return false
       }
-    },
+      // その他エラー時の処理
+      if (response.status !== OK) {
+        this.$store.commit('error/setCode', response.status);
+        return false
+      }
+      this.user = response.data
+    }
   },
   components: {
     Loading,
+    NothingUser,
+    UserRecordList
   },
+  watch: {
+    $route: {
+      async handler() {
+        await this.fetchUser()
+      },
+      immediate: true
+    }
+  }
 };
 </script>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreComment;
+use App\Models\Comment;
 use App\Models\Course;
 use App\Models\Record;
 use Illuminate\Http\Request;
@@ -62,7 +64,7 @@ class RecordController extends Controller
         Log::debug('レコード詳細取得/ID:'.$id);
         Log::debug('==================================');
         // IDに合致するレコード情報を取得
-        $record = Record::where('id', $id)->with(['owner', 'courses'])->first();
+        $record = Record::where('id', $id)->with(['owner', 'courses', 'comments.author'])->first();
         // descriptionの改行タグを<br>に置き換え
         $record->description = str_replace("\r\n", '<br>', $record->description);
         
@@ -86,11 +88,47 @@ class RecordController extends Controller
             return $records;
         }
         // ユーザーIDがある場合、そのユーザーが投稿したレコードに絞って取得する
+      
         $records = Record::where('user_id', $user_id)
             ->with(['owner'])
             ->orderBy(Record::CREATED_AT, 'desc')
             ->paginate();
         
         return $records;
+    }
+    
+    // レコードの削除
+    public function delete(string $id) {
+        Log::debug('===============================');
+        Log::debug('レコード削除/ID:'.$id);
+        Log::debug('===============================');
+  
+        // 現在認証中のユーザーの投稿済みレコードの中に指定したIDのレコードがあれば取得する
+        $record = Auth::user()->records()->find($id);
+        if ($record) {
+            // delete_flgをtrueにする
+            $record->delete_flg->save(true);
+            Log::debug($id.'のdelete_flgをtrueにし、論理削除されました。');
+            return response([], 200);
+        }
+        // TODO ない場合404を返す?500にする?
+        Log::debug('レコードはありませんでした');
+        return abort(404);
+    }
+    
+    // コメントの投稿
+    public function addComment(Record $record, StoreComment $request) {
+        Log::debug('===========');
+        Log::debug('コメント投稿');
+        Log::debug('===========');
+        $comment = new Comment();
+        $comment->content = $request->get('content');
+        $comment->user_id = Auth::user()->id;
+        $record->comments()->save($comment);
+        
+        // authorリレーションロードようにコメントを取得し直す
+        $new_comment = Comment::where('id', $comment->id)->with('author')->first();
+        
+        return response($new_comment, 201);
     }
 }

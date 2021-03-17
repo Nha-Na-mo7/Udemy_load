@@ -12,7 +12,7 @@ class Record extends Model
     
     // Jsonで表示させる項目
     protected $visible = [
-        'id', 'user_id', 'title', 'description', 'owner', 'courses'
+        'id', 'user_id', 'title', 'description', 'owner', 'courses', 'comments'
     ];
   
     // プライマリーキーの型をstringに
@@ -66,7 +66,16 @@ class Record extends Model
     /**
      * リレーション - recordsテーブル
      */
-    public function courses() {
+    public function courses()
+    {
       return $this->hasMany('App\Models\Course');
+    }
+    
+    /**
+     * リレーション - commentsテーブル
+     */
+    public function comments()
+    {
+      return $this->hasMany('App\Models\Comment')->orderBy('id', 'asc');
     }
 }

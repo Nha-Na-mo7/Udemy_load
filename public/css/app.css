@@ -1049,7 +1049,7 @@ input[type=checkbox] {
 
 .p-record__detail {
   width: 80%;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   justify-content: center;
 }
 
@@ -1083,6 +1083,41 @@ input[type=checkbox] {
   font-size: 20px;
   letter-spacing: 2.5px;
   min-height: 240px;
+}
+
+.p-record__comment {
+  width: 80%;
+  padding: 15px 5px;
+  margin: 0 auto;
+}
+
+.p-record__comment--head {
+  font-size: 24px;
+  font-weight: 700;
+  padding: 30px 15px 10px;
+}
+
+.p-record__comment--item {
+  padding: 20px 30px;
+  border-top: 1px solid #8a8a8a;
+}
+
+.p-record__comment--author {
+  font-size: 12px;
+  color: #8a8a8a;
+}
+
+.p-record__comment--content {
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 10px;
+  white-space: pre-wrap;
+  font-weight: unset;
+}
+
+.p-record__comment--textarea {
+  min-width: 640px;
+  min-height: 180px;
 }
 
 .c-border {
@@ -1364,6 +1399,22 @@ input[type=checkbox] {
   .c-form__info {
     font-size: 12px;
   }
+}
+
+.c-form__textarea {
+  box-sizing: border-box;
+  background: #f6f6f6;
+  resize: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  margin: 10px 0;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+
+.c-form__textarea:focus {
+  border: #f66d9b 2px solid;
+  box-shadow: #f66d9b 0 0 10px;
 }
 
 .c-form__checkbox {

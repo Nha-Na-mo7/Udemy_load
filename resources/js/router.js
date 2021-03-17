@@ -1,11 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-// コンポーネントのインストール
+// コンポーネント
 import RecordList from './pages/Records/RecordList.vue';
+import Mypage from './pages/Mypage/Mypage.vue';
 import RecordEdit from './pages/Records/Edit.vue';
 import RecordDetail from './pages/Records/RecordDetail.vue';
 import Login from './pages/Auth/Login.vue';
+
+// 設定画面
+import Account from './pages/Settings/Account.vue';
+import Profile from './pages/Settings/Profile.vue';
+import PasswordMenu from './pages/Settings/PasswordMenu.vue';
 
 // エラーコンポーネント
 import SystemError from './pages/Errors/500_System.vue';
@@ -43,7 +49,6 @@ async function requireAuth(to, from ,next) {
   }
 }
 
-
 // パスとコンポーネントをマッピング
 const routes = [
   {
@@ -56,7 +61,14 @@ const routes = [
     beforeEnter: checkAuth
   },
   {
-    path: '/record/new',
+    // マイページ
+    path: '/mypage/:username',
+    component: Mypage,
+    props: true
+  },
+  {
+    // 新規投稿ページ
+    path: '/records/new',
     component: RecordEdit,
     beforeEnter: requireAuth
   },
@@ -64,6 +76,27 @@ const routes = [
     // コースレコード詳細ページ
     path: '/records/:id',
     component: RecordDetail,
+    props: true
+  },
+  {
+    // アカウント設定
+    path: '/settings/account',
+    component: Account,
+    beforeEnter: requireAuth,
+    props: true
+  },
+  {
+    // プロフィール設定
+    path: '/settings/profile',
+    component: Profile,
+    beforeEnter: requireAuth,
+    props: true
+  },
+  {
+    // パスワード設定
+    path: '/settings/password',
+    component: PasswordMenu,
+    beforeEnter: requireAuth,
     props: true
   },
   {

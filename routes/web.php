@@ -33,18 +33,31 @@ Auth::routes();
 Route::get('/login', 'HomeController@index')->name('home.index');
 
 
+// ====================
+// マイページ・ユーザー関連
+// ====================
+// 指定したユーザー情報の取得
+Route::get('/user/info/{username?}', 'UserController@get_user');
+
 // =================
 // UdemyAPI関連
 // =================
 // 指定したワードでUdemyAPIを使用し、レッスン一覧を取得する
 Route::get('/udemy/course/get', 'UdemyController@get_course');
 
-// レコードの投稿
+// =============
+// レコード関連
+// =============
+// 投稿
 Route::post('/records/create', 'RecordController@create')->name('record.create');
-// レコードの詳細画面
+// 詳細画面
 Route::get('/record/{id}', 'RecordController@show')->name('record.show');
-// レコードの一覧取得
-Route::get('/records/index', 'RecordController@index')->name('record.index');
+// コメントの投稿
+Route::post('/record/{record}/comments', 'RecordController@addComment')->name('record.comment');
+// 削除(論理)
+Route::post('/record/{id}/delete', 'RecordController@delete')->name('record.delete');
+// 一覧取得(ユーザーIDは任意)
+Route::get('/records/index/{id?}', 'RecordController@index')->where('id', '[\w]+')->name('record.index');
+
 
 Route::get('/{any?}', 'IndexController@error')->where('any', '.+')->name('home.error');
-

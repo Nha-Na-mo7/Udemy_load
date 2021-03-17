@@ -8,9 +8,13 @@
         <label for="record_title">タイトル</label>
         <input type="text" id="record_title" class="p-form__title p-form__item" v-model="createData.recordForm.title" placeholder="タイトルは必須です。">
 
-        <label for="record_description">説明</label>
-        <input type="text" id="record_description" class="p-form__description p-form__item" v-model="createData.recordForm.description" placeholder="説明文を入力してください。">
-
+        <label for="record_description"></label>
+        <textarea
+            id="record_description"
+            class="p-form__description p-form__item c-form__textarea"
+            v-model="createData.recordForm.description"
+            placeholder="説明文を入力してください。"
+        ></textarea>
         <!-- 投稿する -->
         <div>
           <button class="c-btn">投稿する</button>

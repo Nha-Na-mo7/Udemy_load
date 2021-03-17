@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateRecordsTable extends Migration
@@ -24,6 +25,8 @@ class CreateRecordsTable extends Migration
             // usersテーブルのidと紐付け
             $table->foreign('user_id')->references('id')->on('users');
         });
+        // レコードIDは大文字小文字を区別する
+        DB::statement('ALTER TABLE records MODIFY id varchar(256) BINARY');
     }
 
     /**

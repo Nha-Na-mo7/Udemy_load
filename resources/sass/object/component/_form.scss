@@ -25,6 +25,20 @@
       font-size: $font-size_s;
     }
   }
+  &__textarea {
+    box-sizing: border-box;
+    background: #f6f6f6;
+    resize: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 10px 0;
+    border-radius: 4px;
+    line-height: 1.5;
+    &:focus {
+      border: #f66d9b 2px solid;
+      box-shadow: #f66d9b 0 0 10px;
+    }
+  }
   &__checkbox {
     margin-top: 12px;
     margin-bottom: 20px;

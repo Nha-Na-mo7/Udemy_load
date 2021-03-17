@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCoursesTable extends Migration
@@ -24,10 +25,9 @@ class CreateCoursesTable extends Migration
             $table->text('url')->comment('コースのURL');
             $table->text('image_url')->comment('コースの画像URL');
             $table->timestamps();
-  
-            // recordsテーブルのidと紐付け
-            $table->foreign('record_id')->references('id')->on('records');
         });
+        // レコードIDは大文字小文字を区別する
+        DB::statement('ALTER TABLE courses MODIFY record_id varchar(256) BINARY');
     }
 
     /**
