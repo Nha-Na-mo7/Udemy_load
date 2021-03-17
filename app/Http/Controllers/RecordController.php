@@ -118,9 +118,9 @@ class RecordController extends Controller
     
     // コメントの投稿
     public function addComment(Record $record, StoreComment $request) {
-        Log::debug('===============================');
+        Log::debug('===========');
         Log::debug('コメント投稿');
-        Log::debug('===============================');
+        Log::debug('===========');
         $comment = new Comment();
         $comment->content = $request->get('content');
         $comment->user_id = Auth::user()->id;

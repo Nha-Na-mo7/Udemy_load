@@ -53,7 +53,7 @@ Route::post('/records/create', 'RecordController@create')->name('record.create')
 // 詳細画面
 Route::get('/record/{id}', 'RecordController@show')->name('record.show');
 // コメントの投稿
-Route::post('/record/{id}/comments', 'RecordController@addComment')->name('record.comment');
+Route::post('/record/{record}/comments', 'RecordController@addComment')->name('record.comment');
 // 削除(論理)
 Route::post('/record/{id}/delete', 'RecordController@delete')->name('record.delete');
 // 一覧取得(ユーザーIDは任意)

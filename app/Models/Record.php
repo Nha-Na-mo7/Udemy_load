@@ -72,8 +72,7 @@ class Record extends Model
     }
     
     /**
-     * リレーション - recordsテーブル
-     * IDの降順
+     * リレーション - commentsテーブル
      */
     public function comments()
     {
