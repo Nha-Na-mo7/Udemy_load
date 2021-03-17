@@ -3116,6 +3116,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3144,6 +3161,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     description: function description() {
       return this.record.description;
+    },
+    existComments: function existComments() {
+      return this.record.comments.length > 0;
     }
   },
   methods: {
@@ -3175,10 +3195,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 7:
-                // 格納
+                console.log(response.data); // 格納
+
                 _this.record = response.data;
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -24557,7 +24578,20 @@ var render = function() {
     _c("div", { staticClass: "p-record__comment" }, [
       _c("h3", [_vm._v("コメント")]),
       _vm._v(" "),
-      _c("div", { staticClass: "p-record__comment--list" }),
+      _vm.existComments
+        ? _c(
+            "ul",
+            { staticClass: "p-record__comment--list" },
+            _vm._l(_vm.record.comments, function(Comment) {
+              return _c("li", { key: Comment.content }, [
+                _c("p", [_vm._v(_vm._s(Comment.author.name))]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(Comment.content))])
+              ])
+            }),
+            0
+          )
+        : _c("div", [_c("h3", [_vm._v("コメントはありません")])]),
       _vm._v(" "),
       _vm.isLogin
         ? _c("div", [

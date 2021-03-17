@@ -33,10 +33,27 @@
     <!-- コメント欄 -->
     <div class="p-record__comment">
       <h3>コメント</h3>
-      <!-- 投稿一覧 -->
-      <div class="p-record__comment--list">
 
+      <!-- 一覧 -->
+      <ul
+          v-if="existComments"
+          class="p-record__comment--list"
+      >
+        <li
+            v-for="Comment in record.comments"
+            :key="Comment.content"
+            class=""
+        >
+          <p>{{ Comment.author.name }}</p>
+          <p>{{ Comment.content }}</p>
+        </li>
+      </ul>
+
+      <!-- コメントがない時 -->
+      <div v-else>
+        <h3>コメントはありません</h3>
       </div>
+
       <!-- 投稿フォーム(ログイン必須) -->
       <div v-if="isLogin">
         <h3>投稿する</h3>
@@ -86,6 +103,9 @@ export default {
     description() {
       return this.record.description
     },
+    existComments() {
+      return this.record.comments.length > 0
+    }
   },
   methods: {
     // レコードの情報をDBから取得
@@ -98,6 +118,7 @@ export default {
         this.$store.commit('error/setCode', response.status);
         return false
       }
+      console.log(response.data)
       // 格納
       this.record = response.data
     },
