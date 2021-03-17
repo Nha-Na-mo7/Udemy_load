@@ -32,7 +32,7 @@
 
     <!-- コメント欄 -->
     <div class="p-record__comment">
-      <h3>コメント</h3>
+      <h3 class="p-record__comment--head">コメント</h3>
 
       <!-- 一覧 -->
       <ul
@@ -42,10 +42,10 @@
         <li
             v-for="Comment in record.comments"
             :key="Comment.content"
-            class=""
+            class="p-record__comment--item"
         >
-          <p>{{ Comment.author.name }}</p>
-          <p>{{ Comment.content }}</p>
+          <p class="p-record__comment--author">{{ Comment.author.name }} さんが{{ Comment.created_at }}に投稿</p>
+          <p class="p-record__comment--content">{{ Comment.content }}</p>
         </li>
       </ul>
 
@@ -108,7 +108,9 @@ export default {
     }
   },
   methods: {
+    // ========================
     // レコードの情報をDBから取得
+    // ========================
     async fetchRecord() {
       console.log('レコード情報を取得しました。')
       // レコード情報を取得
@@ -122,7 +124,9 @@ export default {
       // 格納
       this.record = response.data
     },
+    // ================
     // コメントを投稿
+    // ================
     async addComment() {
       const response = await axios.post(`/record/${this.id}/comments`,{
         content: this.commentContent
@@ -143,6 +147,12 @@ export default {
         this.$store.commit('error/setCode', response.status)
         return false
       }
+
+      // ページをリロードする
+      this.$router.go({
+        path: this.$router.currentRoute.path,
+        force: true
+      })
     }
   },
   components: {

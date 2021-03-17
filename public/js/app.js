@@ -3167,7 +3167,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    // ========================
     // レコードの情報をDBから取得
+    // ========================
     fetchRecord: function fetchRecord() {
       var _this = this;
 
@@ -3207,7 +3209,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    // ================
     // コメントを投稿
+    // ================
     addComment: function addComment() {
       var _this2 = this;
 
@@ -3248,6 +3252,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return", false);
 
               case 11:
+                // ページをリロードする
+                _this2.$router.go({
+                  path: _this2.$router.currentRoute.path,
+                  force: true
+                });
+
+              case 12:
               case "end":
                 return _context2.stop();
             }
@@ -24576,18 +24587,36 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "p-record__comment" }, [
-      _c("h3", [_vm._v("コメント")]),
+      _c("h3", { staticClass: "p-record__comment--head" }, [
+        _vm._v("コメント")
+      ]),
       _vm._v(" "),
       _vm.existComments
         ? _c(
             "ul",
             { staticClass: "p-record__comment--list" },
             _vm._l(_vm.record.comments, function(Comment) {
-              return _c("li", { key: Comment.content }, [
-                _c("p", [_vm._v(_vm._s(Comment.author.name))]),
-                _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(Comment.content))])
-              ])
+              return _c(
+                "li",
+                {
+                  key: Comment.content,
+                  staticClass: "p-record__comment--item"
+                },
+                [
+                  _c("p", { staticClass: "p-record__comment--author" }, [
+                    _vm._v(
+                      _vm._s(Comment.author.name) +
+                        " さんが" +
+                        _vm._s(Comment.created_at) +
+                        "に投稿"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "p-record__comment--content" }, [
+                    _vm._v(_vm._s(Comment.content))
+                  ])
+                ]
+              )
             }),
             0
           )

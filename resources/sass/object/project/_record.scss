@@ -32,7 +32,7 @@
   // レコード詳細画面
   &__detail {
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 20px;
     justify-content: center;
     &--list {
       background: #efefef;
@@ -65,7 +65,30 @@
   }
   // コメント関連
   &__comment {
+    width: 80%;
+    padding: 15px 5px;
+    margin: 0 auto;
+    &--head {
+      font-size: 24px;
+      font-weight: 700;
+      padding: 30px 15px 10px;
+    }
+    &--list {
 
+    }
+    &--item {
+      padding: 20px 30px;
+      border-top: 1px solid #8a8a8a;
+    }
+    &--author {
+      font-size: 12px;
+      color: #8a8a8a;
+    }
+    &--content {
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 10px;
+    }
     &--textarea {
       min-width: 640px;
       min-height: 180px;
