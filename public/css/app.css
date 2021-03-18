@@ -1371,6 +1371,7 @@ input[type=checkbox] {
 
 .c-form__input {
   border: 1px solid #666;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0);
   border-radius: 4px;
   width: 100%;
   padding: 10px;
@@ -1381,6 +1382,7 @@ input[type=checkbox] {
 .c-form__input:focus {
   border: 1px solid #f66d9b;
   box-shadow: 0 0 5px #f66d9b;
+  background: #fffbf5;
 }
 
 @media screen and (max-width: 414px) {
@@ -1403,18 +1405,20 @@ input[type=checkbox] {
 
 .c-form__textarea {
   box-sizing: border-box;
-  background: #f6f6f6;
+  background: #fcfcfc;
   resize: none;
   padding: 10px 15px;
   font-size: 16px;
   margin: 10px 0;
+  border: 1px solid #cdcdcd;
   border-radius: 4px;
   line-height: 1.5;
 }
 
 .c-form__textarea:focus {
-  border: #f66d9b 2px solid;
-  box-shadow: #f66d9b 0 0 10px;
+  border: #f66d9b 1px solid;
+  box-shadow: #f66d9b 0 0 5px;
+  background: #fffbf5;
 }
 
 .c-form__checkbox {

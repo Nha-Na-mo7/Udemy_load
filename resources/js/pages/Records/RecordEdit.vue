@@ -8,6 +8,22 @@
     <div v-else>
       <h2>編集</h2>
       <div>
+        <form>
+          <label for="record_title">
+            <input
+                id="record_title"
+                class="c-form__input"
+                v-model="this.record.title"
+            >
+          </label>
+          <label for="record_description">
+            <textarea
+                id="record_description"
+                class="p-record__edit--textarea c-form__textarea"
+                v-model="this.record.description"
+            ></textarea>
+          </label>
+        </form>
       </div>
     </div>
 
@@ -91,5 +107,8 @@ export default {
 </script>
 
 <style scoped>
-
+.p-record__edit--textarea {
+  min-width: 600px;
+  min-height: 180px;
+}
 </style>
