@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import {OK, FORBIDDEN} from "../../util";
+import {OK, FORBIDDEN, NOT_FOUND} from "../../util";
 import Loading from "../../components/Loading"
 
 export default {
@@ -55,6 +55,26 @@ export default {
       this.record = response.data
       this.loading = false
     },
+    // ===============
+    // 削除
+    // ===============
+    async deleteRecord() {
+      const response = await axios.post(`/record/${this.id}/delete`)
+
+      // なんらかの理由で二重削除が行われてしまった時
+      if (response.status === NOT_FOUND) {
+        this.$router.push('/')
+      }
+
+      // エラー時の処理
+      if (response.status !== OK) {
+        this.$store.commit('error/setCode', response.status);
+        return false
+      }
+
+      // 削除成功したらトップに戻す
+      this.$router.push('/')
+    }
   },
   components: {
     Loading,
