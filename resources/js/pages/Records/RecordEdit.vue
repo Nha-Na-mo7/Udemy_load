@@ -1,23 +1,22 @@
 <!--投稿済みレコードの編集-->
 <template>
   <div>
-    <h2>編集</h2>
-    <div>
-<!--      <form action="">-->
-<!--        <input type="text">-->
-<!--        <textarea></textarea>-->
-<!--        <div>-->
-<!--          <input type="text">-->
-<!--          <input type="text">-->
-<!--          <textarea></textarea>-->
-<!--        </div>-->
-<!--      </form>-->
+    <div v-if="loading">
+      <Loading />
     </div>
+
+    <div v-else>
+      <h2>編集</h2>
+      <div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 import {OK, FORBIDDEN} from "../../util";
+import Loading from "../../components/Loading"
 
 export default {
   props: {
@@ -28,6 +27,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       record: {},
     }
   },
@@ -36,8 +36,6 @@ export default {
     // レコードの情報をDBから取得
     // ========================
     async fetchRecord() {
-
-      console.log('レコード情報を取得しました。')
       // レコード情報を取得
       const response = await axios.get(`/record/${this.id}/${true}`)
 
@@ -55,7 +53,11 @@ export default {
       console.log(response.data)
       // 格納
       this.record = response.data
+      this.loading = false
     },
+  },
+  components: {
+    Loading,
   },
   watch: {
     $route: {

@@ -3054,7 +3054,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
-/* harmony import */ var _CourseDetail__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CourseDetail */ "./resources/js/pages/Records/CourseDetail.vue");
+/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Loading */ "./resources/js/components/Loading.vue");
+/* harmony import */ var _CourseDetail__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CourseDetail */ "./resources/js/pages/Records/CourseDetail.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3134,6 +3135,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3145,6 +3152,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      loading: true,
       record: {},
       commentContent: '',
       commentErrors: null
@@ -3201,8 +3209,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log(response.data); // 格納
 
                 _this.record = response.data;
+                _this.loading = false;
 
-              case 9:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -3269,7 +3278,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   components: {
-    CourseDetail: _CourseDetail__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Loading: _components_Loading__WEBPACK_IMPORTED_MODULE_2__["default"],
+    CourseDetail: _CourseDetail__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   watch: {
     $route: {
@@ -3311,6 +3321,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util */ "./resources/js/util.js");
+/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Loading */ "./resources/js/components/Loading.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3333,8 +3344,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -3345,6 +3355,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      loading: true,
       record: {}
     };
   },
@@ -3361,16 +3372,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log('レコード情報を取得しました。'); // レコード情報を取得
-
-                _context.next = 3;
+                _context.next = 2;
                 return axios.get("/record/".concat(_this.id, "/", true));
 
-              case 3:
+              case 2:
                 response = _context.sent;
 
                 if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["FORBIDDEN"])) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
@@ -3378,9 +3387,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 7:
+              case 6:
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 10;
+                  _context.next = 9;
                   break;
                 }
 
@@ -3388,10 +3397,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 10:
+              case 9:
                 console.log(response.data); // 格納
 
                 _this.record = response.data;
+                _this.loading = false;
 
               case 12:
               case "end":
@@ -3401,6 +3411,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     }
+  },
+  components: {
+    Loading: _components_Loading__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   watch: {
     $route: {
@@ -24677,126 +24690,137 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-record" }, [
-    _c("div", { staticClass: "p-record__info" }, [
-      _c(
-        "div",
-        { staticClass: "p-record__info--inner" },
-        [
-          _c("h2", { staticClass: "p-record__info--title" }, [
-            _vm._v(_vm._s(this.title))
+    _vm.loading
+      ? _c("div", [_c("Loading")], 1)
+      : _c("div", [
+          _c("div", { staticClass: "p-record__info" }, [
+            _c(
+              "div",
+              { staticClass: "p-record__info--inner" },
+              [
+                _c("h2", { staticClass: "p-record__info--title" }, [
+                  _vm._v(_vm._s(this.title))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "RouterLink",
+                  {
+                    staticClass: "p-record__list-item__username",
+                    attrs: { to: "/mypage/" + this.ownerName }
+                  },
+                  [
+                    _vm._v(
+                      "ユーザー名: " + _vm._s(this.ownerName) + "\n        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("p", {
+                  staticClass: "p-record__info--description",
+                  domProps: { innerHTML: _vm._s(_vm.description) }
+                })
+              ],
+              1
+            )
           ]),
           _vm._v(" "),
-          _c(
-            "RouterLink",
-            {
-              staticClass: "p-record__list-item__username",
-              attrs: { to: "/mypage/" + this.ownerName }
-            },
-            [_vm._v("ユーザー名: " + _vm._s(this.ownerName) + "\n      ")]
-          ),
-          _vm._v(" "),
-          _c("p", {
-            staticClass: "p-record__info--description",
-            domProps: { innerHTML: _vm._s(_vm.description) }
-          })
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "p-record__detail" }, [
-      _c(
-        "div",
-        { staticClass: "p-record__detail--list" },
-        _vm._l(this.record.courses, function(Course) {
-          return _c("CourseDetail", {
-            key: Course.id,
-            attrs: { course: Course }
-          })
-        }),
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "p-record__comment" }, [
-      _c("h3", { staticClass: "p-record__comment--head" }, [
-        _vm._v("コメント")
-      ]),
-      _vm._v(" "),
-      _vm.existComments
-        ? _c(
-            "ul",
-            { staticClass: "p-record__comment--list" },
-            _vm._l(_vm.record.comments, function(Comment) {
-              return _c(
-                "li",
-                {
-                  key: Comment.content,
-                  staticClass: "p-record__comment--item"
-                },
-                [
-                  _c("p", { staticClass: "p-record__comment--author" }, [
-                    _vm._v(
-                      _vm._s(Comment.author.name) +
-                        " さんが" +
-                        _vm._s(Comment.created_at) +
-                        "に投稿"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("pre", { staticClass: "p-record__comment--content" }, [
-                    _vm._v(_vm._s(Comment.content))
-                  ])
-                ]
-              )
-            }),
-            0
-          )
-        : _c("div", [_c("h3", [_vm._v("コメントはありません")])]),
-      _vm._v(" "),
-      _vm.isLogin
-        ? _c("div", [
-            _c("h3", [_vm._v("投稿する")]),
-            _vm._v(" "),
+          _c("div", { staticClass: "p-record__detail" }, [
             _c(
-              "form",
-              {
-                staticClass: "c-form",
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.addComment($event)
-                  }
-                }
-              },
-              [
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.commentContent,
-                      expression: "commentContent"
-                    }
-                  ],
-                  staticClass: "p-record__comment--textarea c-form__textarea",
-                  domProps: { value: _vm.commentContent },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.commentContent = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._m(0)
-              ]
+              "div",
+              { staticClass: "p-record__detail--list" },
+              _vm._l(this.record.courses, function(Course) {
+                return _c("CourseDetail", {
+                  key: Course.id,
+                  attrs: { course: Course }
+                })
+              }),
+              1
             )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "p-record__comment" }, [
+            _c("h3", { staticClass: "p-record__comment--head" }, [
+              _vm._v("コメント")
+            ]),
+            _vm._v(" "),
+            _vm.existComments
+              ? _c(
+                  "ul",
+                  { staticClass: "p-record__comment--list" },
+                  _vm._l(_vm.record.comments, function(Comment) {
+                    return _c(
+                      "li",
+                      {
+                        key: Comment.content,
+                        staticClass: "p-record__comment--item"
+                      },
+                      [
+                        _c("p", { staticClass: "p-record__comment--author" }, [
+                          _vm._v(
+                            _vm._s(Comment.author.name) +
+                              " さんが" +
+                              _vm._s(Comment.created_at) +
+                              "に投稿"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "pre",
+                          { staticClass: "p-record__comment--content" },
+                          [_vm._v(_vm._s(Comment.content))]
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                )
+              : _c("div", [_c("h3", [_vm._v("コメントはありません")])]),
+            _vm._v(" "),
+            _vm.isLogin
+              ? _c("div", [
+                  _c("h3", [_vm._v("投稿する")]),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      staticClass: "c-form",
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.addComment($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.commentContent,
+                            expression: "commentContent"
+                          }
+                        ],
+                        staticClass:
+                          "p-record__comment--textarea c-form__textarea",
+                        domProps: { value: _vm.commentContent },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.commentContent = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(0)
+                    ]
+                  )
+                ])
+              : _vm._e()
           ])
-        : _vm._e()
-    ])
+        ])
   ])
 }
 var staticRenderFns = [
@@ -24830,16 +24854,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm.loading
+      ? _c("div", [_c("Loading")], 1)
+      : _c("div", [_c("h2", [_vm._v("編集")]), _vm._v(" "), _c("div")])
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h2", [_vm._v("編集")]), _vm._v(" "), _c("div")])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

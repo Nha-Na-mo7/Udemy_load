@@ -1,79 +1,85 @@
 <template>
   <div class="p-record">
 
-    <!-- インフォメーション -->
-    <div class="p-record__info">
-      <div class="p-record__info--inner">
-        <!-- タイトル -->
-        <h2 class="p-record__info--title">{{ this.title }}</h2>
-        <!-- 投稿者 -->
-        <RouterLink
-            class="p-record__list-item__username"
-            :to="`/mypage/${ this.ownerName }`"
-        >ユーザー名: {{ this.ownerName }}
-        </RouterLink>
-        <!-- Description -->
-        <p v-html="description" class="p-record__info--description"></p>
-      </div>
+    <div v-if="loading">
+      <Loading />
     </div>
 
-    <!-- 詳細 -->
-    <div class="p-record__detail">
-      <!-- コースコンポーネント -->
-      <div class="p-record__detail--list">
-        <!-- TODO INDEXによる並び替えをサーバサイドで行う処理を書いてください-->
-        <CourseDetail
-          v-for="Course in this.record.courses"
-          :key="Course.id"
-          :course="Course"
-        />
+    <div v-else>
+      <!-- インフォメーション -->
+      <div class="p-record__info">
+        <div class="p-record__info--inner">
+          <!-- タイトル -->
+          <h2 class="p-record__info--title">{{ this.title }}</h2>
+          <!-- 投稿者 -->
+          <RouterLink
+              class="p-record__list-item__username"
+              :to="`/mypage/${ this.ownerName }`"
+          >ユーザー名: {{ this.ownerName }}
+          </RouterLink>
+          <!-- Description -->
+          <p v-html="description" class="p-record__info--description"></p>
+        </div>
       </div>
-    </div>
 
-    <!-- コメント欄 -->
-    <div class="p-record__comment">
-      <h3 class="p-record__comment--head">コメント</h3>
+      <!-- 詳細 -->
+      <div class="p-record__detail">
+        <!-- コースコンポーネント -->
+        <div class="p-record__detail--list">
+          <!-- TODO INDEXによる並び替えをサーバサイドで行う処理を書いてください-->
+          <CourseDetail
+              v-for="Course in this.record.courses"
+              :key="Course.id"
+              :course="Course"
+          />
+        </div>
+      </div>
 
-      <!-- 一覧 -->
-      <ul
-          v-if="existComments"
-          class="p-record__comment--list"
-      >
-        <li
-            v-for="Comment in record.comments"
-            :key="Comment.content"
-            class="p-record__comment--item"
+      <!-- コメント欄 -->
+      <div class="p-record__comment">
+        <h3 class="p-record__comment--head">コメント</h3>
+
+        <!-- 一覧 -->
+        <ul
+            v-if="existComments"
+            class="p-record__comment--list"
         >
-          <p class="p-record__comment--author">{{ Comment.author.name }} さんが{{ Comment.created_at }}に投稿</p>
-          <pre class="p-record__comment--content">{{ Comment.content }}</pre>
-        </li>
-      </ul>
+          <li
+              v-for="Comment in record.comments"
+              :key="Comment.content"
+              class="p-record__comment--item"
+          >
+            <p class="p-record__comment--author">{{ Comment.author.name }} さんが{{ Comment.created_at }}に投稿</p>
+            <pre class="p-record__comment--content">{{ Comment.content }}</pre>
+          </li>
+        </ul>
 
-      <!-- コメントがない時 -->
-      <div v-else>
-        <h3>コメントはありません</h3>
-      </div>
+        <!-- コメントがない時 -->
+        <div v-else>
+          <h3>コメントはありません</h3>
+        </div>
 
-      <!-- 投稿フォーム(ログイン必須) -->
-      <div v-if="isLogin">
-        <h3>投稿する</h3>
-        <form class="c-form" @submit.prevent="addComment">
+        <!-- 投稿フォーム(ログイン必須) -->
+        <div v-if="isLogin">
+          <h3>投稿する</h3>
+          <form class="c-form" @submit.prevent="addComment">
         <textarea
             class="p-record__comment--textarea c-form__textarea"
             v-model="commentContent"
         ></textarea>
-          <div class="c-form__button">
-            <button class="c-btn">コメントを投稿</button>
-          </div>
-        </form>
+            <div class="c-form__button">
+              <button class="c-btn">コメントを投稿</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-
   </div>
 </template>
 <script>
 
 import { OK, CREATED, UNPROCESSABLE_ENTITY } from '../../util.js'
+import Loading from '../../components/Loading'
 import CourseDetail from './CourseDetail'
 
 export default {
@@ -85,6 +91,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       record: {},
       commentContent: '',
       commentErrors: null
@@ -123,6 +130,7 @@ export default {
       console.log(response.data)
       // 格納
       this.record = response.data
+      this.loading = false
     },
     // ================
     // コメントを投稿
@@ -156,7 +164,8 @@ export default {
     }
   },
   components: {
-    CourseDetail
+    Loading,
+    CourseDetail,
   },
   watch: {
     $route: {
