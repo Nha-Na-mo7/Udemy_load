@@ -3140,6 +3140,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3173,6 +3181,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     existComments: function existComments() {
       return this.record.comments.length > 0;
+    },
+    // 投稿者と自分が同一か
+    isOwner: function isOwner() {
+      return this.ownerName === this.$store.getters['auth/username'];
     }
   },
   methods: {
@@ -24698,6 +24710,17 @@ var render = function() {
               "div",
               { staticClass: "p-record__info--inner" },
               [
+                _vm.isOwner
+                  ? _c(
+                      "RouterLink",
+                      {
+                        staticClass: "c-btn",
+                        attrs: { to: "/records/" + this.id + "/edit" }
+                      },
+                      [_vm._v("\n          編集する\n        ")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("h2", { staticClass: "p-record__info--title" }, [
                   _vm._v(_vm._s(this.title))
                 ]),

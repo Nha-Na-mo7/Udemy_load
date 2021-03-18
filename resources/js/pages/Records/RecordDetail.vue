@@ -9,6 +9,14 @@
       <!-- インフォメーション -->
       <div class="p-record__info">
         <div class="p-record__info--inner">
+          <!-- 編集ボタン/投稿者自身の場合のみ-->
+          <RouterLink
+              v-if="isOwner"
+              class="c-btn"
+              :to="`/records/${this.id}/edit`">
+            編集する
+          </RouterLink>
+
           <!-- タイトル -->
           <h2 class="p-record__info--title">{{ this.title }}</h2>
           <!-- 投稿者 -->
@@ -112,6 +120,10 @@ export default {
     },
     existComments() {
       return this.record.comments.length > 0
+    },
+    // 投稿者と自分が同一か
+    isOwner() {
+      return this.ownerName === this.$store.getters['auth/username']
     }
   },
   methods: {
