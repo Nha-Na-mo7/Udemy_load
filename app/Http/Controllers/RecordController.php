@@ -59,12 +59,20 @@ class RecordController extends Controller
     }
     
     // レコード詳細の取得
-    public function show(string $id) {
+    public function show(string $id, bool $owner_flg = false) {
         Log::debug('==================================');
         Log::debug('レコード詳細取得/ID:'.$id);
         Log::debug('==================================');
         // IDに合致するレコード情報を取得
         $record = Record::where('id', $id)->with(['owner', 'courses', 'comments.author'])->first();
+        
+        // レコードの所持者かを確認し、違うなら403を返す(Edit時のみ)
+        if ($owner_flg) {
+          if (Auth::user()->id !== $record->user_id) {
+            return abort(403);
+          };
+        }
+        
         // descriptionの改行タグを<br>に置き換え
         $record->description = str_replace("\r\n", '<br>', $record->description);
         

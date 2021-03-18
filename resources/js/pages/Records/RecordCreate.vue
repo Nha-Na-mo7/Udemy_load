@@ -1,3 +1,4 @@
+<!-- レコードの新規投稿用 -->
 <template>
   <div class="f_page">
     <h2>講座登録</h2>
@@ -56,7 +57,6 @@ import {CREATED, UNPROCESSABLE_ENTITY} from "../../util";
 import Loading from '../../components/Loading.vue';
 import SelectedCourse from './SelectedCourse.vue';
 import SearchModal from './SearchModal.vue';
-
 
 export default {
   data() {

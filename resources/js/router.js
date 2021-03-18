@@ -6,6 +6,7 @@ import RecordList from './pages/Records/RecordList.vue';
 import Mypage from './pages/Mypage/Mypage.vue';
 import RecordCreate from './pages/Records/RecordCreate.vue';
 import RecordDetail from './pages/Records/RecordDetail.vue';
+import RecordEdit from './pages/Records/RecordEdit.vue';
 import Login from './pages/Auth/Login.vue';
 
 // 設定画面
@@ -77,6 +78,13 @@ const routes = [
     path: '/records/:id',
     component: RecordDetail,
     props: true
+  },
+  {
+    // コースレコード編集ページ
+    path: '/records/:id/edit',
+    component: RecordEdit,
+    props: true,
+    beforeRouteEnter: requireAuth
   },
   {
     // アカウント設定
