@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 // コンポーネント
 import RecordList from './pages/Records/RecordList.vue';
 import Mypage from './pages/Mypage/Mypage.vue';
-import RecordEdit from './pages/Records/Edit.vue';
+import RecordCreate from './pages/Records/RecordCreate.vue';
 import RecordDetail from './pages/Records/RecordDetail.vue';
 import Login from './pages/Auth/Login.vue';
 
@@ -69,7 +69,7 @@ const routes = [
   {
     // 新規投稿ページ
     path: '/records/new',
-    component: RecordEdit,
+    component: RecordCreate,
     beforeEnter: requireAuth
   },
   {
