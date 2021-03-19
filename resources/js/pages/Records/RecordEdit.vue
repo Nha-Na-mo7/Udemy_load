@@ -9,20 +9,34 @@
       <h2>編集</h2>
       <div>
         <form>
+          <!-- タイトル -->
           <label for="record_title">
+            タイトル
             <input
                 id="record_title"
                 class="c-form__input"
                 v-model="this.record.title"
             >
           </label>
+          <!-- description -->
           <label for="record_description">
+            description
             <textarea
                 id="record_description"
                 class="p-record__edit--textarea c-form__textarea"
                 v-model="this.record.description"
             ></textarea>
           </label>
+
+          <!-- 現在追加されているコース-->
+          <div>
+            <EditingCourse
+                v-for="Course in record.courses"
+                :key="Course.id"
+                :course="Course"
+            ></EditingCourse>
+          </div>
+
         </form>
       </div>
     </div>
@@ -32,7 +46,8 @@
 
 <script>
 import {OK, FORBIDDEN, NOT_FOUND} from "../../util";
-import Loading from "../../components/Loading"
+import Loading from "../../components/Loading";
+import EditingCourse from "../Records/EditingCourse";
 
 export default {
   props: {
@@ -44,6 +59,7 @@ export default {
   data() {
     return {
       loading: true,
+      modalFlg: false,
       record: {},
     }
   },
@@ -94,6 +110,7 @@ export default {
   },
   components: {
     Loading,
+    EditingCourse,
   },
   watch: {
     $route: {
