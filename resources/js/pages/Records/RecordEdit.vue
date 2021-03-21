@@ -106,6 +106,12 @@ export default {
 
       // 削除成功したらトップに戻す
       this.$router.push('/')
+    },
+    // =================
+    // 更新処理
+    // =================
+    async update() {
+      const response = await axios.post(``)
     }
   },
   components: {
