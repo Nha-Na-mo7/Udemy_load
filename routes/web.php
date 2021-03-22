@@ -50,8 +50,10 @@ Route::get('/udemy/course/get', 'UdemyController@get_course');
 // =============
 // 投稿
 Route::post('/records/create', 'RecordController@create')->name('record.create');
-// 詳細画面
-Route::get('/record/{id}', 'RecordController@show')->name('record.show');
+// 更新
+Route::post('/record/{id}/update', 'RecordController@update')->name('record.update');
+// 詳細/編集画面
+Route::get('/record/{id}/{owner_flg?}', 'RecordController@show')->name('record.show');
 // コメントの投稿
 Route::post('/record/{record}/comments', 'RecordController@addComment')->name('record.comment');
 // 削除(論理)
