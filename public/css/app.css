@@ -1085,6 +1085,11 @@ input[type=checkbox] {
   min-height: 240px;
 }
 
+.p-record__edit--inner {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .p-record__comment {
   width: 80%;
   padding: 15px 5px;
