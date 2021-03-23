@@ -4,7 +4,7 @@
       <Loading></Loading>
     </div>
 
-    <div v-else>
+    <div v-else class="p-course__selected">
       <!-- 講座名とリンク -->
       <div class="p-course__item--title">
         <h2>

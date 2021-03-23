@@ -37,6 +37,22 @@
             ></EditingCourse>
           </div>
         </form>
+
+        <!-- コースを追加する -->
+        <div>
+          <button class="c-btn" @click="toggleModalFlg">
+            コースを追加する
+          </button>
+        </div>
+
+        <!-- モーダルがONになったら表示される -->
+        <div v-if="modalFlg">
+          <SearchModal
+              @pushCourseObjToSelectedCoursesArr="pushCourseObjToSelectedCoursesArr"
+              @toggleModal="toggleModalFlg"
+          />
+        </div>
+
       </div>
     </div>
 
@@ -44,9 +60,10 @@
 </template>
 
 <script>
-import {OK, FORBIDDEN, NOT_FOUND} from "../../util";
+import {OK, FORBIDDEN, NOT_FOUND, UNPROCESSABLE_ENTITY} from "../../util";
 import Loading from "../../components/Loading";
 import EditingCourse from "../Records/EditingCourse";
+import SearchModal from './SearchModal.vue';
 
 export default {
   props: {
@@ -120,11 +137,24 @@ export default {
     // =================
     async update() {
       const response = await axios.post(``)
+    },
+    // ==============
+    // モーダル切り替え
+    // ==============
+    toggleModalFlg() {
+      this.modalFlg = !this.modalFlg
+    },
+    // =================
+    // モーダルから追加する
+    // =================
+    pushCourseObjToSelectedCoursesArr() {
+      console.log('hello world')
     }
   },
   components: {
     Loading,
     EditingCourse,
+    SearchModal,
   },
   watch: {
     $route: {

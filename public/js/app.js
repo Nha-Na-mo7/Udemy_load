@@ -3447,6 +3447,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util */ "./resources/js/util.js");
 /* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Loading */ "./resources/js/components/Loading.vue");
 /* harmony import */ var _Records_EditingCourse__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Records/EditingCourse */ "./resources/js/pages/Records/EditingCourse.vue");
+/* harmony import */ var _SearchModal_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SearchModal.vue */ "./resources/js/pages/Records/SearchModal.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3498,6 +3499,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3643,11 +3661,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
+    },
+    // ==============
+    // モーダル切り替え
+    // ==============
+    toggleModalFlg: function toggleModalFlg() {
+      this.modalFlg = !this.modalFlg;
+    },
+    // =================
+    // モーダルから追加する
+    // =================
+    pushCourseObjToSelectedCoursesArr: function pushCourseObjToSelectedCoursesArr() {
+      console.log('hello world');
     }
   },
   components: {
     Loading: _components_Loading__WEBPACK_IMPORTED_MODULE_2__["default"],
-    EditingCourse: _Records_EditingCourse__WEBPACK_IMPORTED_MODULE_3__["default"]
+    EditingCourse: _Records_EditingCourse__WEBPACK_IMPORTED_MODULE_3__["default"],
+    SearchModal: _SearchModal_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   watch: {
     $route: {
@@ -24758,7 +24789,7 @@ var render = function() {
   return _c("div", [
     !_vm.existCourse
       ? _c("div", [_c("Loading")], 1)
-      : _c("div", [
+      : _c("div", { staticClass: "p-course__selected" }, [
           _c("div", { staticClass: "p-course__item--title" }, [
             _c("h2", [
               _c(
@@ -25304,7 +25335,31 @@ var render = function() {
                 }),
                 1
               )
-            ])
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "button",
+                { staticClass: "c-btn", on: { click: _vm.toggleModalFlg } },
+                [_vm._v("\n          コースを追加する\n        ")]
+              )
+            ]),
+            _vm._v(" "),
+            _vm.modalFlg
+              ? _c(
+                  "div",
+                  [
+                    _c("SearchModal", {
+                      on: {
+                        pushCourseObjToSelectedCoursesArr:
+                          _vm.pushCourseObjToSelectedCoursesArr,
+                        toggleModal: _vm.toggleModalFlg
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e()
           ])
         ])
   ])

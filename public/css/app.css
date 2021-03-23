@@ -1090,6 +1090,10 @@ input[type=checkbox] {
   margin: 0 auto;
 }
 
+.p-record__edit--textarea {
+  width: 100%;
+}
+
 .p-record__comment {
   width: 80%;
   padding: 15px 5px;
