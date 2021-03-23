@@ -29,7 +29,7 @@
             id="course_description"
             :value="courseDescription"
             @input="$emit('input', $event.target.value)"
-            class="c-form__textarea f-textarea"
+            class="p-record__edit--textarea c-form__textarea"
             placeholder="説明(このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？)"
             maxlength="200"
         ></textarea>
@@ -67,7 +67,7 @@ export default {
   computed: {
     // コースオブジェクト
     getCourseObj() {
-      return this.course.courseObject
+      return this.course
     },
     // コース名
     getTitle() {
@@ -77,16 +77,13 @@ export default {
     getUrl() {
       return UDEMY_BASE_URL + this.getCourseObj.url;
     },
+    // 画像
     getImage() {
-      return this.getCourseObject.image_url;
+      return this.getCourseObj.image_url;
     },
     // 講師名
     getInstructor() {
-      return this.getCourseObj.visible_instructors[0].title;
-    },
-    // オブジェクトそのもの
-    getCourseObject() {
-      return this.getCourseObj
+      return this.getCourseObj.instructor;
     },
   },
   methods: {

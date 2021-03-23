@@ -2889,7 +2889,7 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     // コースオブジェクト
     getCourseObj: function getCourseObj() {
-      return this.course.courseObject;
+      return this.course;
     },
     // コース名
     getTitle: function getTitle() {
@@ -2899,16 +2899,13 @@ __webpack_require__.r(__webpack_exports__);
     getUrl: function getUrl() {
       return _util__WEBPACK_IMPORTED_MODULE_0__["UDEMY_BASE_URL"] + this.getCourseObj.url;
     },
+    // 画像
     getImage: function getImage() {
-      return this.getCourseObject.image_url;
+      return this.getCourseObj.image_url;
     },
     // 講師名
     getInstructor: function getInstructor() {
-      return this.getCourseObj.visible_instructors[0].title;
-    },
-    // オブジェクトそのもの
-    getCourseObject: function getCourseObject() {
-      return this.getCourseObj;
+      return this.getCourseObj.instructor;
     }
   },
   methods: {
@@ -3501,7 +3498,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -3516,7 +3512,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       loading: true,
       modalFlg: false,
-      record: {}
+      updateData: {
+        selectedCourses: [],
+        recordForm: {
+          title: '',
+          description: ''
+        }
+      }
     };
   },
   methods: {
@@ -3560,10 +3562,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 9:
                 console.log(response.data); // 格納
 
-                _this.record = response.data;
+                _this.updateData.recordForm.title = response.data.title;
+                _this.updateData.recordForm.description = response.data.description;
+                _this.updateData.selectedCourses = response.data.courses;
                 _this.loading = false;
 
-              case 12:
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -24782,7 +24786,7 @@ var render = function() {
             _c("label", { attrs: { for: "course_description" } }),
             _vm._v(" "),
             _c("textarea", {
-              staticClass: "c-form__textarea f-textarea",
+              staticClass: "p-record__edit--textarea c-form__textarea",
               attrs: {
                 name: "",
                 id: "course_description",
@@ -25239,19 +25243,23 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: this.record.title,
-                      expression: "this.record.title"
+                      value: _vm.updateData.recordForm.title,
+                      expression: "updateData.recordForm.title"
                     }
                   ],
                   staticClass: "c-form__input",
                   attrs: { id: "record_title" },
-                  domProps: { value: this.record.title },
+                  domProps: { value: _vm.updateData.recordForm.title },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(this.record, "title", $event.target.value)
+                      _vm.$set(
+                        _vm.updateData.recordForm,
+                        "title",
+                        $event.target.value
+                      )
                     }
                   }
                 })
@@ -25264,19 +25272,23 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: this.record.description,
-                      expression: "this.record.description"
+                      value: _vm.updateData.recordForm.description,
+                      expression: "updateData.recordForm.description"
                     }
                   ],
                   staticClass: "p-record__edit--textarea c-form__textarea",
                   attrs: { id: "record_description" },
-                  domProps: { value: this.record.description },
+                  domProps: { value: _vm.updateData.recordForm.description },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(this.record, "description", $event.target.value)
+                      _vm.$set(
+                        _vm.updateData.recordForm,
+                        "description",
+                        $event.target.value
+                      )
                     }
                   }
                 })
@@ -25284,7 +25296,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                _vm._l(_vm.record.courses, function(Course) {
+                _vm._l(_vm.updateData.selectedCourses, function(Course, index) {
                   return _c("EditingCourse", {
                     key: Course.id,
                     attrs: { course: Course }

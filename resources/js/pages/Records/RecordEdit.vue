@@ -15,7 +15,7 @@
             <input
                 id="record_title"
                 class="c-form__input"
-                v-model="this.record.title"
+                v-model="updateData.recordForm.title"
             >
           </label>
           <!-- description -->
@@ -24,19 +24,18 @@
             <textarea
                 id="record_description"
                 class="p-record__edit--textarea c-form__textarea"
-                v-model="this.record.description"
+                v-model="updateData.recordForm.description"
             ></textarea>
           </label>
 
           <!-- 現在追加されているコース-->
           <div>
             <EditingCourse
-                v-for="Course in record.courses"
+                v-for="(Course, index) in updateData.selectedCourses"
                 :key="Course.id"
                 :course="Course"
             ></EditingCourse>
           </div>
-
         </form>
       </div>
     </div>
@@ -60,7 +59,13 @@ export default {
     return {
       loading: true,
       modalFlg: false,
-      record: {},
+      updateData: {
+        selectedCourses: [],
+        recordForm: {
+          title: '',
+          description: ''
+        }
+      },
     }
   },
   methods: {
@@ -84,7 +89,10 @@ export default {
       }
       console.log(response.data)
       // 格納
-      this.record = response.data
+      this.updateData.recordForm.title = response.data.title
+      this.updateData.recordForm.description = response.data.description
+      this.updateData.selectedCourses = response.data.courses
+
       this.loading = false
     },
     // ===============
