@@ -6,7 +6,6 @@ import RecordList from './pages/Records/RecordList.vue';
 import Mypage from './pages/Mypage/Mypage.vue';
 import RecordCreate from './pages/Records/RecordCreate.vue';
 import RecordDetail from './pages/Records/RecordDetail.vue';
-import RecordEdit from './pages/Records/RecordEdit.vue';
 import Login from './pages/Auth/Login.vue';
 
 // 設定画面
