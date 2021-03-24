@@ -23,9 +23,12 @@
             v-model="createData.recordForm.description"
             placeholder="説明文を入力してください。"
         ></textarea>
-        <!-- 投稿する -->
-        <div>
+        <!-- 投稿する / 更新する -->
+        <div v-if="isCreateMode">
           <button class="c-btn">投稿する</button>
+        </div>
+        <div v-else>
+          <button class="c-btn">更新する</button>
         </div>
       </form>
     </div>
@@ -157,6 +160,8 @@ export default {
 
       }else{
         const response = await axios.post(`../record/${this.id}/create`, this.createData);
+
+        console.log(response.data)
 
         if (response.status !== OK) {
           this.$store.commit('error/setErrorCode', response.status)

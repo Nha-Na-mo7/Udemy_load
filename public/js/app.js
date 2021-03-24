@@ -2959,6 +2959,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3108,7 +3111,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // 投稿後にその詳細ページへ遷移させる
                 _this2.$router.push("/records/".concat(response.data.id));
 
-                _context2.next = 20;
+                _context2.next = 21;
                 break;
 
               case 13:
@@ -3117,9 +3120,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 15:
                 _response = _context2.sent;
+                console.log(_response.data);
 
                 if (!(_response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context2.next = 19;
+                  _context2.next = 20;
                   break;
                 }
 
@@ -3127,11 +3131,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context2.abrupt("return", false);
 
-              case 19:
+              case 20:
                 // 詳細ページへ戻す
                 _this2.$router.push("/records/".concat(_this2.id));
 
-              case 20:
+              case 21:
               case "end":
                 return _context2.stop();
             }
@@ -24653,7 +24657,13 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _vm._m(0)
+          _vm.isCreateMode
+            ? _c("div", [
+                _c("button", { staticClass: "c-btn" }, [_vm._v("投稿する")])
+              ])
+            : _c("div", [
+                _c("button", { staticClass: "c-btn" }, [_vm._v("更新する")])
+              ])
         ]
       )
     ]),
@@ -24706,16 +24716,7 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("button", { staticClass: "c-btn" }, [_vm._v("投稿する")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
