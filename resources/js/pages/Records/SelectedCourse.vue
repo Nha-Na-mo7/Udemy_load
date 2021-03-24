@@ -3,12 +3,13 @@
 <!-- ========================== -->
 <template>
   <div class="p-course p-course__selected">
+
     <!-- 講座名とリンク -->
     <div class="p-course__item--title">
       <h2>
         <a
             class="p-course__item--title--link"
-            :href="getUrl"
+            :href="getUrl | addUdemyBaseUrl"
             target="_blank"
             rel="noopener noreferrer"
         >{{ getTitle }}</a
@@ -47,6 +48,7 @@
 
 <script>
 import {UDEMY_BASE_URL} from "../../util";
+import Loading from "../../components/Loading";
 
 export default {
   props: {
@@ -54,16 +56,22 @@ export default {
       type: Object,
       required: true,
     },
+    createflg: {
+      type: Boolean,
+      required: true
+    }
   },
   data() {
     return {
+      courseObj: this.course,
+      existCourse: false,
       courseDescription: this.course.description
     }
   },
   computed: {
     // コースオブジェクト
     getCourseObj() {
-      return this.course.courseObject
+      return this.checkCreateOrEdit(this.course.courseObject, this.course)
     },
     // コース名
     getTitle() {
@@ -71,15 +79,26 @@ export default {
     },
     // コースのURL(ベースのURLを前に付与しなければならない)
     getUrl() {
-      return UDEMY_BASE_URL + this.getCourseObj.url;
+      return this.getCourseObj.url;
     },
     // 講師名
     getInstructor() {
-      return this.getCourseObj.visible_instructors[0].title;
+      // visible_instructorsがプロパティとして存在するか確認
+      let createInstructorName = ''
+      if ('visible_instructors' in this.getCourseObj) {
+        createInstructorName = this.getCourseObj.visible_instructors[0].title
+      }
+      return this.checkCreateOrEdit(
+          createInstructorName,
+          this.getCourseObj.instructor
+      )
     },
     // 画像
     getImage() {
-      return this.getCourseObj.image_240x135;
+      return this.checkCreateOrEdit(
+          this.getCourseObj.image_240x135,
+          this.getCourseObj.image_url
+      )
     },
     // オブジェクトそのもの
     getCourseObject() {
@@ -87,12 +106,27 @@ export default {
     },
   },
   methods: {
+    // 毎度if文を書かないようにするための関数
+    checkCreateOrEdit(createReturnVal, editReturnVal) {
+      if (this.createflg) {
+        return createReturnVal
+      }else{
+        return editReturnVal
+      }
+    },
+    // コースの削除
     deleteCourse() {
       if (
           confirm('選択したコースを削除します。')
       )
       this.$emit('deleteCourse')
     }
+  },
+  components: {
+    Loading,
+  },
+  filters: {
+    addUdemyBaseUrl: (url) => UDEMY_BASE_URL + url
   }
 }
 </script>

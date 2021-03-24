@@ -19,6 +19,7 @@
         <!-- 講師名 -->
         <p class="p-course__item--instructor">{{ getInstructor }}</p>
       </div>
+
       <!-- サムネイル -->
       <img :src="this.course.image_url" alt="">
 

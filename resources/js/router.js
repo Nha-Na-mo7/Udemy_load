@@ -82,7 +82,7 @@ const routes = [
   {
     // コースレコード編集ページ
     path: '/records/:id/edit',
-    component: RecordEdit,
+    component: RecordCreate,
     props: true,
     beforeRouteEnter: requireAuth
   },

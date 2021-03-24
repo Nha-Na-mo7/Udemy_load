@@ -2870,6 +2870,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3063,13 +3064,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  // このpropsはレコードの編集時のみ受け取る
+  props: {
+    id: {
+      type: String
+    }
+  },
   data: function data() {
     return {
+      loading: true,
       modalFlg: false,
       createData: {
         selectedCourses: [],
@@ -3080,7 +3096,70 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
+  computed: {
+    isCreateMode: function isCreateMode() {
+      return this.id === undefined;
+    }
+  },
   methods: {
+    // レコードの情報をDBから取得(編集時のみ)
+    fetchRecord: function fetchRecord() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (_this.isCreateMode) {
+                  _context.next = 14;
+                  break;
+                }
+
+                _context.next = 3;
+                return axios.get("/record/".concat(_this.id, "/", true));
+
+              case 3:
+                response = _context.sent;
+
+                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["FORBIDDEN"])) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _this.$router.push("/records/".concat(_this.id));
+
+                return _context.abrupt("return", false);
+
+              case 7:
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context.next = 10;
+                  break;
+                }
+
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 10:
+                console.log(response.data); // 格納
+
+                _this.createData.recordForm.title = response.data.title;
+                _this.createData.recordForm.description = response.data.description;
+                _this.createData.selectedCourses = response.data.courses;
+
+              case 14:
+                _this.loading = false;
+
+              case 15:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
     // モーダルフラグを切り替え
     toggleModalFlg: function toggleModalFlg() {
       this.modalFlg = !this.modalFlg;
@@ -3093,29 +3172,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     deleteCourseObject: function deleteCourseObject(index) {
       this.createData.selectedCourses.splice(index, 1);
     },
-    // コースのレコードを投稿する
+    // コースのレコードを投稿 or 上書きする
     submitCourse: function submitCourse() {
-      var _this = this;
+      var _this2 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response, _response;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                if (_this.createData.selectedCourses.length) {
-                  _context.next = 2;
+                if (_this2.createData.selectedCourses.length) {
+                  _context2.next = 2;
                   break;
                 }
 
-                return _context.abrupt("return", false);
+                return _context2.abrupt("return", false);
 
               case 2:
-                _context.next = 4;
-                return axios.post('../records/create', _this.createData);
+                if (!_this2.isCreateMode) {
+                  _context2.next = 13;
+                  break;
+                }
 
-              case 4:
-                response = _context.sent;
+                _context2.next = 5;
+                return axios.post("../records/create", _this2.createData);
+
+              case 5:
+                response = _context2.sent;
                 console.log(response); // // バリデーションエラー
                 // if (response.status === UNPROCESSABLE_ENTITY) {
                 //   this.errors = response.data.errors;
@@ -3124,24 +3209,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // 作成完了
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context.next = 9;
+                  _context2.next = 10;
                   break;
                 }
 
-                _this.$store.commit('error/setErrorCode', response.status);
+                _this2.$store.commit('error/setErrorCode', response.status);
 
-                return _context.abrupt("return", false);
-
-              case 9:
-                // 投稿後にその詳細ページへ遷移させる
-                _this.$router.push("/records/".concat(response.data.id));
+                return _context2.abrupt("return", false);
 
               case 10:
+                // 投稿後にその詳細ページへ遷移させる
+                _this2.$router.push("/records/".concat(response.data.id));
+
+                _context2.next = 20;
+                break;
+
+              case 13:
+                _context2.next = 15;
+                return axios.post("../record/".concat(_this2.id, "/create"), _this2.createData);
+
+              case 15:
+                _response = _context2.sent;
+
+                if (!(_response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context2.next = 19;
+                  break;
+                }
+
+                _this2.$store.commit('error/setErrorCode', _response.status);
+
+                return _context2.abrupt("return", false);
+
+              case 19:
+                // 詳細ページへ戻す
+                _this2.$router.push("/records/".concat(_this2.id));
+
+              case 20:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }))();
     }
   },
@@ -3149,6 +3257,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     SelectedCourse: _SelectedCourse_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     SearchModal: _SearchModal_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this3 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  _context3.next = 2;
+                  return _this3.fetchRecord();
+
+                case 2:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3);
+        }))();
+      },
+      immediate: true
+    }
   }
 });
 
@@ -4057,6 +4189,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util */ "./resources/js/util.js");
+/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Loading */ "./resources/js/components/Loading.vue");
+//
 //
 //
 //
@@ -4105,22 +4239,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     course: {
       type: Object,
       required: true
+    },
+    createflg: {
+      type: Boolean,
+      required: true
     }
   },
   data: function data() {
     return {
+      courseObj: this.course,
+      existCourse: false,
       courseDescription: this.course.description
     };
   },
   computed: {
     // コースオブジェクト
     getCourseObj: function getCourseObj() {
-      return this.course.courseObject;
+      return this.checkCreateOrEdit(this.course.courseObject, this.course);
     },
     // コース名
     getTitle: function getTitle() {
@@ -4128,15 +4269,22 @@ __webpack_require__.r(__webpack_exports__);
     },
     // コースのURL(ベースのURLを前に付与しなければならない)
     getUrl: function getUrl() {
-      return _util__WEBPACK_IMPORTED_MODULE_0__["UDEMY_BASE_URL"] + this.getCourseObj.url;
+      return this.getCourseObj.url;
     },
     // 講師名
     getInstructor: function getInstructor() {
-      return this.getCourseObj.visible_instructors[0].title;
+      // visible_instructorsがプロパティとして存在するか確認
+      var createInstructorName = '';
+
+      if ('visible_instructors' in this.getCourseObj) {
+        createInstructorName = this.getCourseObj.visible_instructors[0].title;
+      }
+
+      return this.checkCreateOrEdit(createInstructorName, this.getCourseObj.instructor);
     },
     // 画像
     getImage: function getImage() {
-      return this.getCourseObj.image_240x135;
+      return this.checkCreateOrEdit(this.getCourseObj.image_240x135, this.getCourseObj.image_url);
     },
     // オブジェクトそのもの
     getCourseObject: function getCourseObject() {
@@ -4144,8 +4292,25 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    // 毎度if文を書かないようにするための関数
+    checkCreateOrEdit: function checkCreateOrEdit(createReturnVal, editReturnVal) {
+      if (this.createflg) {
+        return createReturnVal;
+      } else {
+        return editReturnVal;
+      }
+    },
+    // コースの削除
     deleteCourse: function deleteCourse() {
       if (confirm('選択したコースを削除します。')) this.$emit('deleteCourse');
+    }
+  },
+  components: {
+    Loading: _components_Loading__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  filters: {
+    addUdemyBaseUrl: function addUdemyBaseUrl(url) {
+      return _util__WEBPACK_IMPORTED_MODULE_0__["UDEMY_BASE_URL"] + url;
     }
   }
 });
@@ -24925,7 +25090,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "f_page" }, [
-    _c("h2", [_vm._v("講座登録")]),
+    _vm.isCreateMode
+      ? _c("h2", [_vm._v("講座の新規登録")])
+      : _c("h2", [_vm._v("編 集")]),
     _vm._v(" "),
     _c("div", [
       _c(
@@ -25013,7 +25180,11 @@ var render = function() {
       _vm._l(_vm.createData.selectedCourses, function(Course, index) {
         return _c("SelectedCourse", {
           key: Course.id,
-          attrs: { course: Course, value: Course.description },
+          attrs: {
+            course: Course,
+            createflg: _vm.isCreateMode,
+            value: Course.description
+          },
           on: {
             input: function($event) {
               Course.description = $event
@@ -25567,7 +25738,7 @@ var render = function() {
           {
             staticClass: "p-course__item--title--link",
             attrs: {
-              href: _vm.getUrl,
+              href: _vm._f("addUdemyBaseUrl")(_vm.getUrl),
               target: "_blank",
               rel: "noopener noreferrer"
             }
@@ -44830,7 +45001,7 @@ var routes = [{
 }, {
   // コースレコード編集ページ
   path: '/records/:id/edit',
-  component: _pages_Records_RecordEdit_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  component: _pages_Records_RecordCreate_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
   props: true,
   beforeRouteEnter: requireAuth
 }, {
