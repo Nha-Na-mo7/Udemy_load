@@ -3671,8 +3671,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // =================
     // モーダルから追加する
     // =================
-    pushCourseObjToSelectedCoursesArr: function pushCourseObjToSelectedCoursesArr() {
-      console.log('hello world');
+    pushCourseObjToSelectedCoursesArr: function pushCourseObjToSelectedCoursesArr(e) {
+      this.updateData.selectedCourses.push(e);
     }
   },
   components: {

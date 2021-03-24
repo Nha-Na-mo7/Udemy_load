@@ -147,8 +147,8 @@ export default {
     // =================
     // モーダルから追加する
     // =================
-    pushCourseObjToSelectedCoursesArr() {
-      console.log('hello world')
+    pushCourseObjToSelectedCoursesArr(e) {
+      this.updateData.selectedCourses.push(e)
     }
   },
   components: {
