@@ -152,19 +152,20 @@ export default {
         // }
         // 作成完了
         if (response.status !== CREATED) {
-          this.$store.commit('error/setErrorCode', response.status)
+          // this.$store.commit('error/setCode', response.status)
           return false
         }
         // 投稿後にその詳細ページへ遷移させる
         this.$router.push(`/records/${response.data.id}`)
 
       }else{
-        const response = await axios.post(`../record/${this.id}/create`, this.createData);
+        console.log('eidtモードで更新処理です')
+        const response = await axios.post(`/record/${this.id}/update`, this.createData);
 
         console.log(response.data)
 
         if (response.status !== OK) {
-          this.$store.commit('error/setErrorCode', response.status)
+          // this.$store.commit('error/setCode', response.status)
           return false
         }
         // 詳細ページへ戻す

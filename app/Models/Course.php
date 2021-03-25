@@ -12,6 +12,7 @@ class Course extends Model
 {
     // fill
     protected $fillable = [
+        'id',
         'record_id',
         'record_index',
         'course_id',

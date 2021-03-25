@@ -72,27 +72,65 @@ class RecordController extends Controller
         // recordsテーブルのtitleとdescriptionを更新
         Auth::user()->records()->save($record->fill($request->recordForm));
         
+        Log::debug(print_r($request->selectedCourses, true));
+        
         // 更新処理
         for ($i = 0, $iMax = count($request->selectedCourses); $i < $iMax; $i++) {
             $courseData = $request->get('selectedCourses')[$i];
-            $courseObj = $courseData['courseObject'];
-            
+            Log::debug('ここから更新処理');
             // 指定のレコードIDのn番目かのレコード情報があるかを確認し、新規作成するか更新する
-            $course = Course::updateOrCreate([
-                ['record_id' => $id, 'record_index' => $i],
+            /* updateOrCreateの動作に不具合がある
+             * Course::updateOrCreate([
                 [
-                    'course_id' => $courseObj['id'],
-                    'title' => $courseObj['title'],
-                    'instructor' => $courseObj['visible_instructors'][0]['title'],
-                    'url' => $courseObj['url'],
-                    'image_url' => $courseObj['image_240x135'],
+                    "record_id" => $id,
+                    "record_index" => $i,
+                ],
+                とした時、SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Poti3aCNw6s6xKQt' in 'where clause' (SQL: select * from `courses` where (`Poti3aCNw6s6xKQt` = 0 /course/rails-kj/ ...
+                のようなずれ込んだSQL分が発行されてしまう
+             */
+            // Course::updateOrCreate([
+            //     [
+            //         "record_id" => $id,
+            //         "record_index" => $i,
+            //     ],
+            //     [
+            //         'course_id' => $courseData['id'],
+            //         'title' => $courseData['title'],
+            //         'instructor' => $courseData['instructor'],
+            //         'url' => $courseData['url'],
+            //         'image_url' => $courseData['image_url'],
+            //         'description' => $courseData['description']
+            //     ]
+            //   ]);
+          
+            $course = Course::where('record_id', $id)->where('record_index', $i)->first();
+            if(is_null($course)) {
+              // contentsテーブルへ本文を格納
+                $course = Course::create([
+                    'record_id' => $id,
+                    'record_index' => $i,
+                    'course_id' => $courseData['id'],
+                    'title' => $courseData['title'],
+                    'instructor' => $courseData['instructor'],
+                    'url' => $courseData['url'],
+                    'image_url' => $courseData['image_url'],
                     'description' => $courseData['description']
-                ]
-              ]);
+                ]);
+            }else{
+                $course->update([
+                    'course_id' => $courseData['id'],
+                    'title' => $courseData['title'],
+                    'instructor' => $courseData['instructor'],
+                    'url' => $courseData['url'],
+                    'image_url' => $courseData['image_url'],
+                    'description' => $courseData['description']
+                ]);
+            }
+            Log::debug('ここまで更新処理 もう一度ループ');
         }
         // 更新後、オーバーしたindexは削除する
         Course::where('record_id', $id)
-            ->where('index', '>', count($request->selectedCourses) - 1)
+            ->where('record_index', '>', count($request->selectedCourses) - 1)
             ->delete();
         
         return response($record, 200);

@@ -3082,7 +3082,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 if (!_this2.isCreateMode) {
-                  _context2.next = 13;
+                  _context2.next = 12;
                   break;
                 }
 
@@ -3099,43 +3099,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // 作成完了
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context2.next = 10;
+                  _context2.next = 9;
                   break;
                 }
 
-                _this2.$store.commit('error/setErrorCode', response.status);
-
                 return _context2.abrupt("return", false);
 
-              case 10:
+              case 9:
                 // 投稿後にその詳細ページへ遷移させる
                 _this2.$router.push("/records/".concat(response.data.id));
 
-                _context2.next = 21;
+                _context2.next = 20;
                 break;
 
-              case 13:
+              case 12:
+                console.log('eidtモードで更新処理です');
                 _context2.next = 15;
-                return axios.post("../record/".concat(_this2.id, "/create"), _this2.createData);
+                return axios.post("/record/".concat(_this2.id, "/update"), _this2.createData);
 
               case 15:
                 _response = _context2.sent;
                 console.log(_response.data);
 
                 if (!(_response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context2.next = 20;
+                  _context2.next = 19;
                   break;
                 }
 
-                _this2.$store.commit('error/setErrorCode', _response.status);
-
                 return _context2.abrupt("return", false);
 
-              case 20:
+              case 19:
                 // 詳細ページへ戻す
                 _this2.$router.push("/records/".concat(_this2.id));
 
-              case 21:
+              case 20:
               case "end":
                 return _context2.stop();
             }
