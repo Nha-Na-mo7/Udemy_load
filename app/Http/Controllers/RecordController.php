@@ -38,24 +38,64 @@ class RecordController extends Controller
         
         // coursesテーブルに選択されたコース、コースの説明、レコードの何番目かなどの情報を格納する
         for ($i = 0, $iMax = count($request->selectedCourses); $i < $iMax; $i++) {
-            $course = new Course();
-            
             $courseData = $request->get('selectedCourses')[$i];
             $courseObj = $courseData['courseObject'];
             
             // contentsテーブルへ本文を格納
-            $course->record_id = $keep_id;
-            $course->record_index = $i;
-            $course->course_id = $courseObj['id'];
-            $course->title = $courseObj['title'];
-            $course->instructor = $courseObj['visible_instructors'][0]['title'];
-            $course->url = $courseObj['url'];
-            $course->image_url = $courseObj['image_240x135'];
-            $course->description = $courseData['description'];
-            $course->save();
+            $course = Course::create([
+                'record_id' => $keep_id,
+                'record_index' => $i,
+                'course_id' => $courseObj['id'],
+                'title' => $courseObj['title'],
+                'instructor' => $courseObj['visible_instructors'][0]['title'],
+                'url' => $courseObj['url'],
+                'image_url' => $courseObj['image_240x135'],
+                'description' => $courseData['description']
+            ]);
         }
         
         return response($record, 201);
+    }
+    
+    // レコードの更新
+    public function update(Request $request, string $id)
+    {
+        Log::debug('==========================');
+        Log::debug(' レコード更新 ID:' . $id);
+        Log::debug('==========================');
+        
+        // TODO 認証中ユーザーか二重チェックする？
+  
+        // IDに合致するレコード情報を取得
+        $record = Record::where('id', $id)->with(['owner', 'courses'])->first();
+        
+        // recordsテーブルのtitleとdescriptionを更新
+        Auth::user()->records()->save($record->fill($request->recordForm));
+        
+        // 更新処理
+        for ($i = 0, $iMax = count($request->selectedCourses); $i < $iMax; $i++) {
+            $courseData = $request->get('selectedCourses')[$i];
+            $courseObj = $courseData['courseObject'];
+            
+            // 指定のレコードIDのn番目かのレコード情報があるかを確認し、新規作成するか更新する
+            $course = Course::updateOrCreate([
+                ['record_id' => $id, 'record_index' => $i],
+                [
+                    'course_id' => $courseObj['id'],
+                    'title' => $courseObj['title'],
+                    'instructor' => $courseObj['visible_instructors'][0]['title'],
+                    'url' => $courseObj['url'],
+                    'image_url' => $courseObj['image_240x135'],
+                    'description' => $courseData['description']
+                ]
+              ]);
+        }
+        // 更新後、オーバーしたindexは削除する
+        Course::where('record_id', $id)
+            ->where('index', '>', count($request->selectedCourses) - 1)
+            ->delete();
+        
+        return response($record, 200);
     }
     
     // レコード詳細の取得
