@@ -3056,7 +3056,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     // 選択済みコースにコースオブジェクトを追加する
     pushCourseObjToSelectedCoursesArr: function pushCourseObjToSelectedCoursesArr(e) {
-      this.createData.selectedCourses.push(e);
+      if (this.isCreateMode) {
+        this.createData.selectedCourses.push(e);
+      } else {
+        // 編集モードの場合は形式を変更
+        console.log('EditMode change');
+        var cObj = e.courseObject;
+        var updateObj = {
+          course_id: cObj.id,
+          image_url: cObj.image_240x135,
+          instructor: cObj.visible_instructors[0]['title'],
+          title: cObj.title,
+          url: cObj.url
+        };
+        console.log(updateObj);
+        this.createData.selectedCourses.push(updateObj);
+      }
     },
     // オブジェクトを削除する
     deleteCourseObject: function deleteCourseObject(index) {

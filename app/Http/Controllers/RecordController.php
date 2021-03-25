@@ -105,11 +105,13 @@ class RecordController extends Controller
           
             $course = Course::where('record_id', $id)->where('record_index', $i)->first();
             if(is_null($course)) {
+               Log::debug('null');
+               Log::debug(print_r($courseData, true));
               // contentsテーブルへ本文を格納
                 $course = Course::create([
                     'record_id' => $id,
                     'record_index' => $i,
-                    'course_id' => $courseData['id'],
+                    'course_id' => $courseData['course_id'],
                     'title' => $courseData['title'],
                     'instructor' => $courseData['instructor'],
                     'url' => $courseData['url'],
@@ -117,8 +119,9 @@ class RecordController extends Controller
                     'description' => $courseData['description']
                 ]);
             }else{
+                Log::debug('nullじゃないよ');
                 $course->update([
-                    'course_id' => $courseData['id'],
+                    'course_id' => $courseData['course_id'],
                     'title' => $courseData['title'],
                     'instructor' => $courseData['instructor'],
                     'url' => $courseData['url'],

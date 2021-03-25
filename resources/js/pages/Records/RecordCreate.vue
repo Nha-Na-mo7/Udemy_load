@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import {CREATED, FORBIDDEN, OK, UNPROCESSABLE_ENTITY} from "../../util";
+import {CREATED, FORBIDDEN, OK, UDEMY_BASE_URL, UNPROCESSABLE_ENTITY} from "../../util";
 import Loading from '../../components/Loading.vue';
 import SelectedCourse from './SelectedCourse.vue';
 import SearchModal from './SearchModal.vue';
@@ -126,7 +126,22 @@ export default {
     },
     // 選択済みコースにコースオブジェクトを追加する
     pushCourseObjToSelectedCoursesArr(e) {
-      this.createData.selectedCourses.push(e);
+      if (this.isCreateMode) {
+        this.createData.selectedCourses.push(e);
+      }else{
+        // 編集モードの場合は形式を変更
+        console.log('EditMode change')
+        const cObj = e.courseObject
+        const updateObj = {
+          course_id : cObj.id,
+          image_url : cObj.image_240x135,
+          instructor: cObj.visible_instructors[0]['title'],
+          title: cObj.title,
+          url: cObj.url,
+        }
+        console.log(updateObj)
+        this.createData.selectedCourses.push(updateObj);
+      }
     },
     // オブジェクトを削除する
     deleteCourseObject(index) {
