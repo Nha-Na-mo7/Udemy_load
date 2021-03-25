@@ -65,19 +65,18 @@ class RecordController extends Controller
         Log::debug('==========================');
         
         // TODO 認証中ユーザーか二重チェックする？
-  
         // IDに合致するレコード情報を取得
-        $record = Record::where('id', $id)->with(['owner', 'courses'])->first();
-        
+        $record = Record::where('id', $id)->with(['courses'])->first();
         // recordsテーブルのtitleとdescriptionを更新
         Auth::user()->records()->save($record->fill($request->recordForm));
-        
-        Log::debug(print_r($request->selectedCourses, true));
-        
+        // Log::debug('print_r($record, true)');
+        // Log::debug(print_r($record->relations, true));
+        // Log::debug(print_r($record['fillable'], true));
+        // Log::debug($record->fillable);
+        // Log::debug($record['fillable']);
         // 更新処理
         for ($i = 0, $iMax = count($request->selectedCourses); $i < $iMax; $i++) {
             $courseData = $request->get('selectedCourses')[$i];
-            Log::debug('ここから更新処理');
             // 指定のレコードIDのn番目かのレコード情報があるかを確認し、新規作成するか更新する
             /* updateOrCreateの動作に不具合がある
              * Course::updateOrCreate([
@@ -102,11 +101,10 @@ class RecordController extends Controller
             //         'description' => $courseData['description']
             //     ]
             //   ]);
-          
-            $course = Course::where('record_id', $id)->where('record_index', $i)->first();
-            if(is_null($course)) {
-               Log::debug('null');
-               Log::debug(print_r($courseData, true));
+            
+            // リレーションでindexが存在するかにより更新かcourseレコードの新規作成かを分ける
+            if(!isset($record->courses[$i])) {
+              Log::debug('更新処理にあたり追加された項目です');
               // contentsテーブルへ本文を格納
                 $course = Course::create([
                     'record_id' => $id,
@@ -119,7 +117,10 @@ class RecordController extends Controller
                     'description' => $courseData['description']
                 ]);
             }else{
-                Log::debug('nullじゃないよ');
+                // indexの更新処理のみレコードを取得しupdateする(新規作成時のSQL発行を抑えられる)
+                // TODO N+1は大丈夫か？
+                Log::debug('indexの更新をします');
+                $course = Course::where('record_id', $id)->where('record_index', $i)->first();
                 $course->update([
                     'course_id' => $courseData['course_id'],
                     'title' => $courseData['title'],
@@ -129,14 +130,13 @@ class RecordController extends Controller
                     'description' => $courseData['description']
                 ]);
             }
-            Log::debug('ここまで更新処理 もう一度ループ');
         }
-        // 更新後、オーバーしたindexは削除する
+        // 更新後、オーバーしたindexのコースレコードは削除する
         Course::where('record_id', $id)
             ->where('record_index', '>', count($request->selectedCourses) - 1)
             ->delete();
         
-        return response($record, 200);
+        return response([], 200);
     }
     
     // レコード詳細の取得
