@@ -2713,7 +2713,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate_
     // ページネーション用
     // ======================
     // ページネーション用に細分化
-    getAccountsItems: function getAccountsItems() {
+    getRecordsItems: function getRecordsItems() {
       var current = this.currentPage * this.parPage;
       var start = current - this.parPage;
       return this.records.slice(start, current);
@@ -3649,7 +3649,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate_
     // ページネーション用
     // ======================
     // ページネーション用にアカウントリストを細分化する
-    getAccountsItems: function getAccountsItems() {
+    getRecordsItems: function getRecordsItems() {
       var current = this.currentPage * this.parPage;
       var start = current - this.parPage;
       return this.records.slice(start, current);
@@ -24631,7 +24631,7 @@ var render = function() {
       "div",
       { staticClass: "p-record__list--inner" },
       [
-        _vm._l(_vm.records, function(Record) {
+        _vm._l(_vm.getRecordsItems, function(Record) {
           return _c("Record", { key: Record.id, attrs: { item: Record } })
         }),
         _vm._v(" "),
@@ -25166,7 +25166,7 @@ var render = function() {
       "div",
       { staticClass: "p-record__list--inner", attrs: { id: "records" } },
       [
-        _vm._l(_vm.records, function(Record) {
+        _vm._l(_vm.getRecordsItems, function(Record) {
           return _c("Record", { key: Record.id, attrs: { item: Record } })
         }),
         _vm._v(" "),

@@ -2,7 +2,7 @@
   <div class="p-record__list">
     <div class="p-record__list--inner" id="records">
       <Record
-          v-for="Record in records"
+          v-for="Record in getRecordsItems"
           :key="Record.id"
           :item="Record"
       />
@@ -71,7 +71,7 @@ export default {
     // ページネーション用
     // ======================
     // ページネーション用にアカウントリストを細分化する
-    getAccountsItems: function () {
+    getRecordsItems: function () {
       let current = this.currentPage * this.parPage;
       let start = current - this.parPage;
       return this.records.slice(start, current);
