@@ -63,6 +63,16 @@
       min-height: 240px;
     }
   }
+  // 編集・投稿画面
+  &__edit {
+    &--inner {
+      width: 80%;
+      margin: 0 auto;
+    }
+    &--textarea {
+      width: 100%;
+    }
+  }
   // コメント関連
   &__comment {
     width: 80%;

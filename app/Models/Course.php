@@ -11,7 +11,17 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     // fill
-    protected $fillable = ['record_id', 'record_index', 'course_id', 'title', 'instructor', 'description', 'url', 'image_url'];
+    protected $fillable = [
+        'id',
+        'record_id',
+        'record_index',
+        'course_id',
+        'title',
+        'instructor',
+        'description',
+        'url',
+        'image_url'
+    ];
     
     /**
      * リレーション - recordsテーブル

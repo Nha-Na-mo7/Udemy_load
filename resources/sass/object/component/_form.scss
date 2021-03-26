@@ -4,6 +4,7 @@
 .c-form {
   &__input {
     border: 1px solid #666;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0);
     border-radius: 4px;
     width: 100%;
     padding: 10px;
@@ -12,6 +13,7 @@
     &:focus {
       border: 1px solid $input-color;
       box-shadow: 0 0 5px $input-color;
+      background: #fffbf5;
     }
     @include mq() {
       padding: 8px;
@@ -27,16 +29,18 @@
   }
   &__textarea {
     box-sizing: border-box;
-    background: #f6f6f6;
+    background: #fcfcfc;
     resize: none;
     padding: 10px 15px;
     font-size: 16px;
     margin: 10px 0;
+    border: 1px solid #cdcdcd;
     border-radius: 4px;
     line-height: 1.5;
     &:focus {
-      border: #f66d9b 2px solid;
-      box-shadow: #f66d9b 0 0 10px;
+      border: #f66d9b 1px solid;
+      box-shadow: #f66d9b 0 0 5px;
+      background: #fffbf5;
     }
   }
   &__checkbox {

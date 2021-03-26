@@ -38,33 +38,122 @@ class RecordController extends Controller
         
         // coursesテーブルに選択されたコース、コースの説明、レコードの何番目かなどの情報を格納する
         for ($i = 0, $iMax = count($request->selectedCourses); $i < $iMax; $i++) {
-            $course = new Course();
-            
             $courseData = $request->get('selectedCourses')[$i];
             $courseObj = $courseData['courseObject'];
             
             // contentsテーブルへ本文を格納
-            $course->record_id = $keep_id;
-            $course->record_index = $i;
-            $course->course_id = $courseObj['id'];
-            $course->title = $courseObj['title'];
-            $course->instructor = $courseObj['visible_instructors'][0]['title'];
-            $course->url = $courseObj['url'];
-            $course->image_url = $courseObj['image_240x135'];
-            $course->description = $courseData['description'];
-            $course->save();
+            $course = Course::create([
+                'record_id' => $keep_id,
+                'record_index' => $i,
+                'course_id' => $courseObj['id'],
+                'title' => $courseObj['title'],
+                'instructor' => $courseObj['visible_instructors'][0]['title'],
+                'url' => $courseObj['url'],
+                'image_url' => $courseObj['image_240x135'],
+                'description' => $courseData['description']
+            ]);
         }
         
         return response($record, 201);
     }
     
+    // レコードの更新
+    public function update(Request $request, string $id)
+    {
+        Log::debug('==========================');
+        Log::debug(' レコード更新 ID:' . $id);
+        Log::debug('==========================');
+        
+        // TODO 認証中ユーザーか二重チェックする？
+        // IDに合致するレコード情報を取得
+        $record = Record::where('id', $id)->with(['courses'])->first();
+        // recordsテーブルのtitleとdescriptionを更新
+        Auth::user()->records()->save($record->fill($request->recordForm));
+        // Log::debug('print_r($record, true)');
+        // Log::debug(print_r($record->relations, true));
+        // Log::debug(print_r($record['fillable'], true));
+        // Log::debug($record->fillable);
+        // Log::debug($record['fillable']);
+        // 更新処理
+        for ($i = 0, $iMax = count($request->selectedCourses); $i < $iMax; $i++) {
+            $courseData = $request->get('selectedCourses')[$i];
+            // 指定のレコードIDのn番目かのレコード情報があるかを確認し、新規作成するか更新する
+            /* updateOrCreateの動作に不具合がある
+             * Course::updateOrCreate([
+                [
+                    "record_id" => $id,
+                    "record_index" => $i,
+                ],
+                とした時、SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Poti3aCNw6s6xKQt' in 'where clause' (SQL: select * from `courses` where (`Poti3aCNw6s6xKQt` = 0 /course/rails-kj/ ...
+                のようなずれ込んだSQL分が発行されてしまう
+             */
+            // Course::updateOrCreate([
+            //     [
+            //         "record_id" => $id,
+            //         "record_index" => $i,
+            //     ],
+            //     [
+            //         'course_id' => $courseData['id'],
+            //         'title' => $courseData['title'],
+            //         'instructor' => $courseData['instructor'],
+            //         'url' => $courseData['url'],
+            //         'image_url' => $courseData['image_url'],
+            //         'description' => $courseData['description']
+            //     ]
+            //   ]);
+            
+            // リレーションでindexが存在するかにより更新かcourseレコードの新規作成かを分ける
+            if(!isset($record->courses[$i])) {
+              Log::debug('更新処理にあたり追加された項目です');
+              // contentsテーブルへ本文を格納
+                $course = Course::create([
+                    'record_id' => $id,
+                    'record_index' => $i,
+                    'course_id' => $courseData['course_id'],
+                    'title' => $courseData['title'],
+                    'instructor' => $courseData['instructor'],
+                    'url' => $courseData['url'],
+                    'image_url' => $courseData['image_url'],
+                    'description' => $courseData['description']
+                ]);
+            }else{
+                // indexの更新処理のみレコードを取得しupdateする(新規作成時のSQL発行を抑えられる)
+                // TODO N+1は大丈夫か？
+                Log::debug('indexの更新をします');
+                $course = Course::where('record_id', $id)->where('record_index', $i)->first();
+                $course->update([
+                    'course_id' => $courseData['course_id'],
+                    'title' => $courseData['title'],
+                    'instructor' => $courseData['instructor'],
+                    'url' => $courseData['url'],
+                    'image_url' => $courseData['image_url'],
+                    'description' => $courseData['description']
+                ]);
+            }
+        }
+        // 更新後、オーバーしたindexのコースレコードは削除する
+        Course::where('record_id', $id)
+            ->where('record_index', '>', count($request->selectedCourses) - 1)
+            ->delete();
+        
+        return response([], 200);
+    }
+    
     // レコード詳細の取得
-    public function show(string $id) {
+    public function show(string $id, bool $owner_flg = false) {
         Log::debug('==================================');
         Log::debug('レコード詳細取得/ID:'.$id);
         Log::debug('==================================');
         // IDに合致するレコード情報を取得
         $record = Record::where('id', $id)->with(['owner', 'courses', 'comments.author'])->first();
+        
+        // レコードの所持者かを確認し、違うなら403を返す(Edit時のみ)
+        if ($owner_flg) {
+          if (Auth::user()->id !== $record->user_id) {
+            return abort(403);
+          };
+        }
+        
         // descriptionの改行タグを<br>に置き換え
         $record->description = str_replace("\r\n", '<br>', $record->description);
         
