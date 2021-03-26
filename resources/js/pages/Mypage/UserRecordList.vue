@@ -10,6 +10,37 @@
           :key="Record.id"
           :item="Record"
       />
+      <!-- ページネーション -->
+      <div class="u-text--center">
+        <paginate
+            v-model="currentPage"
+            :page-count="getPageCount"
+            :page-range="3"
+            :margin-pages="1"
+            :click-handler="clickCallback"
+            :prev-text="'<'"
+            :next-text="'>'"
+            :break-view-class="'c-paginate__item--break-view'"
+            :hide-prev-next="true"
+            :containerClass="'c-paginate'"
+            :page-class="'c-paginate__item'"
+            :page-link-class="'c-paginate__link'"
+            :prev-class="'c-paginate__item c-paginate__item--prev'"
+            :prev-link-class="'c-paginate__link'"
+            :next-class="'c-paginate__item c-paginate__item--next'"
+            :next-link-class="'c-paginate__link'"
+            :active-class="'c-paginate__item--active'"
+            list=""
+            name=""
+        >
+        </paginate>
+        <div>
+          <p>
+            {{ this.getStartCount }} - {{ this.getEndCount }} /
+            全 {{ this.records.length }} 投稿
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -17,18 +48,28 @@
 <script>
 import { OK } from '../../util.js'
 import Record from "../Records/Record";
+
+import Vue from 'vue';
+import Paginate from 'vuejs-paginate';
+Vue.component('paginate', Paginate);
+
 export default {
   props: {
     user: {
       type: Object,
       required: true
+    },
+    p: {
+      type: Number,
+      required: false,
+      default: 1
     }
   },
   data() {
     return {
       records: [],
-      currentPage: 0,
-      lastPage: 0,
+      parPage: 10,
+      currentPage: 1,
     }
   },
   computed: {
@@ -37,7 +78,39 @@ export default {
     },
     userId() {
       return this.user.id
-    }
+    },
+    // ======================
+    // ページネーション用
+    // ======================
+    // ページネーション用に細分化
+    getAccountsItems: function () {
+      let current = this.currentPage * this.parPage;
+      let start = current - this.parPage;
+      return this.records.slice(start, current);
+    },
+    // 総ページ数
+    getPageCount: function () {
+      return Math.ceil(this.records.length / this.parPage);
+    },
+    // 現在の表示開始箇所 (21-30件表示中 の21の部分)
+    getStartCount: function () {
+      return (this.currentPage - 1) * this.parPage + 1;
+    },
+    // 現在の表示終了箇所 (21-30件表示中 の30の部分)
+    getEndCount: function () {
+      let current = this.currentPage * this.parPage;
+      let over_check = current > this.records.length;
+      if (over_check) {
+        return this.records.length;
+      } else {
+        return current;
+      }
+    },
+    // リストの座標までスクロールするためのプロパティ
+    getRecordsRect() {
+      // var $e = $('#records');
+      return 0;
+    },
   },
   methods: {
     // マイページユーザーが投稿したレコード一覧の取得
@@ -50,7 +123,20 @@ export default {
         return false
       }
       this.records = response.data.data
-    }
+    },
+    // ======================
+    // ページネーション用
+    // ======================
+    clickCallback: function (pageNum) {
+      this.currentPage = Number(pageNum);
+    },
+
+    scrollTop: function () {
+      window.scrollTo({
+        top: this.getRecordsRect,
+        behavior: "smooth"
+      });
+    },
   },
   components: {
     Record

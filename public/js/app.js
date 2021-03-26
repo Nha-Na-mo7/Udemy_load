@@ -2621,6 +2621,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
 /* harmony import */ var _Records_Record__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Records/Record */ "./resources/js/pages/Records/Record.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_4__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2643,20 +2647,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
+
+
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate__WEBPACK_IMPORTED_MODULE_4___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
       type: Object,
       required: true
+    },
+    p: {
+      type: Number,
+      required: false,
+      "default": 1
     }
   },
   data: function data() {
     return {
       records: [],
-      currentPage: 0,
-      lastPage: 0
+      parPage: 10,
+      currentPage: 1
     };
   },
   computed: {
@@ -2665,6 +2708,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     userId: function userId() {
       return this.user.id;
+    },
+    // ======================
+    // ページネーション用
+    // ======================
+    // ページネーション用に細分化
+    getAccountsItems: function getAccountsItems() {
+      var current = this.currentPage * this.parPage;
+      var start = current - this.parPage;
+      return this.records.slice(start, current);
+    },
+    // 総ページ数
+    getPageCount: function getPageCount() {
+      return Math.ceil(this.records.length / this.parPage);
+    },
+    // 現在の表示開始箇所 (21-30件表示中 の21の部分)
+    getStartCount: function getStartCount() {
+      return (this.currentPage - 1) * this.parPage + 1;
+    },
+    // 現在の表示終了箇所 (21-30件表示中 の30の部分)
+    getEndCount: function getEndCount() {
+      var current = this.currentPage * this.parPage;
+      var over_check = current > this.records.length;
+
+      if (over_check) {
+        return this.records.length;
+      } else {
+        return current;
+      }
+    },
+    // リストの座標までスクロールするためのプロパティ
+    getRecordsRect: function getRecordsRect() {
+      // var $e = $('#records');
+      return 0;
     }
   },
   methods: {
@@ -2703,6 +2779,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    // ======================
+    // ページネーション用
+    // ======================
+    clickCallback: function clickCallback(pageNum) {
+      this.currentPage = Number(pageNum);
+    },
+    scrollTop: function scrollTop() {
+      window.scrollTo({
+        top: this.getRecordsRect,
+        behavior: "smooth"
+      });
     }
   },
   components: {
@@ -24542,10 +24630,63 @@ var render = function() {
     _c(
       "div",
       { staticClass: "p-record__list--inner" },
-      _vm._l(_vm.records, function(Record) {
-        return _c("Record", { key: Record.id, attrs: { item: Record } })
-      }),
-      1
+      [
+        _vm._l(_vm.records, function(Record) {
+          return _c("Record", { key: Record.id, attrs: { item: Record } })
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "u-text--center" },
+          [
+            _c("paginate", {
+              attrs: {
+                "page-count": _vm.getPageCount,
+                "page-range": 3,
+                "margin-pages": 1,
+                "click-handler": _vm.clickCallback,
+                "prev-text": "<",
+                "next-text": ">",
+                "break-view-class": "c-paginate__item--break-view",
+                "hide-prev-next": true,
+                containerClass: "c-paginate",
+                "page-class": "c-paginate__item",
+                "page-link-class": "c-paginate__link",
+                "prev-class": "c-paginate__item c-paginate__item--prev",
+                "prev-link-class": "c-paginate__link",
+                "next-class": "c-paginate__item c-paginate__item--next",
+                "next-link-class": "c-paginate__link",
+                "active-class": "c-paginate__item--active",
+                list: "",
+                name: ""
+              },
+              model: {
+                value: _vm.currentPage,
+                callback: function($$v) {
+                  _vm.currentPage = $$v
+                },
+                expression: "currentPage"
+              }
+            }),
+            _vm._v(" "),
+            _c("div", [
+              _c("p", [
+                _vm._v(
+                  "\n          " +
+                    _vm._s(this.getStartCount) +
+                    " - " +
+                    _vm._s(this.getEndCount) +
+                    " /\n          全 " +
+                    _vm._s(this.records.length) +
+                    " 投稿\n        "
+                )
+              ])
+            ])
+          ],
+          1
+        )
+      ],
+      2
     )
   ])
 }
