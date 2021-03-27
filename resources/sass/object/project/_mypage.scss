@@ -12,4 +12,30 @@
       width: 100%;
     }
   }
+
+  // 一覧
+  &__record-list {
+    &--inner {
+      margin: 0 auto;
+      padding: 5px;
+    }
+    &-item {
+      padding: 10px;
+      border-top: 1px solid rgba(0, 0, 0, .12);
+      &--title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        line-height: 1.5;
+        word-break: break-all;
+        :hover {
+          border-bottom: 1px solid #000;
+        }
+      }
+      &--description {
+        font-size: 12px;
+        line-height: 1.6;
+      }
+    }
+  }
 }
