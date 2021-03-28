@@ -1117,6 +1117,12 @@ input[type=checkbox] {
   margin: 0 auto;
 }
 
+.p-record__edit--title {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+}
+
 .p-record__edit--textarea {
   width: 100%;
 }
