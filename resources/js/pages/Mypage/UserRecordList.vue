@@ -1,11 +1,11 @@
 <!-- マイページで表示させる、投稿済みのレコード一覧用コンポーネント -->
 <template>
-  <div class="p-record__list">
+  <div class="p-mypage__record-list">
 
     <h2>{{ userName }}さんの投稿</h2>
 
-    <div class="p-record__list--inner">
-      <Record
+    <div class="p-mypage__record-list--inner">
+      <UserRecord
           v-for="Record in getRecordsItems"
           :key="Record.id"
           :item="Record"
@@ -47,7 +47,7 @@
 
 <script>
 import { OK } from '../../util.js'
-import Record from "../Records/Record";
+import UserRecord from "./UserRecord";
 
 import Vue from 'vue';
 import Paginate from 'vuejs-paginate';
@@ -139,7 +139,7 @@ export default {
     },
   },
   components: {
-    Record
+    UserRecord,
   },
   watch: {
     $route: {
