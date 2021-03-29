@@ -24,12 +24,7 @@
               placeholder="説明文を入力してください。"
           ></textarea>
           <!-- 投稿する / 更新する -->
-          <div v-if="isCreateMode">
-            <button class="c-btn">投稿する</button>
-          </div>
-          <div v-else>
-            <button class="c-btn">更新する</button>
-          </div>
+          <button class="c-btn">{{ submitButton }}</button>
         </form>
       </div>
 
@@ -96,6 +91,9 @@ export default {
     },
     pageTitle() {
       return this.isCreateMode ? 'レコードの新規登録' : 'レコードの編集'
+    },
+    submitButton() {
+      return this.isCreateMode ? '投稿する' : '更新する'
     }
   },
   methods: {
@@ -156,6 +154,7 @@ export default {
 
       // コースが1つもない場合は警告してfalseを返す
       if (!this.createData.selectedCourses.length) {
+        alert('【！】コースを1つ以上追加してください')
         return false
       }
 
