@@ -145,6 +145,11 @@ export default {
         this.createData.selectedCourses.push(updateObj);
       }
     },
+    // 全てのコースオブジェクトの説明が入力されているかチェック
+    checkVoidCourseDescription () {
+      // someでdescriptionが空欄のものが1つでもあればtrueを返す
+      return this.createData.selectedCourses.some(e => e.description === '')
+    },
     // オブジェクトを削除する
     deleteCourseObject(index) {
       this.createData.selectedCourses.splice(index, 1)
@@ -157,17 +162,22 @@ export default {
         alert('【！】コースを1つ以上追加してください')
         return false
       }
+      // コースの中でdescriptionが未入力のものがある場合、警告してfalseを返す
+      if (this.checkVoidCourseDescription()) {
+        alert('説明が未入力のコースがあります')
+        return false
+      }
 
       // 新規作成か更新かで処理先を分ける
       if (this.isCreateMode) {
         const response = await axios.post(`../records/create`, this.createData);
 
         console.log(response)
-        // // バリデーションエラー
-        // if (response.status === UNPROCESSABLE_ENTITY) {
-        //   this.errors = response.data.errors;
-        //   return false
-        // }
+        // バリデーションエラー
+        if (response.status === UNPROCESSABLE_ENTITY) {
+          this.errors = response.data.errors;
+          return false
+        }
         // 作成完了
         if (response.status !== CREATED) {
           // this.$store.commit('error/setCode', response.status)

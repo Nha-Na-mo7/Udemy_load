@@ -3230,6 +3230,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.createData.selectedCourses.push(updateObj);
       }
     },
+    // 全てのコースオブジェクトの説明が入力されているかチェック
+    checkVoidCourseDescription: function checkVoidCourseDescription() {
+      // someでdescriptionが空欄のものが1つでもあればtrueを返す
+      return this.createData.selectedCourses.some(function (e) {
+        return e.description === '';
+      });
+    },
     // オブジェクトを削除する
     deleteCourseObject: function deleteCourseObject(index) {
       this.createData.selectedCourses.splice(index, 1);
@@ -3254,58 +3261,71 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return", false);
 
               case 3:
-                if (!_this2.isCreateMode) {
-                  _context2.next = 13;
+                if (!_this2.checkVoidCourseDescription()) {
+                  _context2.next = 6;
                   break;
                 }
 
-                _context2.next = 6;
-                return axios.post("../records/create", _this2.createData);
+                alert('説明が未入力のコースがあります');
+                return _context2.abrupt("return", false);
 
               case 6:
-                response = _context2.sent;
-                console.log(response); // // バリデーションエラー
-                // if (response.status === UNPROCESSABLE_ENTITY) {
-                //   this.errors = response.data.errors;
-                //   return false
-                // }
-                // 作成完了
+                if (!_this2.isCreateMode) {
+                  _context2.next = 19;
+                  break;
+                }
 
+                _context2.next = 9;
+                return axios.post("../records/create", _this2.createData);
+
+              case 9:
+                response = _context2.sent;
+                console.log(response); // バリデーションエラー
+
+                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
+                  _context2.next = 14;
+                  break;
+                }
+
+                _this2.errors = response.data.errors;
+                return _context2.abrupt("return", false);
+
+              case 14:
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context2.next = 10;
+                  _context2.next = 16;
                   break;
                 }
 
                 return _context2.abrupt("return", false);
 
-              case 10:
+              case 16:
                 // 投稿後にその詳細ページへ遷移させる
                 _this2.$router.push("/records/".concat(response.data.id));
 
-                _context2.next = 21;
+                _context2.next = 27;
                 break;
 
-              case 13:
+              case 19:
                 console.log('eidtモードで更新処理です');
-                _context2.next = 16;
+                _context2.next = 22;
                 return axios.post("/record/".concat(_this2.id, "/update"), _this2.createData);
 
-              case 16:
+              case 22:
                 _response = _context2.sent;
                 console.log(_response.data);
 
                 if (!(_response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context2.next = 20;
+                  _context2.next = 26;
                   break;
                 }
 
                 return _context2.abrupt("return", false);
 
-              case 20:
+              case 26:
                 // 詳細ページへ戻す
                 _this2.$router.push("/records/".concat(_this2.id));
 
-              case 21:
+              case 27:
               case "end":
                 return _context2.stop();
             }

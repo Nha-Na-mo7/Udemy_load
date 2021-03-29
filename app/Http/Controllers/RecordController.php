@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RecordRequest;
 use App\Http\Requests\StoreComment;
 use App\Models\Comment;
 use App\Models\Course;
@@ -20,7 +21,7 @@ class RecordController extends Controller
     
     // レコードの投稿
     // TODO 未実装項目: IDが被った時に再抽選する機能、
-    public function create(Request $request)
+    public function create(RecordRequest $request)
     {
         Log::debug('==============');
         Log::debug(' レコードの投稿');
@@ -58,7 +59,7 @@ class RecordController extends Controller
     }
     
     // レコードの更新
-    public function update(Request $request, string $id)
+    public function update(RecordRequest $request, string $id)
     {
         Log::debug('==========================');
         Log::debug(' レコード更新 ID:' . $id);
