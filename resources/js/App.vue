@@ -7,7 +7,7 @@
     </header>
 
     <!-- メインコンテンツ -->
-    <div class="f_space">
+    <div class="l-main">
       <!-- 実際にコンポーネントが切り替わるエリア -->
       <RouterView />
     </div>
@@ -55,8 +55,5 @@ export default {
 </script>
 
 <style scoped>
-.f_space {
-  margin-top: 120px;
-  margin-bottom: 120px;
-}
+
 </style>
