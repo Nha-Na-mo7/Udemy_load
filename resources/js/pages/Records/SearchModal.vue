@@ -12,7 +12,7 @@
           </label></form>
         <button
             class="c-btn"
-            @click="searchCourse"
+            @click="searchCourse(0)"
         >講座検索
         </button>
       </div>
@@ -34,6 +34,12 @@
           />
         </div>
       </div>
+
+      <!-- 前へ / 次へ -->
+      <div>
+        <button class="c-btn" v-if="existPrevUrl" @click="searchCourse(1)">前へ</button>
+        <button class="c-btn" v-if="existNextUrl" @click="searchCourse(2)">次へ</button>
+      </div>
     </div>
   </div>
 </template>
@@ -50,13 +56,27 @@ export default {
       searchData: {
         keywords: '',
       },
+      prevUrl: {
+        url: ''
+      },
+      nextUrl: {
+        url: ''
+      },
       responseData: [],
       selectedCourses: [],
     }
   },
+  computed: {
+    existPrevUrl() {
+      return this.prevUrl.url !== ''
+    },
+    existNextUrl() {
+      return this.nextUrl.url !== ''
+    },
+  },
   methods: {
     // コースの検索
-    async searchCourse() {
+    async searchCourse(flg) {
       // 検索中に重複して呼び出せないようにする
       if ( this.isSearching ) {
         return false;
@@ -65,11 +85,13 @@ export default {
       this.isSearching = true;
 
       // 検索ワードを元にUdemyAPIにリクエストする
-      const params = this.searchData;
+      const params = flg === 0 ? this.searchData : flg === 1 ? this.prevUrl : this.nextUrl
       const response = await axios.get('/udemy/course/get', { params });
 
       // 検索結果を取得
       this.responseData = response.data.results;
+      this.nextUrl.url = response.data.next ?? '';
+      this.prevUrl.url = response.data.previous ?? '';
 
       // 検索中フラグをfalseに
       this.isSearching = false;

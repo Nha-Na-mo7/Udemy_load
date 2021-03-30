@@ -3910,6 +3910,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3920,16 +3926,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       searchData: {
         keywords: ''
       },
+      prevUrl: {
+        url: ''
+      },
+      nextUrl: {
+        url: ''
+      },
       responseData: [],
       selectedCourses: []
     };
   },
+  computed: {
+    existPrevUrl: function existPrevUrl() {
+      return this.prevUrl.url !== '';
+    },
+    existNextUrl: function existNextUrl() {
+      return this.nextUrl.url !== '';
+    }
+  },
   methods: {
     // コースの検索
-    searchCourse: function searchCourse() {
+    searchCourse: function searchCourse(flg) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _response$data$next, _response$data$previo;
+
         var params, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -3946,7 +3968,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // 検索開始
                 _this.isSearching = true; // 検索ワードを元にUdemyAPIにリクエストする
 
-                params = _this.searchData;
+                params = flg === 0 ? _this.searchData : flg === 1 ? _this.prevUrl : _this.nextUrl;
                 _context.next = 6;
                 return axios.get('/udemy/course/get', {
                   params: params
@@ -3955,11 +3977,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 6:
                 response = _context.sent;
                 // 検索結果を取得
-                _this.responseData = response.data.results; // 検索中フラグをfalseに
+                _this.responseData = response.data.results;
+                _this.nextUrl.url = (_response$data$next = response.data.next) !== null && _response$data$next !== void 0 ? _response$data$next : '';
+                _this.prevUrl.url = (_response$data$previo = response.data.previous) !== null && _response$data$previo !== void 0 ? _response$data$previo : ''; // 検索中フラグをfalseに
 
                 _this.isSearching = false;
 
-              case 9:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -25384,7 +25408,14 @@ var render = function() {
         _vm._v(" "),
         _c(
           "button",
-          { staticClass: "c-btn", on: { click: _vm.searchCourse } },
+          {
+            staticClass: "c-btn",
+            on: {
+              click: function($event) {
+                return _vm.searchCourse(0)
+              }
+            }
+          },
           [_vm._v("講座検索\n      ")]
         )
       ]),
@@ -25410,7 +25441,39 @@ var render = function() {
                 1
               )
         ]
-      )
+      ),
+      _vm._v(" "),
+      _c("div", [
+        _vm.existPrevUrl
+          ? _c(
+              "button",
+              {
+                staticClass: "c-btn",
+                on: {
+                  click: function($event) {
+                    return _vm.searchCourse(1)
+                  }
+                }
+              },
+              [_vm._v("前へ")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.existNextUrl
+          ? _c(
+              "button",
+              {
+                staticClass: "c-btn",
+                on: {
+                  click: function($event) {
+                    return _vm.searchCourse(2)
+                  }
+                }
+              },
+              [_vm._v("次へ")]
+            )
+          : _vm._e()
+      ])
     ])
   ])
 }
