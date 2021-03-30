@@ -17,9 +17,9 @@
     <!-- 編集ボタン/投稿者自身の場合のみ-->
     <RouterLink
         v-if="isOwner"
-        class="c-btn"
+        class=""
         :to="`/records/${recordId}/edit`">
-      編集する
+      <i class="fas fa-pencil-alt p-mypage__record-list--icon"></i>
     </RouterLink>
 
   </article>

@@ -35608,11 +35608,12 @@ var render = function() {
       _vm.isOwner
         ? _c(
             "RouterLink",
-            {
-              staticClass: "c-btn",
-              attrs: { to: "/records/" + _vm.recordId + "/edit" }
-            },
-            [_vm._v("\n    編集する\n  ")]
+            { attrs: { to: "/records/" + _vm.recordId + "/edit" } },
+            [
+              _c("i", {
+                staticClass: "fas fa-pencil-alt p-mypage__record-list--icon"
+              })
+            ]
           )
         : _vm._e()
     ],

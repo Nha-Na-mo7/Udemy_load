@@ -1062,6 +1062,11 @@ input[type=checkbox] {
   line-height: 1.6;
 }
 
+.p-mypage__record-list--icon {
+  text-align: right;
+  font-size: 18px;
+}
+
 .p-record {
   background: #e6f7ff;
 }
