@@ -8,18 +8,18 @@
       </RouterLink>
     </div>
 
-    <!-- SPサイト用メニュー -->
-    <div class="p-header__trigger js-toggle-sp-menu">
-      <span class="p-header__trigger--bar"></span>
-      <span class="p-header__trigger--bar"></span>
-      <span class="p-header__trigger--bar"></span>
-    </div>
-
-    <!-- メニュー -->
+    <!-- 右側 -->
     <div class="p-header__right">
+      <!-- SPサイト用メニュー -->
+      <div class="p-header__trigger js-toggle-sp-menu">
+        <span class="p-header__trigger--bar"></span>
+        <span class="p-header__trigger--bar"></span>
+        <span class="p-header__trigger--bar"></span>
+      </div>
+
+      <!-- メニュー -->
       <nav class="p-header__nav p-header__nav__sp js-toggle-sp-nav">
         <ul class="p-header__menu">
-
           <!-- 投稿ボタン(仮)(ログイン中の場合) -->
           <li v-if="isLogin" class="p-header__item">
             <RouterLink class="c-btn__header" to="/records/new">
@@ -30,7 +30,7 @@
           <!-- ユーザーネーム(ログイン中の場合) -->
           <li v-if="isLogin" class="p-header__item">
             <RouterLink class="c-btn__header" :to="`/mypage/${ this.username }`">
-              {{ username | addAtSign }}
+              マイページ
             </RouterLink>
           </li>
 
@@ -52,7 +52,6 @@
               ログイン / 新規登録
             </RouterLink>
           </li>
-
         </ul>
       </nav>
     </div>
@@ -82,10 +81,5 @@ export default {
       }
     }
   },
-  filters: {
-    addAtSign: function (username) {
-      return '@' + username
-    }
-  }
 }
 </script>

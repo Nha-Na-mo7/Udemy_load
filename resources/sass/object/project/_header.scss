@@ -3,10 +3,17 @@
 //  =============
 .p-header {
   width: 1024px;
+  min-width: 414px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @include mq($breakpoint: lg) {
+    width: 100%;
+    margin: 0;
+    padding: 0 5%;
+    box-sizing: border-box;
+  }
   // ロゴ関連
   &__left, &__right {
     height: 60px;
@@ -26,7 +33,7 @@
     height: 100%;
     &__sp {
       // sp表示の時は右に隠れ、トリガーが押された時だけ左に出てくる
-      @include mq() {
+      @include mq($breakpoint: lg) {
         display: block;
         position: absolute;
         top: 0;
@@ -95,7 +102,7 @@
     height: 32px;
     margin-right: 10px;
     z-index: 3;
-    @include mq() {
+    @include mq($breakpoint: lg) {
       display: inline-block;
     }
     &--bar {

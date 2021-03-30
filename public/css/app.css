@@ -849,10 +849,20 @@ input[type=checkbox] {
 
 .p-header {
   width: 1024px;
+  min-width: 414px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .p-header {
+    width: 100%;
+    margin: 0;
+    padding: 0 5%;
+    box-sizing: border-box;
+  }
 }
 
 .p-header__left,
@@ -878,7 +888,7 @@ input[type=checkbox] {
   height: 100%;
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 1024px) {
   .p-header__nav__sp {
     display: block;
     position: absolute;
@@ -965,7 +975,7 @@ input[type=checkbox] {
   z-index: 3;
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 1024px) {
   .p-header__trigger {
     display: inline-block;
   }
