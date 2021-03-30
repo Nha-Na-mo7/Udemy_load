@@ -5,6 +5,9 @@
   background: #e6f7ff;
   // 一覧
   &__list {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    margin: 0 auto;
     &--inner {
       width: 50%;
       margin: 0 auto;
@@ -32,7 +35,7 @@
   // レコード詳細画面
   &__detail {
     width: 80%;
-    margin: 0 auto 20px;
+    margin: 0 auto;
     justify-content: center;
     &--list {
       background: #efefef;
@@ -67,6 +70,8 @@
   &__edit {
     &--inner {
       width: 60%;
+      padding-top: 120px;
+      padding-bottom: 120px;
       margin: 0 auto;
     }
     &--title {

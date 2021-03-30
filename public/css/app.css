@@ -604,10 +604,11 @@ input[type=checkbox] {
 }
 
 .l-main {
-  margin-top: 60px;
+  padding-top: 60px;
 }
 
 .l-container {
+  background-color: #f8f8f8;
   width: 100%;
   height: auto;
 }
@@ -627,8 +628,8 @@ input[type=checkbox] {
 
 .l-container__content {
   max-width: 980px;
-  margin: 100px auto 120px;
-  padding: 0 15px;
+  margin: 0 auto;
+  padding: 80px 15px 120px;
 }
 
 .l-container__profile-edit {
@@ -1071,6 +1072,12 @@ input[type=checkbox] {
   background: #e6f7ff;
 }
 
+.p-record__list {
+  padding-top: 120px;
+  padding-bottom: 120px;
+  margin: 0 auto;
+}
+
 .p-record__list--inner {
   width: 50%;
   margin: 0 auto;
@@ -1101,7 +1108,7 @@ input[type=checkbox] {
 
 .p-record__detail {
   width: 80%;
-  margin: 0 auto 20px;
+  margin: 0 auto;
   justify-content: center;
 }
 
@@ -1139,6 +1146,8 @@ input[type=checkbox] {
 
 .p-record__edit--inner {
   width: 60%;
+  padding-top: 120px;
+  padding-bottom: 120px;
   margin: 0 auto;
 }
 

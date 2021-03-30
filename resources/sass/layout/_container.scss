@@ -2,6 +2,7 @@
 //  l-container
 //  =============
 .l-container {
+  background-color: #f8f8f8;
   width: 100%;
   height: auto;
 
@@ -16,8 +17,8 @@
   }
   &__content {
     max-width: 980px;
-    margin: 100px auto 120px;
-    padding: 0 $space_l;
+    margin: 0 auto;
+    padding: 80px $space_l 120px;
   }
   &__profile-edit {
     max-width: 800px;
