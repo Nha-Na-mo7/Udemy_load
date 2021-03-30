@@ -2,14 +2,25 @@
 //  p-header
 //  =============
 .p-header {
-  box-shadow: 0 3px 10px #cdcdcd;
-  height: 100%;
-  width: 100%;
-  color: $font-color_default;
+  width: 1024px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  // ロゴ関連
+  &__left, &__right {
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+  &__logo {
+    vertical-align: center;
+    &--img {
+      display: block;
+      width: 120px;
+      object-fit: cover;
+    }
+  }
   &__nav {
     display: flex;
     height: 100%;
@@ -35,7 +46,6 @@
       }
     }
   }
-
   &__menu {
     display: flex;
     justify-content: space-between;
@@ -46,16 +56,12 @@
       display: inline-block;
     }
   }
-
   &__item {
-    font-family: inherit;
-    line-height: 150%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 $space_s;
+    height: auto;
+    box-sizing: border-box;
+    margin-left: $space_m;
     &:hover {
-      background: $color_Primary;
+      cursor: pointer;
     }
     &--link {
       width: 100%;
@@ -80,14 +86,6 @@
       font-size: 25px;
     }
   }
-  &__logo {
-    vertical-align: center;
-    &--img {
-      width: 160px;
-      padding: 10px;
-    }
-  }
-
   // SPサイト用・トリガーメニュー
   &__trigger {
     display: none;

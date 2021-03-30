@@ -17,6 +17,13 @@
     transition: background-color 0.5s;
     background: #7eb1d6;
   }
+  &__header {
+    box-sizing: border-box;
+    padding: $space_m $space_xl;
+    &:hover {
+      background: #efefef;
+    }
+  }
 
   &__auth {
     background: $btn-color_auth;

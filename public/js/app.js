@@ -2078,6 +2078,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     apiStatus: function apiStatus() {
@@ -23971,76 +23992,115 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "nav",
-    { staticClass: "p-header__nav p-header__nav__sp js-toggle-sp-nav" },
-    [
-      _c("RouterLink", { staticClass: "p-header__logo", attrs: { to: "/" } }, [
-        _vm._v("\n    UdemyLoad\n  ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "p-header__menu" }, [
-        _vm.isLogin
-          ? _c(
-              "div",
-              { staticClass: "p-header__item" },
-              [
-                _c(
-                  "RouterLink",
-                  { staticClass: "c-btn", attrs: { to: "/records/new" } },
-                  [_vm._v("\n        投稿する\n      ")]
-                )
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.isLogin
-          ? _c(
-              "span",
-              { staticClass: "p-header__item" },
-              [
-                _c(
-                  "RouterLink",
-                  {
-                    staticClass: "c-btn",
-                    attrs: { to: "/mypage/" + this.username }
-                  },
+  return _c("div", { staticClass: "p-header" }, [
+    _c(
+      "div",
+      { staticClass: "p-header__left" },
+      [
+        _c(
+          "RouterLink",
+          { staticClass: "p-header__logo", attrs: { to: "/" } },
+          [
+            _c("img", {
+              staticClass: "p-header__logo--img",
+              attrs: { src: "", alt: "UdemyLoad" }
+            })
+          ]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "p-header__right" }, [
+      _c(
+        "nav",
+        { staticClass: "p-header__nav p-header__nav__sp js-toggle-sp-nav" },
+        [
+          _c("ul", { staticClass: "p-header__menu" }, [
+            _vm.isLogin
+              ? _c(
+                  "li",
+                  { staticClass: "p-header__item" },
                   [
-                    _vm._v(
-                      "\n        " +
-                        _vm._s(_vm._f("addAtSign")(_vm.username)) +
-                        "\n      "
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "c-btn__header",
+                        attrs: { to: "/records/new" }
+                      },
+                      [_vm._v("\n            投稿する\n          ")]
                     )
-                  ]
+                  ],
+                  1
                 )
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.isLogin
-          ? _c("button", { staticClass: "c-btn", on: { click: _vm.logout } }, [
-              _vm._v("ログアウト")
-            ])
-          : _c(
-              "div",
-              { staticClass: "p-header__item" },
-              [
-                _c(
-                  "RouterLink",
-                  { staticClass: "c-btn", attrs: { to: "/login" } },
-                  [_vm._v("\n        ログイン / 新規登録\n      ")]
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isLogin
+              ? _c(
+                  "li",
+                  { staticClass: "p-header__item" },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "c-btn__header",
+                        attrs: { to: "/mypage/" + this.username }
+                      },
+                      [
+                        _vm._v(
+                          "\n            " +
+                            _vm._s(_vm._f("addAtSign")(_vm.username)) +
+                            "\n          "
+                        )
+                      ]
+                    )
+                  ],
+                  1
                 )
-              ],
-              1
-            )
-      ])
-    ],
-    1
-  )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isLogin
+              ? _c("li", { staticClass: "p-header__item" }, [
+                  _c(
+                    "button",
+                    { staticClass: "c-btn__header", on: { click: _vm.logout } },
+                    [_vm._v("\n            ログアウト\n          ")]
+                  )
+                ])
+              : _c(
+                  "li",
+                  { staticClass: "p-header__item" },
+                  [
+                    _c(
+                      "RouterLink",
+                      { staticClass: "c-btn__header", attrs: { to: "/login" } },
+                      [_vm._v("\n            ログイン / 新規登録\n          ")]
+                    )
+                  ],
+                  1
+                )
+          ])
+        ]
+      )
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-header__trigger js-toggle-sp-menu" }, [
+      _c("span", { staticClass: "p-header__trigger--bar" }),
+      _vm._v(" "),
+      _c("span", { staticClass: "p-header__trigger--bar" }),
+      _vm._v(" "),
+      _c("span", { staticClass: "p-header__trigger--bar" })
+    ])
+  }
+]
 render._withStripped = true
 
 

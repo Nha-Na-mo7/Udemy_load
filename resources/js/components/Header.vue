@@ -1,41 +1,62 @@
 <template>
-  <nav class="p-header__nav p-header__nav__sp js-toggle-sp-nav">
-    <RouterLink class="p-header__logo" to="/">
-      UdemyLoad
-    </RouterLink>
-    <div class="p-header__menu">
+  <div class="p-header">
 
-      <!-- 投稿ボタン(仮)(ログイン中の場合) -->
-      <div v-if="isLogin" class="p-header__item">
-        <RouterLink class="c-btn" to="/records/new">
-          投稿する
-        </RouterLink>
-      </div>
-
-      <!-- ユーザーネーム(ログイン中の場合) -->
-      <span v-if="isLogin" class="p-header__item">
-        <RouterLink class="c-btn" :to="`/mypage/${ this.username }`">
-          {{ username | addAtSign }}
-        </RouterLink>
-
-      </span>
-
-      <!-- ログアウトボタン -->
-      <button
-          v-if="isLogin"
-          class="c-btn"
-          @click="logout"
-      >ログアウト</button>
-
-      <!-- ログインボタン(未ログイン時) -->
-      <div v-else class="p-header__item">
-        <RouterLink class="c-btn" to="/login">
-          ログイン / 新規登録
-        </RouterLink>
-      </div>
-
+    <!-- ロゴ -->
+    <div class="p-header__left">
+      <RouterLink class="p-header__logo" to="/">
+        <img src="" alt="UdemyLoad" class="p-header__logo--img">
+      </RouterLink>
     </div>
-  </nav>
+
+    <!-- SPサイト用メニュー -->
+    <div class="p-header__trigger js-toggle-sp-menu">
+      <span class="p-header__trigger--bar"></span>
+      <span class="p-header__trigger--bar"></span>
+      <span class="p-header__trigger--bar"></span>
+    </div>
+
+    <!-- メニュー -->
+    <div class="p-header__right">
+      <nav class="p-header__nav p-header__nav__sp js-toggle-sp-nav">
+        <ul class="p-header__menu">
+
+          <!-- 投稿ボタン(仮)(ログイン中の場合) -->
+          <li v-if="isLogin" class="p-header__item">
+            <RouterLink class="c-btn__header" to="/records/new">
+              投稿する
+            </RouterLink>
+          </li>
+
+          <!-- ユーザーネーム(ログイン中の場合) -->
+          <li v-if="isLogin" class="p-header__item">
+            <RouterLink class="c-btn__header" :to="`/mypage/${ this.username }`">
+              {{ username | addAtSign }}
+            </RouterLink>
+          </li>
+
+          <!-- ログアウトボタン -->
+          <li
+              v-if="isLogin"
+              class="p-header__item"
+          >
+            <button
+                class="c-btn__header"
+                @click="logout">
+              ログアウト
+            </button>
+          </li>
+
+          <!-- ログインボタン(未ログイン時) -->
+          <li v-else class="p-header__item">
+            <RouterLink class="c-btn__header" to="/login">
+              ログイン / 新規登録
+            </RouterLink>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
 </template>
 
 <script>
