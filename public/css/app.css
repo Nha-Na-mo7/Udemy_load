@@ -682,6 +682,10 @@ input[type=checkbox] {
   margin-bottom: 12px;
 }
 
+.p-course__selected--textarea {
+  width: 100%;
+}
+
 .p-course__item {
   box-shadow: #cdcdcd 0 3px 5px;
   margin-bottom: 12px;
@@ -1461,6 +1465,10 @@ input[type=checkbox] {
   border: #f66d9b 1px solid;
   box-shadow: #f66d9b 0 0 5px;
   background: #fffbf5;
+}
+
+.c-form__textarea--attention {
+  background: #ffdbe8;
 }
 
 .c-form__checkbox {

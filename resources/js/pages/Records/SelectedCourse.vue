@@ -27,9 +27,9 @@
       <textarea
           name=""
           id=""
-          :value="courseDescription"
+          :value="this.courseDescription"
           @input="$emit('input', $event.target.value)"
-          class="c-form__textarea f-textarea"
+          class="c-form__textarea p-course__selected--textarea"
           placeholder="説明(このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？)"
           maxlength="200"
       ></textarea>
@@ -132,7 +132,5 @@ export default {
 </script>
 
 <style scoped>
-.f-textarea {
-  width: 100%;
-}
+
 </style>
