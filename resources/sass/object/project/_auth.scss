@@ -15,6 +15,7 @@
   &__tab {
     display: flex;
     justify-content: center;
+    padding-bottom: 1.5em;
     @include mq() {
       margin-top: 12px;
       width: 100%;

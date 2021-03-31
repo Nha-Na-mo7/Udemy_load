@@ -32,14 +32,14 @@
         <label for="login-email">メールアドレス</label>
         <input
             type="text"
-            class="c-input"
+            class="c-input c-form__input"
             id="login-email"
             v-model="loginForm.email"
         >
         <label for="login-password">パスワード</label>
         <input
             type="password"
-            class="c-input"
+            class="c-input c-form__input"
             id="login-password"
             v-model="loginForm.password"
         >
@@ -68,21 +68,21 @@
 
         <label for="username">ユーザーネーム</label>
         <input type="text"
-               class="c-input"
+               class="c-input c-form__input"
                id="username"
                v-model="registerForm.name"
         >
         <label for="email">メールアドレス</label>
         <input
             type="text"
-            class="c-input"
+            class="c-input c-form__input"
             id="email"
             v-model="registerForm.email"
         >
         <label for="password">パスワード</label>
         <input
             type="password"
-            class="c-input"
+            class="c-input c-form__input"
             id="password"
             v-model="registerForm.password"
         >

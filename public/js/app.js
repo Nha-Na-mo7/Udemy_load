@@ -35099,7 +35099,7 @@ var render = function() {
                   expression: "loginForm.email"
                 }
               ],
-              staticClass: "c-input",
+              staticClass: "c-input c-form__input",
               attrs: { type: "text", id: "login-email" },
               domProps: { value: _vm.loginForm.email },
               on: {
@@ -35125,7 +35125,7 @@ var render = function() {
                   expression: "loginForm.password"
                 }
               ],
-              staticClass: "c-input",
+              staticClass: "c-input c-form__input",
               attrs: { type: "password", id: "login-password" },
               domProps: { value: _vm.loginForm.password },
               on: {
@@ -35217,7 +35217,7 @@ var render = function() {
                   expression: "registerForm.name"
                 }
               ],
-              staticClass: "c-input",
+              staticClass: "c-input c-form__input",
               attrs: { type: "text", id: "username" },
               domProps: { value: _vm.registerForm.name },
               on: {
@@ -35243,7 +35243,7 @@ var render = function() {
                   expression: "registerForm.email"
                 }
               ],
-              staticClass: "c-input",
+              staticClass: "c-input c-form__input",
               attrs: { type: "text", id: "email" },
               domProps: { value: _vm.registerForm.email },
               on: {
@@ -35267,7 +35267,7 @@ var render = function() {
                   expression: "registerForm.password"
                 }
               ],
-              staticClass: "c-input",
+              staticClass: "c-input c-form__input",
               attrs: { type: "password", id: "password" },
               domProps: { value: _vm.registerForm.password },
               on: {
