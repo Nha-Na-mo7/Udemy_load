@@ -1021,6 +1021,19 @@ input[type=checkbox] {
   transform: translateY(-15px) rotate(45deg);
 }
 
+.p-modal__search__form {
+  padding: 5px;
+}
+
+.p-modal__search__title {
+  font-size: 18px;
+}
+
+.p-modal__search__btn-inner {
+  display: flex;
+  justify-content: space-around;
+}
+
 .p-mypage {
   display: flex;
   flex-wrap: wrap;
@@ -1261,18 +1274,20 @@ input[type=checkbox] {
 }
 
 .c-btn__auth {
-  background: #bef5e2;
+  background: #d2d2d2;
   font-weight: bold;
 }
 
-.c-btn__news {
-  min-width: 100px;
-  padding: 10px;
+.c-btn__modal {
+  background: #d2d2d2;
+  border: #8a8a8a;
+  width: 100px;
+  height: auto;
+  padding: 15px 5px;
 }
 
-.c-btn__trends {
-  min-width: 100px;
-  padding: 10px 15px;
+.c-btn__modal:hover {
+  background: #888888;
 }
 
 .c-btn__twitter {
@@ -1762,6 +1777,10 @@ input[type=checkbox] {
   }
 }
 
+.c-modal__title {
+  text-align: center;
+}
+
 .c-modal__cover {
   transition: 0.3s all;
   width: 100%;
@@ -1771,11 +1790,6 @@ input[type=checkbox] {
   left: 0;
   z-index: 4;
   background: rgba(49, 64, 103, 0.3);
-}
-
-.c-modal__searchform {
-  padding: 5px;
-  background: inherit;
 }
 
 .c-nothing {

@@ -3931,6 +3931,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4006,10 +4015,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    // 検索をリセット
+    // 検索ワードを空に
     resetSearchWord: function resetSearchWord() {
       this.searchWord = '';
       this.searchData.keywords = '';
+    },
+    // 検索をリセット
+    resetSearch: function resetSearch() {
+      this.resetSearchWord();
       this.responseData = [];
     },
     // オブジェクトを配列に追加した上でモーダルを閉じる
@@ -4019,7 +4032,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     // モーダルを閉じる処理
     closeModal: function closeModal() {
-      this.resetSearchWord();
+      this.resetSearch();
       this.$emit('toggleModal');
     }
   },
@@ -36269,9 +36282,13 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "c-modal__cover", on: { click: _vm.closeModal } }),
     _vm._v(" "),
-    _c("div", { staticClass: "c-modal" }, [
-      _c("div", { staticClass: "c-modal__searchform" }, [
-        _c("p", [_vm._v("コースを選択し、レコードに追加してください")]),
+    _c("div", { staticClass: "p-modal c-modal" }, [
+      _c("div", { staticClass: "p-modal__search__form c-modal__searchform" }, [
+        _c(
+          "p",
+          { staticClass: "p-modal__search__title c-modal__title u-mb-l" },
+          [_vm._v("コースを検索してください")]
+        ),
         _vm._v(" "),
         _c("form", { attrs: { action: "" } }, [
           _c("label", [
@@ -36284,7 +36301,7 @@ var render = function() {
                   expression: "searchData.keywords"
                 }
               ],
-              staticClass: "c-input",
+              staticClass: "c-form__input",
               attrs: { type: "text" },
               domProps: { value: _vm.searchData.keywords },
               on: {
@@ -36299,18 +36316,29 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "c-btn",
-            on: {
-              click: function($event) {
-                return _vm.searchCourse(0)
+        _c("div", { staticClass: "p-modal__search__btn-inner u-mb-l" }, [
+          _c(
+            "button",
+            {
+              staticClass: "c-btn c-btn__modal",
+              on: {
+                click: function($event) {
+                  return _vm.searchCourse(0)
+                }
               }
-            }
-          },
-          [_vm._v("講座検索\n      ")]
-        )
+            },
+            [_vm._v("講座検索\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "c-btn c-btn__modal",
+              on: { click: _vm.resetSearchWord }
+            },
+            [_vm._v("リセット\n        ")]
+          )
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -36336,12 +36364,12 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", [
+      _c("div", { staticClass: "p-modal__search__btn-inner u-mt-l" }, [
         _vm.existPrevUrl
           ? _c(
               "button",
               {
-                staticClass: "c-btn",
+                staticClass: "c-btn c-btn__modal",
                 on: {
                   click: function($event) {
                     return _vm.searchCourse(1)
@@ -36356,7 +36384,7 @@ var render = function() {
           ? _c(
               "button",
               {
-                staticClass: "c-btn",
+                staticClass: "c-btn c-btn__modal",
                 on: {
                   click: function($event) {
                     return _vm.searchCourse(2)

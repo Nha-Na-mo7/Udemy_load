@@ -2,19 +2,28 @@
 <template>
   <div>
     <div class="c-modal__cover" @click="closeModal"></div>
-    <div class="c-modal">
+    <div class="p-modal c-modal">
       <!-- コース検索フォーム-->
-      <div class="c-modal__searchform">
-        <p>コースを選択し、レコードに追加してください</p>
-        <form action="">
+      <div class="p-modal__search__form c-modal__searchform">
+        <p class="p-modal__search__title c-modal__title u-mb-l">コースを検索してください</p>
+        <form class="" action="">
           <label>
-            <input type="text" class="c-input" v-model="searchData.keywords">
-          </label></form>
-        <button
-            class="c-btn"
-            @click="searchCourse(0)"
-        >講座検索
-        </button>
+            <input type="text" class="c-form__input" v-model="searchData.keywords">
+          </label>
+        </form>
+        <div class="p-modal__search__btn-inner u-mb-l">
+          <button
+              class="c-btn c-btn__modal"
+              @click="searchCourse(0)"
+          >講座検索
+          </button>
+          <button
+              class="c-btn c-btn__modal"
+              @click="resetSearchWord"
+          >リセット
+          </button>
+        </div>
+
       </div>
 
       <!-- 検索結果一覧 -->
@@ -36,9 +45,9 @@
       </div>
 
       <!-- 前へ / 次へ -->
-      <div>
-        <button class="c-btn" v-if="existPrevUrl" @click="searchCourse(1)">前へ</button>
-        <button class="c-btn" v-if="existNextUrl" @click="searchCourse(2)">次へ</button>
+      <div class="p-modal__search__btn-inner u-mt-l">
+        <button class="c-btn c-btn__modal" v-if="existPrevUrl" @click="searchCourse(1)">前へ</button>
+        <button class="c-btn c-btn__modal" v-if="existNextUrl" @click="searchCourse(2)">次へ</button>
       </div>
     </div>
   </div>
@@ -96,10 +105,14 @@ export default {
       // 検索中フラグをfalseに
       this.isSearching = false;
     },
-    // 検索をリセット
+    // 検索ワードを空に
     resetSearchWord() {
       this.searchWord = ''
       this.searchData.keywords = ''
+    },
+    // 検索をリセット
+    resetSearch() {
+      this.resetSearchWord()
       this.responseData = []
     },
     // オブジェクトを配列に追加した上でモーダルを閉じる
@@ -109,7 +122,7 @@ export default {
     },
     // モーダルを閉じる処理
     closeModal() {
-      this.resetSearchWord()
+      this.resetSearch()
       this.$emit('toggleModal')
     },
   },

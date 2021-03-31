@@ -1,0 +1,18 @@
+// ==============
+//  p-modal
+//  =============
+.p-modal {
+
+  &__search {
+    &__form {
+      padding: 5px;
+    }
+    &__title {
+      font-size: 18px;
+    }
+    &__btn-inner {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}

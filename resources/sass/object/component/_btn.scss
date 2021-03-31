@@ -24,18 +24,19 @@
       background: #efefef;
     }
   }
-
   &__auth {
     background: $btn-color_auth;
     font-weight: bold;
   }
-  &__news {
-    min-width: 100px;
-    padding: 10px;
-  }
-  &__trends {
-    min-width: 100px;
-    padding: 10px 15px;
+  &__modal {
+    background: $btn-color_auth;
+    border: #8a8a8a;
+    width: 100px;
+    height: auto;
+    padding: 15px 5px;
+    &:hover {
+      background: #888888;
+    }
   }
   &__twitter {
     background: $btn-color_twitter;
