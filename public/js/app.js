@@ -4847,7 +4847,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.p-course__item[data-v-7170a194] {\n  padding: 12px;\n  border: 1px solid #000000;\n  margin-bottom: 5px;\n  -webkit-animation: fadeIn-data-v-7170a194 1s;\n          animation: fadeIn-data-v-7170a194 1s;\n}\n.p-course__item--title[data-v-7170a194] {\n  font-size: 1.6rem;\n  font-weight: 700;\n  line-height: 1.2;\n  letter-spacing: -.02rem;\n}\n@-webkit-keyframes fadeIn-data-v-7170a194 {\n0% {\n    opacity: 0;\n}\n100% {\n    opacity: 1;\n}\n}\n@keyframes fadeIn-data-v-7170a194 {\n0% {\n    opacity: 0;\n}\n100% {\n    opacity: 1;\n}\n}\n", ""]);
+exports.push([module.i, "\n@-webkit-keyframes fadeIn-data-v-7170a194 {\n0% {\n    opacity: 0;\n}\n100% {\n    opacity: 1;\n}\n}\n@keyframes fadeIn-data-v-7170a194 {\n0% {\n    opacity: 0;\n}\n100% {\n    opacity: 1;\n}\n}\n", ""]);
 
 // exports
 

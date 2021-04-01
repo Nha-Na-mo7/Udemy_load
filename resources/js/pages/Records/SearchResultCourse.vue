@@ -77,18 +77,6 @@ export default {
 </script>
 
 <style scoped>
-.p-course__item {
-  padding: 12px;
-  border: 1px solid #000000;
-  margin-bottom: 5px;
-  animation: fadeIn 1s;
-}
-.p-course__item--title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -.02rem;
-}
 @keyframes fadeIn {
   0% {
     opacity: 0;
