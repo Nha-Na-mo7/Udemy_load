@@ -2943,15 +2943,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     course: {
       type: Object,
       required: true
+    },
+    index: {
+      type: Number,
+      required: true
     }
   },
   computed: {
+    // 描画されているのがn番目か
+    recordIndex: function recordIndex() {
+      return this.index + 1;
+    },
     // コース名
     getTitle: function getTitle() {
       return this.course.title;
@@ -3402,6 +3412,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -35743,15 +35756,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "p-course__item" }, [
+  return _c("div", { staticClass: "p-course__card" }, [
+    _c("span", {
+      staticClass: "p-course__card--line",
+      attrs: { "detail-index": this.recordIndex }
+    }),
+    _vm._v(" "),
     _c("img", { attrs: { src: _vm.getImage, alt: "" } }),
     _vm._v(" "),
-    _c("div", { staticClass: "p-course__item--title" }, [
+    _c("div", { staticClass: "p-course__card--title" }, [
       _c("h2", [
         _c(
           "a",
           {
-            staticClass: "p-course__item--title--link",
+            staticClass: "p-course__card--title--link",
             attrs: {
               href: _vm.getUrl,
               target: "_blank",
@@ -35762,13 +35780,13 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "p-course__item--instructor" }, [
+      _c("p", { staticClass: "p-course__card--instructor" }, [
         _vm._v(_vm._s(_vm.getInstructor))
       ])
     ]),
     _vm._v(" "),
     _c("div", [
-      _c("p", { staticClass: "p-course__item--description" }, [
+      _c("p", { staticClass: "p-course__card--description" }, [
         _vm._v(_vm._s(_vm.getDescription))
       ])
     ])
@@ -36021,7 +36039,7 @@ var render = function() {
     _vm.loading
       ? _c("div", [_c("Loading")], 1)
       : _c("div", [
-          _c("div", { staticClass: "p-record__info" }, [
+          _c("section", { staticClass: "p-record__info" }, [
             _c(
               "div",
               { staticClass: "p-record__info--inner" },
@@ -36063,21 +36081,25 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "p-record__detail" }, [
+          _c("section", { staticClass: "p-record__detail" }, [
+            _c("h2", [_vm._v("各コースの説明")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "p-record__detail--line" }),
+            _vm._v(" "),
             _c(
               "div",
               { staticClass: "p-record__detail--list" },
-              _vm._l(this.record.courses, function(Course) {
+              _vm._l(this.record.courses, function(Course, index) {
                 return _c("CourseDetail", {
                   key: Course.id,
-                  attrs: { course: Course }
+                  attrs: { course: Course, index: index }
                 })
               }),
               1
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "p-record__comment" }, [
+          _c("section", { staticClass: "p-record__comment" }, [
             _c("h3", { staticClass: "p-record__comment--head" }, [
               _vm._v("コメント")
             ]),
@@ -36420,15 +36442,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "p-course__item" }, [
+  return _c("div", { staticClass: "p-course__card" }, [
     _c("img", { attrs: { src: _vm.getImage, alt: "" } }),
     _vm._v(" "),
-    _c("div", { staticClass: "p-course__item--title" }, [
+    _c("div", { staticClass: "p-course__card--title" }, [
       _c("h2", [
         _c(
           "a",
           {
-            staticClass: "p-course__item--title--link",
+            staticClass: "p-course__card--title--link",
             attrs: {
               href: _vm.getUrl,
               target: "_blank",
@@ -36439,7 +36461,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "p-course__item--instructor" }, [
+      _c("p", { staticClass: "p-course__card--instructor" }, [
         _vm._v(_vm._s(_vm.getInstructor))
       ])
     ]),
@@ -36474,12 +36496,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-course p-course__selected" }, [
-    _c("div", { staticClass: "p-course__item--title" }, [
+    _c("div", { staticClass: "p-course__card--title" }, [
       _c("h2", [
         _c(
           "a",
           {
-            staticClass: "p-course__item--title--link",
+            staticClass: "p-course__card--title--link",
             attrs: {
               href: _vm._f("addUdemyBaseUrl")(_vm.getUrl),
               target: "_blank",
@@ -36490,7 +36512,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "p-course__item--instructor" }, [
+      _c("p", { staticClass: "p-course__card--instructor" }, [
         _vm._v(_vm._s(_vm.getInstructor))
       ])
     ]),

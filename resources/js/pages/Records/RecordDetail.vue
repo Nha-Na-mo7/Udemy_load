@@ -7,7 +7,7 @@
 
     <div v-else>
       <!-- インフォメーション -->
-      <div class="p-record__info">
+      <section class="p-record__info">
         <div class="p-record__info--inner">
           <!-- 編集ボタン/投稿者自身の場合のみ-->
           <RouterLink
@@ -28,23 +28,26 @@
           <!-- Description -->
           <p v-html="description" class="p-record__info--description"></p>
         </div>
-      </div>
+      </section>
 
       <!-- 詳細 -->
-      <div class="p-record__detail">
+      <section class="p-record__detail">
+        <h2>各コースの説明</h2>
+        <span class="p-record__detail--line"></span>
         <!-- コースコンポーネント -->
         <div class="p-record__detail--list">
           <!-- TODO INDEXによる並び替えをサーバサイドで行う処理を書いてください-->
           <CourseDetail
-              v-for="Course in this.record.courses"
+              v-for="(Course, index) in this.record.courses"
               :key="Course.id"
               :course="Course"
+              :index="index"
           />
         </div>
-      </div>
+      </section>
 
       <!-- コメント欄 -->
-      <div class="p-record__comment">
+      <section class="p-record__comment">
         <h3 class="p-record__comment--head">コメント</h3>
 
         <!-- 一覧 -->
@@ -80,7 +83,7 @@
             </div>
           </form>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </template>

@@ -5,10 +5,10 @@
   <div class="p-course p-course__selected">
 
     <!-- 講座名とリンク -->
-    <div class="p-course__item--title">
+    <div class="p-course__card--title">
       <h2>
         <a
-            class="p-course__item--title--link"
+            class="p-course__card--title--link"
             :href="getUrl | addUdemyBaseUrl"
             target="_blank"
             rel="noopener noreferrer"
@@ -16,7 +16,7 @@
         >
       </h2>
       <!-- 講師名 -->
-      <p class="p-course__item--instructor">{{ getInstructor }}</p>
+      <p class="p-course__card--instructor">{{ getInstructor }}</p>
     </div>
 
     <!-- サムネイル -->

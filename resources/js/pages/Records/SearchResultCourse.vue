@@ -1,14 +1,14 @@
 <!--コース検索結果で表示させるコンポーネント-->
 <template>
-  <div class="p-course__item">
+  <div class="p-course__card">
 
     <!-- サムネイル -->
     <img :src="getImage" alt="">
     <!-- 講座名とリンク -->
-    <div class="p-course__item--title">
+    <div class="p-course__card--title">
       <h2>
         <a
-            class="p-course__item--title--link"
+            class="p-course__card--title--link"
             :href="getUrl"
             target="_blank"
             rel="noopener noreferrer"
@@ -16,7 +16,7 @@
         >
       </h2>
       <!-- 講師名 -->
-      <p class="p-course__item--instructor">{{ getInstructor }}</p>
+      <p class="p-course__card--instructor">{{ getInstructor }}</p>
     </div>
 
     <!-- 追加するボタン -->

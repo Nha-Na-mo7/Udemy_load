@@ -690,29 +690,56 @@ input[type=checkbox] {
   width: 100%;
 }
 
-.p-course__item {
+.p-course__card {
+  position: relative;
   -webkit-animation: fadeIn 1s;
           animation: fadeIn 1s;
   box-shadow: #cdcdcd 0 3px 8px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   padding: 12px;
   border: 1px solid #c8c8c8;
   border-radius: 4px;
 }
 
-.p-course__item:nth-of-type(3n) {
+.p-course__card:nth-of-type(3n) {
   background: #eefcff;
 }
 
-.p-course__item:nth-of-type(3n-1) {
+.p-course__card:nth-of-type(3n-1) {
   background: #efffe8;
 }
 
-.p-course__item:nth-of-type(3n-2) {
+.p-course__card:nth-of-type(3n-2) {
   background: #f5f5f5;
 }
 
-.p-course__item--title {
+.p-course__card--line {
+  background: #f66d9b;
+  position: absolute;
+  width: 60px;
+  height: 4px;
+  top: 50%;
+  left: -2em;
+}
+
+.p-course__card--line::before {
+  background: #f66d9b;
+  position: absolute;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #f59dbb;
+  content: attr(detail-index);
+  font-size: 2.5rem;
+  font-weight: 700;
+  left: -35px;
+  top: -20px;
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.p-course__card--title {
   font-weight: 700;
   font-size: 1.6rem;
   line-height: 1.2;
@@ -720,11 +747,11 @@ input[type=checkbox] {
   margin-bottom: 4px;
 }
 
-.p-course__item--title--link:hover {
+.p-course__card--title--link:hover {
   text-decoration: underline;
 }
 
-.p-course__item--instructor {
+.p-course__card--instructor {
   font-size: 12px;
 }
 
@@ -1130,11 +1157,43 @@ input[type=checkbox] {
   width: 80%;
   margin: 0 auto;
   justify-content: center;
+  position: relative;
 }
 
 .p-record__detail--list {
-  background: #efefef;
   padding: 12px;
+}
+
+.p-record__detail--line {
+  position: absolute;
+  left: -2em;
+  background: #f66d9b;
+  width: 5px;
+  height: 100%;
+}
+
+.p-record__detail--line::before,
+.p-record__detail--line::after {
+  display: block;
+  position: absolute;
+  content: "";
+  border-radius: 50%;
+  background: #f66d9b;
+}
+
+.p-record__detail--line::before {
+  left: -10px;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  border: 3px solid #f59dbb;
+}
+
+.p-record__detail--line::after {
+  left: -4px;
+  top: 100%;
+  width: 15px;
+  height: 15px;
 }
 
 .p-record__info {

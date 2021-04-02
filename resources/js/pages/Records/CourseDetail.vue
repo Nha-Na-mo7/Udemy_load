@@ -2,14 +2,16 @@
 <!-- コース詳細画面でのコースコンポーネント -->
 
 <template>
-  <div class="p-course__item">
+  <div class="p-course__card">
+    <!-- indexバー -->
+    <span class="p-course__card--line" :detail-index="this.recordIndex"></span>
     <!-- サムネイル -->
     <img :src="getImage" alt="">
     <!-- 講座名とリンク -->
-    <div class="p-course__item--title">
+    <div class="p-course__card--title">
       <h2>
         <a
-            class="p-course__item--title--link"
+            class="p-course__card--title--link"
             :href="getUrl"
             target="_blank"
             rel="noopener noreferrer"
@@ -17,10 +19,10 @@
         >
       </h2>
       <!-- 講師名 -->
-      <p class="p-course__item--instructor">{{ getInstructor }}</p>
+      <p class="p-course__card--instructor">{{ getInstructor }}</p>
     </div>
     <div>
-      <p class="p-course__item--description">{{ getDescription }}</p>
+      <p class="p-course__card--description">{{ getDescription }}</p>
     </div>
   </div>
 </template>
@@ -34,8 +36,16 @@ export default {
       type: Object,
       required: true,
     },
+    index: {
+      type: Number,
+      required: true,
+    }
   },
   computed: {
+    // 描画されているのがn番目か
+    recordIndex() {
+      return this.index + 1
+    },
     // コース名
     getTitle() {
       return this.course.title;
