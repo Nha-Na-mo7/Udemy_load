@@ -594,7 +594,6 @@ input[type=checkbox] {
 .l-footer {
   margin-top: auto;
   width: 100%;
-  background: #c7dbee;
 }
 
 @media screen and (max-width: 414px) {
@@ -819,6 +818,7 @@ input[type=checkbox] {
   box-shadow: 0 -2px 10px #cdcdcd;
   margin: 0 auto;
   color: #09093e;
+  background: #969696;
 }
 
 .p-footer__copyright {
