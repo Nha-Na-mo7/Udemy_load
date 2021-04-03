@@ -2945,6 +2945,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -35762,32 +35772,39 @@ var render = function() {
       attrs: { "detail-index": this.recordIndex }
     }),
     _vm._v(" "),
-    _c("img", { attrs: { src: _vm.getImage, alt: "" } }),
-    _vm._v(" "),
-    _c("div", { staticClass: "p-course__card--title" }, [
-      _c("h2", [
-        _c(
-          "a",
-          {
-            staticClass: "p-course__card--title--link",
-            attrs: {
-              href: _vm.getUrl,
-              target: "_blank",
-              rel: "noopener noreferrer"
-            }
-          },
-          [_vm._v(_vm._s(_vm.getTitle))]
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "p-course__card--instructor" }, [
-        _vm._v(_vm._s(_vm.getInstructor))
-      ])
+    _c("div", { staticClass: "p-course__card--left u-text--center" }, [
+      _c("img", {
+        staticClass: "p-course__card--img",
+        attrs: { src: _vm.getImage, alt: "" }
+      })
     ]),
     _vm._v(" "),
-    _c("div", [
-      _c("p", { staticClass: "p-course__card--description" }, [
-        _vm._v(_vm._s(_vm.getDescription))
+    _c("div", { staticClass: "p-course__card--right" }, [
+      _c("div", { staticClass: "p-course__card--info" }, [
+        _c("h2", { staticClass: "p-course__card--title" }, [
+          _c(
+            "a",
+            {
+              staticClass: "p-course__card--title--link",
+              attrs: {
+                href: _vm.getUrl,
+                target: "_blank",
+                rel: "noopener noreferrer"
+              }
+            },
+            [_vm._v(_vm._s(_vm.getTitle))]
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "p-course__card--instructor" }, [
+          _vm._v(_vm._s(_vm.getInstructor))
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("p", { staticClass: "p-course__card--description" }, [
+          _vm._v(_vm._s(_vm.getDescription))
+        ])
       ])
     ])
   ])

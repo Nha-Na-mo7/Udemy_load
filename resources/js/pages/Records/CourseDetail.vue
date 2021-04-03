@@ -5,25 +5,35 @@
   <div class="p-course__card">
     <!-- indexバー -->
     <span class="p-course__card--line" :detail-index="this.recordIndex"></span>
-    <!-- サムネイル -->
-    <img :src="getImage" alt="">
-    <!-- 講座名とリンク -->
-    <div class="p-course__card--title">
-      <h2>
-        <a
-            class="p-course__card--title--link"
-            :href="getUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-        >{{ getTitle }}</a
-        >
-      </h2>
-      <!-- 講師名 -->
-      <p class="p-course__card--instructor">{{ getInstructor }}</p>
+
+    <div class="p-course__card--left u-text--center">
+      <!-- サムネイル -->
+      <img :src="getImage" alt="" class="p-course__card--img">
     </div>
-    <div>
-      <p class="p-course__card--description">{{ getDescription }}</p>
+
+    <div class="p-course__card--right">
+      <!-- 講座名とリンク -->
+      <div class="p-course__card--info">
+        <h2 class="p-course__card--title">
+          <a
+              class="p-course__card--title--link"
+              :href="getUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+          >{{ getTitle }}</a
+          >
+        </h2>
+        <!-- 講師名 -->
+        <p class="p-course__card--instructor">{{ getInstructor }}</p>
+      </div>
+
+      <!-- 説明 -->
+      <div>
+        <p class="p-course__card--description">{{ getDescription }}</p>
+      </div>
     </div>
+
+
   </div>
 </template>
 
