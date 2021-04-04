@@ -780,6 +780,13 @@ input[type=checkbox] {
   margin-bottom: 8px;
 }
 
+@media screen and (max-width: 414px) {
+  .p-course__card--title {
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+}
+
 .p-course__card--title--link:hover {
   text-decoration: underline;
 }
@@ -792,6 +799,13 @@ input[type=checkbox] {
 .p-course__card--description {
   font-size: 1.4rem;
   line-height: 1.5;
+}
+
+@media screen and (max-width: 414px) {
+  .p-course__card--description {
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
 }
 
 .p-documentbox {
