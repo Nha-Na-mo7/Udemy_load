@@ -32,17 +32,21 @@
 
       <!-- 詳細 -->
       <section class="p-record__detail">
-        <h2>各コースの説明</h2>
-        <span class="p-record__detail--line"></span>
+        <!-- バーの配置用エリア -->
+        <div class="p-record__detail--left">
+          <span class="p-record__detail--line"></span>
+        </div>
         <!-- コースコンポーネント -->
-        <div class="p-record__detail--list">
-          <!-- TODO INDEXによる並び替えをサーバサイドで行う処理を書いてください-->
-          <CourseDetail
-              v-for="(Course, index) in this.record.courses"
-              :key="Course.id"
-              :course="Course"
-              :index="index"
-          />
+        <div class="p-record__detail--right">
+          <div class="p-record__detail--list">
+            <!-- TODO INDEXによる並び替えをサーバサイドで行う処理を書いてください-->
+            <CourseDetail
+                v-for="(Course, index) in this.record.courses"
+                :key="Course.id"
+                :course="Course"
+                :index="index"
+            />
+          </div>
         </div>
       </section>
 

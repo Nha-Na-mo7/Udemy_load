@@ -3511,6 +3511,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -36099,21 +36103,21 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("section", { staticClass: "p-record__detail" }, [
-            _c("h2", [_vm._v("各コースの説明")]),
+            _vm._m(0),
             _vm._v(" "),
-            _c("span", { staticClass: "p-record__detail--line" }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "p-record__detail--list" },
-              _vm._l(this.record.courses, function(Course, index) {
-                return _c("CourseDetail", {
-                  key: Course.id,
-                  attrs: { course: Course, index: index }
-                })
-              }),
-              1
-            )
+            _c("div", { staticClass: "p-record__detail--right" }, [
+              _c(
+                "div",
+                { staticClass: "p-record__detail--list" },
+                _vm._l(this.record.courses, function(Course, index) {
+                  return _c("CourseDetail", {
+                    key: Course.id,
+                    attrs: { course: Course, index: index }
+                  })
+                }),
+                1
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("section", { staticClass: "p-record__comment" }, [
@@ -36192,7 +36196,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(0)
+                      _vm._m(1)
                     ]
                   )
                 ])
@@ -36202,6 +36206,14 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-record__detail--left" }, [
+      _c("span", { staticClass: "p-record__detail--line" })
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -38,6 +38,17 @@
     margin: 0 auto;
     justify-content: center;
     position: relative;
+    display: flex;
+    &--left {
+      width: 10%;
+      @include mq() {
+        width: 5%;
+      }
+    }
+    &--right {
+      width: auto;
+    }
+
     &--list {
       padding: 12px;
     }

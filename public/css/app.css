@@ -744,27 +744,41 @@ input[type=checkbox] {
 .p-course__card--line {
   background: #f66d9b;
   position: absolute;
-  width: 60px;
-  height: 4px;
+  width: 35px;
+  height: 3px;
   top: 50%;
   left: -2em;
 }
 
-.p-course__card--line::before {
-  background: #f66d9b;
+.p-course__card--line::before,
+.p-course__card--line::after {
   position: absolute;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  display: block;
+}
+
+.p-course__card--line::before {
+  background: #f66d9b;
   border: 3px solid #f59dbb;
   content: attr(detail-index);
-  font-size: 2.5rem;
-  font-weight: 700;
+  width: 50px;
+  height: 50px;
   left: -35px;
   top: -20px;
-  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
   text-align: center;
   vertical-align: middle;
+}
+
+.p-course__card--line::after {
+  background: #f66d9b;
+  content: "";
+  width: 10px;
+  height: 10px;
+  right: -5px;
+  top: -3.5px;
+  z-index: 2;
 }
 
 .p-course__card--info {
@@ -1212,6 +1226,21 @@ input[type=checkbox] {
   margin: 0 auto;
   justify-content: center;
   position: relative;
+  display: flex;
+}
+
+.p-record__detail--left {
+  width: 10%;
+}
+
+@media screen and (max-width: 414px) {
+  .p-record__detail--left {
+    width: 5%;
+  }
+}
+
+.p-record__detail--right {
+  width: auto;
 }
 
 .p-record__detail--list {
