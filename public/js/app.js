@@ -36052,7 +36052,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "p-record" }, [
+  return _c("div", { staticClass: "p-record u-pb-50" }, [
     _vm.loading
       ? _c("div", [_c("Loading")], 1)
       : _c("div", [

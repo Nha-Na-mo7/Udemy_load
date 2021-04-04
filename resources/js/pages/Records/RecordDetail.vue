@@ -1,5 +1,5 @@
 <template>
-  <div class="p-record">
+  <div class="p-record u-pb-50">
 
     <div v-if="loading">
       <Loading />
