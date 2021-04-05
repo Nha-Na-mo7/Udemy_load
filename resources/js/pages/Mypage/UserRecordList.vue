@@ -1,9 +1,6 @@
 <!-- マイページで表示させる、投稿済みのレコード一覧用コンポーネント -->
 <template>
   <div class="p-mypage__record-list">
-
-    <h2>{{ userName }}さんの投稿</h2>
-
     <div class="p-mypage__record-list--inner">
       <UserRecord
           v-for="Record in getRecordsItems"

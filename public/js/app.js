@@ -2757,9 +2757,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -35510,9 +35507,11 @@ var render = function() {
       : _c("div", { staticClass: "p-container" }, [
           _c("div", { staticClass: "p-mypage" }, [
             _c("div", { staticClass: "p-mypage__column" }, [
-              _c("h2", [_vm._v(_vm._s(this.userName) + "さんのマイページ")]),
+              _c("h2", { staticClass: "p-mypage__title u-mb-xl" }, [
+                _vm._v(_vm._s(this.userName) + "さんのマイページ")
+              ]),
               _vm._v(" "),
-              _c("pre", [_vm._v("プロフィール400文字まで")]),
+              _c("p", [_vm._v("プロフィール400文字まで")]),
               _vm._v(" "),
               _c("span", [_vm._v("ホームページ")]),
               _vm._v(" "),
@@ -35542,7 +35541,9 @@ var render = function() {
               "div",
               { staticClass: "p-mypage__column" },
               [
-                _c("h2", [_vm._v("投稿履歴")]),
+                _c("h2", { staticClass: "p-mypage__title u-mb-xl" }, [
+                  _vm._v(_vm._s(this.userName) + "さんの投稿履歴")
+                ]),
                 _vm._v(" "),
                 _vm.isExistUserObj
                   ? _c("UserRecordList", { attrs: { user: this.user } })
@@ -35679,8 +35680,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-mypage__record-list" }, [
-    _c("h2", [_vm._v(_vm._s(_vm.userName) + "さんの投稿")]),
-    _vm._v(" "),
     _c(
       "div",
       { staticClass: "p-mypage__record-list--inner" },

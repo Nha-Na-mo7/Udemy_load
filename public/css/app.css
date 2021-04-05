@@ -1152,14 +1152,21 @@ input[type=checkbox] {
   }
 }
 
+.p-mypage__title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .p-mypage__record-list--inner {
+  background: #fff;
   margin: 0 auto;
-  padding: 5px;
+  padding: 12px;
 }
 
 .p-mypage__record-list-item {
   padding: 10px;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .p-mypage__record-list-item--title {
@@ -1197,12 +1204,19 @@ input[type=checkbox] {
 .p-record__list--inner {
   width: 50%;
   margin: 0 auto;
-  padding: 5px;
+  padding: 12px;
+  background: #fff;
+}
+
+@media screen and (max-width: 414px) {
+  .p-record__list--inner {
+    width: 90%;
+  }
 }
 
 .p-record__list-item {
   padding: 15px;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .p-record__list-item--title {

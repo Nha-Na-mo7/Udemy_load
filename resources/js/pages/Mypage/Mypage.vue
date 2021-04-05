@@ -18,8 +18,8 @@
       <div class="p-mypage">
         <!-- プロフィール -->
         <div class="p-mypage__column">
-          <h2>{{ this.userName }}さんのマイページ</h2>
-          <pre>プロフィール400文字まで</pre>
+          <h2 class="p-mypage__title u-mb-xl">{{ this.userName }}さんのマイページ</h2>
+          <p>プロフィール400文字まで</p>
           <span>ホームページ</span>
           <span>所属・組織</span>
           <span>住んでいるところ</span>
@@ -35,7 +35,7 @@
         <!-- 投稿記事一覧 -->
         <!-- TODO 投稿した記事・コメントした記事をタブで切り替えられるようにする -->
         <div class="p-mypage__column">
-          <h2>投稿履歴</h2>
+          <h2 class="p-mypage__title u-mb-xl">{{ this.userName }}さんの投稿履歴</h2>
           <UserRecordList
               v-if="isExistUserObj"
               :user="this.user"
