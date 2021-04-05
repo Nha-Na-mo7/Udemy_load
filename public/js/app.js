@@ -2659,6 +2659,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -35618,44 +35632,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "article",
-    { staticClass: "p-mypage__record-list-item" },
-    [
-      _c(
-        "h2",
-        { staticClass: "p-mypage__record-list-item--title" },
-        [
-          _c(
-            "RouterLink",
-            {
-              attrs: { to: "/records/" + _vm.recordId, title: "" + this.title }
-            },
-            [_vm._v("\n      " + _vm._s(this.title) + "\n    ")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("p", {
-        staticClass: "p-mypage__record-list-item--description",
-        domProps: { innerHTML: _vm._s(_vm.description) }
-      }),
-      _vm._v(" "),
-      _vm.isOwner
-        ? _c(
-            "RouterLink",
-            { attrs: { to: "/records/" + _vm.recordId + "/edit" } },
-            [
-              _c("i", {
-                staticClass: "fas fa-pencil-alt p-mypage__record-list--icon"
-              })
-            ]
-          )
-        : _vm._e()
-    ],
-    1
-  )
+  return _c("article", { staticClass: "p-mypage__record-list-item" }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "p-mypage__record-list-item--column p-mypage__record-list-item--column--left"
+      },
+      [
+        _c(
+          "h2",
+          { staticClass: "p-mypage__record-list-item--title" },
+          [
+            _c(
+              "RouterLink",
+              {
+                attrs: {
+                  to: "/records/" + _vm.recordId,
+                  title: "" + this.title
+                }
+              },
+              [_vm._v("\n        " + _vm._s(this.title) + "\n      ")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("p", {
+          staticClass: "p-mypage__record-list-item--description",
+          domProps: { innerHTML: _vm._s(_vm.description) }
+        })
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass:
+          "p-mypage__record-list-item--column p-mypage__record-list-item--column--right"
+      },
+      [
+        _vm.isOwner
+          ? _c(
+              "RouterLink",
+              {
+                staticClass: "u-mb-l",
+                attrs: { to: "/records/" + _vm.recordId + "/edit" }
+              },
+              [
+                _c("i", {
+                  staticClass: "fas fa-pencil-alt p-mypage__record-list--icon"
+                })
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.isOwner
+          ? _c(
+              "RouterLink",
+              { attrs: { to: "/records/" + _vm.recordId + "/edit" } },
+              [
+                _c("i", {
+                  staticClass: "far fa-trash-alt p-mypage__record-list--icon"
+                })
+              ]
+            )
+          : _vm._e()
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

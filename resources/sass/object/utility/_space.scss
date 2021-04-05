@@ -4,6 +4,9 @@
 .u {
   // margin-top
   &-mt {
+    &-m {
+      margin-top: $space_m;
+    }
     &-l {
       margin-top: $space_l;
     }
@@ -19,6 +22,9 @@
   }
   // margin-bottom
   &-mb {
+    &-m {
+      margin-bottom: $space_m;
+    }
     &-l {
       margin-bottom: $space_l;
     }
@@ -34,6 +40,9 @@
   }
   // padding-top
   &-pt {
+    &-m {
+      padding-top: $space_m;
+    }
     &-l {
       padding-top: $space_l;
     }
@@ -49,6 +58,9 @@
   }
   // padding-bottom
   &-pb {
+    &-m {
+      padding-bottom: $space_m;
+    }
     &-l {
       padding-bottom: $space_l;
     }

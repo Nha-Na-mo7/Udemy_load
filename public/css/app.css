@@ -1167,6 +1167,24 @@ input[type=checkbox] {
 .p-mypage__record-list-item {
   padding: 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  justify-content: space-between;
+}
+
+.p-mypage__record-list-item--column {
+  width: 100%;
+}
+
+.p-mypage__record-list-item--column--left,
+.p-mypage__record-list-item--column--right {
+  width: auto;
+}
+
+.p-mypage__record-list-item--column--right {
+  display: flex;
+  flex-flow: column;
+  right: 0;
+  padding-left: 10px;
 }
 
 .p-mypage__record-list-item--title {
@@ -1188,7 +1206,7 @@ input[type=checkbox] {
 
 .p-mypage__record-list--icon {
   text-align: right;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .p-record {
@@ -2219,6 +2237,10 @@ input[type=checkbox] {
   }
 }
 
+.u-mt-m {
+  margin-top: 10px;
+}
+
 .u-mt-l {
   margin-top: 15px;
 }
@@ -2233,6 +2255,10 @@ input[type=checkbox] {
 
 .u-mt-50 {
   margin-top: 50px;
+}
+
+.u-mb-m {
+  margin-bottom: 10px;
 }
 
 .u-mb-l {
@@ -2251,6 +2277,10 @@ input[type=checkbox] {
   margin-bottom: 50px;
 }
 
+.u-pt-m {
+  padding-top: 10px;
+}
+
 .u-pt-l {
   padding-top: 15px;
 }
@@ -2265,6 +2295,10 @@ input[type=checkbox] {
 
 .u-pt-50 {
   padding-top: 50px;
+}
+
+.u-pb-m {
+  padding-bottom: 10px;
 }
 
 .u-pb-l {

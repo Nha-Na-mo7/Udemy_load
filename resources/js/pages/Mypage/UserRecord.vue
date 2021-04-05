@@ -3,24 +3,38 @@
 
 <template>
   <article class="p-mypage__record-list-item">
-    <h2 class="p-mypage__record-list-item--title">
-      <RouterLink
-          class=""
-          :to="`/records/${recordId}`"
-          :title="`${this.title}`"
-      >
-        {{ this.title }}
-      </RouterLink>
-    </h2>
-    <p v-html="description" class="p-mypage__record-list-item--description"></p>
+    <div class="p-mypage__record-list-item--column p-mypage__record-list-item--column--left">
+      <h2 class="p-mypage__record-list-item--title">
+        <RouterLink
+            class=""
+            :to="`/records/${recordId}`"
+            :title="`${this.title}`"
+        >
+          {{ this.title }}
+        </RouterLink>
+      </h2>
+      <p v-html="description" class="p-mypage__record-list-item--description"></p>
 
-    <!-- 編集ボタン/投稿者自身の場合のみ-->
-    <RouterLink
-        v-if="isOwner"
-        class=""
-        :to="`/records/${recordId}/edit`">
-      <i class="fas fa-pencil-alt p-mypage__record-list--icon"></i>
-    </RouterLink>
+    </div>
+    <div class="p-mypage__record-list-item--column p-mypage__record-list-item--column--right">
+      <!-- 編集ボタン/投稿者自身の場合のみ-->
+      <RouterLink
+          v-if="isOwner"
+          class="u-mb-l"
+          :to="`/records/${recordId}/edit`">
+        <i class="fas fa-pencil-alt p-mypage__record-list--icon"></i>
+      </RouterLink>
+      <RouterLink
+          v-if="isOwner"
+          class=""
+          :to="`/records/${recordId}/edit`">
+        <i class="far fa-trash-alt p-mypage__record-list--icon"></i>
+      </RouterLink>
+      <!-- TODO 削除ボタン/投稿者自身の場合のみ-->
+
+    </div>
+
+
 
   </article>
 </template>
