@@ -71,7 +71,7 @@ class UdemyController extends Controller
     $body = $response->getBody();
     $data = json_decode($body, true);
     
-    Log::debug($data);
+    // Log::debug($data);
     // Log::debug($data['count']);
     // Log::debug($data['results']);
 

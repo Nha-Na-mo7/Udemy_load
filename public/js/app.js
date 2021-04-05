@@ -4107,9 +4107,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -36492,10 +36489,8 @@ var render = function() {
       _vm._v(" "),
       _c("p", { staticClass: "p-course__card--instructor" }, [
         _vm._v(_vm._s(_vm.getInstructor))
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", [
+      ]),
+      _vm._v(" "),
       _c("button", { staticClass: "c-btn", on: { click: _vm.addCourse } }, [
         _vm._v("追加する")
       ])

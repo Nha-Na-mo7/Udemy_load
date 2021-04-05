@@ -155,9 +155,6 @@ class RecordController extends Controller
           };
         }
         
-        // descriptionの改行タグを<br>に置き換え
-        $record->description = str_replace("\r\n", '<br>', $record->description);
-        
         // TODO course内のindex項目による並び替えを行ってからreturnしてください
         // レコードを返すが、存在しない場合は404を返す
         return $record ?? abort(404);

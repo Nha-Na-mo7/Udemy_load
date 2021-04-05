@@ -813,6 +813,7 @@ input[type=checkbox] {
 .p-course__card--description {
   font-size: 1.4rem;
   line-height: 1.5;
+  white-space: pre-line;
 }
 
 @media screen and (max-width: 414px) {
@@ -1305,6 +1306,7 @@ input[type=checkbox] {
   letter-spacing: 2.5px;
   min-height: 240px;
   line-height: 1.5;
+  white-space: pre-line;
 }
 
 .p-record__edit--inner {

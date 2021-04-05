@@ -17,13 +17,10 @@
       </h2>
       <!-- 講師名 -->
       <p class="p-course__card--instructor">{{ getInstructor }}</p>
-    </div>
 
-    <!-- 追加するボタン -->
-    <div>
+      <!-- 追加するボタン -->
       <button class="c-btn" @click="addCourse">追加する</button>
     </div>
-
   </div>
 </template>
 
