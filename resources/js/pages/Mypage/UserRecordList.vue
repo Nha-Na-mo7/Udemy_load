@@ -122,7 +122,7 @@ export default {
         this.$store.commit('error/setCode', response.status)
         return false
       }
-      this.records = response.data.data
+      this.records = response.data
     },
     // ======================
     // ページネーション用

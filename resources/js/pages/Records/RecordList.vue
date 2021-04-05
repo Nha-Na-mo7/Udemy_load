@@ -111,8 +111,7 @@ export default {
         return false
       }
 
-      console.log(response)
-      this.records = response.data.data
+      this.records = response.data
     },
     // ======================
     // ページネーション用

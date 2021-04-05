@@ -2852,7 +2852,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate_
                 return _context.abrupt("return", false);
 
               case 6:
-                _this.records = response.data.data;
+                _this.records = response.data;
 
               case 7:
               case "end":
@@ -3838,10 +3838,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate_
                 return _context.abrupt("return", false);
 
               case 6:
-                console.log(response);
-                _this.records = response.data.data;
+                _this.records = response.data;
 
-              case 8:
+              case 7:
               case "end":
                 return _context.stop();
             }

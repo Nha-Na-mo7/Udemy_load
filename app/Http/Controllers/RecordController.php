@@ -170,7 +170,7 @@ class RecordController extends Controller
             Log::debug('USER_ID:'.$user_id);
             $records = Record::with(['owner'])
                 ->orderBy(Course::CREATED_AT, 'desc')
-                ->paginate();
+                ->get();
       
             return $records;
         }
@@ -179,7 +179,7 @@ class RecordController extends Controller
         $records = Record::where('user_id', $user_id)
             ->with(['owner'])
             ->orderBy(Record::CREATED_AT, 'desc')
-            ->paginate();
+            ->get();
         
         return $records;
     }
