@@ -3159,6 +3159,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3317,7 +3330,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 6:
                 if (!_this2.isCreateMode) {
-                  _context2.next = 19;
+                  _context2.next = 20;
                   break;
                 }
 
@@ -3338,45 +3351,103 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 14:
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context2.next = 16;
+                  _context2.next = 17;
                   break;
                 }
 
+                _this2.$store.commit('error/setCode', response.status);
+
                 return _context2.abrupt("return", false);
 
-              case 16:
+              case 17:
                 // 投稿後にその詳細ページへ遷移させる
                 _this2.$router.push("/records/".concat(response.data.id));
 
-                _context2.next = 27;
+                _context2.next = 29;
                 break;
 
-              case 19:
+              case 20:
                 console.log('eidtモードで更新処理です');
-                _context2.next = 22;
+                _context2.next = 23;
                 return axios.post("/record/".concat(_this2.id, "/update"), _this2.createData);
 
-              case 22:
+              case 23:
                 _response = _context2.sent;
                 console.log(_response.data);
 
                 if (!(_response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context2.next = 26;
+                  _context2.next = 28;
                   break;
                 }
 
+                _this2.$store.commit('error/setCode', _response.status);
+
                 return _context2.abrupt("return", false);
 
-              case 26:
+              case 28:
                 // 詳細ページへ戻す
                 _this2.$router.push("/records/".concat(_this2.id));
 
-              case 27:
+              case 29:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
+      }))();
+    },
+    // このレコードを削除する
+    deleteRecord: function deleteRecord() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!_this3.isCreateMode) {
+                  _context3.next = 2;
+                  break;
+                }
+
+                return _context3.abrupt("return", false);
+
+              case 2:
+                if (!confirm('【レコードを削除します】\n削除すると復元することはできなくなります。よろしいですか？')) {
+                  _context3.next = 11;
+                  break;
+                }
+
+                console.log('deleteRecord: ' + _this3.id);
+                _context3.next = 6;
+                return axios.post("/record/".concat(_this3.id, "/delete"));
+
+              case 6:
+                response = _context3.sent;
+
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context3.next = 10;
+                  break;
+                }
+
+                _this3.$store.commit('error/setCode', response.status);
+
+                return _context3.abrupt("return", false);
+
+              case 10:
+                // 詳細ページへ戻す
+                _this3.$router.push("/mypage/".concat(_this3.$store.getters['auth/username']));
+
+              case 11:
+                return _context3.abrupt("return", false);
+
+              case 12:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     }
   },
@@ -3388,22 +3459,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       handler: function handler() {
-        var _this3 = this;
+        var _this4 = this;
 
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
             while (1) {
-              switch (_context3.prev = _context3.next) {
+              switch (_context4.prev = _context4.next) {
                 case 0:
-                  _context3.next = 2;
-                  return _this3.fetchRecord();
+                  _context4.next = 2;
+                  return _this4.fetchRecord();
 
                 case 2:
                 case "end":
-                  return _context3.stop();
+                  return _context4.stop();
               }
             }
-          }, _callee3);
+          }, _callee4);
         }))();
       },
       immediate: true
@@ -36069,6 +36140,24 @@ var render = function() {
           [_vm._v("\n        コースを追加する\n      ")]
         )
       ]),
+      _vm._v(" "),
+      !_vm.isCreateMode
+        ? _c("div", { staticClass: "p-record__delete" }, [
+            _c(
+              "button",
+              {
+                staticClass: "c-btn c-btn--delete",
+                on: { click: _vm.deleteRecord }
+              },
+              [
+                _c("i", {
+                  staticClass: "far fa-trash-alt p-mypage__record-list--icon"
+                }),
+                _vm._v("\n        このレコードを削除する\n      ")
+              ]
+            )
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _vm.modalFlg
         ? _c(

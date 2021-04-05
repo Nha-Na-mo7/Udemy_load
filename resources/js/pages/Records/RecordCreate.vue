@@ -48,6 +48,19 @@
         </button>
       </div>
 
+      <!-- レコードを削除する(編集時のみ) -->
+      <div
+          v-if="!isCreateMode"
+          class="p-record__delete"
+      >
+        <button
+            class="c-btn c-btn--delete"
+            @click="deleteRecord"
+        >
+          <i class="far fa-trash-alt p-mypage__record-list--icon"></i>
+          このレコードを削除する
+        </button>
+      </div>
       <!-- モーダルがONになったら表示される -->
       <div v-if="modalFlg">
         <SearchModal
@@ -180,7 +193,7 @@ export default {
         }
         // 作成完了
         if (response.status !== CREATED) {
-          // this.$store.commit('error/setCode', response.status)
+          this.$store.commit('error/setCode', response.status)
           return false
         }
         // 投稿後にその詳細ページへ遷移させる
@@ -193,12 +206,32 @@ export default {
         console.log(response.data)
 
         if (response.status !== OK) {
-          // this.$store.commit('error/setCode', response.status)
+          this.$store.commit('error/setCode', response.status)
           return false
         }
         // 詳細ページへ戻す
         this.$router.push(`/records/${this.id}`)
       }
+    },
+    // このレコードを削除する
+    async deleteRecord() {
+      if(this.isCreateMode) {
+        return false;
+      }
+      if (confirm('【レコードを削除します】\n削除すると復元することはできなくなります。よろしいですか？',)) {
+        console.log('deleteRecord: ' + this.id)
+        const response = await axios.post(`/record/${this.id}/delete`);
+
+        // エラー時処理
+        if (response.status !== OK) {
+          this.$store.commit('error/setCode', response.status)
+          return false
+        }
+
+        // 詳細ページへ戻す
+        this.$router.push(`/mypage/${this.$store.getters['auth/username']}`)
+      }
+      return false
     }
   },
   components: {

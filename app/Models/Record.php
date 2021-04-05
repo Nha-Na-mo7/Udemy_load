@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 class Record extends Model
 {
     // fill
-    protected $fillable = ['user_id', 'title', 'description'];
+    protected $fillable = ['user_id', 'title', 'description', 'delete_flg'];
     
     // Jsonで表示させる項目
     protected $visible = [

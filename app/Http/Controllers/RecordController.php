@@ -67,7 +67,15 @@ class RecordController extends Controller
         
         // TODO 認証中ユーザーか二重チェックする？
         // IDに合致するレコード情報を取得
-        $record = Record::where('id', $id)->with(['courses'])->first();
+        $record = Record::where('id', $id)
+            ->with(['courses'])
+            ->where('delete_flg', false)
+            ->first();
+        
+        if ($record === null) {
+          Log::debug('レコードが見当たらない、あるいは既に削除済みです');
+          return abort(404);
+        }
         // recordsテーブルのtitleとdescriptionを更新
         Auth::user()->records()->save($record->fill($request->recordForm));
         // Log::debug('print_r($record, true)');
@@ -146,18 +154,23 @@ class RecordController extends Controller
         Log::debug('レコード詳細取得/ID:'.$id);
         Log::debug('==================================');
         // IDに合致するレコード情報を取得
-        $record = Record::where('id', $id)->with(['owner', 'courses', 'comments.author'])->first();
-        
+        $record = Record::where('id', $id)
+            ->with(['owner', 'courses', 'comments.author'])
+            ->where('delete_flg', false)
+            ->first();
+  
+        // レコードを返すが、存在しない場合は404を返す
+        if ($record ===  null) {
+          Log::debug('存在しないか、削除されています');
+          return abort(404);
+        }
         // レコードの所持者かを確認し、違うなら403を返す(Edit時のみ)
         if ($owner_flg) {
           if (Auth::user()->id !== $record->user_id) {
             return abort(403);
           };
         }
-        
-        // TODO course内のindex項目による並び替えを行ってからreturnしてください
-        // レコードを返すが、存在しない場合は404を返す
-        return $record ?? abort(404);
+        return $record;
     }
     
     // レコード一覧の取得
@@ -169,15 +182,16 @@ class RecordController extends Controller
         if ($user_id === null) {
             Log::debug('USER_ID:'.$user_id);
             $records = Record::with(['owner'])
+                ->where('delete_flg', 0)
                 ->orderBy(Course::CREATED_AT, 'desc')
                 ->get();
       
             return $records;
         }
         // ユーザーIDがある場合、そのユーザーが投稿したレコードに絞って取得する
-      
         $records = Record::where('user_id', $user_id)
             ->with(['owner'])
+            ->where('delete_flg', 0)
             ->orderBy(Record::CREATED_AT, 'desc')
             ->get();
         
@@ -191,14 +205,17 @@ class RecordController extends Controller
         Log::debug('===============================');
   
         // 現在認証中のユーザーの投稿済みレコードの中に指定したIDのレコードがあれば取得する
-        $record = Auth::user()->records()->find($id);
+        $record = Auth::user()->records()->where('id', $id)->first();
+        
         if ($record) {
+            Log::debug('delete_flgをtrueにします');
             // delete_flgをtrueにする
-            $record->delete_flg->save(true);
+            $record->update([
+                'delete_flg' => true,
+            ]);
             Log::debug($id.'のdelete_flgをtrueにし、論理削除されました。');
             return response([], 200);
         }
-        // TODO ない場合404を返す?500にする?
         Log::debug('レコードはありませんでした');
         return abort(404);
     }
