@@ -4398,7 +4398,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SettingItemList.vue */ "./resources/js/pages/Settings/SettingItemList.vue");
+/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
+/* harmony import */ var _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SettingItemList.vue */ "./resources/js/pages/Settings/SettingItemList.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4435,20 +4436,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
     withdraw: function withdraw() {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (confirm('【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。')) {
-                  console.log('ここで退会処理が行われます');
+                if (!confirm('【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。')) {
+                  _context.next = 5;
+                  break;
                 }
 
-              case 1:
+                _context.next = 3;
+                return axios.post("/withdraw");
+
+              case 3:
+                response = _context.sent;
+
+                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
+                  window.location = '/';
+                } else {
+                  window.location = '/login';
+                }
+
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -4458,7 +4474,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   components: {
-    SettingItemList: _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    SettingItemList: _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
 });
 

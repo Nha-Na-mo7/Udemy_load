@@ -28,20 +28,21 @@
 </template>
 
 <script>
-
+import { OK } from "../../util.js"
 import SettingItemList from "./SettingItemList.vue";
 
 export default {
   methods: {
     // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
     async withdraw() {
-      if (
-          confirm(
-              '【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。',
-          )
-      )
-      {
-        console.log('ここで退会処理が行われます')
+      if (confirm('【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。',)){
+        // TODO テストユーザーの場合は退会処理を行わない
+        const response = await axios.post(`/withdraw`);
+        if (response.status === OK) {
+          window.location = '/';
+        } else {
+          window.location = '/login';
+        }
       }
     },
   },

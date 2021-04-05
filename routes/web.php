@@ -38,6 +38,16 @@ Route::get('/login', 'HomeController@index')->name('home.index');
 // ====================
 // 指定したユーザー情報の取得
 Route::get('/user/info/{username?}', 'UserController@get_user');
+// メールアドレスの更新処理
+Route::post('/user/update/email', 'UserController@update_email');
+// メールアドレスのリセットを確定
+Route::get('/user/update/email/{token}', 'UserController@reset_email');
+// パスワードの新規登録
+Route::post('/user/create/password', 'UserController@create_password');
+// パスワードの更新
+Route::post('/user/update/password', 'UserController@update_password');
+// 退会処理
+Route::post('/withdraw', 'UserController@withdraw')->name('user.withdraw');
 
 // =================
 // UdemyAPI関連
