@@ -36214,7 +36214,11 @@ var render = function() {
                   }),
                   0
                 )
-              : _c("div", [_c("h3", [_vm._v("コメントはありません")])]),
+              : _c("div", [
+                  _c("h3", { staticClass: "p-record__comment--item" }, [
+                    _vm._v("コメントはありません")
+                  ])
+                ]),
             _vm._v(" "),
             _vm.isLogin
               ? _c("div", [
