@@ -53,7 +53,7 @@
 
       <!-- コメント欄 -->
       <section class="p-record__comment">
-        <h3 class="p-record__comment--head">コメント</h3>
+        <h3 class="p-record__comment--head">コメント{{ countComments | addBrackets }}</h3>
 
         <!-- 一覧 -->
         <ul
@@ -61,10 +61,11 @@
             class="p-record__comment--list"
         >
           <li
-              v-for="Comment in record.comments"
+              v-for="(Comment, index) in record.comments"
               :key="Comment.content"
               class="p-record__comment--item"
           >
+            <p>{{ index + 1 | addBrackets}}</p>
             <p class="p-record__comment--author">{{ Comment.author.name }} さんが{{ Comment.created_at }}に投稿</p>
             <p class="p-record__comment--content">{{ Comment.content }}</p>
           </li>
@@ -126,6 +127,10 @@ export default {
     description() {
       return this.record.description
     },
+    // コメント数
+    countComments() {
+      return this.record.comments.length ?? 0
+    },
     existComments() {
       return this.record.comments.length > 0
     },
@@ -186,6 +191,11 @@ export default {
   components: {
     Loading,
     CourseDetail,
+  },
+  filters: {
+    addBrackets(count) {
+      return '(' + count + ')'
+    }
   },
   watch: {
     $route: {

@@ -3527,6 +3527,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -3557,6 +3558,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     description: function description() {
       return this.record.description;
+    },
+    // コメント数
+    countComments: function countComments() {
+      var _this$record$comments;
+
+      return (_this$record$comments = this.record.comments.length) !== null && _this$record$comments !== void 0 ? _this$record$comments : 0;
     },
     existComments: function existComments() {
       return this.record.comments.length > 0;
@@ -3671,6 +3678,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   components: {
     Loading: _components_Loading__WEBPACK_IMPORTED_MODULE_2__["default"],
     CourseDetail: _CourseDetail__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  filters: {
+    addBrackets: function addBrackets(count) {
+      return '(' + count + ')';
+    }
   },
   watch: {
     $route: {
@@ -36164,14 +36176,16 @@ var render = function() {
           _vm._v(" "),
           _c("section", { staticClass: "p-record__comment" }, [
             _c("h3", { staticClass: "p-record__comment--head" }, [
-              _vm._v("コメント")
+              _vm._v(
+                "コメント" + _vm._s(_vm._f("addBrackets")(_vm.countComments))
+              )
             ]),
             _vm._v(" "),
             _vm.existComments
               ? _c(
                   "ul",
                   { staticClass: "p-record__comment--list" },
-                  _vm._l(_vm.record.comments, function(Comment) {
+                  _vm._l(_vm.record.comments, function(Comment, index) {
                     return _c(
                       "li",
                       {
@@ -36179,6 +36193,10 @@ var render = function() {
                         staticClass: "p-record__comment--item"
                       },
                       [
+                        _c("p", [
+                          _vm._v(_vm._s(_vm._f("addBrackets")(index + 1)))
+                        ]),
+                        _vm._v(" "),
                         _c("p", { staticClass: "p-record__comment--author" }, [
                           _vm._v(
                             _vm._s(Comment.author.name) +
