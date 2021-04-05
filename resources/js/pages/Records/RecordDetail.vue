@@ -34,8 +34,9 @@
       <section class="p-record__detail">
         <!-- バーの配置用エリア -->
         <div class="p-record__detail--left">
-          <span class="p-record__detail--line"></span>
+<!--          <span class="p-record__detail&#45;&#45;line"></span>-->
         </div>
+
         <!-- コースコンポーネント -->
         <div class="p-record__detail--right">
           <div class="p-record__detail--list">

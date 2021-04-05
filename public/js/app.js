@@ -3526,6 +3526,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -36113,7 +36114,7 @@ var render = function() {
                         staticClass: "c-btn",
                         attrs: { to: "/records/" + this.id + "/edit" }
                       },
-                      [_vm._v("\n          編集する\n        ")]
+                      [_vm._v("\n            編集する\n          ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -36129,7 +36130,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "ユーザー名: " + _vm._s(this.ownerName) + "\n        "
+                      "ユーザー名: " + _vm._s(this.ownerName) + "\n          "
                     )
                   ]
                 ),
@@ -36144,7 +36145,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("section", { staticClass: "p-record__detail" }, [
-            _vm._m(0),
+            _c("div", { staticClass: "p-record__detail--left" }),
             _vm._v(" "),
             _c("div", { staticClass: "p-record__detail--right" }, [
               _c(
@@ -36235,7 +36236,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(1)
+                      _vm._m(0)
                     ]
                   )
                 ])
@@ -36245,14 +36246,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-record__detail--left" }, [
-      _c("span", { staticClass: "p-record__detail--line" })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
