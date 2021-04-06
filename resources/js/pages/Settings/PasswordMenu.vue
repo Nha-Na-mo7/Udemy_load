@@ -3,10 +3,8 @@
 <!--=======================================================-->
 <template>
   <div class="l-container__setting">
+    <!-- リスト -->
     <SettingItemList />
-
-    <button class="c-btn" @click="toggleTest">toggletest</button>
-    <button class="c-btn" @click="toggleLoading">toggleloading</button>
 
     <!-- 読み込み中 -->
     <div v-if="isLoading">
@@ -27,9 +25,11 @@
     </div>
 
     <!-- 戻るボタン -->
-    <!-- TODO 認証済みの時しかアクセスできないのでvuexからユーザー情報を取得してリンクに貼っつける -->
     <div class="u-text--center">
-      <RouterLink to="/" class="c-btn">マイページへ戻る</RouterLink>
+      <RouterLink
+          :to="`/mypage/${this.$store.getters['auth/username']}`"
+          class="c-btn"
+      >マイページへ戻る</RouterLink>
     </div>
   </div>
 </template>
@@ -49,11 +49,20 @@ export default {
     };
   },
   methods: {
-    toggleTest() {
-      this.isExistPassword = !this.isExistPassword
-    },
-    toggleLoading() {
-      this.isLoading = !this.isLoading
+    // ログイン中のユーザーデータを取得する
+    async getUser() {
+      const response = await axios
+          .get(`/user/info`)
+          .catch((error) => error.response || error);
+
+      // エラーチェック
+      if (response.status === OK) {
+        // パスワードが既に設定されている場合、isExistPasswordをtrueとする
+        if (response.data.password !== null) {
+          this.isExistPassword = true;
+        }
+        this.isLoading = false;
+      }
     },
   },
   components: {
@@ -61,6 +70,15 @@ export default {
     SettingItemList,
     PasswordCreate,
     PasswordUpdate,
+  },
+  watch: {
+    $route: {
+      async handler() {
+        // ページの読み込み直後にユーザーの取得を行う
+        await this.getUser();
+      },
+      immediate: true,
+    },
   },
 };
 </script>

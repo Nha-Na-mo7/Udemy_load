@@ -4559,6 +4559,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4643,11 +4645,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
-/* harmony import */ var _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SettingItemList.vue */ "./resources/js/pages/Settings/SettingItemList.vue");
-/* harmony import */ var _PasswordCreate_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PasswordCreate.vue */ "./resources/js/pages/Settings/PasswordCreate.vue");
-/* harmony import */ var _PasswordUpdate_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PasswordUpdate.vue */ "./resources/js/pages/Settings/PasswordUpdate.vue");
-/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
+/* harmony import */ var _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SettingItemList.vue */ "./resources/js/pages/Settings/SettingItemList.vue");
+/* harmony import */ var _PasswordCreate_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PasswordCreate.vue */ "./resources/js/pages/Settings/PasswordCreate.vue");
+/* harmony import */ var _PasswordUpdate_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PasswordUpdate.vue */ "./resources/js/pages/Settings/PasswordUpdate.vue");
+/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -4697,18 +4707,72 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    toggleTest: function toggleTest() {
-      this.isExistPassword = !this.isExistPassword;
-    },
-    toggleLoading: function toggleLoading() {
-      this.isLoading = !this.isLoading;
+    // ログイン中のユーザーデータを取得する
+    getUser: function getUser() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get("/user/info")["catch"](function (error) {
+                  return error.response || error;
+                });
+
+              case 2:
+                response = _context.sent;
+
+                // エラーチェック
+                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_5__["OK"]) {
+                  // パスワードが既に設定されている場合、isExistPasswordをtrueとする
+                  if (response.data.password !== null) {
+                    _this.isExistPassword = true;
+                  }
+
+                  _this.isLoading = false;
+                }
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   },
   components: {
-    Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    SettingItemList: _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    PasswordCreate: _PasswordCreate_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    PasswordUpdate: _PasswordUpdate_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    SettingItemList: _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    PasswordCreate: _PasswordCreate_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    PasswordUpdate: _PasswordUpdate_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this2 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  _context2.next = 2;
+                  return _this2.getUser();
+
+                case 2:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        }))();
+      },
+      immediate: true
+    }
   }
 });
 
@@ -4732,6 +4796,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -36831,6 +36897,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-setting" }, [
     _c("div", { staticClass: "p-setting__container" }, [
+      _c("h2", { staticClass: "p-setting__title" }, [_vm._v("パスワード作成")]),
+      _vm._v(" "),
       _c("div", { staticClass: "p-form" }, [
         _vm._m(0),
         _vm._v(" "),
@@ -36969,14 +37037,6 @@ var render = function() {
     [
       _c("SettingItemList"),
       _vm._v(" "),
-      _c("button", { staticClass: "c-btn", on: { click: _vm.toggleTest } }, [
-        _vm._v("toggletest")
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "c-btn", on: { click: _vm.toggleLoading } }, [
-        _vm._v("toggleloading")
-      ]),
-      _vm._v(" "),
       _vm.isLoading
         ? _c("div", [_c("Loading")], 1)
         : _c("div", [
@@ -36989,9 +37049,14 @@ var render = function() {
         "div",
         { staticClass: "u-text--center" },
         [
-          _c("RouterLink", { staticClass: "c-btn", attrs: { to: "/" } }, [
-            _vm._v("マイページへ戻る")
-          ])
+          _c(
+            "RouterLink",
+            {
+              staticClass: "c-btn",
+              attrs: { to: "/mypage/" + this.$store.getters["auth/username"] }
+            },
+            [_vm._v("マイページへ戻る")]
+          )
         ],
         1
       )
@@ -37023,6 +37088,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-setting" }, [
     _c("div", { staticClass: "p-setting__container" }, [
+      _c("h2", { staticClass: "p-setting__title" }, [
+        _vm._v("パスワードの更新")
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "p-form" }, [
         _vm._m(0),
         _vm._v(" "),

@@ -25,4 +25,10 @@
     margin: 100px auto 135px;
     padding: 0 $space_l;
   }
+  &__setting {
+    width: 50%;
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 80px $space_l 120px;
+  }
 }

@@ -4,6 +4,8 @@
 <template>
   <div class="p-setting">
     <div class="p-setting__container">
+      <h2 class="p-setting__title">パスワード作成</h2>
+
       <div class="p-form">
         <div class="p-form__description">
           <p>※ 他のサービスと同じパスワードは使用しないでください</p>

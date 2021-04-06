@@ -10,6 +10,7 @@
     padding: 10px;
     margin-bottom: $space_xl;
     font-size: $font-size_l;
+    background: #fff;
     &:focus {
       border: 1px solid $input-color;
       box-shadow: 0 0 5px $input-color;

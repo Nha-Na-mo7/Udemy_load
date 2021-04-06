@@ -637,6 +637,13 @@ input[type=checkbox] {
   padding: 0 15px;
 }
 
+.l-container__setting {
+  width: 50%;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 80px 15px 120px;
+}
+
 .p-auth__container {
   padding: 70px 0;
 }
@@ -1444,6 +1451,23 @@ input[type=checkbox] {
   min-height: 180px;
 }
 
+.p-setting {
+  background: #fff;
+  box-shadow: #bfbfbf 0 5px 15px;
+}
+
+.p-setting__container {
+  padding: 20px 30px;
+  margin-bottom: 40px;
+}
+
+.p-setting__title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 20px 0;
+}
+
 .c-border {
   text-align: center;
 }
@@ -1712,6 +1736,7 @@ input[type=checkbox] {
   padding: 10px;
   margin-bottom: 20px;
   font-size: 18px;
+  background: #fff;
 }
 
 .c-form__input:focus {
