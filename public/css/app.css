@@ -1468,6 +1468,17 @@ input[type=checkbox] {
   margin: 20px 0;
 }
 
+.p-setting__title--sub {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.p-setting__updatename,
+.p-setting__withdraw {
+  padding: 20px 0;
+  margin-bottom: 12px;
+}
+
 .c-border {
   text-align: center;
 }

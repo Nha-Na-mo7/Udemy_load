@@ -4398,8 +4398,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
-/* harmony import */ var _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SettingItemList.vue */ "./resources/js/pages/Settings/SettingItemList.vue");
+/* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
+/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
+/* harmony import */ var _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SettingItemList.vue */ "./resources/js/pages/Settings/SettingItemList.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4435,30 +4436,86 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      isLoading: true,
+      username: ''
+    };
+  },
   methods: {
-    // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
-    withdraw: function withdraw() {
+    // ログイン中のユーザーデータを取得する
+    getUser: function getUser() {
+      var _this = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _context.next = 2;
+                return axios.get("/user/info")["catch"](function (error) {
+                  return error.response || error;
+                });
+
+              case 2:
+                response = _context.sent;
+
+                // エラーチェック
+                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["OK"]) {
+                  // ユーザーネームをusernameに格納
+                  console.log(response.data);
+
+                  if (response.data.name !== null) {
+                    _this.username = response.data.name;
+                  }
+
+                  _this.isLoading = false;
+                }
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
+    withdraw: function withdraw() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
                 if (!confirm('【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。')) {
-                  _context.next = 5;
+                  _context2.next = 5;
                   break;
                 }
 
-                _context.next = 3;
+                _context2.next = 3;
                 return axios.post("/withdraw");
 
               case 3:
-                response = _context.sent;
+                response = _context2.sent;
 
-                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
+                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["OK"]) {
                   window.location = '/';
                 } else {
                   window.location = '/login';
@@ -4466,15 +4523,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }))();
     }
   },
   components: {
-    SettingItemList: _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    SettingItemList: _SettingItemList_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this2 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  _context3.next = 2;
+                  return _this2.getUser();
+
+                case 2:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3);
+        }))();
+      },
+      immediate: true
+    }
   }
 });
 
@@ -36823,57 +36905,80 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "l-container__setting" },
     [
       _c("SettingItemList"),
       _vm._v(" "),
-      _c("h1", [_vm._v("アカウントに関する設定")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("ユーザー名の更新")]),
-      _vm._v(" "),
-      _c("div", {}, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", {}, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", {}, [
-            _c(
-              "button",
-              { staticClass: "c-btn", on: { click: _vm.withdraw } },
-              [_vm._v("退会する")]
-            )
+      _vm.isLoading
+        ? _c("div", [_c("Loading")], 1)
+        : _c("div", { staticClass: "p-setting" }, [
+            _c("div", { staticClass: "p-setting__container" }, [
+              _c("h2", { staticClass: "p-setting__title" }, [
+                _vm._v("アカウント設定")
+              ]),
+              _vm._v(" "),
+              _c("section", { staticClass: "p-setting__updatename" }, [
+                _c(
+                  "h3",
+                  { staticClass: "p-setting__title p-setting__title--sub" },
+                  [_vm._v("ユーザー名の更新")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model:value",
+                      value: _vm.username,
+                      expression: "username",
+                      arg: "value"
+                    }
+                  ],
+                  staticClass: "c-form__input",
+                  attrs: { type: "text", maxlength: "16" },
+                  domProps: { value: _vm.username },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.username = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("section", { staticClass: "p-setting__withdraw" }, [
+                _c(
+                  "h3",
+                  { staticClass: "p-setting__title p-setting__title--sub" },
+                  [_vm._v("\n          アカウントを削除する\n        ")]
+                ),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "アカウントを削除すると元に戻すことはできなくなります。"
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "u-text--center" }, [
+                  _c(
+                    "button",
+                    { staticClass: "c-btn", on: { click: _vm.withdraw } },
+                    [
+                      _c("i", { staticClass: "fas fa-sign-out-alt" }),
+                      _vm._v("\n            アカウント削除\n          ")
+                    ]
+                  )
+                ])
+              ])
+            ])
           ])
-        ])
-      ])
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", {}, [
-      _c("h2", {}, [
-        _c("i", { staticClass: "fas fa-sign-out-alt" }),
-        _vm._v("\n        アカウントを削除する\n      ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", {}, [
-      _c("p", [
-        _vm._v(
-          "\n          アカウントを削除すると元に戻すことはできなくなります。\n        "
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

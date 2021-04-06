@@ -13,5 +13,20 @@
     font-size: 1.6rem;
     font-weight: 700;
     margin: 20px 0;
+    &--sub {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+  }
+
+  &__updatename, &__withdraw {
+    padding: 20px 0;
+    margin-bottom: 12px;
+  }
+  &__updatename {
+
+  }
+  &__withdraw {
+
   }
 }
