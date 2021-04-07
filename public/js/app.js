@@ -2478,10 +2478,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -35798,14 +35794,6 @@ var render = function() {
                 _vm._v(_vm._s(this.userName) + "さんのマイページ")
               ]),
               _vm._v(" "),
-              _c("p", [_vm._v("プロフィール400文字まで")]),
-              _vm._v(" "),
-              _c("span", [_vm._v("ホームページ")]),
-              _vm._v(" "),
-              _c("span", [_vm._v("所属・組織")]),
-              _vm._v(" "),
-              _c("span", [_vm._v("住んでいるところ")]),
-              _vm._v(" "),
               _vm.isAuthUser
                 ? _c("div", [
                     _c(
@@ -35814,8 +35802,8 @@ var render = function() {
                       [
                         _c(
                           "RouterLink",
-                          { attrs: { to: "/settings/profile" } },
-                          [_vm._v("プロフィール設定")]
+                          { attrs: { to: "/settings/account" } },
+                          [_vm._v("アカウント設定")]
                         )
                       ],
                       1

@@ -19,15 +19,11 @@
         <!-- プロフィール -->
         <div class="p-mypage__column">
           <h2 class="p-mypage__title u-mb-xl">{{ this.userName }}さんのマイページ</h2>
-          <p>プロフィール400文字まで</p>
-          <span>ホームページ</span>
-          <span>所属・組織</span>
-          <span>住んでいるところ</span>
 
           <!-- プロフィール編集 -->
           <div v-if="isAuthUser">
             <button class="c-btn">
-              <RouterLink to="/settings/profile">プロフィール設定</RouterLink>
+              <RouterLink to="/settings/account">アカウント設定</RouterLink>
             </button>
           </div>
         </div>
