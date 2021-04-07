@@ -13,21 +13,46 @@
         <h2 class="p-setting__title">アカウント設定</h2>
 
         <!-- ユーザーネームの更新 -->
-        <section class="p-setting__updatename">
-          <h3 class="p-setting__title p-setting__title--sub">ユーザー名の更新</h3>
-          <input class="c-form__input" type="text" v-model:value="username" maxlength="16">
+        <section class="p-setting__item p-setting__updatename">
+          <h3 class="p-setting__title p-setting__title--sub">ユーザー名の変更</h3>
+          <div class="p-setting__flex">
+            <div class="p-setting__input">
+              <input class="c-form__input" type="text" v-model:value="username" maxlength="16">
+            </div>
+            <div class="p-setting__btn">
+              <button class="c-btn c-btn__setting--update">変更</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- メールアドレスの更新 -->
+        <section class="p-setting__item p-setting__updatemail">
+          <h3 class="p-setting__title p-setting__title--sub">
+            <i class="far fa-envelope"></i>メールアドレスの変更
+          </h3>
+          <div class="p-setting__flex">
+            <div class="p-setting__input">
+              <input class="c-form__input" type="text" v-model:value="username" maxlength="16">
+            </div>
+
+            <div class="p-setting__btn">
+              <button class="c-btn c-btn__setting--update">変更</button>
+            </div>
+
+          </div>
+
         </section>
 
         <!-- アカウントの削除 -->
-        <section class="p-setting__withdraw">
+        <section class="p-setting__item p-setting__withdraw">
           <h3 class="p-setting__title p-setting__title--sub">
             アカウントを削除する
           </h3>
-          <p>アカウントを削除すると元に戻すことはできなくなります。</p>
+          <p class="u-mb-m">アカウントを削除すると元に戻すことはできなくなります。</p>
           <div class="u-text--center">
-            <button class="c-btn" @click="withdraw">
+            <button class="c-btn c-btn__setting--withdraw" @click="withdraw">
               <i class="fas fa-sign-out-alt"></i>
-              アカウント削除
+               アカウント削除
             </button>
           </div>
         </section>

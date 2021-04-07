@@ -2,11 +2,11 @@
 <!-- パスワード新規作成用(SNSから新規登録した人) -->
 <!--======================================-->
 <template>
-  <div class="p-setting">
+  <section class="p-setting">
     <div class="p-setting__container">
       <h2 class="p-setting__title">パスワード作成</h2>
 
-      <div class="p-form">
+      <div class="p-setting__item p-form">
         <div class="p-form__description">
           <p>※ 他のサービスと同じパスワードは使用しないでください</p>
         </div>
@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

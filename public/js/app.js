@@ -4447,6 +4447,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -36917,68 +36942,152 @@ var render = function() {
                 _vm._v("アカウント設定")
               ]),
               _vm._v(" "),
-              _c("section", { staticClass: "p-setting__updatename" }, [
-                _c(
-                  "h3",
-                  { staticClass: "p-setting__title p-setting__title--sub" },
-                  [_vm._v("ユーザー名の更新")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model:value",
-                      value: _vm.username,
-                      expression: "username",
-                      arg: "value"
-                    }
-                  ],
-                  staticClass: "c-form__input",
-                  attrs: { type: "text", maxlength: "16" },
-                  domProps: { value: _vm.username },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.username = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("section", { staticClass: "p-setting__withdraw" }, [
-                _c(
-                  "h3",
-                  { staticClass: "p-setting__title p-setting__title--sub" },
-                  [_vm._v("\n          アカウントを削除する\n        ")]
-                ),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "アカウントを削除すると元に戻すことはできなくなります。"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "u-text--center" }, [
+              _c(
+                "section",
+                { staticClass: "p-setting__item p-setting__updatename" },
+                [
                   _c(
-                    "button",
-                    { staticClass: "c-btn", on: { click: _vm.withdraw } },
-                    [
-                      _c("i", { staticClass: "fas fa-sign-out-alt" }),
-                      _vm._v("\n            アカウント削除\n          ")
-                    ]
-                  )
-                ])
-              ])
+                    "h3",
+                    { staticClass: "p-setting__title p-setting__title--sub" },
+                    [_vm._v("ユーザー名の変更")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "p-setting__flex" }, [
+                    _c("div", { staticClass: "p-setting__input" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model:value",
+                            value: _vm.username,
+                            expression: "username",
+                            arg: "value"
+                          }
+                        ],
+                        staticClass: "c-form__input",
+                        attrs: { type: "text", maxlength: "16" },
+                        domProps: { value: _vm.username },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.username = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "section",
+                { staticClass: "p-setting__item p-setting__updatemail" },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "p-setting__flex" }, [
+                    _c("div", { staticClass: "p-setting__input" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model:value",
+                            value: _vm.username,
+                            expression: "username",
+                            arg: "value"
+                          }
+                        ],
+                        staticClass: "c-form__input",
+                        attrs: { type: "text", maxlength: "16" },
+                        domProps: { value: _vm.username },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.username = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "section",
+                { staticClass: "p-setting__item p-setting__withdraw" },
+                [
+                  _c(
+                    "h3",
+                    { staticClass: "p-setting__title p-setting__title--sub" },
+                    [_vm._v("\n          アカウントを削除する\n        ")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "u-mb-m" }, [
+                    _vm._v(
+                      "アカウントを削除すると元に戻すことはできなくなります。"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "u-text--center" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "c-btn c-btn__setting--withdraw",
+                        on: { click: _vm.withdraw }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-sign-out-alt" }),
+                        _vm._v("\n             アカウント削除\n          ")
+                      ]
+                    )
+                  ])
+                ]
+              )
             ])
           ])
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-setting__btn" }, [
+      _c("button", { staticClass: "c-btn c-btn__setting--update" }, [
+        _vm._v("変更")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "p-setting__title p-setting__title--sub" }, [
+      _c("i", { staticClass: "far fa-envelope" }),
+      _vm._v("メールアドレスの変更\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-setting__btn" }, [
+      _c("button", { staticClass: "c-btn c-btn__setting--update" }, [
+        _vm._v("変更")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -37000,11 +37109,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "p-setting" }, [
+  return _c("section", { staticClass: "p-setting" }, [
     _c("div", { staticClass: "p-setting__container" }, [
       _c("h2", { staticClass: "p-setting__title" }, [_vm._v("パスワード作成")]),
       _vm._v(" "),
-      _c("div", { staticClass: "p-form" }, [
+      _c("div", { staticClass: "p-setting__item p-form" }, [
         _vm._m(0),
         _vm._v(" "),
         _c(
@@ -37191,13 +37300,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "p-setting" }, [
+  return _c("section", { staticClass: "p-setting" }, [
     _c("div", { staticClass: "p-setting__container" }, [
       _c("h2", { staticClass: "p-setting__title" }, [
         _vm._v("パスワードの更新")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "p-form" }, [
+      _c("div", { staticClass: "p-setting__item p-form" }, [
         _vm._m(0),
         _vm._v(" "),
         _c(

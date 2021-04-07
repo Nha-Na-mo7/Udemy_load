@@ -18,12 +18,24 @@
       margin: 10px 0;
     }
   }
-
-  &__updatename, &__withdraw {
-    padding: 20px 0;
-    margin-bottom: 12px;
+  &__item {
+    border-top: 1px solid #cdcdcd;
+    box-shadow: 0 1px 0 #fff;
+    padding: 32px 0;
+    margin-bottom: 25px;
+  }
+  &__input {
+    width: 70%;
+    padding-right: 15px;
+  }
+  &__flex {
+    display: flex;
+    justify-content: space-evenly;
   }
   &__updatename {
+
+  }
+  &__updatemail {
 
   }
   &__withdraw {
