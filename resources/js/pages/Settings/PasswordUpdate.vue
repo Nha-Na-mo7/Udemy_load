@@ -85,6 +85,8 @@ import { UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR } from '../../util.js';
 export default {
   data() {
     return {
+      isUpdating: false,
+
       errorsOldPassword: '',
       errorsPassword: '',
       errorsPasswordConfirmation: '',
@@ -103,38 +105,39 @@ export default {
         return false;
       }
       console.log('パスワードの更新処理です')
+      this.isUpdating = true;
 
-      // this.isUpdating = true;
-      //
-      // // 更新処理にアクセス
-      // const response = await axios
-      //     .post(`/user/update/password`, this.formPassword)
-      //     .catch((error) => error.response || error);
-      //
-      // // エラーチェック
-      // if (response.status === UNPROCESSABLE_ENTITY) {
-      //   // バリデーションエラー。帰ってきたエラーメッセージを格納
-      //   this.errorsOldPassword = response.data.errors.old_password;
-      //   this.errorsPassword = response.data.errors.password;
-      //   this.errorsPasswordConfirmation =
-      //       response.data.errors.password_confirmation;
-      //
-      //   // 500エラーの時
-      // } else if (response.status === INTERNAL_SERVER_ERROR) {
-      //   // フラッシュメッセージをセット
-      //   this.$store.commit('message/setContentError', {
-      //     content: response.data.errors,
-      //   });
-      //   // 成功時
-      // } else {
-      //   // フラッシュメッセージをセット
-      //   this.$store.commit('message/setContentSuccess', {
-      //     content: response.data.success,
-      //   });
-      //   // パスワード更新完了後はマイページに戻す
-      //   this.$router.push('/mypage');
-      // }
-      // this.isUpdating = false;
+      // 更新処理にアクセス
+      const response = await axios
+          .post(`/user/update/password`, this.formPassword)
+          .catch((error) => error.response || error);
+
+      // エラーチェック
+      if (response.status === UNPROCESSABLE_ENTITY) {
+        // バリデーションエラー。帰ってきたエラーメッセージを格納
+        this.errorsOldPassword = response.data.errors.old_password;
+        this.errorsPassword = response.data.errors.password;
+        this.errorsPasswordConfirmation =
+            response.data.errors.password_confirmation;
+
+        // 500エラーの時
+      } else if (response.status === INTERNAL_SERVER_ERROR) {
+        console.log('500 ERROR')
+        // // フラッシュメッセージをセット
+        // this.$store.commit('message/setContentError', {
+        //   content: response.data.errors,
+        // });
+        // 成功時
+      } else {
+        console.log('PASSWORD UPDATE SUCCESS!!!')
+        // // フラッシュメッセージをセット
+        // this.$store.commit('message/setContentSuccess', {
+        //   content: response.data.success,
+        // });
+        // パスワード更新完了後はマイページに戻す
+        this.$router.push(`/mypage/${this.$store.getters['auth/username']}`);
+      }
+      this.isUpdating = false;
     },
   },
 };

@@ -83,39 +83,38 @@ export default {
       if (this.isUpdating) {
         return false;
       }
-
       console.log('パスワードの新規登録処理です')
-      // this.isUpdating = true;
+      this.isUpdating = true;
 
-      // // 更新処理にアクセス
-      // const response = await axios
-      //     .post(`/user/create/password`, this.formPassword)
-      //     .catch((error) => error.response || error);
-      //
-      // // エラーチェック
-      // if (response.status === UNPROCESSABLE_ENTITY) {
-      //   // バリデーションエラー。帰ってきたエラーメッセージを格納
-      //   this.errorsPassword = response.data.errors.password;
-      //   this.errorsPasswordConfirmation =
-      //       response.data.errors.password_confirmation;
-      //
-      //   // 500エラーの時は更新失敗
-      // } else if (response.status === INTERNAL_SERVER_ERROR) {
-      //   // フラッシュメッセージをセット
-      //   this.$store.commit('message/setContentError', {
-      //     content: response.data.errors,
-      //   });
-      //   this.isUpdating = false;
-      // } else {
-      //   // フラッシュメッセージをセット
-      //   this.$store.commit('message/setContentSuccess', {
-      //     content: response.data.success,
-      //   });
-      //   this.isUpdating = false;
-      //
-      //   // パスワード作成完了後はマイページに戻す
-      //   this.$router.push('/');
-      // }
+      // 更新処理にアクセス
+      const response = await axios
+          .post(`/user/create/password`, this.formPassword)
+          .catch((error) => error.response || error);
+
+      // エラーチェック
+      if (response.status === UNPROCESSABLE_ENTITY) {
+        // バリデーションエラー。帰ってきたエラーメッセージを格納
+        this.errorsPassword = response.data.errors.password;
+        this.errorsPasswordConfirmation =
+            response.data.errors.password_confirmation;
+
+        // 500エラーの時は更新失敗
+      } else if (response.status === INTERNAL_SERVER_ERROR) {
+        console.log('500 ERROR')
+        // // フラッシュメッセージをセット
+        // this.$store.commit('message/setContentError', {
+        //   content: response.data.errors,
+        // });
+      } else {
+        console.log('PASSWORD CREATE SUCCESS!!!')
+        // // フラッシュメッセージをセット
+        // this.$store.commit('message/setContentSuccess', {
+        //   content: response.data.success,
+        // });
+        // パスワード作成完了後はマイページに戻す
+        this.$router.push(`/mypage/${this.$store.getters['auth/username']}`);
+      }
+      this.isUpdating = false;
     },
   },
 };

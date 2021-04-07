@@ -4683,6 +4683,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -4695,38 +4696,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 2:
-                console.log('パスワードの新規登録処理です'); // this.isUpdating = true;
-                // // 更新処理にアクセス
-                // const response = await axios
-                //     .post(`/user/create/password`, this.formPassword)
-                //     .catch((error) => error.response || error);
-                //
-                // // エラーチェック
-                // if (response.status === UNPROCESSABLE_ENTITY) {
-                //   // バリデーションエラー。帰ってきたエラーメッセージを格納
-                //   this.errorsPassword = response.data.errors.password;
-                //   this.errorsPasswordConfirmation =
-                //       response.data.errors.password_confirmation;
-                //
-                //   // 500エラーの時は更新失敗
-                // } else if (response.status === INTERNAL_SERVER_ERROR) {
-                //   // フラッシュメッセージをセット
-                //   this.$store.commit('message/setContentError', {
-                //     content: response.data.errors,
-                //   });
-                //   this.isUpdating = false;
-                // } else {
-                //   // フラッシュメッセージをセット
-                //   this.$store.commit('message/setContentSuccess', {
-                //     content: response.data.success,
-                //   });
-                //   this.isUpdating = false;
-                //
-                //   // パスワード作成完了後はマイページに戻す
-                //   this.$router.push('/');
-                // }
+                console.log('パスワードの新規登録処理です');
+                _this.isUpdating = true; // 更新処理にアクセス
 
-              case 3:
+                _context.next = 6;
+                return axios.post("/user/create/password", _this.formPassword)["catch"](function (error) {
+                  return error.response || error;
+                });
+
+              case 6:
+                response = _context.sent;
+
+                // エラーチェック
+                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
+                  // バリデーションエラー。帰ってきたエラーメッセージを格納
+                  _this.errorsPassword = response.data.errors.password;
+                  _this.errorsPasswordConfirmation = response.data.errors.password_confirmation; // 500エラーの時は更新失敗
+                } else if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["INTERNAL_SERVER_ERROR"]) {
+                  console.log('500 ERROR'); // // フラッシュメッセージをセット
+                  // this.$store.commit('message/setContentError', {
+                  //   content: response.data.errors,
+                  // });
+                } else {
+                  console.log('PASSWORD CREATE SUCCESS!!!'); // // フラッシュメッセージをセット
+                  // this.$store.commit('message/setContentSuccess', {
+                  //   content: response.data.success,
+                  // });
+                  // パスワード作成完了後はマイページに戻す
+
+                  _this.$router.push("/mypage/".concat(_this.$store.getters['auth/username']));
+                }
+
+                _this.isUpdating = false;
+
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -4984,6 +4987,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      isUpdating: false,
       errorsOldPassword: '',
       errorsPassword: '',
       errorsPasswordConfirmation: '',
@@ -5000,6 +5004,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -5012,39 +5017,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 2:
-                console.log('パスワードの更新処理です'); // this.isUpdating = true;
-                //
-                // // 更新処理にアクセス
-                // const response = await axios
-                //     .post(`/user/update/password`, this.formPassword)
-                //     .catch((error) => error.response || error);
-                //
-                // // エラーチェック
-                // if (response.status === UNPROCESSABLE_ENTITY) {
-                //   // バリデーションエラー。帰ってきたエラーメッセージを格納
-                //   this.errorsOldPassword = response.data.errors.old_password;
-                //   this.errorsPassword = response.data.errors.password;
-                //   this.errorsPasswordConfirmation =
-                //       response.data.errors.password_confirmation;
-                //
-                //   // 500エラーの時
-                // } else if (response.status === INTERNAL_SERVER_ERROR) {
-                //   // フラッシュメッセージをセット
-                //   this.$store.commit('message/setContentError', {
-                //     content: response.data.errors,
-                //   });
-                //   // 成功時
-                // } else {
-                //   // フラッシュメッセージをセット
-                //   this.$store.commit('message/setContentSuccess', {
-                //     content: response.data.success,
-                //   });
-                //   // パスワード更新完了後はマイページに戻す
-                //   this.$router.push('/mypage');
-                // }
-                // this.isUpdating = false;
+                console.log('パスワードの更新処理です');
+                _this.isUpdating = true; // 更新処理にアクセス
 
-              case 3:
+                _context.next = 6;
+                return axios.post("/user/update/password", _this.formPassword)["catch"](function (error) {
+                  return error.response || error;
+                });
+
+              case 6:
+                response = _context.sent;
+
+                // エラーチェック
+                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
+                  // バリデーションエラー。帰ってきたエラーメッセージを格納
+                  _this.errorsOldPassword = response.data.errors.old_password;
+                  _this.errorsPassword = response.data.errors.password;
+                  _this.errorsPasswordConfirmation = response.data.errors.password_confirmation; // 500エラーの時
+                } else if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["INTERNAL_SERVER_ERROR"]) {
+                  console.log('500 ERROR'); // // フラッシュメッセージをセット
+                  // this.$store.commit('message/setContentError', {
+                  //   content: response.data.errors,
+                  // });
+                  // 成功時
+                } else {
+                  console.log('PASSWORD UPDATE SUCCESS!!!'); // // フラッシュメッセージをセット
+                  // this.$store.commit('message/setContentSuccess', {
+                  //   content: response.data.success,
+                  // });
+                  // パスワード更新完了後はマイページに戻す
+
+                  _this.$router.push("/mypage/".concat(_this.$store.getters['auth/username']));
+                }
+
+                _this.isUpdating = false;
+
+              case 9:
               case "end":
                 return _context.stop();
             }
