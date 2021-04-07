@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePasswordRequest;
 use App\Http\Requests\UpdatePasswordRequest;
+use App\Http\Requests\UpdateUsernameRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,8 +29,29 @@ class UserController extends Controller
       return User::where('name', $username)->firstOrFail();
     }
   
-    
     // =========================
+    // ユーザーネームの更新
+    // =========================
+    public function update_name(UpdateUsernameRequest $request) {
+      Log::debug('UserController.update_name ユーザーネームの更新');
+      try {
+        $user = Auth::user();
+        
+        $new_name = $request->name;
+        Log::debug('変更後のユーザーネーム: '.$new_name);
+        
+        $user->name = $new_name;
+        $user->save();
+        
+        Log::debug('ユーザーネームの変更完了しました。');
+        return response()->json(['success' => 'ユーザーネームを更新しました！'], 200);
+      }catch(\Exception $e) {
+        Log::debug('エラーが発生しました。'. $e->getMessage());
+        return response()->json(['errors' => 'エラーが発生しました。'], 500);
+      }
+    }
+  
+  // =========================
     // パスワードを新しく設定する
     // =========================
     // Twitterで新規登録した場合、パスワードは空の状態でユーザーが作成される。

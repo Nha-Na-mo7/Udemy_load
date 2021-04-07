@@ -38,6 +38,8 @@ Route::get('/login', 'HomeController@index')->name('home.index');
 // ====================
 // 指定したユーザー情報の取得
 Route::get('/user/info/{username?}', 'UserController@get_user');
+// ユーザーネームを更新する
+Route::post('/user/update/name', 'UserController@update_name');
 // メールアドレスの更新処理
 Route::post('/user/update/email', 'UserController@update_email');
 // メールアドレスのリセットを確定

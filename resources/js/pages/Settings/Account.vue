@@ -17,10 +17,23 @@
           <h3 class="p-setting__title p-setting__title--sub">ユーザー名の変更</h3>
           <div class="p-setting__flex">
             <div class="p-setting__input">
-              <input class="c-form__input" type="text" v-model:value="username" maxlength="16">
+              <label class="c-form__info" for="name"
+              >USERNAME (半角英数字 3~32文字)</label
+              >
+              <ul v-if="errorsName">
+                <li class="c-error" v-for="error in errorsName">
+                  <span>{{ error }}</span>
+                </li>
+              </ul>
+              <input
+                  id="name"
+                  class="c-form__input"
+                  type="text"
+                  v-model="formName"
+                  maxlength="32">
             </div>
             <div class="p-setting__btn">
-              <button class="c-btn c-btn__setting--update">変更</button>
+              <button class="c-btn c-btn__setting--update" @click="updateName">変更</button>
             </div>
           </div>
         </section>
@@ -32,7 +45,7 @@
           </h3>
           <div class="p-setting__flex">
             <div class="p-setting__input">
-              <input class="c-form__input" type="text" v-model:value="username" maxlength="16">
+              <input class="c-form__input" type="text" v-model="formMail" maxlength="16">
             </div>
 
             <div class="p-setting__btn">
@@ -65,14 +78,21 @@
 
 <script>
 import Loading from '../../components/Loading.vue';
-import { OK } from "../../util.js"
+import { OK, UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR } from "../../util.js"
 import SettingItemList from "./SettingItemList.vue";
 
 export default {
   data() {
     return {
       isLoading: true,
-      username: '',
+      isUpdating: false,
+      // ユーザーネームのフォーム
+      formName: '',
+      // メールアドレスのフォーム
+      formMail: '',
+      systemError: [],
+      errorsName: [],
+      errorsEmail: [],
     }
   },
   methods: {
@@ -84,13 +104,53 @@ export default {
 
       // エラーチェック
       if (response.status === OK) {
-        // ユーザーネームをusernameに格納
+        // ユーザーネームをformNameに格納
         console.log(response.data)
         if (response.data.name !== null) {
-          this.username = response.data.name;
+          this.formName = response.data.name;
+        }
+        // メールアドレスをformMailに格納
+        if (response.data.email !== null) {
+          this.formName = response.data.email;
         }
         this.isLoading = false;
       }
+    },
+    // ユーザーネームの変更
+    async updateName() {
+      // 更新処理中は複数回起動できないようにする
+      if (this.isUpdating) {
+        return false;
+      }
+      this.isUpdating = true;
+
+      // 更新処理にアクセスする
+      const response = await axios
+          .post(`/user/update/name`, { name: this.formName })
+          .catch((error) => error.response || error);
+
+      // エラーチェック
+      if (response.status === UNPROCESSABLE_ENTITY) {
+        // バリデーションエラー
+        this.errorsName = response.data.errors.name;
+        // 更新失敗(500)
+      } else if (response.status === INTERNAL_SERVER_ERROR) {
+        console.log('500 ERROR')
+        // // フラッシュメッセージをセット
+        // this.$store.commit('message/setContentError', {
+        //   content: response.data.error,
+        // });
+      } else {
+        // 更新成功したらエラーメッセージは空にする
+        this.errorsName = [];
+
+        console.log('ユーザーネーム更新成功！')
+        // // フラッシュメッセージをセット
+        // this.$store.commit('message/setContentSuccess', {
+        //   content: response.data.success,
+        // });
+      }
+      this.isUpdating = false;
     },
     // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
     async withdraw() {

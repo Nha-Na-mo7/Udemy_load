@@ -4468,6 +4468,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4475,7 +4488,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       isLoading: true,
-      username: ''
+      isUpdating: false,
+      // ユーザーネームのフォーム
+      formName: '',
+      // メールアドレスのフォーム
+      formMail: '',
+      systemError: [],
+      errorsName: [],
+      errorsEmail: []
     };
   },
   methods: {
@@ -4499,11 +4519,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 // エラーチェック
                 if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["OK"]) {
-                  // ユーザーネームをusernameに格納
+                  // ユーザーネームをformNameに格納
                   console.log(response.data);
 
                   if (response.data.name !== null) {
-                    _this.username = response.data.name;
+                    _this.formName = response.data.name;
+                  } // メールアドレスをformMailに格納
+
+
+                  if (response.data.email !== null) {
+                    _this.formName = response.data.email;
                   }
 
                   _this.isLoading = false;
@@ -4517,24 +4542,82 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
-    withdraw: function withdraw() {
+    // ユーザーネームの変更
+    updateName: function updateName() {
+      var _this2 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                if (!confirm('【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。')) {
-                  _context2.next = 5;
+                if (!_this2.isUpdating) {
+                  _context2.next = 2;
                   break;
                 }
 
-                _context2.next = 3;
+                return _context2.abrupt("return", false);
+
+              case 2:
+                _this2.isUpdating = true; // 更新処理にアクセスする
+
+                _context2.next = 5;
+                return axios.post("/user/update/name", {
+                  name: _this2.formName
+                })["catch"](function (error) {
+                  return error.response || error;
+                });
+
+              case 5:
+                response = _context2.sent;
+
+                // エラーチェック
+                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"]) {
+                  // バリデーションエラー
+                  _this2.errorsName = response.data.errors.name; // 更新失敗(500)
+                } else if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"]) {
+                  console.log('500 ERROR'); // // フラッシュメッセージをセット
+                  // this.$store.commit('message/setContentError', {
+                  //   content: response.data.error,
+                  // });
+                } else {
+                  // 更新成功したらエラーメッセージは空にする
+                  _this2.errorsName = [];
+                  console.log('ユーザーネーム更新成功！'); // // フラッシュメッセージをセット
+                  // this.$store.commit('message/setContentSuccess', {
+                  //   content: response.data.success,
+                  // });
+                }
+
+                _this2.isUpdating = false;
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
+    withdraw: function withdraw() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!confirm('【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。')) {
+                  _context3.next = 5;
+                  break;
+                }
+
+                _context3.next = 3;
                 return axios.post("/withdraw");
 
               case 3:
-                response = _context2.sent;
+                response = _context3.sent;
 
                 if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["OK"]) {
                   window.location = '/';
@@ -4544,10 +4627,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     }
   },
@@ -4558,22 +4641,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       handler: function handler() {
-        var _this2 = this;
+        var _this3 = this;
 
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
             while (1) {
-              switch (_context3.prev = _context3.next) {
+              switch (_context4.prev = _context4.next) {
                 case 0:
-                  _context3.next = 2;
-                  return _this2.getUser();
+                  _context4.next = 2;
+                  return _this3.getUser();
 
                 case 2:
                 case "end":
-                  return _context3.stop();
+                  return _context4.stop();
               }
             }
-          }, _callee3);
+          }, _callee4);
         }))();
       },
       immediate: true
@@ -36950,31 +37033,57 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "p-setting__flex" }, [
                     _c("div", { staticClass: "p-setting__input" }, [
+                      _c(
+                        "label",
+                        { staticClass: "c-form__info", attrs: { for: "name" } },
+                        [_vm._v("USERNAME (半角英数字 3~32文字)")]
+                      ),
+                      _vm._v(" "),
+                      _vm.errorsName
+                        ? _c(
+                            "ul",
+                            _vm._l(_vm.errorsName, function(error) {
+                              return _c("li", { staticClass: "c-error" }, [
+                                _c("span", [_vm._v(_vm._s(error))])
+                              ])
+                            }),
+                            0
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
                             name: "model",
-                            rawName: "v-model:value",
-                            value: _vm.username,
-                            expression: "username",
-                            arg: "value"
+                            rawName: "v-model",
+                            value: _vm.formName,
+                            expression: "formName"
                           }
                         ],
                         staticClass: "c-form__input",
-                        attrs: { type: "text", maxlength: "16" },
-                        domProps: { value: _vm.username },
+                        attrs: { id: "name", type: "text", maxlength: "32" },
+                        domProps: { value: _vm.formName },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.username = $event.target.value
+                            _vm.formName = $event.target.value
                           }
                         }
                       })
                     ]),
                     _vm._v(" "),
-                    _vm._m(0)
+                    _c("div", { staticClass: "p-setting__btn" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "c-btn c-btn__setting--update",
+                          on: { click: _vm.updateName }
+                        },
+                        [_vm._v("変更")]
+                      )
+                    ])
                   ])
                 ]
               ),
@@ -36983,7 +37092,7 @@ var render = function() {
                 "section",
                 { staticClass: "p-setting__item p-setting__updatemail" },
                 [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("div", { staticClass: "p-setting__flex" }, [
                     _c("div", { staticClass: "p-setting__input" }, [
@@ -36991,27 +37100,26 @@ var render = function() {
                         directives: [
                           {
                             name: "model",
-                            rawName: "v-model:value",
-                            value: _vm.username,
-                            expression: "username",
-                            arg: "value"
+                            rawName: "v-model",
+                            value: _vm.formMail,
+                            expression: "formMail"
                           }
                         ],
                         staticClass: "c-form__input",
                         attrs: { type: "text", maxlength: "16" },
-                        domProps: { value: _vm.username },
+                        domProps: { value: _vm.formMail },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.username = $event.target.value
+                            _vm.formMail = $event.target.value
                           }
                         }
                       })
                     ]),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(1)
                   ])
                 ]
               ),
@@ -37054,16 +37162,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-setting__btn" }, [
-      _c("button", { staticClass: "c-btn c-btn__setting--update" }, [
-        _vm._v("変更")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
