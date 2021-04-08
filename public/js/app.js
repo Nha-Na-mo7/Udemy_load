@@ -4481,6 +4481,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4492,7 +4509,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // ユーザーネームのフォーム
       formName: '',
       // メールアドレスのフォーム
-      formMail: '',
+      formEmail: '',
       systemError: [],
       errorsName: [],
       errorsEmail: []
@@ -4524,11 +4541,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   if (response.data.name !== null) {
                     _this.formName = response.data.name;
-                  } // メールアドレスをformMailに格納
+                  } // メールアドレスをformEmailに格納
 
 
                   if (response.data.email !== null) {
-                    _this.formName = response.data.email;
+                    _this.formEmail = response.data.email;
                   }
 
                   _this.isLoading = false;
@@ -4590,9 +4607,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   // });
                 }
 
-                _this2.isUpdating = false;
+                _this2.isUpdating = false; // ページをリロードする
 
-              case 8:
+                _this2.$router.go({
+                  path: _this2.$router.currentRoute.path,
+                  force: true
+                });
+
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -4600,24 +4622,86 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
-    withdraw: function withdraw() {
+    // メールアドレスの変更
+    updateEmail: function updateEmail() {
+      var _this3 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                if (!confirm('【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。')) {
-                  _context3.next = 5;
+                if (!_this3.isUpdating) {
+                  _context3.next = 2;
                   break;
                 }
 
-                _context3.next = 3;
+                return _context3.abrupt("return", false);
+
+              case 2:
+                _this3.isUpdating = true;
+                _context3.next = 5;
+                return axios.post("/user/update/email", {
+                  email: _this3.formEmail
+                })["catch"](function (error) {
+                  return error.response || error;
+                });
+
+              case 5:
+                response = _context3.sent;
+
+                // バリデーションエラー時
+                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"]) {
+                  _this3.errorsEmail = response.data.errors.email;
+                  _this3.isUpdating = false; // 500エラー時
+                } else if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"]) {
+                  console.log('500 ERROR!'); // // フラッシュメッセージをセット
+                  // this.$store.commit('message/setContentError', {
+                  //   content: response.data.error,
+                  // });
+                } else {
+                  console.log('EMAIL UPDATE SUCCESS!!!'); // 送信完了したらフラッシュメッセージを表示し、バリデーションエラーリストを空にする
+                  // this.$store.commit('message/setContentSuccess', {
+                  //   content: response.data.success,
+                  // });
+
+                  _this3.errorsEmail = [];
+                }
+
+                _this3.isUpdating = false; // ページをリロードする
+
+                _this3.$router.go({
+                  path: _this3.$router.currentRoute.path,
+                  force: true
+                });
+
+              case 9:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
+    withdraw: function withdraw() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (!confirm('【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。')) {
+                  _context4.next = 5;
+                  break;
+                }
+
+                _context4.next = 3;
                 return axios.post("/withdraw");
 
               case 3:
-                response = _context3.sent;
+                response = _context4.sent;
 
                 if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["OK"]) {
                   window.location = '/';
@@ -4627,10 +4711,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     }
   },
@@ -4641,22 +4725,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       handler: function handler() {
-        var _this3 = this;
+        var _this4 = this;
 
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
             while (1) {
-              switch (_context4.prev = _context4.next) {
+              switch (_context5.prev = _context5.next) {
                 case 0:
-                  _context4.next = 2;
-                  return _this3.getUser();
+                  _context5.next = 2;
+                  return _this4.getUser();
 
                 case 2:
                 case "end":
-                  return _context4.stop();
+                  return _context5.stop();
               }
             }
-          }, _callee4);
+          }, _callee5);
         }))();
       },
       immediate: true
@@ -37096,30 +37180,60 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "p-setting__flex" }, [
                     _c("div", { staticClass: "p-setting__input" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "c-form__info",
+                          attrs: { for: "email" }
+                        },
+                        [_vm._v("メールアドレス\n            ")]
+                      ),
+                      _vm._v(" "),
+                      _vm.errorsEmail
+                        ? _c(
+                            "ul",
+                            _vm._l(_vm.errorsEmail, function(error) {
+                              return _c("li", { staticClass: "c-error" }, [
+                                _c("span", [_vm._v(_vm._s(error))])
+                              ])
+                            }),
+                            0
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formMail,
-                            expression: "formMail"
+                            value: _vm.formEmail,
+                            expression: "formEmail"
                           }
                         ],
                         staticClass: "c-form__input",
-                        attrs: { type: "text", maxlength: "16" },
-                        domProps: { value: _vm.formMail },
+                        attrs: { id: "email", type: "text", maxlength: "100" },
+                        domProps: { value: _vm.formEmail },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.formMail = $event.target.value
+                            _vm.formEmail = $event.target.value
                           }
                         }
                       })
                     ]),
                     _vm._v(" "),
-                    _vm._m(1)
+                    _c("div", { staticClass: "p-setting__btn" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "c-btn c-btn__setting--update",
+                          on: { click: _vm.updateEmail }
+                        },
+                        [_vm._v("変更")]
+                      )
+                    ])
                   ])
                 ]
               ),
@@ -37169,16 +37283,6 @@ var staticRenderFns = [
     return _c("h3", { staticClass: "p-setting__title p-setting__title--sub" }, [
       _c("i", { staticClass: "far fa-envelope" }),
       _vm._v("メールアドレスの変更\n        ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-setting__btn" }, [
-      _c("button", { staticClass: "c-btn c-btn__setting--update" }, [
-        _vm._v("変更")
-      ])
     ])
   }
 ]

@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePasswordRequest;
+use App\Http\Requests\UpdateMailRequest;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateUsernameRequest;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -50,8 +54,31 @@ class UserController extends Controller
         return response()->json(['errors' => 'エラーが発生しました。'], 500);
       }
     }
+    
+    // =========================
+    // メールアドレスの更新
+    // =========================
+    // TODO 暫定で入力後に即更新とするが、変更後に確認メールを送信する処理を後ほど追加する。
+    public function update_email(UpdateMailRequest $request) {
+      Log::debug('UserController.update_mail メールアドレスの更新');
+      try {
+        $user = Auth::user();
+        
+        $new_email = $request->email;
+        Log::debug('変更後のemail :'.$new_email);
   
-  // =========================
+        $user->email = $new_email;
+        $user->save();
+        
+        Log::debug('メールアドレスが変更されました。');
+        return response()->json(['success' => 'メールアドレスを更新しました！'], 200);
+      }catch(\Exception $e) {
+        Log::debug('エラーが発生しました。'. $e->getMessage());
+        return response()->json(['errors' => 'エラーが発生しました。'], 500);
+      }
+    }
+    
+    // =========================
     // パスワードを新しく設定する
     // =========================
     // Twitterで新規登録した場合、パスワードは空の状態でユーザーが作成される。

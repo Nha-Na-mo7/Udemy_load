@@ -33,7 +33,10 @@
                   maxlength="32">
             </div>
             <div class="p-setting__btn">
-              <button class="c-btn c-btn__setting--update" @click="updateName">変更</button>
+              <button
+                  class="c-btn c-btn__setting--update"
+                  @click="updateName"
+              >変更</button>
             </div>
           </div>
         </section>
@@ -45,11 +48,25 @@
           </h3>
           <div class="p-setting__flex">
             <div class="p-setting__input">
-              <input class="c-form__input" type="text" v-model="formMail" maxlength="16">
+              <label class="c-form__info" for="email">メールアドレス
+              </label>
+              <ul v-if="errorsEmail">
+                <li class="c-error" v-for="error in errorsEmail">
+                  <span>{{ error }}</span>
+                </li>
+              </ul>
+              <input
+                  id="email"
+                  class="c-form__input"
+                  type="text"
+                  v-model="formEmail"
+                  maxlength="100">
             </div>
-
             <div class="p-setting__btn">
-              <button class="c-btn c-btn__setting--update">変更</button>
+              <button
+                  class="c-btn c-btn__setting--update"
+                  @click="updateEmail"
+              >変更</button>
             </div>
 
           </div>
@@ -89,7 +106,7 @@ export default {
       // ユーザーネームのフォーム
       formName: '',
       // メールアドレスのフォーム
-      formMail: '',
+      formEmail: '',
       systemError: [],
       errorsName: [],
       errorsEmail: [],
@@ -109,9 +126,9 @@ export default {
         if (response.data.name !== null) {
           this.formName = response.data.name;
         }
-        // メールアドレスをformMailに格納
+        // メールアドレスをformEmailに格納
         if (response.data.email !== null) {
-          this.formName = response.data.email;
+          this.formEmail = response.data.email;
         }
         this.isLoading = false;
       }
@@ -151,6 +168,49 @@ export default {
         // });
       }
       this.isUpdating = false;
+      // ページをリロードする
+      this.$router.go({
+        path: this.$router.currentRoute.path,
+        force: true
+      })
+    },
+    // メールアドレスの変更
+    async updateEmail() {
+      // 更新処理中は複数回起動できないようにする
+      if (this.isUpdating) {
+        return false;
+      }
+      this.isUpdating = true;
+
+      const response = await axios
+          .post(`/user/update/email`, { email: this.formEmail })
+          .catch((error) => error.response || error);
+
+      // バリデーションエラー時
+      if (response.status === UNPROCESSABLE_ENTITY) {
+        this.errorsEmail = response.data.errors.email;
+        this.isUpdating = false;
+        // 500エラー時
+      } else if (response.status === INTERNAL_SERVER_ERROR) {
+        console.log('500 ERROR!')
+        // // フラッシュメッセージをセット
+        // this.$store.commit('message/setContentError', {
+        //   content: response.data.error,
+        // });
+      } else {
+        console.log('EMAIL UPDATE SUCCESS!!!')
+        // 送信完了したらフラッシュメッセージを表示し、バリデーションエラーリストを空にする
+        // this.$store.commit('message/setContentSuccess', {
+        //   content: response.data.success,
+        // });
+        this.errorsEmail = [];
+      }
+      this.isUpdating = false;
+      // ページをリロードする
+      this.$router.go({
+        path: this.$router.currentRoute.path,
+        force: true
+      })
     },
     // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
     async withdraw() {

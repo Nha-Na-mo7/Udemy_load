@@ -42,7 +42,7 @@ Route::get('/user/info/{username?}', 'UserController@get_user');
 Route::post('/user/update/name', 'UserController@update_name');
 // メールアドレスの更新処理
 Route::post('/user/update/email', 'UserController@update_email');
-// メールアドレスのリセットを確定
+// TODO メールアドレスのリセットを確定
 Route::get('/user/update/email/{token}', 'UserController@reset_email');
 // パスワードの新規登録
 Route::post('/user/create/password', 'UserController@create_password');
