@@ -4605,16 +4605,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   // this.$store.commit('message/setContentSuccess', {
                   //   content: response.data.success,
                   // });
+                  // ページをリロードする
+
+                  _this2.$router.go({
+                    path: _this2.$router.currentRoute.path,
+                    force: true
+                  });
                 }
 
-                _this2.isUpdating = false; // ページをリロードする
+                _this2.isUpdating = false;
 
-                _this2.$router.go({
-                  path: _this2.$router.currentRoute.path,
-                  force: true
-                });
-
-              case 9:
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -4666,17 +4667,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   //   content: response.data.success,
                   // });
 
-                  _this3.errorsEmail = [];
+                  _this3.errorsEmail = []; // ページをリロードする
+
+                  _this3.$router.go({
+                    path: _this3.$router.currentRoute.path,
+                    force: true
+                  });
                 }
 
-                _this3.isUpdating = false; // ページをリロードする
+                _this3.isUpdating = false;
 
-                _this3.$router.go({
-                  path: _this3.$router.currentRoute.path,
-                  force: true
-                });
-
-              case 9:
+              case 8:
               case "end":
                 return _context3.stop();
             }

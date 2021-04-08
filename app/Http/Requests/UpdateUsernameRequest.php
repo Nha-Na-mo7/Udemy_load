@@ -25,7 +25,7 @@ class UpdateUsernameRequest extends FormRequest
     {
       
       return [
-          'name' => "required|string|min:3|max:32|regex:/^[\w]+$/",
+          'name' => "required|unique:users|string|min:3|max:32|regex:/^[\w]+$/",
       ];
     }
     
@@ -35,8 +35,9 @@ class UpdateUsernameRequest extends FormRequest
       return [
           'name.string' => '半角英数字のみ利用可能です',
           'name.required' => '入力してください',
-          'name.min' => "3文字以上 16文字以内で入力してください",
-          'name.max' => "3文字以上 16文字以内で入力してください",
+          'name.unique' => '入力されたユーザーネームは利用できません',
+          'name.min' => "3文字以上 32文字以内で入力してください",
+          'name.max' => "3文字以上 32文字以内で入力してください",
           'name.regix' => "半角英数字のみ利用可能です",
       ];
     }

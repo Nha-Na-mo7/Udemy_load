@@ -166,13 +166,14 @@ export default {
         // this.$store.commit('message/setContentSuccess', {
         //   content: response.data.success,
         // });
+        // ページをリロードする
+        this.$router.go({
+          path: this.$router.currentRoute.path,
+          force: true
+        })
       }
       this.isUpdating = false;
-      // ページをリロードする
-      this.$router.go({
-        path: this.$router.currentRoute.path,
-        force: true
-      })
+
     },
     // メールアドレスの変更
     async updateEmail() {
@@ -204,13 +205,13 @@ export default {
         //   content: response.data.success,
         // });
         this.errorsEmail = [];
+        // ページをリロードする
+        this.$router.go({
+          path: this.$router.currentRoute.path,
+          force: true
+        })
       }
       this.isUpdating = false;
-      // ページをリロードする
-      this.$router.go({
-        path: this.$router.currentRoute.path,
-        force: true
-      })
     },
     // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
     async withdraw() {
