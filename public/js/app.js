@@ -37245,11 +37245,15 @@ var render = function() {
                     [_vm._v("\n          アカウントを削除する\n        ")]
                   ),
                   _vm._v(" "),
-                  _c("p", { staticClass: "u-mb-m" }, [
-                    _vm._v(
-                      "アカウントを削除すると元に戻すことはできなくなります。"
-                    )
-                  ]),
+                  _c(
+                    "p",
+                    { staticClass: "u-mb-l u-text--center u-color--red" },
+                    [
+                      _vm._v(
+                        "【!】アカウントを削除すると元に戻すことはできなくなります。"
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "u-text--center" }, [
                     _c(

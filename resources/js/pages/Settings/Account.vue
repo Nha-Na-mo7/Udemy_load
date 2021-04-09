@@ -79,7 +79,7 @@
           <h3 class="p-setting__title p-setting__title--sub">
             アカウントを削除する
           </h3>
-          <p class="u-mb-m">アカウントを削除すると元に戻すことはできなくなります。</p>
+          <p class="u-mb-l u-text--center u-color--red">【!】アカウントを削除すると元に戻すことはできなくなります。</p>
           <div class="u-text--center">
             <button class="c-btn c-btn__setting--withdraw" @click="withdraw">
               <i class="fas fa-sign-out-alt"></i>
