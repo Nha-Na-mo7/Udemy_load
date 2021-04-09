@@ -21,7 +21,7 @@
           <h2 class="p-mypage__title u-mb-xl">{{ this.userName }}さんのマイページ</h2>
 
           <!-- プロフィール編集 -->
-          <div v-if="isAuthUser">
+          <div class="u-text--center" v-if="isAuthUser">
             <button class="c-btn">
               <RouterLink to="/settings/account">アカウント設定</RouterLink>
             </button>

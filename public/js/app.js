@@ -35967,7 +35967,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm.isAuthUser
-                ? _c("div", [
+                ? _c("div", { staticClass: "u-text--center" }, [
                     _c(
                       "button",
                       { staticClass: "c-btn" },

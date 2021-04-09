@@ -10,6 +10,7 @@
     width: 49%;
     @include mq() {
       width: 100%;
+      margin-bottom: 50px;
     }
   }
   &__title {
