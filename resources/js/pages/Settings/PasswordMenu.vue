@@ -2,7 +2,7 @@
 <!--パスワード変更画面のコンポーネント。登録があるかで新規・更新を分ける-->
 <!--=======================================================-->
 <template>
-  <div class="l-container__setting">
+  <div class="l-container__setting u-flex u-space-between">
     <!-- リスト -->
     <SettingItemList />
 
@@ -12,25 +12,13 @@
     </div>
 
     <!-- パスワード変更フォーム -->
-    <div v-else>
+    <div class="p-setting" v-else>
       <!-- パスワードが設定済みの時 -->
-      <div v-if="isExistPassword">
-        <PasswordUpdate />
-      </div>
-
+      <PasswordUpdate v-if="isExistPassword" />
       <!-- パスワードがまだ未登録の時 -->
-      <div v-else>
-        <PasswordCreate />
-      </div>
+      <PasswordCreate v-else />
     </div>
 
-    <!-- 戻るボタン -->
-    <div class="u-text--center">
-      <RouterLink
-          :to="`/mypage/${this.$store.getters['auth/username']}`"
-          class="c-btn"
-      >マイページへ戻る</RouterLink>
-    </div>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
-  <div class="l-container__setting">
+  <div class="l-container__setting u-flex u-space-between">
+    <!-- リスト -->
     <SettingItemList />
 
     <!-- 読み込み中 -->

@@ -2,63 +2,61 @@
 <!-- パスワード新規作成用(SNSから新規登録した人) -->
 <!--======================================-->
 <template>
-  <section class="p-setting">
-    <div class="p-setting__container">
-      <h2 class="p-setting__title">パスワード作成</h2>
+  <div class="p-setting__container">
+    <h2 class="p-setting__title">パスワード作成</h2>
 
-      <div class="p-setting__item p-form">
-        <div class="p-form__description">
-          <p>※ 他のサービスと同じパスワードは使用しないでください</p>
-        </div>
-
-        <label class="c-form__info" for="password"
-        >新しいパスワード(半角英数字 8~50文字)</label
-        >
-
-        <ul v-if="errorsPassword">
-          <li
-              class="c-error"
-              v-for="error in errorsPassword"
-              :key="error"
-          >
-            <span>{{ error }}</span>
-          </li>
-        </ul>
-        <input
-            id="password"
-            class="c-form__input"
-            type="password"
-            v-model="formPassword.password"
-        />
-
-        <label class="c-form__info" for="password_confirmation"
-        >パスワード【再入力】</label
-        >
-
-        <ul v-if="errorsPasswordConfirmation">
-          <li
-              class="c-error"
-              v-for="error in errorsPasswordConfirmation"
-              :key="error"
-          >
-            <span>{{ error }}</span>
-          </li>
-        </ul>
-        <input
-            id="password_confirmation"
-            class="c-form__input"
-            type="password"
-            v-model="formPassword.password_confirmation"
-        />
-
-        <div class="c-form__submit u-text--center">
-          <button class="c-btn" @click="createPassword">
-            パスワードを登録する
-          </button>
-        </div>
+    <section class="p-setting__item p-form">
+      <div class="p-form__description">
+        <p>※ 他のサービスと同じパスワードは使用しないでください</p>
       </div>
-    </div>
-  </section>
+
+      <label class="c-form__info" for="password"
+      >新しいパスワード(半角英数字 8~50文字)</label
+      >
+
+      <ul v-if="errorsPassword">
+        <li
+            class="c-error"
+            v-for="error in errorsPassword"
+            :key="error"
+        >
+          <span>{{ error }}</span>
+        </li>
+      </ul>
+      <input
+          id="password"
+          class="c-form__input"
+          type="password"
+          v-model="formPassword.password"
+      />
+
+      <label class="c-form__info" for="password_confirmation"
+      >パスワード【再入力】</label
+      >
+
+      <ul v-if="errorsPasswordConfirmation">
+        <li
+            class="c-error"
+            v-for="error in errorsPasswordConfirmation"
+            :key="error"
+        >
+          <span>{{ error }}</span>
+        </li>
+      </ul>
+      <input
+          id="password_confirmation"
+          class="c-form__input"
+          type="password"
+          v-model="formPassword.password_confirmation"
+      />
+
+      <div class="c-form__submit u-text--center">
+        <button class="c-btn" @click="createPassword">
+          パスワードを登録する
+        </button>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>

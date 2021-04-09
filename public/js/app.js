@@ -4498,6 +4498,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -4830,8 +4831,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4932,18 +4931,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -5070,8 +5057,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
 //
 //
 //
@@ -5280,6 +5265,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37094,7 +37090,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "l-container__setting" },
+    { staticClass: "l-container__setting u-flex u-space-between" },
     [
       _c("SettingItemList"),
       _vm._v(" "),
@@ -37308,107 +37304,103 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "p-setting" }, [
-    _c("div", { staticClass: "p-setting__container" }, [
-      _c("h2", { staticClass: "p-setting__title" }, [_vm._v("パスワード作成")]),
+  return _c("div", { staticClass: "p-setting__container" }, [
+    _c("h2", { staticClass: "p-setting__title" }, [_vm._v("パスワード作成")]),
+    _vm._v(" "),
+    _c("section", { staticClass: "p-setting__item p-form" }, [
+      _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "p-setting__item p-form" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "label",
-          { staticClass: "c-form__info", attrs: { for: "password" } },
-          [_vm._v("新しいパスワード(半角英数字 8~50文字)")]
-        ),
-        _vm._v(" "),
-        _vm.errorsPassword
-          ? _c(
-              "ul",
-              _vm._l(_vm.errorsPassword, function(error) {
-                return _c("li", { key: error, staticClass: "c-error" }, [
-                  _c("span", [_vm._v(_vm._s(error))])
-                ])
-              }),
-              0
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.formPassword.password,
-              expression: "formPassword.password"
-            }
-          ],
-          staticClass: "c-form__input",
-          attrs: { id: "password", type: "password" },
-          domProps: { value: _vm.formPassword.password },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.formPassword, "password", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "c-form__info",
-            attrs: { for: "password_confirmation" }
-          },
-          [_vm._v("パスワード【再入力】")]
-        ),
-        _vm._v(" "),
-        _vm.errorsPasswordConfirmation
-          ? _c(
-              "ul",
-              _vm._l(_vm.errorsPasswordConfirmation, function(error) {
-                return _c("li", { key: error, staticClass: "c-error" }, [
-                  _c("span", [_vm._v(_vm._s(error))])
-                ])
-              }),
-              0
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.formPassword.password_confirmation,
-              expression: "formPassword.password_confirmation"
-            }
-          ],
-          staticClass: "c-form__input",
-          attrs: { id: "password_confirmation", type: "password" },
-          domProps: { value: _vm.formPassword.password_confirmation },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(
-                _vm.formPassword,
-                "password_confirmation",
-                $event.target.value
-              )
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "c-form__submit u-text--center" }, [
-          _c(
-            "button",
-            { staticClass: "c-btn", on: { click: _vm.createPassword } },
-            [_vm._v("\n          パスワードを登録する\n        ")]
+      _c("label", { staticClass: "c-form__info", attrs: { for: "password" } }, [
+        _vm._v("新しいパスワード(半角英数字 8~50文字)")
+      ]),
+      _vm._v(" "),
+      _vm.errorsPassword
+        ? _c(
+            "ul",
+            _vm._l(_vm.errorsPassword, function(error) {
+              return _c("li", { key: error, staticClass: "c-error" }, [
+                _c("span", [_vm._v(_vm._s(error))])
+              ])
+            }),
+            0
           )
-        ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.formPassword.password,
+            expression: "formPassword.password"
+          }
+        ],
+        staticClass: "c-form__input",
+        attrs: { id: "password", type: "password" },
+        domProps: { value: _vm.formPassword.password },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.formPassword, "password", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "label",
+        {
+          staticClass: "c-form__info",
+          attrs: { for: "password_confirmation" }
+        },
+        [_vm._v("パスワード【再入力】")]
+      ),
+      _vm._v(" "),
+      _vm.errorsPasswordConfirmation
+        ? _c(
+            "ul",
+            _vm._l(_vm.errorsPasswordConfirmation, function(error) {
+              return _c("li", { key: error, staticClass: "c-error" }, [
+                _c("span", [_vm._v(_vm._s(error))])
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.formPassword.password_confirmation,
+            expression: "formPassword.password_confirmation"
+          }
+        ],
+        staticClass: "c-form__input",
+        attrs: { id: "password_confirmation", type: "password" },
+        domProps: { value: _vm.formPassword.password_confirmation },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(
+              _vm.formPassword,
+              "password_confirmation",
+              $event.target.value
+            )
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "c-form__submit u-text--center" }, [
+        _c(
+          "button",
+          { staticClass: "c-btn", on: { click: _vm.createPassword } },
+          [_vm._v("\n        パスワードを登録する\n      ")]
+        )
       ])
     ])
   ])
@@ -37446,33 +37438,18 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "l-container__setting" },
+    { staticClass: "l-container__setting u-flex u-space-between" },
     [
       _c("SettingItemList"),
       _vm._v(" "),
       _vm.isLoading
         ? _c("div", [_c("Loading")], 1)
-        : _c("div", [
-            _vm.isExistPassword
-              ? _c("div", [_c("PasswordUpdate")], 1)
-              : _c("div", [_c("PasswordCreate")], 1)
-          ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "u-text--center" },
-        [
-          _c(
-            "RouterLink",
-            {
-              staticClass: "c-btn",
-              attrs: { to: "/mypage/" + this.$store.getters["auth/username"] }
-            },
-            [_vm._v("マイページへ戻る")]
+        : _c(
+            "div",
+            { staticClass: "p-setting" },
+            [_vm.isExistPassword ? _c("PasswordUpdate") : _c("PasswordCreate")],
+            1
           )
-        ],
-        1
-      )
     ],
     1
   )
@@ -37499,149 +37476,143 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "p-setting" }, [
-    _c("div", { staticClass: "p-setting__container" }, [
-      _c("h2", { staticClass: "p-setting__title" }, [
-        _vm._v("パスワードの更新")
+  return _c("div", { staticClass: "p-setting__container" }, [
+    _c("h2", { staticClass: "p-setting__title" }, [_vm._v("パスワードの更新")]),
+    _vm._v(" "),
+    _c("section", { staticClass: "p-setting__item p-form" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "label",
+        { staticClass: "c-form__info", attrs: { for: "old_password" } },
+        [_vm._v("現在のパスワード")]
+      ),
+      _vm._v(" "),
+      _vm.errorsOldPassword
+        ? _c(
+            "ul",
+            _vm._l(_vm.errorsOldPassword, function(error) {
+              return _c("li", { key: error, staticClass: "c-error" }, [
+                _c("span", [_vm._v(_vm._s(error))])
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.formPassword.old_password,
+            expression: "formPassword.old_password"
+          }
+        ],
+        staticClass: "c-form__input",
+        attrs: { id: "old_password", type: "password" },
+        domProps: { value: _vm.formPassword.old_password },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.formPassword, "old_password", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("label", { staticClass: "c-form__info", attrs: { for: "password" } }, [
+        _vm._v("新しいパスワード (半角英数字 8~50文字)")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "p-setting__item p-form" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "label",
-          { staticClass: "c-form__info", attrs: { for: "old_password" } },
-          [_vm._v("現在のパスワード")]
-        ),
-        _vm._v(" "),
-        _vm.errorsOldPassword
-          ? _c(
-              "ul",
-              _vm._l(_vm.errorsOldPassword, function(error) {
-                return _c("li", { key: error, staticClass: "c-error" }, [
-                  _c("span", [_vm._v(_vm._s(error))])
-                ])
-              }),
-              0
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.formPassword.old_password,
-              expression: "formPassword.old_password"
-            }
-          ],
-          staticClass: "c-form__input",
-          attrs: { id: "old_password", type: "password" },
-          domProps: { value: _vm.formPassword.old_password },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.formPassword, "old_password", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          { staticClass: "c-form__info", attrs: { for: "password" } },
-          [_vm._v("新しいパスワード (半角英数字 8~50文字)")]
-        ),
-        _vm._v(" "),
-        _vm.errorsPassword
-          ? _c(
-              "ul",
-              _vm._l(_vm.errorsPassword, function(error) {
-                return _c("li", { key: error, staticClass: "c-error" }, [
-                  _c("span", [_vm._v(_vm._s(error))])
-                ])
-              }),
-              0
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.formPassword.password,
-              expression: "formPassword.password"
-            }
-          ],
-          staticClass: "c-form__input",
-          attrs: { id: "password", type: "password" },
-          domProps: { value: _vm.formPassword.password },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.formPassword, "password", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "c-form__info",
-            attrs: { for: "password_confirmation" }
-          },
-          [_vm._v("新しいパスワード【再入力】")]
-        ),
-        _vm._v(" "),
-        _vm.errorsPasswordConfirmation
-          ? _c(
-              "ul",
-              _vm._l(_vm.errorsPasswordConfirmation, function(error) {
-                return _c("li", { key: error, staticClass: "c-error" }, [
-                  _c("span", [_vm._v(_vm._s(error))])
-                ])
-              }),
-              0
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.formPassword.password_confirmation,
-              expression: "formPassword.password_confirmation"
-            }
-          ],
-          staticClass: "c-form__input",
-          attrs: { id: "password_confirmation", type: "password" },
-          domProps: { value: _vm.formPassword.password_confirmation },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(
-                _vm.formPassword,
-                "password_confirmation",
-                $event.target.value
-              )
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "c-form__submit u-text--center" }, [
-          _c(
-            "button",
-            { staticClass: "c-btn", on: { click: _vm.updatePassword } },
-            [_vm._v("\n          パスワードを変更する\n        ")]
+      _vm.errorsPassword
+        ? _c(
+            "ul",
+            _vm._l(_vm.errorsPassword, function(error) {
+              return _c("li", { key: error, staticClass: "c-error" }, [
+                _c("span", [_vm._v(_vm._s(error))])
+              ])
+            }),
+            0
           )
-        ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.formPassword.password,
+            expression: "formPassword.password"
+          }
+        ],
+        staticClass: "c-form__input",
+        attrs: { id: "password", type: "password" },
+        domProps: { value: _vm.formPassword.password },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.formPassword, "password", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "label",
+        {
+          staticClass: "c-form__info",
+          attrs: { for: "password_confirmation" }
+        },
+        [_vm._v("新しいパスワード【再入力】")]
+      ),
+      _vm._v(" "),
+      _vm.errorsPasswordConfirmation
+        ? _c(
+            "ul",
+            _vm._l(_vm.errorsPasswordConfirmation, function(error) {
+              return _c("li", { key: error, staticClass: "c-error" }, [
+                _c("span", [_vm._v(_vm._s(error))])
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.formPassword.password_confirmation,
+            expression: "formPassword.password_confirmation"
+          }
+        ],
+        staticClass: "c-form__input",
+        attrs: { id: "password_confirmation", type: "password" },
+        domProps: { value: _vm.formPassword.password_confirmation },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(
+              _vm.formPassword,
+              "password_confirmation",
+              $event.target.value
+            )
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "c-form__submit u-text--center" }, [
+        _c(
+          "button",
+          { staticClass: "c-btn", on: { click: _vm.updatePassword } },
+          [_vm._v("\n        パスワードを変更する\n      ")]
+        )
       ])
     ])
   ])
@@ -37679,6 +37650,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "l-container__setting u-flex u-space-between" },
     [
       _c("SettingItemList"),
       _vm._v(" "),
@@ -37738,29 +37710,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
+  return _c("div", { staticClass: "p-setting__list" }, [
+    _c("ul", { staticClass: "p-setting__list--container" }, [
       _c(
-        "RouterLink",
-        { staticClass: "c-btn", attrs: { to: "/settings/profile" } },
-        [_vm._v("プロフィール")]
+        "li",
+        {},
+        [
+          _c(
+            "RouterLink",
+            {
+              staticClass: "p-setting__list--item",
+              attrs: { to: "/settings/account" }
+            },
+            [_vm._v("アカウント")]
+          )
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
-        "RouterLink",
-        { staticClass: "c-btn", attrs: { to: "/settings/account" } },
-        [_vm._v("アカウント")]
-      ),
-      _vm._v(" "),
-      _c(
-        "RouterLink",
-        { staticClass: "c-btn", attrs: { to: "/settings/password" } },
-        [_vm._v("パスワード")]
+        "li",
+        {},
+        [
+          _c(
+            "RouterLink",
+            {
+              staticClass: "p-setting__list--item",
+              attrs: { to: "/settings/password" }
+            },
+            [_vm._v("\n        パスワード")]
+          )
+        ],
+        1
       )
-    ],
-    1
-  )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -26,8 +26,8 @@
     padding: 0 $space_l;
   }
   &__setting {
-    width: 60%;
-    max-width: 768px;
+    width: 80%;
+    max-width: 1024px;
     margin: 0 auto;
     padding: 80px $space_l 120px;
     @include mq($breakpoint: md) {
