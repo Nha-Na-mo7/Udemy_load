@@ -6,13 +6,18 @@
         <RouterLink
             class="p-setting__list--item"
             to="/settings/account"
-        >アカウント</RouterLink>
+        >
+          <i class="fas fa-cog"></i>
+          アカウント
+        </RouterLink>
       </li>
       <li class="">
         <RouterLink
             class="p-setting__list--item"
             to="/settings/password">
-          パスワード</RouterLink>
+          <i class="fas fa-key"></i>
+          パスワード
+        </RouterLink>
       </li>
     </ul>
   </div>

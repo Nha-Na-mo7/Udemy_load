@@ -52,7 +52,7 @@
 
       <div class="c-form__submit u-text--center">
         <button class="c-btn" @click="createPassword">
-          パスワードを登録する
+          <i class="fas fa-key"></i> 登録する
         </button>
       </div>
     </section>

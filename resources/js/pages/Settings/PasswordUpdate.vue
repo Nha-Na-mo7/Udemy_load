@@ -70,7 +70,7 @@
 
       <div class="c-form__submit u-text--center">
         <button class="c-btn" @click="updatePassword">
-          パスワードを変更する
+          <i class="fas fa-key"></i> 変更する
         </button>
       </div>
     </section>

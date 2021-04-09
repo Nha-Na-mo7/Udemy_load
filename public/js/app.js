@@ -2478,6 +2478,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -5265,6 +5267,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -35975,7 +35982,10 @@ var render = function() {
                         _c(
                           "RouterLink",
                           { attrs: { to: "/settings/account" } },
-                          [_vm._v("アカウント設定")]
+                          [
+                            _c("i", { staticClass: "fas fa-cog" }),
+                            _vm._v(" アカウント設定\n            ")
+                          ]
                         )
                       ],
                       1
@@ -37403,7 +37413,7 @@ var render = function() {
         _c(
           "button",
           { staticClass: "c-btn", on: { click: _vm.createPassword } },
-          [_vm._v("\n        パスワードを登録する\n      ")]
+          [_c("i", { staticClass: "fas fa-key" }), _vm._v(" 登録する\n      ")]
         )
       ])
     ])
@@ -37615,7 +37625,7 @@ var render = function() {
         _c(
           "button",
           { staticClass: "c-btn", on: { click: _vm.updatePassword } },
-          [_vm._v("\n        パスワードを変更する\n      ")]
+          [_c("i", { staticClass: "fas fa-key" }), _vm._v(" 変更する\n      ")]
         )
       ])
     ])
@@ -37726,7 +37736,10 @@ var render = function() {
               staticClass: "p-setting__list--item",
               attrs: { to: "/settings/account" }
             },
-            [_vm._v("アカウント")]
+            [
+              _c("i", { staticClass: "fas fa-cog" }),
+              _vm._v("\n        アカウント\n      ")
+            ]
           )
         ],
         1
@@ -37742,7 +37755,10 @@ var render = function() {
               staticClass: "p-setting__list--item",
               attrs: { to: "/settings/password" }
             },
-            [_vm._v("\n        パスワード")]
+            [
+              _c("i", { staticClass: "fas fa-key" }),
+              _vm._v("\n        パスワード\n      ")
+            ]
           )
         ],
         1
