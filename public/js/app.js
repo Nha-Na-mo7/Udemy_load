@@ -36843,7 +36843,7 @@ var render = function() {
           [_vm._v("コースを検索してください")]
         ),
         _vm._v(" "),
-        _c("form", { attrs: { action: "" } }, [
+        _c("form", { attrs: { action: "", onsubmit: "return false" } }, [
           _c("label", [
             _c("input", {
               directives: [

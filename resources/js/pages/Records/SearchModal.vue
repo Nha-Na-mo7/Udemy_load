@@ -6,7 +6,7 @@
       <!-- コース検索フォーム-->
       <div class="p-modal__search__form c-modal__searchform">
         <p class="p-modal__search__title c-modal__title u-mb-l">コースを検索してください</p>
-        <form class="" action="">
+        <form class="" action="" onsubmit="return false">
           <label>
             <input type="text" class="c-form__input" v-model="searchData.keywords">
           </label>
