@@ -3170,6 +3170,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -36460,11 +36463,7 @@ var render = function() {
                   )
                 }
               }
-            }),
-            _vm._v(" "),
-            _c("button", { staticClass: "c-btn" }, [
-              _vm._v(_vm._s(_vm.submitButton))
-            ])
+            })
           ]
         )
       ]),
@@ -36498,6 +36497,12 @@ var render = function() {
           { staticClass: "c-btn", on: { click: _vm.toggleModalFlg } },
           [_vm._v("\n        コースを追加する\n      ")]
         )
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("button", { staticClass: "c-btn" }, [
+          _vm._v(_vm._s(_vm.submitButton))
+        ])
       ]),
       _vm._v(" "),
       !_vm.isCreateMode

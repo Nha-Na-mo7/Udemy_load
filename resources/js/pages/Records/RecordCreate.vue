@@ -23,8 +23,6 @@
               v-model="createData.recordForm.description"
               placeholder="説明文を入力してください。"
           ></textarea>
-          <!-- 投稿する / 更新する -->
-          <button class="c-btn">{{ submitButton }}</button>
         </form>
       </div>
 
@@ -46,6 +44,11 @@
         <button class="c-btn" @click="toggleModalFlg">
           コースを追加する
         </button>
+      </div>
+
+      <div>
+        <!-- 投稿する / 更新する -->
+        <button class="c-btn">{{ submitButton }}</button>
       </div>
 
       <!-- レコードを削除する(編集時のみ) -->
