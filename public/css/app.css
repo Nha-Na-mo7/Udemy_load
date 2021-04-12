@@ -693,13 +693,15 @@ input[type=checkbox] {
 }
 
 .p-course__selected {
-  padding: 5px;
-  border: 1px solid #000;
-  margin-bottom: 12px;
+  padding: 15px;
+  border: 1px solid #cdcdcd;
+  border-radius: 4px;
+  margin-bottom: 40px;
 }
 
 .p-course__selected--textarea {
   width: 100%;
+  min-height: 120px;
 }
 
 .p-course__card {
@@ -960,9 +962,21 @@ input[type=checkbox] {
 
 .p-form__title {
   font-size: 24px;
-  font-weight: bold;
-  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   margin-bottom: 15px;
+}
+
+.p-form__title::-moz-placeholder {
+  font-weight: unset;
+}
+
+.p-form__title:-ms-input-placeholder {
+  font-weight: unset;
+}
+
+.p-form__title::placeholder {
+  font-weight: unset;
 }
 
 .p-form__description {
@@ -1391,11 +1405,29 @@ input[type=checkbox] {
   }
 }
 
+.p-record__edit {
+  padding: 120px 0;
+}
+
+@media screen and (max-width: 414px) {
+  .p-record__edit {
+    padding: 50px 0;
+  }
+}
+
 .p-record__edit--inner {
-  width: 60%;
-  padding-top: 120px;
-  padding-bottom: 120px;
+  background: #fff;
+  box-shadow: #cdcdcd 0 3px 5px;
+  padding: 40px;
   margin: 0 auto;
+  width: 60%;
+}
+
+@media screen and (max-width: 768px) {
+  .p-record__edit--inner {
+    width: 90%;
+    padding: 30px 15px;
+  }
 }
 
 .p-record__edit--title {
@@ -1404,8 +1436,20 @@ input[type=checkbox] {
   font-weight: 600;
 }
 
+.p-record__edit--form {
+  border-top: 1px solid #cdcdcd;
+}
+
 .p-record__edit--textarea {
   width: 100%;
+  min-height: 180px;
+}
+
+.p-record__delete {
+  margin-top: 30px;
+  padding: 40px 0;
+  text-align: center;
+  border-top: 1px solid #cdcdcd;
 }
 
 .p-record__comment {
@@ -1572,7 +1616,7 @@ input[type=checkbox] {
   font-family: inherit;
   padding: 15px 20px;
   transition: background-color 0.5s;
-  background: #c4edf5;
+  background: #bce0f1;
 }
 
 .c-btn:hover {
@@ -1583,6 +1627,7 @@ input[type=checkbox] {
 .c-btn:disabled {
   cursor: not-allowed;
   background: #cdcdcd;
+  color: #fff;
 }
 
 .c-btn__header {
@@ -1609,6 +1654,40 @@ input[type=checkbox] {
 
 .c-btn__modal:hover {
   background: #888888;
+}
+
+.c-btn__addCourse {
+  width: 100%;
+  border: 4px dashed #888;
+  background: #fff;
+  padding: 32px 0;
+  font-size: 1.6rem;
+}
+
+@media screen and (max-width: 414px) {
+  .c-btn__addCourse {
+    border-width: 2px;
+    padding: 20px 0;
+    font-size: 1.2rem;
+  }
+}
+
+.c-btn__edit--submit {
+  width: 100%;
+  font-size: 18px;
+}
+
+.c-btn--delete {
+  background: #f8f8f8;
+  border: 1px solid #c4256f;
+  box-shadow: #cdcdcd 0 2px 5px;
+  color: #c4256f;
+  white-space: nowrap;
+}
+
+.c-btn--delete:hover {
+  background: #c4256f;
+  color: #f8f8f8;
 }
 
 .c-btn__twitter {
@@ -1682,19 +1761,6 @@ input[type=checkbox] {
   font-size: 1.2rem;
 }
 
-.c-btn__disabled {
-  background: #cdcdcd;
-  border: 1px solid #cdcdcd;
-  color: #444;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.c-btn__disabled:hover {
-  background: #cdcdcd;
-  color: #444;
-}
-
 .c-btn__setting--update {
   width: 100px;
   min-width: unset;
@@ -1740,7 +1806,7 @@ input[type=checkbox] {
 }
 
 .c-documentbox__item--info {
-  background: #c4edf5;
+  background: #bce0f1;
 }
 
 .c-documentbox__footer {

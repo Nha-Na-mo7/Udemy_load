@@ -14,11 +14,13 @@
   }
   // 選択されたコース
   &__selected {
-    padding: 5px;
-    border: 1px solid #000;
-    margin-bottom: 12px;
+    padding: 15px;
+    border: 1px solid #cdcdcd;
+    border-radius: 4px;
+    margin-bottom: 40px;
     &--textarea {
       width: 100%;
+      min-height: 120px;
     }
   }
 

@@ -2,29 +2,63 @@
 <template>
   <div class="p-record__edit">
     <div class="p-record__edit--inner">
-      <h2 class="p-record__edit--title">{{ pageTitle }}</h2>
+      <h2 class="p-record__edit--title u-mb-xl">{{ pageTitle }}</h2>
 
       <!-- 紹介したいコースについてのフォーム -->
-      <div>
+      <section class="p-record__edit--form">
         <form class="p-form">
-          <label for="record_title">タイトル</label>
+          <div class="p-form__description">
+            <p>"コースを追加する" からUdemyの講座を登録してください</p>
+          </div>
+
+          <!-- タイトル -->
+          <label
+              class="p-form__info"
+              for="record_title">タイトル
+          </label>
+          <!-- エラーメッセージ -->
+          <ul v-if="errorsTitle">
+            <li
+                class="c-error"
+                v-for="error in errorsTitle"
+                :key="error"
+            >
+              <span>{{ error }}</span>
+            </li>
+          </ul>
+          <!-- 入力欄 -->
           <input
               type="text"
               id="record_title"
-              class="p-form__title p-form__item"
+              class="p-form__title p-form__item c-form__input"
               v-model="createData.recordForm.title"
-              placeholder="タイトルは必須です。"
+              placeholder="タイトルを入力してください"
           >
 
-          <label for="record_description"></label>
+          <!-- 説明 -->
+          <label
+              class="p-form__info"
+              for="record_description">
+          </label>
+          <!-- エラーメッセージ -->
+          <ul v-if="errorsDescription">
+            <li
+                class="c-error"
+                v-for="error in errorsDescription"
+                :key="error"
+            >
+              <span>{{ error }}</span>
+            </li>
+          </ul>
+          <!-- テキストエリア -->
           <textarea
               id="record_description"
               class="p-form__description p-form__item p-record__edit--textarea c-form__textarea"
               v-model="createData.recordForm.description"
-              placeholder="説明文を入力してください。"
+              placeholder="説明文を入力してください"
           ></textarea>
         </form>
-      </div>
+      </section>
 
       <!-- 現在追加されているコース-->
       <div>
@@ -40,16 +74,16 @@
       </div>
 
       <!-- コースを追加する -->
-      <div>
-        <button class="c-btn" @click="toggleModalFlg">
-          コースを追加する
+      <div class="u-mb-3l">
+        <button class="c-btn c-btn__addCourse" @click="toggleModalFlg">
+          + コースを追加する
         </button>
       </div>
 
       <!-- 投稿する / 更新する -->
-      <div>
+      <div class="u-mb-3l">
         <button
-            class="c-btn"
+            class="c-btn c-btn__edit--submit"
             v-bind:disabled="this.checkVoidSelectedCourses"
             v-on:click="this.submitCourse">{{ submitButton }}
         </button>
@@ -96,6 +130,8 @@ export default {
     return {
       loading: true,
       modalFlg: false,
+      errorsTitle: '',
+      errorsDescription: '',
       createData: {
         selectedCourses: [],
         recordForm: {

@@ -20,6 +20,7 @@
   &:disabled {
     cursor: not-allowed;
     background: #cdcdcd;
+    color: #fff;
   }
   &__header {
     box-sizing: border-box;
@@ -32,6 +33,7 @@
     background: $btn-color_auth;
     font-weight: bold;
   }
+  // モーダル用
   &__modal {
     background: $btn-color_auth;
     border: #8a8a8a;
@@ -40,6 +42,37 @@
     padding: 15px 5px;
     &:hover {
       background: #888888;
+    }
+  }
+  // コースを追加するボタン
+  &__addCourse {
+    width: 100%;
+    border: 4px dashed #888;
+    background: #fff;
+    padding: 32px 0;
+    font-size: 1.6rem;
+    @include mq() {
+      border-width: 2px;
+      padding: 20px 0;
+      font-size: 1.2rem;
+    }
+  }
+  // 編集投稿ページの送信ボタン
+  &__edit {
+    &--submit {
+      width: 100%;
+      font-size: 18px;
+    }
+  }
+  &--delete {
+    background: #f8f8f8;
+    border: 1px solid $btn-color_danger-hover;
+    box-shadow: #cdcdcd 0 2px 5px;
+    color: $btn-color_danger-hover;
+    white-space: nowrap;
+    &:hover {
+      background: $btn-color_danger-hover;
+      color: #f8f8f8;
     }
   }
   &__twitter {
@@ -96,17 +129,6 @@
     padding: $space_l 100px;
     margin: auto 0;
     font-size: 1.2rem;
-  }
-  &__disabled {
-    background: #cdcdcd;
-    border: 1px solid #cdcdcd;
-    color: #444;
-    cursor: not-allowed;
-    opacity: 0.6;
-    &:hover {
-      background: #cdcdcd;
-      color: #444;
-    }
   }
   // アカウント設定画面用
   &__setting {

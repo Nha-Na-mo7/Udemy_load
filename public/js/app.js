@@ -3177,6 +3177,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3192,6 +3226,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       loading: true,
       modalFlg: false,
+      errorsTitle: '',
+      errorsDescription: '',
       createData: {
         selectedCourses: [],
         recordForm: {
@@ -36389,13 +36425,31 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-record__edit" }, [
     _c("div", { staticClass: "p-record__edit--inner" }, [
-      _c("h2", { staticClass: "p-record__edit--title" }, [
+      _c("h2", { staticClass: "p-record__edit--title u-mb-xl" }, [
         _vm._v(_vm._s(_vm.pageTitle))
       ]),
       _vm._v(" "),
-      _c("div", [
+      _c("section", { staticClass: "p-record__edit--form" }, [
         _c("form", { staticClass: "p-form" }, [
-          _c("label", { attrs: { for: "record_title" } }, [_vm._v("タイトル")]),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "p-form__info", attrs: { for: "record_title" } },
+            [_vm._v("タイトル\n        ")]
+          ),
+          _vm._v(" "),
+          _vm.errorsTitle
+            ? _c(
+                "ul",
+                _vm._l(_vm.errorsTitle, function(error) {
+                  return _c("li", { key: error, staticClass: "c-error" }, [
+                    _c("span", [_vm._v(_vm._s(error))])
+                  ])
+                }),
+                0
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c("input", {
             directives: [
@@ -36406,11 +36460,11 @@ var render = function() {
                 expression: "createData.recordForm.title"
               }
             ],
-            staticClass: "p-form__title p-form__item",
+            staticClass: "p-form__title p-form__item c-form__input",
             attrs: {
               type: "text",
               id: "record_title",
-              placeholder: "タイトルは必須です。"
+              placeholder: "タイトルを入力してください"
             },
             domProps: { value: _vm.createData.recordForm.title },
             on: {
@@ -36427,7 +36481,22 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "record_description" } }),
+          _c("label", {
+            staticClass: "p-form__info",
+            attrs: { for: "record_description" }
+          }),
+          _vm._v(" "),
+          _vm.errorsDescription
+            ? _c(
+                "ul",
+                _vm._l(_vm.errorsDescription, function(error) {
+                  return _c("li", { key: error, staticClass: "c-error" }, [
+                    _c("span", [_vm._v(_vm._s(error))])
+                  ])
+                }),
+                0
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c("textarea", {
             directives: [
@@ -36442,7 +36511,7 @@ var render = function() {
               "p-form__description p-form__item p-record__edit--textarea c-form__textarea",
             attrs: {
               id: "record_description",
-              placeholder: "説明文を入力してください。"
+              placeholder: "説明文を入力してください"
             },
             domProps: { value: _vm.createData.recordForm.description },
             on: {
@@ -36484,19 +36553,22 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", [
-        _c(
-          "button",
-          { staticClass: "c-btn", on: { click: _vm.toggleModalFlg } },
-          [_vm._v("\n        コースを追加する\n      ")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", [
+      _c("div", { staticClass: "u-mb-3l" }, [
         _c(
           "button",
           {
-            staticClass: "c-btn",
+            staticClass: "c-btn c-btn__addCourse",
+            on: { click: _vm.toggleModalFlg }
+          },
+          [_vm._v("\n        + コースを追加する\n      ")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "u-mb-3l" }, [
+        _c(
+          "button",
+          {
+            staticClass: "c-btn c-btn__edit--submit",
             attrs: { disabled: this.checkVoidSelectedCourses },
             on: { click: this.submitCourse }
           },
@@ -36540,7 +36612,16 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-form__description" }, [
+      _c("p", [_vm._v('"コースを追加する" からUdemyの講座を登録してください')])
+    ])
+  }
+]
 render._withStripped = true
 
 
