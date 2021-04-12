@@ -1580,6 +1580,11 @@ input[type=checkbox] {
   background: #7eb1d6;
 }
 
+.c-btn:disabled {
+  cursor: not-allowed;
+  background: #cdcdcd;
+}
+
 .c-btn__header {
   box-sizing: border-box;
   padding: 10px 20px;

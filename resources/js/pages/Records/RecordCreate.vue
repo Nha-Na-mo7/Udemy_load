@@ -6,7 +6,7 @@
 
       <!-- 紹介したいコースについてのフォーム -->
       <div>
-        <form class="p-form" v-on:submit.prevent="submitCourse">
+        <form class="p-form">
           <label for="record_title">タイトル</label>
           <input
               type="text"
@@ -46,9 +46,13 @@
         </button>
       </div>
 
+      <!-- 投稿する / 更新する -->
       <div>
-        <!-- 投稿する / 更新する -->
-        <button class="c-btn">{{ submitButton }}</button>
+        <button
+            class="c-btn"
+            v-bind:disabled="this.checkVoidSelectedCourses"
+            v-on:click="this.submitCourse">{{ submitButton }}
+        </button>
       </div>
 
       <!-- レコードを削除する(編集時のみ) -->
@@ -110,6 +114,9 @@ export default {
     },
     submitButton() {
       return this.isCreateMode ? '投稿する' : '更新する'
+    },
+    checkVoidSelectedCourses() {
+      return !this.createData.selectedCourses.length
     }
   },
   methods: {
@@ -174,7 +181,7 @@ export default {
     async submitCourse() {
 
       // コースが1つもない場合は警告してfalseを返す
-      if (!this.createData.selectedCourses.length) {
+      if (this.checkVoidSelectedCourses) {
         alert('【！】コースを1つ以上追加してください')
         return false
       }

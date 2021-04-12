@@ -3173,6 +3173,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3206,6 +3210,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     submitButton: function submitButton() {
       return this.isCreateMode ? '投稿する' : '更新する';
+    },
+    checkVoidSelectedCourses: function checkVoidSelectedCourses() {
+      return !this.createData.selectedCourses.length;
     }
   },
   methods: {
@@ -3312,7 +3319,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                if (_this2.createData.selectedCourses.length) {
+                if (!_this2.checkVoidSelectedCourses) {
                   _context2.next = 3;
                   break;
                 }
@@ -36387,85 +36394,71 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", [
-        _c(
-          "form",
-          {
-            staticClass: "p-form",
+        _c("form", { staticClass: "p-form" }, [
+          _c("label", { attrs: { for: "record_title" } }, [_vm._v("タイトル")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.createData.recordForm.title,
+                expression: "createData.recordForm.title"
+              }
+            ],
+            staticClass: "p-form__title p-form__item",
+            attrs: {
+              type: "text",
+              id: "record_title",
+              placeholder: "タイトルは必須です。"
+            },
+            domProps: { value: _vm.createData.recordForm.title },
             on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.submitCourse($event)
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.createData.recordForm,
+                  "title",
+                  $event.target.value
+                )
               }
             }
-          },
-          [
-            _c("label", { attrs: { for: "record_title" } }, [
-              _vm._v("タイトル")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.createData.recordForm.title,
-                  expression: "createData.recordForm.title"
-                }
-              ],
-              staticClass: "p-form__title p-form__item",
-              attrs: {
-                type: "text",
-                id: "record_title",
-                placeholder: "タイトルは必須です。"
-              },
-              domProps: { value: _vm.createData.recordForm.title },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.createData.recordForm,
-                    "title",
-                    $event.target.value
-                  )
-                }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "record_description" } }),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.createData.recordForm.description,
+                expression: "createData.recordForm.description"
               }
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "record_description" } }),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.createData.recordForm.description,
-                  expression: "createData.recordForm.description"
+            ],
+            staticClass:
+              "p-form__description p-form__item p-record__edit--textarea c-form__textarea",
+            attrs: {
+              id: "record_description",
+              placeholder: "説明文を入力してください。"
+            },
+            domProps: { value: _vm.createData.recordForm.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              ],
-              staticClass:
-                "p-form__description p-form__item p-record__edit--textarea c-form__textarea",
-              attrs: {
-                id: "record_description",
-                placeholder: "説明文を入力してください。"
-              },
-              domProps: { value: _vm.createData.recordForm.description },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.createData.recordForm,
-                    "description",
-                    $event.target.value
-                  )
-                }
+                _vm.$set(
+                  _vm.createData.recordForm,
+                  "description",
+                  $event.target.value
+                )
               }
-            })
-          ]
-        )
+            }
+          })
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -36500,9 +36493,15 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", [
-        _c("button", { staticClass: "c-btn" }, [
-          _vm._v(_vm._s(_vm.submitButton))
-        ])
+        _c(
+          "button",
+          {
+            staticClass: "c-btn",
+            attrs: { disabled: this.checkVoidSelectedCourses },
+            on: { click: this.submitCourse }
+          },
+          [_vm._v(_vm._s(_vm.submitButton) + "\n      ")]
+        )
       ]),
       _vm._v(" "),
       !_vm.isCreateMode
