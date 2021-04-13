@@ -22,7 +22,7 @@
     <!-- サムネイル -->
     <img :src="getImage" alt="">
 
-    <div>
+    <div class="u-mt-l u-mb-l">
       <label for=""></label>
       <textarea
           name=""

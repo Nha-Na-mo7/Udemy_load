@@ -77,15 +77,14 @@
         </div>
 
         <!-- 投稿フォーム(ログイン必須) -->
-        <div v-if="isLogin">
-          <h3>投稿する</h3>
-          <form class="c-form" @submit.prevent="addComment">
+        <div v-if="isLogin" class="">
+          <form class="p-record__comment--form c-form" @submit.prevent="addComment">
         <textarea
-            class="p-record__comment--textarea c-form__textarea"
+            class="p-record__comment--textarea c-form__textarea u-mb-xl"
             v-model="commentContent"
         ></textarea>
             <div class="c-form__button">
-              <button class="c-btn">コメントを投稿</button>
+              <button class="c-btn c-btn__edit--submit">コメントを投稿</button>
             </div>
           </form>
         </div>

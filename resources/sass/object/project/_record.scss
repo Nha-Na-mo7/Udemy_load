@@ -191,9 +191,16 @@
         padding: 10px 0;
       }
     }
+    &--form {
+      text-align: center;
+      padding: 25px 0;
+      width: 90%;
+      margin: 0 auto;
+    }
     &--textarea {
-      min-width: 640px;
+      text-align: left;
       min-height: 180px;
+      width: 100%;
     }
   }
 }

@@ -3641,7 +3641,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -36756,13 +36755,11 @@ var render = function() {
                 ]),
             _vm._v(" "),
             _vm.isLogin
-              ? _c("div", [
-                  _c("h3", [_vm._v("投稿する")]),
-                  _vm._v(" "),
+              ? _c("div", {}, [
                   _c(
                     "form",
                     {
-                      staticClass: "c-form",
+                      staticClass: "p-record__comment--form c-form",
                       on: {
                         submit: function($event) {
                           $event.preventDefault()
@@ -36781,7 +36778,7 @@ var render = function() {
                           }
                         ],
                         staticClass:
-                          "p-record__comment--textarea c-form__textarea",
+                          "p-record__comment--textarea c-form__textarea u-mb-xl",
                         domProps: { value: _vm.commentContent },
                         on: {
                           input: function($event) {
@@ -36808,7 +36805,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "c-form__button" }, [
-      _c("button", { staticClass: "c-btn" }, [_vm._v("コメントを投稿")])
+      _c("button", { staticClass: "c-btn c-btn__edit--submit" }, [
+        _vm._v("コメントを投稿")
+      ])
     ])
   }
 ]
@@ -37145,7 +37144,7 @@ var render = function() {
     _vm._v(" "),
     _c("img", { attrs: { src: _vm.getImage, alt: "" } }),
     _vm._v(" "),
-    _c("div", [
+    _c("div", { staticClass: "u-mt-l u-mb-l" }, [
       _c("label", { attrs: { for: "" } }),
       _vm._v(" "),
       _c("textarea", {

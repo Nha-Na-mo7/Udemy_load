@@ -1505,9 +1505,17 @@ input[type=checkbox] {
   }
 }
 
+.p-record__comment--form {
+  text-align: center;
+  padding: 25px 0;
+  width: 90%;
+  margin: 0 auto;
+}
+
 .p-record__comment--textarea {
-  min-width: 640px;
+  text-align: left;
   min-height: 180px;
+  width: 100%;
 }
 
 .p-setting {
@@ -1929,7 +1937,6 @@ input[type=checkbox] {
   resize: none;
   padding: 10px 15px;
   font-size: 16px;
-  margin: 10px 0;
   border: 1px solid #cdcdcd;
   border-radius: 4px;
   line-height: 1.5;
