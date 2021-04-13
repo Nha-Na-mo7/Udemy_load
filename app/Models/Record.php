@@ -12,7 +12,7 @@ class Record extends Model
     
     // Jsonで表示させる項目
     protected $visible = [
-        'id', 'user_id', 'title', 'description', 'owner', 'courses', 'comments'
+        'id', 'user_id', 'title', 'description', 'owner', 'courses', 'comments', 'created_at', 'updated_at'
     ];
   
     // プライマリーキーの型をstringに

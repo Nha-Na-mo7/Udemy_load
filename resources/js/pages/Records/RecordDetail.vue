@@ -18,6 +18,9 @@
                 :to="`/mypage/${ this.ownerName }`"
             >ユーザー名: {{ this.ownerName }}
             </RouterLink>
+            <!-- 更新時刻 -->
+            <p>投稿時刻: {{ this.createdAt | recordAt }}</p>
+            <p v-show="checkUpdated">最終更新: {{ this.updatedAt | recordAt }}</p>
             <!-- Description -->
             <p v-html="description" class="p-record__info--description"></p>
           </div>
@@ -103,6 +106,7 @@
 import { OK, CREATED, UNPROCESSABLE_ENTITY } from '../../util.js'
 import Loading from '../../components/Loading'
 import CourseDetail from './CourseDetail'
+import moment from "moment";
 
 export default {
   props: {
@@ -142,7 +146,19 @@ export default {
     // 投稿者と自分が同一か
     isOwner() {
       return this.ownerName === this.$store.getters['auth/username']
-    }
+    },
+    // 投稿時刻
+    createdAt() {
+      return this.record.created_at
+    },
+    // 更新時刻
+    updatedAt() {
+      return this.record.updated_at
+    },
+    // 更新されているか(投稿時刻と更新時刻が同一ではないか)
+    checkUpdated() {
+      return this.createdAt < this.updatedAt
+    },
   },
   methods: {
     // ========================
@@ -200,7 +216,10 @@ export default {
   filters: {
     addBrackets(count) {
       return '(' + count + ')'
-    }
+    },
+    recordAt(date) {
+      return moment(date).format('YYYY/MM/DD HH:mm');
+    },
   },
   watch: {
     $route: {

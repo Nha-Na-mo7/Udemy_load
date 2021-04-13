@@ -4,12 +4,12 @@
 <template>
   <article class="p-record__list-item">
     <div class="p-record__list-item__main">
-    <!--  <span class="p-record__list-item__date">{{ item.created_at }}</span> -->
       <RouterLink
           class="p-record__list-item__username"
           :to="`/mypage/${ this.ownerName }`"
-      >ユーザー名: {{ this.ownerName }}
+      >@{{ this.ownerName }}
       </RouterLink>
+      <span class="p-record__list-item__date">{{ item.created_at | recordAt }}投稿</span>
     </div>
     <h2 class="p-record__list-item--title">
       <RouterLink
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   props: {
     item: {
@@ -51,6 +53,11 @@ export default {
       currentPath: this.$route.path
     }
   },
+  filters: {
+    recordAt(date) {
+      return moment(date).format('YYYY年M月D日HH時mm分');
+    },
+  }
 }
 </script>
 
