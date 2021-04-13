@@ -24,6 +24,13 @@
     }
   }
 
+  &-bt {
+    border-top: 1px solid #8a8a8a;
+  }
+  &-bb {
+    border-bottom: 1px solid #8a8a8a;
+  }
+
   &-scroll-prevent {
     position: fixed;
     width: 100%;

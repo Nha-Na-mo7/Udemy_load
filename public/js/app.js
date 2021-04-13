@@ -2964,6 +2964,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -3225,7 +3232,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       loading: true,
-      modalFlg: false,
+      modalFlg: true,
       errorsTitle: '',
       errorsDescription: '',
       createData: {
@@ -4219,6 +4226,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
+//
+//
 //
 //
 //
@@ -36307,14 +36316,27 @@ var render = function() {
     }),
     _vm._v(" "),
     _c("div", { staticClass: "p-course__card--left u-text--center" }, [
-      _c("img", {
-        staticClass: "p-course__card--img",
-        attrs: { src: _vm.getImage, alt: "" }
-      })
+      _c(
+        "a",
+        {
+          staticClass: "p-course__card--title--link",
+          attrs: {
+            href: _vm.getUrl,
+            target: "_blank",
+            rel: "noopener noreferrer"
+          }
+        },
+        [
+          _c("img", {
+            staticClass: "p-course__card--img",
+            attrs: { src: _vm.getImage, alt: "" }
+          })
+        ]
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "p-course__card--right" }, [
-      _c("div", { staticClass: "p-course__card--info" }, [
+      _c("div", { staticClass: "p-course__card--info u-bb" }, [
         _c("h2", { staticClass: "p-course__card--title" }, [
           _c(
             "a",
@@ -37059,10 +37081,15 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-course__card" }, [
-    _c("img", { attrs: { src: _vm.getImage, alt: "" } }),
+    _c("div", { staticClass: "p-course__card--left u-text--center" }, [
+      _c("img", {
+        staticClass: "p-course__card--img",
+        attrs: { src: _vm.getImage, alt: "" }
+      })
+    ]),
     _vm._v(" "),
-    _c("div", { staticClass: "p-course__card--title" }, [
-      _c("h2", [
+    _c("div", { staticClass: "p-course__card--right p-course__card--info" }, [
+      _c("h2", { staticClass: "p-course__card--title" }, [
         _c(
           "a",
           {
@@ -37081,9 +37108,14 @@ var render = function() {
         _vm._v(_vm._s(_vm.getInstructor))
       ]),
       _vm._v(" "),
-      _c("button", { staticClass: "c-btn", on: { click: _vm.addCourse } }, [
-        _vm._v("追加する")
-      ])
+      _c(
+        "button",
+        {
+          staticClass: "c-btn c-btn__modal--add",
+          on: { click: _vm.addCourse }
+        },
+        [_vm._v("追加する")]
+      )
     ])
   ])
 }

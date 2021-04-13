@@ -3,10 +3,12 @@
   <div class="p-course__card">
 
     <!-- サムネイル -->
-    <img :src="getImage" alt="">
+    <div class="p-course__card--left u-text--center">
+      <img :src="getImage" alt="" class="p-course__card--img">
+    </div>
     <!-- 講座名とリンク -->
-    <div class="p-course__card--title">
-      <h2>
+    <div class="p-course__card--right p-course__card--info">
+      <h2 class="p-course__card--title">
         <a
             class="p-course__card--title--link"
             :href="getUrl"
@@ -19,7 +21,7 @@
       <p class="p-course__card--instructor">{{ getInstructor }}</p>
 
       <!-- 追加するボタン -->
-      <button class="c-btn" @click="addCourse">追加する</button>
+      <button class="c-btn c-btn__modal--add" @click="addCourse">追加する</button>
     </div>
   </div>
 </template>

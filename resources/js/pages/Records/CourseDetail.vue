@@ -7,13 +7,20 @@
     <span class="p-course__card--line" :detail-index="this.recordIndex"></span>
 
     <div class="p-course__card--left u-text--center">
-      <!-- サムネイル -->
-      <img :src="getImage" alt="" class="p-course__card--img">
+      <!-- サムネイル 投稿時の検索モーダルとは違いここにはリンクを貼る -->
+      <a
+          class="p-course__card--title--link"
+          :href="getUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+      >
+        <img :src="getImage" alt="" class="p-course__card--img">
+      </a>
     </div>
 
     <div class="p-course__card--right">
       <!-- 講座名とリンク -->
-      <div class="p-course__card--info">
+      <div class="p-course__card--info u-bb">
         <h2 class="p-course__card--title">
           <a
               class="p-course__card--title--link"

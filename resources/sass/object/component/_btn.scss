@@ -2,7 +2,6 @@
 //  c-button
 //  =============
 .c-btn {
-  min-width: 256px;
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
@@ -42,6 +41,10 @@
     padding: 15px 5px;
     &:hover {
       background: #888888;
+    }
+    &--add {
+      width: 100%;
+      font-size: 18px;
     }
   }
   // コースを追加するボタン
