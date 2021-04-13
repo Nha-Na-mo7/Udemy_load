@@ -16,11 +16,27 @@ class RecordController extends Controller
     public function __construct()
     {
         // 基本的に認証必須 / expectは認証不要
-        $this->middleware('auth')->except(['show', 'index']);
+        $this->middleware('auth')->except(['show', 'index', 'get_list']);
     }
     
+    // ============
+    // ビューを返却
+    // ============
+    // 詳細画面
+    public function index()
+    {
+      return view('pages.records');
+    }
+    // 投稿画面
+    public function index_create()
+    {
+      return view('pages.record_create');
+    }
+  
+    // ==============
     // レコードの投稿
     // TODO 未実装項目: IDが被った時に再抽選する機能、
+    // ============
     public function create(RecordRequest $request)
     {
         Log::debug('==============');
@@ -58,7 +74,9 @@ class RecordController extends Controller
         return response($record, 201);
     }
     
+    // ============
     // レコードの更新
+    // ============
     public function update(RecordRequest $request, string $id)
     {
         Log::debug('==========================');
@@ -148,7 +166,9 @@ class RecordController extends Controller
         return response([], 200);
     }
     
+    // ==============
     // レコード詳細の取得
+    // ==============
     public function show(string $id, bool $owner_flg = false) {
         Log::debug('==================================');
         Log::debug('レコード詳細取得/ID:'.$id);
@@ -173,8 +193,10 @@ class RecordController extends Controller
         return $record;
     }
     
+    // ==============
     // レコード一覧の取得
-    public function index($user_id = null) {
+    // ==============
+    public function get_list($user_id = null) {
         Log::debug('==============');
         Log::debug('レコード一覧取得');
         Log::debug('==============');
@@ -198,7 +220,9 @@ class RecordController extends Controller
         return $records;
     }
     
+    // ==============
     // レコードの削除
+    // ==============
     public function delete(string $id) {
         Log::debug('===============================');
         Log::debug('レコード削除/ID:'.$id);
@@ -220,7 +244,9 @@ class RecordController extends Controller
         return abort(404);
     }
     
+    // ==============
     // コメントの投稿
+    // ==============
     public function addComment(Record $record, StoreComment $request) {
         Log::debug('===========');
         Log::debug('コメント投稿');

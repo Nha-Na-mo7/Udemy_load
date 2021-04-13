@@ -32,6 +32,37 @@ Auth::routes();
 // ログイン
 Route::get('/login', 'HomeController@index')->name('home.index');
 
+// =============
+// レコード取得
+// =============
+// 詳細/編集画面
+Route::get('/record/{id}/{owner_flg?}', 'RecordController@show')->name('record.show');
+// 一覧取得(ユーザーIDは任意)
+Route::get('/records/index/{id?}', 'RecordController@get_list')->where('id', '[\w]+');
+
+// 投稿画面のビュー
+Route::get('/records/new', 'RecordController@index_create')->name('record.index');
+// レコード詳細画面のビュー
+Route::get('/records/{any?}', 'RecordController@index')->name('record.index')->where('any', '.+');
+
+// =============
+// レコード編集関連
+// =============
+// 投稿
+Route::post('/records/create', 'RecordController@create')->name('record.create');
+// 更新
+Route::post('/record/{id}/update', 'RecordController@update')->name('record.update');
+// コメントの投稿
+Route::post('/record/{record}/comments', 'RecordController@addComment')->name('record.comment');
+// 削除(論理)
+Route::post('/record/{id}/delete', 'RecordController@delete')->name('record.delete');
+
+
+// =================
+// UdemyAPI関連
+// =================
+// 指定したワードでUdemyAPIを使用し、レッスン一覧を取得する
+Route::get('/udemy/course/get', 'UdemyController@get_course');
 
 // ====================
 // マイページ・ユーザー関連
@@ -51,27 +82,12 @@ Route::post('/user/update/password', 'UserController@update_password');
 // 退会処理
 Route::post('/withdraw', 'UserController@withdraw')->name('user.withdraw');
 
-// =================
-// UdemyAPI関連
-// =================
-// 指定したワードでUdemyAPIを使用し、レッスン一覧を取得する
-Route::get('/udemy/course/get', 'UdemyController@get_course');
+// マイページのビュー
+Route::get('/mypage/{any?}', 'MypageController@index')->name('mypage.index')->where('any', '.+');
+// アカウント設定のビュー
+Route::get('/settings/{any?}', 'UserController@index')->name('settings.index')->where('any', '.+');
 
-// =============
-// レコード関連
-// =============
-// 投稿
-Route::post('/records/create', 'RecordController@create')->name('record.create');
-// 更新
-Route::post('/record/{id}/update', 'RecordController@update')->name('record.update');
-// 詳細/編集画面
-Route::get('/record/{id}/{owner_flg?}', 'RecordController@show')->name('record.show');
-// コメントの投稿
-Route::post('/record/{record}/comments', 'RecordController@addComment')->name('record.comment');
-// 削除(論理)
-Route::post('/record/{id}/delete', 'RecordController@delete')->name('record.delete');
-// 一覧取得(ユーザーIDは任意)
-Route::get('/records/index/{id?}', 'RecordController@index')->where('id', '[\w]+')->name('record.index');
-
-
+// ==========================================================
+// 上記以外の全てのページに対してはNotFoundとしてerror.blade.phpを返す
+// ==========================================================
 Route::get('/{any?}', 'IndexController@error')->where('any', '.+')->name('home.error');

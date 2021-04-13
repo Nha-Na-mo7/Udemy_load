@@ -1,8 +1,8 @@
 <!-- =======-->
-<!-- 詳細画面 -->
+<!-- 投稿画面 -->
 <!-- =======-->
 @extends('layouts.app')
-@section('title', '(ここにタイトルを入れる)')
+@section('title', 'レコードの投稿')
 @section('content')
     <div id="app"></div>
 @endsection

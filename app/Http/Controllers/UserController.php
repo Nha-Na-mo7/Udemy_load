@@ -18,8 +18,15 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
     public function __construct(){
-      $this->middleware('auth')->except(['get_user']);
+      $this->middleware('auth')->except(['index', 'get_user',]);
     }
+    // ==========================
+    // ビューの返却(settings)
+    // ==========================
+    public function index() {
+      return view('pages.settings');
+    }
+  
     // =========================================================
     // 指定したユーザーの情報を返却する。指定がない場合は自分の情報を返却する
     // =========================================================

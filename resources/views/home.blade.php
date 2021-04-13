@@ -2,11 +2,8 @@
 <!--  ホーム -->
 <!-- ==========-->
 @extends('layouts.app')
-
-@section('title', 'ホーム')
-
+@section('title', 'Udemy講座紹介サービス')
 @section('content')
-
 {{--    <div class="container">--}}
 {{--        <div class="row justify-content-center">--}}
 {{--            <div class="col-md-8">--}}
@@ -26,7 +23,5 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </div>--}}
-
     <div id="app"></div>
-
 @endsection
