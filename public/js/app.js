@@ -3232,7 +3232,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       loading: true,
-      modalFlg: true,
+      modalFlg: false,
       errorsTitle: '',
       errorsDescription: '',
       createData: {

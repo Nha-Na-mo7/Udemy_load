@@ -129,7 +129,7 @@ export default {
   data() {
     return {
       loading: true,
-      modalFlg: true,
+      modalFlg: false,
       errorsTitle: '',
       errorsDescription: '',
       createData: {
