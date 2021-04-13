@@ -9,25 +9,32 @@
       <!-- インフォメーション -->
       <section class="p-record__info">
         <div class="p-record__info--inner">
-          <!-- 編集ボタン/投稿者自身の場合のみ-->
-          <RouterLink
-              v-if="isOwner"
-              class="c-btn"
-              :to="`/records/${this.id}/edit`">
-            編集する
-          </RouterLink>
+          <div class="p-record__info--column">
+            <!-- タイトル -->
+            <h2 class="p-record__info--title">{{ this.title }}</h2>
+            <!-- 投稿者 -->
+            <RouterLink
+                class="p-record__list-item__username"
+                :to="`/mypage/${ this.ownerName }`"
+            >ユーザー名: {{ this.ownerName }}
+            </RouterLink>
+            <!-- Description -->
+            <p v-html="description" class="p-record__info--description"></p>
+          </div>
 
-          <!-- タイトル -->
-          <h2 class="p-record__info--title">{{ this.title }}</h2>
-          <!-- 投稿者 -->
-          <RouterLink
-              class="p-record__list-item__username"
-              :to="`/mypage/${ this.ownerName }`"
-          >ユーザー名: {{ this.ownerName }}
-          </RouterLink>
-          <!-- Description -->
-          <p v-html="description" class="p-record__info--description"></p>
+          <!-- 編集ボタン/投稿者自身の場合のみ-->
+          <div class="p-record__info--column">
+            <RouterLink
+                v-if="isOwner"
+                class=""
+                :to="`/records/${this.id}/edit`">
+              <i class="fas fa-pencil-alt c-icon__fa"></i>
+            </RouterLink>
+          </div>
         </div>
+
+
+
       </section>
 
       <!-- 詳細 -->
@@ -40,7 +47,6 @@
         <!-- コースコンポーネント -->
         <div class="p-record__detail--right">
           <div class="p-record__detail--list">
-            <!-- TODO INDEXによる並び替えをサーバサイドで行う処理を書いてください-->
             <CourseDetail
                 v-for="(Course, index) in this.record.courses"
                 :key="Course.id"

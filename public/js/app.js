@@ -3641,6 +3641,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -36170,7 +36176,7 @@ var render = function() {
               },
               [
                 _c("i", {
-                  staticClass: "fas fa-pencil-alt p-mypage__record-list--icon"
+                  staticClass: "fas fa-pencil-alt c-icon__fa u-text--right"
                 })
               ]
             )
@@ -36649,45 +36655,57 @@ var render = function() {
       ? _c("div", [_c("Loading")], 1)
       : _c("div", [
           _c("section", { staticClass: "p-record__info" }, [
-            _c(
-              "div",
-              { staticClass: "p-record__info--inner" },
-              [
-                _vm.isOwner
-                  ? _c(
-                      "RouterLink",
-                      {
-                        staticClass: "c-btn",
-                        attrs: { to: "/records/" + this.id + "/edit" }
-                      },
-                      [_vm._v("\n            編集する\n          ")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("h2", { staticClass: "p-record__info--title" }, [
-                  _vm._v(_vm._s(this.title))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "RouterLink",
-                  {
-                    staticClass: "p-record__list-item__username",
-                    attrs: { to: "/mypage/" + this.ownerName }
-                  },
-                  [
-                    _vm._v(
-                      "ユーザー名: " + _vm._s(this.ownerName) + "\n          "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("p", {
-                  staticClass: "p-record__info--description",
-                  domProps: { innerHTML: _vm._s(_vm.description) }
-                })
-              ],
-              1
-            )
+            _c("div", { staticClass: "p-record__info--inner" }, [
+              _c(
+                "div",
+                { staticClass: "p-record__info--column" },
+                [
+                  _c("h2", { staticClass: "p-record__info--title" }, [
+                    _vm._v(_vm._s(this.title))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "RouterLink",
+                    {
+                      staticClass: "p-record__list-item__username",
+                      attrs: { to: "/mypage/" + this.ownerName }
+                    },
+                    [
+                      _vm._v(
+                        "ユーザー名: " +
+                          _vm._s(this.ownerName) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("p", {
+                    staticClass: "p-record__info--description",
+                    domProps: { innerHTML: _vm._s(_vm.description) }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "p-record__info--column" },
+                [
+                  _vm.isOwner
+                    ? _c(
+                        "RouterLink",
+                        { attrs: { to: "/records/" + this.id + "/edit" } },
+                        [
+                          _c("i", {
+                            staticClass: "fas fa-pencil-alt c-icon__fa"
+                          })
+                        ]
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("section", { staticClass: "p-record__detail" }, [

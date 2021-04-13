@@ -1263,11 +1263,6 @@ input[type=checkbox] {
   line-height: 1.6;
 }
 
-.p-mypage__record-list--icon {
-  text-align: right;
-  font-size: 20px;
-}
-
 .p-record {
   background: #e6f7ff;
 }
@@ -1382,6 +1377,13 @@ input[type=checkbox] {
   width: 80%;
   margin: 0 auto;
   padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.p-record__info--column {
+  width: auto;
+  max-width: 90%;
 }
 
 .p-record__info--title {
@@ -1979,6 +1981,10 @@ input[type=checkbox] {
   .c-form__submit {
     margin-top: 24px;
   }
+}
+
+.c-icon__fa {
+  font-size: 24px;
 }
 
 .c-input {

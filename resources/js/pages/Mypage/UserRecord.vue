@@ -22,7 +22,7 @@
           v-if="isOwner"
           class="u-mb-l"
           :to="`/records/${recordId}/edit`">
-        <i class="fas fa-pencil-alt p-mypage__record-list--icon"></i>
+        <i class="fas fa-pencil-alt c-icon__fa u-text--right"></i>
       </RouterLink>
     </div>
 

@@ -94,6 +94,12 @@
       width: 80%;
       margin: 0 auto;
       padding: 5px;
+      display: flex;
+      justify-content: space-between;
+    }
+    &--column {
+      width: auto;
+      max-width: 90%;
     }
     &--title {
       font-size: 40px;
