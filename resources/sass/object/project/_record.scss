@@ -30,6 +30,16 @@
           border-bottom: 1px solid #000;
         }
       }
+      &--username, &--date {
+        font-size: 12px;
+        color: #8a8a8a;
+      }
+      &--username {
+        font-weight: 700;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
       &--description {
         font-size: 14px;
         line-height: 1.8;
@@ -100,6 +110,10 @@
     &--column {
       width: auto;
       max-width: 90%;
+    }
+    &--date {
+      font-size: 12px;
+      margin-bottom: $space_s;
     }
     &--title {
       font-size: 40px;

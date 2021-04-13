@@ -3684,6 +3684,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -57759,7 +57762,9 @@ var render = function() {
           "p-mypage__record-list-item--column p-mypage__record-list-item--column--left"
       },
       [
-        _c("p", [_vm._v("投稿 " + _vm._s(_vm._f("recordAt")(this.createdAt)))]),
+        _c("p", { staticClass: "p-mypage__record-list-item--date" }, [
+          _vm._v("投稿時刻 " + _vm._s(_vm._f("recordAt")(this.createdAt)))
+        ]),
         _vm._v(" "),
         _c(
           "p",
@@ -57771,7 +57776,8 @@ var render = function() {
                 value: _vm.checkUpdated,
                 expression: "checkUpdated"
               }
-            ]
+            ],
+            staticClass: "p-mypage__record-list-item--date"
           },
           [_vm._v("最終更新 " + _vm._s(_vm._f("recordAt")(this.updatedAt)))]
         ),
@@ -58021,13 +58027,13 @@ var render = function() {
         _c(
           "RouterLink",
           {
-            staticClass: "p-record__list-item__username",
+            staticClass: "p-record__list-item--username",
             attrs: { to: "/mypage/" + this.ownerName }
           },
           [_vm._v("@" + _vm._s(this.ownerName) + "\n    ")]
         ),
         _vm._v(" "),
-        _c("span", { staticClass: "p-record__list-item__date" }, [
+        _c("span", { staticClass: "p-record__list-item--date" }, [
           _vm._v(_vm._s(_vm._f("recordAt")(_vm.item.created_at)) + "投稿")
         ])
       ],
@@ -58305,6 +58311,21 @@ var render = function() {
                 "div",
                 { staticClass: "p-record__info--column" },
                 [
+                  _c("p", { staticClass: "p-record__info--date" }, [
+                    _vm._v(
+                      "投稿時刻: " + _vm._s(_vm._f("recordAt")(this.createdAt))
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm.checkUpdated
+                    ? _c("p", { staticClass: "p-record__info--date" }, [
+                        _vm._v(
+                          "最終更新: " +
+                            _vm._s(_vm._f("recordAt")(this.updatedAt))
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
                   _c("h2", { staticClass: "p-record__info--title" }, [
                     _vm._v(_vm._s(this.title))
                   ]),
@@ -58320,32 +58341,6 @@ var render = function() {
                         "ユーザー名: " +
                           _vm._s(this.ownerName) +
                           "\n            "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "投稿時刻: " + _vm._s(_vm._f("recordAt")(this.createdAt))
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.checkUpdated,
-                          expression: "checkUpdated"
-                        }
-                      ]
-                    },
-                    [
-                      _vm._v(
-                        "最終更新: " +
-                          _vm._s(_vm._f("recordAt")(this.updatedAt))
                       )
                     ]
                   ),

@@ -10,6 +10,11 @@
       <section class="p-record__info">
         <div class="p-record__info--inner">
           <div class="p-record__info--column">
+
+            <!-- 投稿/更新時刻 -->
+            <p class="p-record__info--date">投稿時刻: {{ this.createdAt | recordAt }}</p>
+            <p class="p-record__info--date" v-if="checkUpdated">最終更新: {{ this.updatedAt | recordAt }}</p>
+
             <!-- タイトル -->
             <h2 class="p-record__info--title">{{ this.title }}</h2>
             <!-- 投稿者 -->
@@ -18,9 +23,7 @@
                 :to="`/mypage/${ this.ownerName }`"
             >ユーザー名: {{ this.ownerName }}
             </RouterLink>
-            <!-- 更新時刻 -->
-            <p>投稿時刻: {{ this.createdAt | recordAt }}</p>
-            <p v-show="checkUpdated">最終更新: {{ this.updatedAt | recordAt }}</p>
+
             <!-- Description -->
             <p v-html="description" class="p-record__info--description"></p>
           </div>

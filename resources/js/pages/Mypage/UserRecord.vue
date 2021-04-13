@@ -5,8 +5,8 @@
   <article class="p-mypage__record-list-item">
     <div class="p-mypage__record-list-item--column p-mypage__record-list-item--column--left">
       <!-- 更新時刻 -->
-      <p>投稿 {{ this.createdAt | recordAt }}</p>
-      <p v-show="checkUpdated">最終更新 {{ this.updatedAt | recordAt }}</p>
+      <p class="p-mypage__record-list-item--date">投稿時刻 {{ this.createdAt | recordAt }}</p>
+      <p class="p-mypage__record-list-item--date" v-show="checkUpdated">最終更新 {{ this.updatedAt | recordAt }}</p>
 
       <h2 class="p-mypage__record-list-item--title">
         <RouterLink
