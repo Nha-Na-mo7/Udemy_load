@@ -24,14 +24,6 @@
           :to="`/records/${recordId}/edit`">
         <i class="fas fa-pencil-alt p-mypage__record-list--icon"></i>
       </RouterLink>
-      <RouterLink
-          v-if="isOwner"
-          class=""
-          :to="`/records/${recordId}/edit`">
-        <i class="far fa-trash-alt p-mypage__record-list--icon"></i>
-      </RouterLink>
-      <!-- TODO 削除ボタン/投稿者自身の場合のみ-->
-
     </div>
 
 

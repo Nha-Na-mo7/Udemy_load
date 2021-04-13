@@ -2663,14 +2663,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -36180,18 +36172,6 @@ var render = function() {
               [
                 _c("i", {
                   staticClass: "fas fa-pencil-alt p-mypage__record-list--icon"
-                })
-              ]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.isOwner
-          ? _c(
-              "RouterLink",
-              { attrs: { to: "/records/" + _vm.recordId + "/edit" } },
-              [
-                _c("i", {
-                  staticClass: "far fa-trash-alt p-mypage__record-list--icon"
                 })
               ]
             )
