@@ -57005,26 +57005,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-header" }, [
-    _c(
-      "div",
-      { staticClass: "p-header__left" },
-      [
-        _c(
-          "RouterLink",
-          { staticClass: "p-header__logo", attrs: { to: "/" } },
-          [
-            _c("img", {
-              staticClass: "p-header__logo--img",
-              attrs: { src: "", alt: "UdemyLoad" }
-            })
-          ]
-        )
-      ],
-      1
-    ),
+    _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "p-header__right" }, [
-      _vm._m(0),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "nav",
@@ -57032,39 +57016,29 @@ var render = function() {
         [
           _c("ul", { staticClass: "p-header__menu" }, [
             _vm.isLogin
-              ? _c(
-                  "li",
-                  { staticClass: "p-header__item" },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "c-btn__header",
-                        attrs: { to: "/records/new" }
-                      },
-                      [_vm._v("\n            投稿する\n          ")]
-                    )
-                  ],
-                  1
-                )
+              ? _c("li", { staticClass: "p-header__item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "c-btn__header",
+                      attrs: { href: "/records/new" }
+                    },
+                    [_vm._v("\n            投稿する\n          ")]
+                  )
+                ])
               : _vm._e(),
             _vm._v(" "),
             _vm.isLogin
-              ? _c(
-                  "li",
-                  { staticClass: "p-header__item" },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "c-btn__header",
-                        attrs: { to: "/mypage/" + this.username }
-                      },
-                      [_vm._v("\n            マイページ\n          ")]
-                    )
-                  ],
-                  1
-                )
+              ? _c("li", { staticClass: "p-header__item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "c-btn__header",
+                      attrs: { href: "/mypage/" + this.username }
+                    },
+                    [_vm._v("\n            マイページ\n          ")]
+                  )
+                ])
               : _vm._e(),
             _vm._v(" "),
             _vm.isLogin
@@ -57075,18 +57049,13 @@ var render = function() {
                     [_vm._v("\n            ログアウト\n          ")]
                   )
                 ])
-              : _c(
-                  "li",
-                  { staticClass: "p-header__item" },
-                  [
-                    _c(
-                      "RouterLink",
-                      { staticClass: "c-btn__header", attrs: { to: "/login" } },
-                      [_vm._v("\n            ログイン / 新規登録\n          ")]
-                    )
-                  ],
-                  1
-                )
+              : _c("li", { staticClass: "p-header__item" }, [
+                  _c(
+                    "a",
+                    { staticClass: "c-btn__header", attrs: { href: "/login" } },
+                    [_vm._v("\n            ログイン / 新規登録\n          ")]
+                  )
+                ])
           ])
         ]
       )
@@ -57094,6 +57063,19 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-header__left" }, [
+      _c("a", { staticClass: "p-header__logo", attrs: { href: "/" } }, [
+        _c("img", {
+          staticClass: "p-header__logo--img",
+          attrs: { src: "", alt: "UdemyLoad" }
+        })
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

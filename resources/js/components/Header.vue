@@ -3,9 +3,9 @@
 
     <!-- ロゴ -->
     <div class="p-header__left">
-      <RouterLink class="p-header__logo" to="/">
+      <a class="p-header__logo" href="/">
         <img src="" alt="UdemyLoad" class="p-header__logo--img">
-      </RouterLink>
+      </a>
     </div>
 
     <!-- 右側 -->
@@ -22,16 +22,16 @@
         <ul class="p-header__menu">
           <!-- 投稿ボタン(仮)(ログイン中の場合) -->
           <li v-if="isLogin" class="p-header__item">
-            <RouterLink class="c-btn__header" to="/records/new">
+            <a class="c-btn__header" href="/records/new">
               投稿する
-            </RouterLink>
+            </a>
           </li>
 
           <!-- ユーザーネーム(ログイン中の場合) -->
           <li v-if="isLogin" class="p-header__item">
-            <RouterLink class="c-btn__header" :to="`/mypage/${ this.username }`">
+            <a class="c-btn__header" :href="`/mypage/${ this.username }`">
               マイページ
-            </RouterLink>
+            </a>
           </li>
 
           <!-- ログアウトボタン -->
@@ -48,9 +48,9 @@
 
           <!-- ログインボタン(未ログイン時) -->
           <li v-else class="p-header__item">
-            <RouterLink class="c-btn__header" to="/login">
+            <a class="c-btn__header" href="/login">
               ログイン / 新規登録
-            </RouterLink>
+            </a>
           </li>
         </ul>
       </nav>
