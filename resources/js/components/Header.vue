@@ -4,7 +4,12 @@
     <!-- ロゴ -->
     <div class="p-header__left">
       <a class="p-header__logo" href="/">
-        <img src="" alt="UdemyLoad" class="p-header__logo--img">
+        <!-- TODO 本番用に画像ファイルの場所が変更される余地あり -->
+        <img
+            src="../../../storage/app/public/images/logos/udemyload_logo.svg"
+            alt="UdemyLoad"
+            class="p-header__logo--img"
+        >
       </a>
     </div>
 

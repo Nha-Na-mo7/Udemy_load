@@ -2098,6 +2098,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     apiStatus: function apiStatus() {
@@ -57071,7 +57076,10 @@ var staticRenderFns = [
       _c("a", { staticClass: "p-header__logo", attrs: { href: "/" } }, [
         _c("img", {
           staticClass: "p-header__logo--img",
-          attrs: { src: "", alt: "UdemyLoad" }
+          attrs: {
+            src: __webpack_require__(/*! ../../../storage/app/public/images/logos/udemyload_logo.svg */ "./storage/app/public/images/logos/udemyload_logo.svg"),
+            alt: "UdemyLoad"
+          }
         })
       ])
     ])
@@ -78619,6 +78627,17 @@ var UDEMY_BASE_URL = 'https://www.udemy.com';
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./storage/app/public/images/logos/udemyload_logo.svg":
+/*!************************************************************!*\
+  !*** ./storage/app/public/images/logos/udemyload_logo.svg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/udemyload_logo.svg?75f9fe333aea9685a5262bc2c46c489a";
 
 /***/ }),
 
