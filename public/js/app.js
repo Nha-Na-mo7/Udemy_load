@@ -2292,6 +2292,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -57226,33 +57241,21 @@ var render = function() {
             }
           },
           [
-            _vm.loginErrors
-              ? _c("div", { staticClass: "c-errors" }, [
-                  _vm.loginErrors.email
-                    ? _c(
-                        "ul",
-                        _vm._l(_vm.loginErrors.email, function(msg) {
-                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
-                        }),
-                        0
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.loginErrors.password
-                    ? _c(
-                        "ul",
-                        _vm._l(_vm.loginErrors.password, function(msg) {
-                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
-                        }),
-                        0
-                      )
-                    : _vm._e()
-                ])
-              : _vm._e(),
-            _vm._v(" "),
             _c("label", { attrs: { for: "login-email" } }, [
               _vm._v("メールアドレス")
             ]),
+            _vm._v(" "),
+            _vm.loginErrors
+              ? _c(
+                  "ul",
+                  _vm._l(_vm.loginErrors.email, function(msg) {
+                    return _c("li", { key: msg, staticClass: "c-error" }, [
+                      _vm._v(_vm._s(msg))
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -57279,6 +57282,18 @@ var render = function() {
             _c("label", { attrs: { for: "login-password" } }, [
               _vm._v("パスワード")
             ]),
+            _vm._v(" "),
+            _vm.loginErrors
+              ? _c(
+                  "ul",
+                  _vm._l(_vm.loginErrors.password, function(msg) {
+                    return _c("li", { key: msg, staticClass: "c-error" }, [
+                      _vm._v(_vm._s(msg))
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -57334,43 +57349,21 @@ var render = function() {
             }
           },
           [
-            _vm.registerErrors
-              ? _c("div", { staticClass: "c-errors" }, [
-                  _vm.registerErrors.name
-                    ? _c(
-                        "ul",
-                        _vm._l(_vm.registerErrors.name, function(msg) {
-                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
-                        }),
-                        0
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.registerErrors.email
-                    ? _c(
-                        "ul",
-                        _vm._l(_vm.registerErrors.email, function(msg) {
-                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
-                        }),
-                        0
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.registerErrors.password
-                    ? _c(
-                        "ul",
-                        _vm._l(_vm.registerErrors.password, function(msg) {
-                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
-                        }),
-                        0
-                      )
-                    : _vm._e()
-                ])
-              : _vm._e(),
-            _vm._v(" "),
             _c("label", { attrs: { for: "username" } }, [
               _vm._v("ユーザーネーム")
             ]),
+            _vm._v(" "),
+            _vm.registerErrors
+              ? _c(
+                  "ul",
+                  _vm._l(_vm.registerErrors.name, function(msg) {
+                    return _c("li", { key: msg, staticClass: "c-error" }, [
+                      _vm._v(_vm._s(msg))
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -57398,6 +57391,18 @@ var render = function() {
               _vm._v("メールアドレス")
             ]),
             _vm._v(" "),
+            _vm.registerErrors
+              ? _c(
+                  "ul",
+                  _vm._l(_vm.registerErrors.email, function(msg) {
+                    return _c("li", { key: msg, staticClass: "c-error" }, [
+                      _vm._v(_vm._s(msg))
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e(),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -57421,6 +57426,18 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("label", { attrs: { for: "password" } }, [_vm._v("パスワード")]),
+            _vm._v(" "),
+            _vm.registerErrors
+              ? _c(
+                  "ul",
+                  _vm._l(_vm.registerErrors.password, function(msg) {
+                    return _c("li", { key: msg, staticClass: "c-error" }, [
+                      _vm._v(_vm._s(msg))
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -57457,7 +57474,7 @@ var render = function() {
                   expression: "registerForm.password_confirmation"
                 }
               ],
-              staticClass: "c-input",
+              staticClass: "c-input c-form__input",
               attrs: { type: "password", id: "password-confirmation" },
               domProps: { value: _vm.registerForm.password_confirmation },
               on: {
