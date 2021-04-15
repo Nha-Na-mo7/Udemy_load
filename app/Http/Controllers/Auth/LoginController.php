@@ -45,6 +45,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
       // ログイン処理後にリダイレクトする先を指定する
+      session()->flash('session_msg', 'ログインしました');
       return $user;
     }
     
@@ -81,7 +82,7 @@ class LoginController extends Controller
     {
       // セッションの再生成
       $request->session()->regenerate();
-      
+      session()->flash('session_msg', 'ログアウトしました');
       // jsonを返却 要検討
       return response()->json();
     }

@@ -7,13 +7,10 @@ use App\Http\Requests\UpdateMailRequest;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateUsernameRequest;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -55,10 +52,12 @@ class UserController extends Controller
         $user->save();
         
         Log::debug('ユーザーネームの変更完了しました。');
-        return response()->json(['success' => 'ユーザーネームを更新しました！'], 200);
+        session()->flash('session_success', 'ユーザーネームを更新しました');
+        return response()->json([], 200);
       }catch(\Exception $e) {
         Log::debug('エラーが発生しました。'. $e->getMessage());
-        return response()->json(['errors' => 'エラーが発生しました。'], 500);
+        session()->flash('session_error', 'エラーが発生しました。しばらくしてからやり直してください。');
+        return response()->json([], 500);
       }
     }
     
@@ -78,10 +77,12 @@ class UserController extends Controller
         $user->save();
         
         Log::debug('メールアドレスが変更されました。');
-        return response()->json(['success' => 'メールアドレスを更新しました！'], 200);
+        session()->flash('session_success', 'メールアドレスを更新しました！');
+        return response()->json([], 200);
       }catch(\Exception $e) {
         Log::debug('エラーが発生しました。'. $e->getMessage());
-        return response()->json(['errors' => 'エラーが発生しました。'], 500);
+        session()->flash('session_error', 'エラーが発生しました');
+        return response()->json([], 500);
       }
     }
     
@@ -99,11 +100,13 @@ class UserController extends Controller
         $user->save();
         
         Log::debug('パスワードを新規登録しました。');
-        return response()->json(['success' => 'パスワードを登録しました！'], 200);
+        session()->flash('session_success', 'パスワードが登録されました');
+        return response()->json([], 200);
         
       }catch (\Exception $e){
         Log::debug('エラーが発生しました。'. $e->getMessage());
-        return response()->json(['errors' => 'エラーが発生しました。'], 500);
+        session()->flash('session_error', 'エラーが発生しました');
+        return response()->json([], 500);
       }
     }
     
@@ -168,6 +171,7 @@ class UserController extends Controller
         session()->regenerateToken();
         
         // \Session::flash('system_message', '退会しました。ご利用いただきありがとうございました。');
+        session()->flash('session_msg', '退会処理が完了しました。');
         return response(200);
         
       } catch (\Exception $e) {
@@ -179,6 +183,7 @@ class UserController extends Controller
         // csrfトークンを再生成
         session()->regenerateToken();
         // \Session::flash('system_message', '退会処理中にエラーが発生しました。');
+        session()->flash('session_msg', '退会処理中にエラーが発生しました');
         return response(500);
       }
     }

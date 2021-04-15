@@ -32,6 +32,20 @@
         </div>
     @endif
 
+    {{-- flash success message --}}
+    @if(Session::has('session_success'))
+        <div class="c-flash c-flash__success js-flash-system-message" role="alert">
+            <p>{{ session('session_success') }}</p>
+        </div>
+    @endif
+
+    {{-- flash error message --}}
+    @if(Session::has('session_error'))
+        <div class="c-flash c-flash__error js-flash-system-message" role="alert">
+            <p>{{ session('session_error') }}</p>
+        </div>
+    @endif
+
     {{-- メインコンテンツ --}}
     <main class="l-container">
         @yield('content')

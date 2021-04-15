@@ -71,6 +71,7 @@ class RecordController extends Controller
             ]);
         }
         
+        session()->flash('session_success', '投稿しました');
         return response($record, 201);
     }
     
@@ -92,6 +93,7 @@ class RecordController extends Controller
         
         if ($record === null) {
           Log::debug('レコードが見当たらない、あるいは既に削除済みです');
+          session()->flash('session_error', 'レコードが見つかりませんでした');
           return abort(404);
         }
         // recordsテーブルのtitleとdescriptionを更新
@@ -162,7 +164,8 @@ class RecordController extends Controller
         Course::where('record_id', $id)
             ->where('record_index', '>', count($request->selectedCourses) - 1)
             ->delete();
-        
+  
+        session()->flash('session_success', '更新が完了しました');
         return response([], 200);
     }
     
@@ -238,9 +241,11 @@ class RecordController extends Controller
                 'delete_flg' => true,
             ]);
             Log::debug($id.'のdelete_flgをtrueにし、論理削除されました。');
+            session()->flash('session_success', '削除が完了しました');
             return response([], 200);
         }
         Log::debug('レコードはありませんでした');
+        session()->flash('session_error', 'レコードが見つかりませんでした');
         return abort(404);
     }
     
@@ -256,11 +261,10 @@ class RecordController extends Controller
         $comment->user_id = Auth::user()->id;
         $record->comments()->save($comment);
         
-        session()->flash('session_msg', '投稿しました');
-        
         // authorリレーションロードようにコメントを取得し直す
         $new_comment = Comment::where('id', $comment->id)->with('author')->first();
-        
+  
+        session()->flash('session_success', 'コメントが投稿されました');
         return response($new_comment, 201);
     }
 }

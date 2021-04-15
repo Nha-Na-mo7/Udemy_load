@@ -98,6 +98,7 @@ class RegisterController extends Controller
     // registeredメソッドを上書き
     protected function registered(Request $request, $user)
     {
+        session()->flash('session_msg', '登録ありがとうございます');
         return $user;
     }
 }
