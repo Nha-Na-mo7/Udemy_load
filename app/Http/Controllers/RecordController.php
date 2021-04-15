@@ -256,6 +256,8 @@ class RecordController extends Controller
         $comment->user_id = Auth::user()->id;
         $record->comments()->save($comment);
         
+        session()->flash('session_msg', '投稿しました');
+        
         // authorリレーションロードようにコメントを取得し直す
         $new_comment = Comment::where('id', $comment->id)->with('author')->first();
         

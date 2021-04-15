@@ -2,8 +2,13 @@
 <!--  ホーム -->
 <!-- ==========-->
 @extends('layouts.app')
-@section('title', 'Udemy講座紹介サービス')
+@section('title', 'Udemyに特化した学習記録サービス')
 @section('content')
+@if (session('flash_msg'))
+    <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+    </div>
+@endif
 {{--    <div class="container">--}}
 {{--        <div class="row justify-content-center">--}}
 {{--            <div class="col-md-8">--}}

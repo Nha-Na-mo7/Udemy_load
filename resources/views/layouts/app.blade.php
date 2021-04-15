@@ -25,6 +25,13 @@
 </head>
 <body>
 
+    {{-- flash message --}}
+    @if(Session::has('session_msg'))
+        <div class="c-flash js-flash-system-message" role="alert">
+            <p>{{ session('session_msg') }}</p>
+        </div>
+    @endif
+
     {{-- メインコンテンツ --}}
     <main class="l-container">
         @yield('content')
