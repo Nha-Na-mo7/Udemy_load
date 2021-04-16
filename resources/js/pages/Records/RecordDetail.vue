@@ -38,9 +38,6 @@
             </RouterLink>
           </div>
         </div>
-
-
-
       </section>
 
       <!-- 詳細 -->
@@ -106,7 +103,7 @@
 </template>
 <script>
 
-import { OK, CREATED, UNPROCESSABLE_ENTITY } from '../../util.js'
+import {OK, CREATED, UNPROCESSABLE_ENTITY, NOT_FOUND} from '../../util.js'
 import Loading from '../../components/Loading'
 import CourseDetail from './CourseDetail'
 import moment from "moment";
@@ -171,6 +168,8 @@ export default {
       console.log('レコード情報を取得しました。')
       // レコード情報を取得
       const response = await axios.get(`/record/${this.id}`)
+
+
       // エラー時の処理
       if (response.status !== OK) {
         this.$store.commit('error/setCode', response.status);
@@ -199,12 +198,23 @@ export default {
       this.commentContent = ''
       this.commentErrors = null
 
+      // コメントを投稿する間に既に削除されているなどの場合
+      if (response.status === NOT_FOUND) {
+        // 一覧ページへ戻す
+        this.$router.go({
+          path: `/`,
+          force: true
+        })
+        console.log(555)
+        return false
+      }
+      console.log(444)
       // それ以外のエラー
       if (response.status !== CREATED) {
         this.$store.commit('error/setCode', response.status)
         return false
       }
-
+      console.log(333)
       // ページをリロードする
       this.$router.go({
         path: this.$router.currentRoute.path,

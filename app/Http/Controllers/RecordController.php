@@ -256,6 +256,16 @@ class RecordController extends Controller
         Log::debug('===========');
         Log::debug('コメント投稿');
         Log::debug('===========');
+        // 投稿対象となるレコードの存在確認
+        $id = $record->id;
+        $checkExistRecord = Record::where('id', $id)->where('delete_flg', false)->first();
+        if ($checkExistRecord === null) {
+          Log::debug('レコードは削除されています');
+          session()->flash('session_error', 'レコードは削除されています');
+          return abort(404);
+        }
+        
+        Log::debug('コメントを投稿します');
         $comment = new Comment();
         $comment->content = $request->get('content');
         $comment->user_id = Auth::user()->id;

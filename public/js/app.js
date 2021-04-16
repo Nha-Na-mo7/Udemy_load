@@ -3716,9 +3716,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -3852,10 +3849,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 6:
                 // 投稿後テキストエリア、エラーメッセージを空にする
                 _this2.commentContent = '';
-                _this2.commentErrors = null; // それ以外のエラー
+                _this2.commentErrors = null; // コメントを投稿する間に既に削除されているなどの場合
+
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["NOT_FOUND"])) {
+                  _context2.next = 12;
+                  break;
+                }
+
+                // 一覧ページへ戻す
+                _this2.$router.go({
+                  path: "/",
+                  force: true
+                });
+
+                console.log(555);
+                return _context2.abrupt("return", false);
+
+              case 12:
+                console.log(444); // それ以外のエラー
 
                 if (!(response.status !== _util_js__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context2.next = 11;
+                  _context2.next = 16;
                   break;
                 }
 
@@ -3863,14 +3877,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context2.abrupt("return", false);
 
-              case 11:
-                // ページをリロードする
+              case 16:
+                console.log(333); // ページをリロードする
+
                 _this2.$router.go({
                   path: _this2.$router.currentRoute.path,
                   force: true
                 });
 
-              case 12:
+              case 18:
               case "end":
                 return _context2.stop();
             }
