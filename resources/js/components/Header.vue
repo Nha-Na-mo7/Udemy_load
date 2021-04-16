@@ -82,7 +82,11 @@ export default {
       await this.$store.dispatch('auth/logout')
       // 処理成功時のみ遷移
       if (this.apiStatus) {
-        this.$router.push('/login')
+        // トップに遷移させる
+        this.$router.go({
+          path: `/`,
+          force: true
+        })
       }
     }
   },

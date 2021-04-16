@@ -82,7 +82,7 @@ class LoginController extends Controller
     {
       // セッションの再生成
       $request->session()->regenerate();
-      session()->flash('session_msg', 'ログアウトしました');
+
       // jsonを返却 要検討
       return response()->json();
     }
