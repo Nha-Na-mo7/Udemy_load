@@ -76513,7 +76513,11 @@ $(function () {
       });
       window.scrollTo(0, scrollPosition);
     }
-  });
+  }); // ==========================
+  // フラッシュメッセージのfadeout
+  // ==========================
+
+  $('.js-flash-system-message').fadeOut(5000);
 });
 
 /***/ }),
