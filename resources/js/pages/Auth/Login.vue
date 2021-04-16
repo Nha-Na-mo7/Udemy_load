@@ -152,7 +152,11 @@ export default {
       await this.$store.dispatch('auth/register', this.registerForm)
       // ログイン成功時、遷移させる
       if (this.apiStatus) {
-        this.$router.push('/')
+        // トップに遷移させる
+        this.$router.go({
+          path: `/`,
+          force: true
+        })
       }
     },
     // ---------
@@ -161,7 +165,11 @@ export default {
     async login() {
       await this.$store.dispatch('auth/login', this.loginForm)
       if (this.apiStatus) {
-        this.$router.push('/')
+        // トップに遷移させる
+        this.$router.go({
+          path: `/`,
+          force: true
+        })
       }
     },
     // --------------------

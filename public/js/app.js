@@ -2356,7 +2356,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 // ログイン成功時、遷移させる
                 if (_this.apiStatus) {
-                  _this.$router.push('/');
+                  // トップに遷移させる
+                  _this.$router.go({
+                    path: "/",
+                    force: true
+                  });
                 }
 
               case 3:
@@ -2383,7 +2387,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 if (_this2.apiStatus) {
-                  _this2.$router.push('/');
+                  // トップに遷移させる
+                  _this2.$router.go({
+                    path: "/",
+                    force: true
+                  });
                 }
 
               case 3:
