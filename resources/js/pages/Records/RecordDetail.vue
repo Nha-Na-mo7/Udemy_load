@@ -6,98 +6,101 @@
     </div>
 
     <div v-else>
-      <!-- インフォメーション -->
-      <section class="p-record__info">
-        <div class="p-record__info--inner">
-          <div class="p-record__info--column">
+      <div v-if="checkExistRecord">
+        <!-- インフォメーション -->
+        <section class="p-record__info">
+          <div class="p-record__info--inner">
+            <div class="p-record__info--column">
 
-            <!-- 投稿/更新時刻 -->
-            <p class="p-record__info--date">投稿時刻: {{ this.createdAt | recordAt }}</p>
-            <p class="p-record__info--date" v-if="checkUpdated">最終更新: {{ this.updatedAt | recordAt }}</p>
+              <!-- 投稿/更新時刻 -->
+              <p class="p-record__info--date">投稿時刻: {{ this.createdAt | recordAt }}</p>
+              <p class="p-record__info--date" v-if="checkUpdated">最終更新: {{ this.updatedAt | recordAt }}</p>
 
-            <!-- タイトル -->
-            <h2 class="p-record__info--title">{{ this.title }}</h2>
-            <!-- 投稿者 -->
-            <RouterLink
-                class="p-record__list-item__username"
-                :to="`/mypage/${ this.ownerName }`"
-            >ユーザー名: {{ this.ownerName }}
-            </RouterLink>
+              <!-- タイトル -->
+              <h2 class="p-record__info--title">{{ this.title }}</h2>
+              <!-- 投稿者 -->
+              <RouterLink
+                  class="p-record__list-item__username"
+                  :to="`/mypage/${ this.ownerName }`"
+              >ユーザー名: {{ this.ownerName }}
+              </RouterLink>
 
-            <!-- Description -->
-            <p v-html="description" class="p-record__info--description"></p>
+              <!-- Description -->
+              <p v-html="description" class="p-record__info--description"></p>
+            </div>
+
+            <!-- 編集ボタン/投稿者自身の場合のみ-->
+            <div class="p-record__info--column">
+              <RouterLink
+                  v-if="isOwner"
+                  class=""
+                  :to="`/records/${this.id}/edit`">
+                <i class="fas fa-pencil-alt c-icon__fa"></i>
+              </RouterLink>
+            </div>
+          </div>
+        </section>
+        <!-- 詳細 -->
+        <section class="p-record__detail">
+          <!-- バーの配置用エリア -->
+          <div class="p-record__detail--left">
+            <!--          <span class="p-record__detail&#45;&#45;line"></span>-->
           </div>
 
-          <!-- 編集ボタン/投稿者自身の場合のみ-->
-          <div class="p-record__info--column">
-            <RouterLink
-                v-if="isOwner"
-                class=""
-                :to="`/records/${this.id}/edit`">
-              <i class="fas fa-pencil-alt c-icon__fa"></i>
-            </RouterLink>
+          <!-- コースコンポーネント -->
+          <div class="p-record__detail--right">
+            <div class="p-record__detail--list">
+              <CourseDetail
+                  v-for="(Course, index) in this.record.courses"
+                  :key="Course.id"
+                  :course="Course"
+                  :index="index"
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <!-- コメント欄 -->
+        <section class="p-record__comment">
+          <h3 class="p-record__comment--head">コメント{{ countComments | addBrackets }}</h3>
 
-      <!-- 詳細 -->
-      <section class="p-record__detail">
-        <!-- バーの配置用エリア -->
-        <div class="p-record__detail--left">
-<!--          <span class="p-record__detail&#45;&#45;line"></span>-->
-        </div>
-
-        <!-- コースコンポーネント -->
-        <div class="p-record__detail--right">
-          <div class="p-record__detail--list">
-            <CourseDetail
-                v-for="(Course, index) in this.record.courses"
-                :key="Course.id"
-                :course="Course"
-                :index="index"
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- コメント欄 -->
-      <section class="p-record__comment">
-        <h3 class="p-record__comment--head">コメント{{ countComments | addBrackets }}</h3>
-
-        <!-- 一覧 -->
-        <ul
-            v-if="existComments"
-            class="p-record__comment--list"
-        >
-          <li
-              v-for="(Comment, index) in record.comments"
-              :key="Comment.content"
-              class="p-record__comment--item"
+          <!-- 一覧 -->
+          <ul
+              v-if="existComments"
+              class="p-record__comment--list"
           >
-            <p>{{ index + 1 | addBrackets}}</p>
-            <p class="p-record__comment--author">{{ Comment.author.name }} さんが{{ Comment.created_at }}に投稿</p>
-            <p class="p-record__comment--content">{{ Comment.content }}</p>
-          </li>
-        </ul>
+            <li
+                v-for="(Comment, index) in record.comments"
+                :key="Comment.content"
+                class="p-record__comment--item"
+            >
+              <p>{{ index + 1 | addBrackets}}</p>
+              <p class="p-record__comment--author">{{ Comment.author.name }} さんが{{ Comment.created_at }}に投稿</p>
+              <p class="p-record__comment--content">{{ Comment.content }}</p>
+            </li>
+          </ul>
 
-        <!-- コメントがない時 -->
-        <div v-else>
-          <h3 class="p-record__comment--item">コメントはありません</h3>
-        </div>
+          <!-- コメントがない時 -->
+          <div v-else>
+            <h3 class="p-record__comment--item">コメントはありません</h3>
+          </div>
 
-        <!-- 投稿フォーム(ログイン必須) -->
-        <div v-if="isLogin" class="">
-          <form class="p-record__comment--form c-form" @submit.prevent="addComment">
+          <!-- 投稿フォーム(ログイン必須) -->
+          <div v-if="isLogin" class="">
+            <form class="p-record__comment--form c-form" @submit.prevent="addComment">
         <textarea
             class="p-record__comment--textarea c-form__textarea u-mb-xl"
             v-model="commentContent"
         ></textarea>
-            <div class="c-form__button">
-              <button class="c-btn c-btn__edit--submit">コメントを投稿</button>
-            </div>
-          </form>
-        </div>
-      </section>
+              <div class="c-form__button">
+                <button class="c-btn c-btn__edit--submit">コメントを投稿</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+      <div v-else>
+        <NothingRecordDetail />
+      </div>
     </div>
   </div>
 </template>
@@ -105,6 +108,7 @@
 
 import {OK, CREATED, UNPROCESSABLE_ENTITY, NOT_FOUND} from '../../util.js'
 import Loading from '../../components/Loading'
+import NothingRecordDetail from './NothingRecordDetail'
 import CourseDetail from './CourseDetail'
 import moment from "moment";
 
@@ -124,6 +128,10 @@ export default {
     }
   },
   computed: {
+    // レコードが存在するかどうか
+    checkExistRecord() {
+      return !!Object.keys(this.record).length
+    },
     isLogin() {
       return this.$store.getters['auth/check']
     },
@@ -169,7 +177,11 @@ export default {
       // レコード情報を取得
       const response = await axios.get(`/record/${this.id}`)
 
-
+      // レコードが見つからなかった場合
+      if (response.status === NOT_FOUND) {
+        this.loading = false
+        return false
+      }
       // エラー時の処理
       if (response.status !== OK) {
         this.$store.commit('error/setCode', response.status);
@@ -202,19 +214,16 @@ export default {
       if (response.status === NOT_FOUND) {
         // 一覧ページへ戻す
         this.$router.go({
-          path: `/`,
+          path: this.$router.currentRoute.path,
           force: true
         })
-        console.log(555)
         return false
       }
-      console.log(444)
       // それ以外のエラー
       if (response.status !== CREATED) {
         this.$store.commit('error/setCode', response.status)
         return false
       }
-      console.log(333)
       // ページをリロードする
       this.$router.go({
         path: this.$router.currentRoute.path,
@@ -224,6 +233,7 @@ export default {
   },
   components: {
     Loading,
+    NothingRecordDetail,
     CourseDetail,
   },
   filters: {
