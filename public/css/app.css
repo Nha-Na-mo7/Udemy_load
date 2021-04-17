@@ -1269,6 +1269,12 @@ input[type=checkbox] {
   line-height: 1.6;
 }
 
+.p-nothing {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 768px;
+}
+
 .p-record {
   background: #e6f7ff;
 }
@@ -2250,7 +2256,7 @@ input[type=checkbox] {
 }
 
 .c-nothing {
-  padding: 15px 25px;
+  padding: 80px 25px;
   justify-content: center;
   align-items: center;
   flex-direction: column;

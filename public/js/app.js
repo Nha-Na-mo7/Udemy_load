@@ -57735,7 +57735,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "c-nothing" }, [
+    return _c("div", { staticClass: "p-nothing c-nothing" }, [
       _c("h2", { staticClass: "c-nothing__title" }, [
         _vm._v("ユーザーが見つかりませんでした。")
       ]),
@@ -58041,7 +58041,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "c-nothing" }, [
+    return _c("div", { staticClass: "p-nothing c-nothing" }, [
       _c("h2", { staticClass: "c-nothing__title" }, [
         _vm._v("レコードが見つかりませんでした。")
       ]),
