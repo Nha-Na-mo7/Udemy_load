@@ -40,7 +40,7 @@
             </div>
           </div>
         </section>
-        <!-- 詳細 -->
+        <!-- TODO 詳細 -->
         <section class="p-record__detail">
           <!-- バーの配置用エリア -->
           <div class="p-record__detail--left">
@@ -87,12 +87,12 @@
           <!-- 投稿フォーム(ログイン必須) -->
           <div v-if="isLogin" class="">
             <form class="p-record__comment--form c-form" @submit.prevent="addComment">
-        <textarea
-            class="p-record__comment--textarea c-form__textarea u-mb-xl"
-            v-model="commentContent"
-        ></textarea>
+              <textarea
+                  class="p-record__comment--textarea c-form__textarea u-mb-xl"
+                  v-model="commentContent"
+              ></textarea>
               <div class="c-form__button">
-                <button class="c-btn c-btn__edit--submit">コメントを投稿</button>
+                <button class="c-btn c-btn__edit--submit" v-bind:disabled="checkVoidComment">コメントを投稿</button>
               </div>
             </form>
           </div>
@@ -131,6 +131,10 @@ export default {
     // レコードが存在するかどうか
     checkExistRecord() {
       return !!Object.keys(this.record).length
+    },
+    // コメントが未入力かどうか
+    checkVoidComment() {
+      return this.commentContent === ''
     },
     isLogin() {
       return this.$store.getters['auth/check']
@@ -196,6 +200,11 @@ export default {
     // コメントを投稿
     // ================
     async addComment() {
+      if(this.checkVoidComment) {
+        alert('コメントを入力してください')
+        return false
+      }
+
       const response = await axios.post(`/record/${this.id}/comments`,{
         content: this.commentContent
       })

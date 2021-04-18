@@ -3760,6 +3760,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     checkExistRecord: function checkExistRecord() {
       return !!Object.keys(this.record).length;
     },
+    // コメントが未入力かどうか
+    checkVoidComment: function checkVoidComment() {
+      return this.commentContent === '';
+    },
     isLogin: function isLogin() {
       return this.$store.getters['auth/check'];
     },
@@ -3863,29 +3867,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                if (!_this2.checkVoidComment) {
+                  _context2.next = 3;
+                  break;
+                }
+
+                alert('コメントを入力してください');
+                return _context2.abrupt("return", false);
+
+              case 3:
+                _context2.next = 5;
                 return axios.post("/record/".concat(_this2.id, "/comments"), {
                   content: _this2.commentContent
                 });
 
-              case 2:
+              case 5:
                 response = _context2.sent;
 
                 if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
-                  _context2.next = 6;
+                  _context2.next = 9;
                   break;
                 }
 
                 _this2.commentErrors = response.data.errors;
                 return _context2.abrupt("return", false);
 
-              case 6:
+              case 9:
                 // 投稿後テキストエリア、エラーメッセージを空にする
                 _this2.commentContent = '';
                 _this2.commentErrors = null; // コメントを投稿する間に既に削除されているなどの場合
 
                 if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["NOT_FOUND"])) {
-                  _context2.next = 11;
+                  _context2.next = 14;
                   break;
                 }
 
@@ -3897,9 +3910,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context2.abrupt("return", false);
 
-              case 11:
+              case 14:
                 if (!(response.status !== _util_js__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context2.next = 14;
+                  _context2.next = 17;
                   break;
                 }
 
@@ -3907,14 +3920,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context2.abrupt("return", false);
 
-              case 14:
+              case 17:
                 // ページをリロードする
                 _this2.$router.go({
                   path: _this2.$router.currentRoute.path,
                   force: true
                 });
 
-              case 15:
+              case 18:
               case "end":
                 return _context2.stop();
             }
@@ -58540,7 +58553,16 @@ var render = function() {
                               }
                             }),
                             _vm._v(" "),
-                            _vm._m(0)
+                            _c("div", { staticClass: "c-form__button" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "c-btn c-btn__edit--submit",
+                                  attrs: { disabled: _vm.checkVoidComment }
+                                },
+                                [_vm._v("コメントを投稿")]
+                              )
+                            ])
                           ]
                         )
                       ])
@@ -58551,18 +58573,7 @@ var render = function() {
         ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "c-form__button" }, [
-      _c("button", { staticClass: "c-btn c-btn__edit--submit" }, [
-        _vm._v("コメントを投稿")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
