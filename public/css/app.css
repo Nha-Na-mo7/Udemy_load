@@ -621,7 +621,7 @@ input[type=checkbox] {
 @media screen and (max-width: 768px) {
   .l-container__auth {
     max-width: 100%;
-    margin: 50px auto;
+    padding: 40px 15px;
   }
 }
 
@@ -650,13 +650,11 @@ input[type=checkbox] {
   }
 }
 
-.p-auth__container {
-  padding: 70px 0;
-}
-
-.p-auth__another {
-  margin: 15px auto;
-  text-align: center;
+.p-auth {
+  padding: 80px 20px;
+  background: #fff;
+  box-shadow: #8a8a8a 0 0 12px;
+  position: relative;
 }
 
 .p-auth__checkbox {
@@ -674,6 +672,11 @@ input[type=checkbox] {
     margin-top: 12px;
     width: 100%;
   }
+}
+
+.p-auth__another {
+  margin: 15px auto;
+  text-align: center;
 }
 
 .p-course {
@@ -2439,8 +2442,8 @@ input[type=checkbox] {
 
 @media screen and (max-width: 414px) {
   .c-tab__item {
-    padding: 8px 12px;
-    font-size: 12px;
+    padding: 12px 20px;
+    font-size: 14px;
   }
 }
 

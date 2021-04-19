@@ -2,13 +2,10 @@
 //  p-auth
 // ==============
 .p-auth {
-  &__container {
-    padding: 70px 0;
-  }
-  &__another {
-    margin: $space_l auto;
-    text-align: center;
-  }
+  padding: 80px 20px;
+  background: #fff;
+  box-shadow: #8a8a8a 0 0 12px;
+  position: relative;
   &__checkbox {
     margin-bottom: $space_xl;
   }
@@ -20,5 +17,10 @@
       margin-top: 12px;
       width: 100%;
     }
+  }
+  // SNSでログインなどで使う「または」
+  &__another {
+    margin: $space_l auto;
+    text-align: center;
   }
 }

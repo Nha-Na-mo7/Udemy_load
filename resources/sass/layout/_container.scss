@@ -12,7 +12,7 @@
     padding: 120px $space_l;
     @include mq($breakpoint: md) {
       max-width: 100%;
-      margin: 50px auto;
+      padding: 40px $space_l;
     }
   }
   &__content {
