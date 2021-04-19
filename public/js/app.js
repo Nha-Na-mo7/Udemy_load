@@ -3327,6 +3327,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     checkVoidSelectedCourses: function checkVoidSelectedCourses() {
       return !this.createData.selectedCourses.length;
+    },
+    checkExistTitle: function checkExistTitle() {
+      return this.createData.recordForm.title !== '';
+    },
+    checkExistDescription: function checkExistDescription() {
+      return this.createData.recordForm.description !== '';
+    },
+    // 投稿/更新に必要な全ての条件を満たしているかのチェック
+    checkAllClear: function checkAllClear() {
+      return !this.checkVoidSelectedCourses && !this.checkVoidCourseDescription() && this.checkExistTitle && this.checkExistDescription;
     }
   },
   methods: {
@@ -58294,7 +58304,7 @@ var render = function() {
           "button",
           {
             staticClass: "c-btn c-btn__edit--submit",
-            attrs: { disabled: this.checkVoidSelectedCourses },
+            attrs: { disabled: !this.checkAllClear },
             on: { click: this.submitCourse }
           },
           [_vm._v(_vm._s(_vm.submitButton) + "\n      ")]

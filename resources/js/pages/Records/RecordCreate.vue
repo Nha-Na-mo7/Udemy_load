@@ -84,7 +84,7 @@
       <div class="u-mb-3l">
         <button
             class="c-btn c-btn__edit--submit"
-            v-bind:disabled="this.checkVoidSelectedCourses"
+            v-bind:disabled="!this.checkAllClear"
             v-on:click="this.submitCourse">{{ submitButton }}
         </button>
       </div>
@@ -153,6 +153,19 @@ export default {
     },
     checkVoidSelectedCourses() {
       return !this.createData.selectedCourses.length
+    },
+    checkExistTitle() {
+      return this.createData.recordForm.title !== ''
+    },
+    checkExistDescription() {
+      return this.createData.recordForm.description !== ''
+    },
+    // 投稿/更新に必要な全ての条件を満たしているかのチェック
+    checkAllClear() {
+      return !this.checkVoidSelectedCourses
+      && !this.checkVoidCourseDescription()
+      && this.checkExistTitle
+      && this.checkExistDescription
     }
   },
   methods: {
