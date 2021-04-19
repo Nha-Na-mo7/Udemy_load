@@ -2311,6 +2311,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2339,9 +2352,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
-    // --------------------------------------
+    // ======================================
     // 新規会員登録(authストアのregisterアクション)
-    // --------------------------------------
+    // ======================================
     register: function register() {
       var _this = this;
 
@@ -2371,9 +2384,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    // ---------
+    // =======
     // ログイン
-    // ---------
+    // =======
     login: function login() {
       var _this2 = this;
 
@@ -2402,9 +2415,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    // --------------------
+    // ====================
     // エラーメッセージのクリア
-    // --------------------
+    // ====================
     clearError: function clearError() {
       this.$store.commit('auth/setRegisterErrorMessages', null);
       this.$store.commit('auth/setLoginErrorMessages', null);
@@ -57368,7 +57381,9 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._m(0)
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1)
           ]
         )
       ]
@@ -57542,7 +57557,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._m(1)
+            _vm._m(2)
           ]
         )
       ]
@@ -57550,6 +57565,20 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "c-form__info c-form__checkbox" }, [
+      _c("label", { attrs: { for: "remember" } }, [
+        _c("input", {
+          staticClass: "c-form__checkbox--check",
+          attrs: { type: "checkbox", name: "remember", id: "remember" }
+        }),
+        _vm._v("\n          ログイン状態を維持する\n        ")
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

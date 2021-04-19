@@ -48,6 +48,19 @@
             id="login-password"
             v-model="loginForm.password"
         >
+
+        <!-- remember me -->
+        <div class="c-form__info c-form__checkbox">
+          <label for="remember">
+            <input
+                type="checkbox"
+                name="remember"
+                id="remember"
+                class="c-form__checkbox--check">
+            ログイン状態を維持する
+          </label>
+        </div>
+
         <div class="form__button">
           <button type="submit" class="c-btn c-btn__auth">ログイン</button>
         </div>
@@ -145,9 +158,9 @@ export default {
     },
   },
   methods: {
-    // --------------------------------------
+    // ======================================
     // 新規会員登録(authストアのregisterアクション)
-    // --------------------------------------
+    // ======================================
     async register() {
       await this.$store.dispatch('auth/register', this.registerForm)
       // ログイン成功時、遷移させる
@@ -159,9 +172,9 @@ export default {
         })
       }
     },
-    // ---------
+    // =======
     // ログイン
-    // ---------
+    // =======
     async login() {
       await this.$store.dispatch('auth/login', this.loginForm)
       if (this.apiStatus) {
@@ -172,9 +185,9 @@ export default {
         })
       }
     },
-    // --------------------
+    // ====================
     // エラーメッセージのクリア
-    // --------------------
+    // ====================
     clearError() {
       this.$store.commit('auth/setRegisterErrorMessages', null)
       this.$store.commit('auth/setLoginErrorMessages', null)
