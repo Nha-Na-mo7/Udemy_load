@@ -56,7 +56,9 @@
                 type="checkbox"
                 name="remember"
                 id="remember"
-                class="c-form__checkbox--check">
+                class="c-form__checkbox--check"
+                v-model="loginForm.remember"
+            >
             ログイン状態を維持する
           </label>
         </div>
@@ -136,7 +138,8 @@ export default {
       tab: 1,
       loginForm: {
         email: '',
-        password: ''
+        password: '',
+        remember: false,
       },
       registerForm: {
         name: '',

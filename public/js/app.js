@@ -2324,13 +2324,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       tab: 1,
       loginForm: {
         email: '',
-        password: ''
+        password: '',
+        remember: false
       },
       registerForm: {
         name: '',
@@ -57381,9 +57384,58 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "c-form__info c-form__checkbox" }, [
+              _c("label", { attrs: { for: "remember" } }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.loginForm.remember,
+                      expression: "loginForm.remember"
+                    }
+                  ],
+                  staticClass: "c-form__checkbox--check",
+                  attrs: { type: "checkbox", name: "remember", id: "remember" },
+                  domProps: {
+                    checked: Array.isArray(_vm.loginForm.remember)
+                      ? _vm._i(_vm.loginForm.remember, null) > -1
+                      : _vm.loginForm.remember
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.loginForm.remember,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.loginForm,
+                              "remember",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.loginForm,
+                              "remember",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.loginForm, "remember", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v("\n          ログイン状態を維持する\n        ")
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(1)
+            _vm._m(0)
           ]
         )
       ]
@@ -57557,7 +57609,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._m(2)
+            _vm._m(1)
           ]
         )
       ]
@@ -57565,20 +57617,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "c-form__info c-form__checkbox" }, [
-      _c("label", { attrs: { for: "remember" } }, [
-        _c("input", {
-          staticClass: "c-form__checkbox--check",
-          attrs: { type: "checkbox", name: "remember", id: "remember" }
-        }),
-        _vm._v("\n          ログイン状態を維持する\n        ")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
