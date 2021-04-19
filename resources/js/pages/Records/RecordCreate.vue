@@ -6,6 +6,7 @@
 
       <!-- 紹介したいコースについてのフォーム -->
       <section class="p-record__edit--form">
+
         <form class="p-form">
           <div class="p-form__description">
             <p>"コースを追加する" からUdemyの講座を登録してください</p>
@@ -17,10 +18,10 @@
               for="record_title">タイトル
           </label>
           <!-- エラーメッセージ -->
-          <ul v-if="errorsTitle">
+          <ul v-if="errors.errorsTitle">
             <li
                 class="c-error"
-                v-for="error in errorsTitle"
+                v-for="error in errors.errorsTitle"
                 :key="error"
             >
               <span>{{ error }}</span>
@@ -41,10 +42,10 @@
               for="record_description">
           </label>
           <!-- エラーメッセージ -->
-          <ul v-if="errorsDescription">
+          <ul v-if="errors.errorsDescription">
             <li
                 class="c-error"
-                v-for="error in errorsDescription"
+                v-for="error in errors.errorsDescription"
                 :key="error"
             >
               <span>{{ error }}</span>
@@ -130,8 +131,10 @@ export default {
     return {
       loading: true,
       modalFlg: false,
-      errorsTitle: '',
-      errorsDescription: '',
+      errors: {
+        errorsTitle: '',
+        errorsDescription: '',
+      },
       createData: {
         selectedCourses: [],
         recordForm: {
@@ -229,12 +232,23 @@ export default {
     // コースのレコードを投稿 or 上書きする
     async submitCourse() {
 
-      // コースが1つもない場合は警告してfalseを返す
+      // 以下、disabledを無理やり突破して来た場合に警告を出す
+      // タイトルが未入力の時
+      if (!this.checkExistTitle) {
+        alert('【！】タイトルを入力してください')
+        return false
+      }
+      // 説明文が未入力の時
+      if (!this.checkExistDescription) {
+        alert('【！】コースを1つ以上追加してください')
+        return false
+      }
+      // コースが1つもない場合
       if (this.checkVoidSelectedCourses) {
         alert('【！】コースを1つ以上追加してください')
         return false
       }
-      // コースの中でdescriptionが未入力のものがある場合、警告してfalseを返す
+      // コースの中でdescriptionが未入力のものがある場合
       if (this.checkVoidCourseDescription()) {
         alert('説明が未入力のコースがあります')
         return false
@@ -259,7 +273,6 @@ export default {
         this.$router.push(`/records/${response.data.id}`)
 
       }else{
-        console.log('eidtモードで更新処理です')
         const response = await axios.post(`/record/${this.id}/update`, this.createData);
 
         console.log(response.data)

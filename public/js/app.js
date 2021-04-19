@@ -3289,6 +3289,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -3304,8 +3305,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       loading: true,
       modalFlg: false,
-      errorsTitle: '',
-      errorsDescription: '',
+      errors: {
+        errorsTitle: '',
+        errorsDescription: ''
+      },
       createData: {
         selectedCourses: [],
         recordForm: {
@@ -3443,47 +3446,65 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                if (!_this2.checkVoidSelectedCourses) {
+                if (_this2.checkExistTitle) {
                   _context2.next = 3;
+                  break;
+                }
+
+                alert('【！】タイトルを入力してください');
+                return _context2.abrupt("return", false);
+
+              case 3:
+                if (_this2.checkExistDescription) {
+                  _context2.next = 6;
                   break;
                 }
 
                 alert('【！】コースを1つ以上追加してください');
                 return _context2.abrupt("return", false);
 
-              case 3:
+              case 6:
+                if (!_this2.checkVoidSelectedCourses) {
+                  _context2.next = 9;
+                  break;
+                }
+
+                alert('【！】コースを1つ以上追加してください');
+                return _context2.abrupt("return", false);
+
+              case 9:
                 if (!_this2.checkVoidCourseDescription()) {
-                  _context2.next = 6;
+                  _context2.next = 12;
                   break;
                 }
 
                 alert('説明が未入力のコースがあります');
                 return _context2.abrupt("return", false);
 
-              case 6:
+              case 12:
                 if (!_this2.isCreateMode) {
-                  _context2.next = 20;
+                  _context2.next = 26;
                   break;
                 }
 
-                _context2.next = 9;
+                _context2.next = 15;
                 return axios.post("../records/create", _this2.createData);
 
-              case 9:
+              case 15:
                 response = _context2.sent;
                 console.log(response); // バリデーションエラー
 
                 if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
-                  _context2.next = 14;
+                  _context2.next = 20;
                   break;
                 }
 
                 _this2.errors = response.data.errors;
                 return _context2.abrupt("return", false);
 
-              case 14:
+              case 20:
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context2.next = 17;
+                  _context2.next = 23;
                   break;
                 }
 
@@ -3491,24 +3512,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context2.abrupt("return", false);
 
-              case 17:
+              case 23:
                 // 投稿後にその詳細ページへ遷移させる
                 _this2.$router.push("/records/".concat(response.data.id));
 
-                _context2.next = 29;
+                _context2.next = 34;
                 break;
 
-              case 20:
-                console.log('eidtモードで更新処理です');
-                _context2.next = 23;
+              case 26:
+                _context2.next = 28;
                 return axios.post("/record/".concat(_this2.id, "/update"), _this2.createData);
 
-              case 23:
+              case 28:
                 _response = _context2.sent;
                 console.log(_response.data);
 
                 if (!(_response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context2.next = 28;
+                  _context2.next = 33;
                   break;
                 }
 
@@ -3516,11 +3536,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context2.abrupt("return", false);
 
-              case 28:
+              case 33:
                 // 詳細ページへ戻す
                 _this2.$router.push("/records/".concat(_this2.id));
 
-              case 29:
+              case 34:
               case "end":
                 return _context2.stop();
             }
@@ -58174,10 +58194,10 @@ var render = function() {
             [_vm._v("タイトル\n        ")]
           ),
           _vm._v(" "),
-          _vm.errorsTitle
+          _vm.errors.errorsTitle
             ? _c(
                 "ul",
-                _vm._l(_vm.errorsTitle, function(error) {
+                _vm._l(_vm.errors.errorsTitle, function(error) {
                   return _c("li", { key: error, staticClass: "c-error" }, [
                     _c("span", [_vm._v(_vm._s(error))])
                   ])
@@ -58221,10 +58241,10 @@ var render = function() {
             attrs: { for: "record_description" }
           }),
           _vm._v(" "),
-          _vm.errorsDescription
+          _vm.errors.errorsDescription
             ? _c(
                 "ul",
-                _vm._l(_vm.errorsDescription, function(error) {
+                _vm._l(_vm.errors.errorsDescription, function(error) {
                   return _c("li", { key: error, staticClass: "c-error" }, [
                     _c("span", [_vm._v(_vm._s(error))])
                   ])
