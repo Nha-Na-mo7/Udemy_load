@@ -23,7 +23,20 @@ class UserController extends Controller
     public function index() {
       return view('pages.settings');
     }
+    
+    // ==============
+    // 現在認証中か
+    // ==============
+    public function auth_check() {
+      Log::debug('認証状態のチェック auth_check::'.Auth::check());
+      if(Auth::check()){
+        Log::debug('200 認証中です');
+        return response()->json([], 200);
+      }
   
+      Log::debug('401 認証切れです');
+      return response()->json([], 401);
+    }
     // =========================================================
     // 指定したユーザーの情報を返却する。指定がない場合は自分の情報を返却する
     // =========================================================
@@ -169,10 +182,9 @@ class UserController extends Controller
         session()->invalidate();
         // csrfトークンを再生成
         session()->regenerateToken();
-        
-        // \Session::flash('system_message', '退会しました。ご利用いただきありがとうございました。');
+
         session()->flash('session_msg', '退会処理が完了しました。');
-        return response(200);
+        return response([], 200);
         
       } catch (\Exception $e) {
         Log::debug('退会処理の過程でエラーです。'. $e->getMessage());
@@ -182,9 +194,9 @@ class UserController extends Controller
         session()->invalidate();
         // csrfトークンを再生成
         session()->regenerateToken();
-        // \Session::flash('system_message', '退会処理中にエラーが発生しました。');
+
         session()->flash('session_msg', '退会処理中にエラーが発生しました');
-        return response(500);
+        return response([], 500);
       }
     }
 }

@@ -78282,7 +78282,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // VueRouterプラグインの使用
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]); // vue-routerからvuexを参照するには直接インポートする
-// 認証切れの場合に"/login"へ遷移させる
+// 認証切れの場合その場でリロードし、/loginへ遷移する
 
 function checkLoginToken(_x, _x2, _x3) {
   return _checkLoginToken.apply(this, arguments);
@@ -78702,6 +78702,94 @@ var actions = {
 
 /***/ }),
 
+/***/ "./resources/js/store/authenticate.js":
+/*!********************************************!*\
+  !*** ./resources/js/store/authenticate.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+// ====================
+// authenticate Store
+// ====================
+// vue-routerで認証切れをチェックするためのストア
+// ===============
+// state
+// ===============
+var state = function state() {
+  return {
+    authenticated: false
+  };
+}; // ===============
+// getter
+// ===============
+// ===============
+// mutations
+// ===============
+
+
+var mutations = {
+  set_authenticate: function set_authenticate(state) {
+    state.authenticate = true;
+  }
+}; // ===============
+// actions
+// ===============
+
+var actions = {
+  // 認証を確認する
+  check_authenticate: function check_authenticate(context) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios.get('/user/auth/check') // 通信失敗時にerror.responseが、成功時はレスポンスオブジェクトがそのまま入る
+              ["catch"](function (error) {
+                return error.response || error;
+              });
+
+            case 2:
+              response = _context.sent;
+
+              // 認証切れの時
+              if (response.status === 401) {
+                mutations.set_authenticate(state);
+              }
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  }
+}; // ================
+// export default
+// ================
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: state,
+  mutations: mutations,
+  actions: actions
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/error.js":
 /*!*************************************!*\
   !*** ./resources/js/store/error.js ***!
@@ -78764,20 +78852,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth */ "./resources/js/store/auth.js");
 /* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error */ "./resources/js/store/error.js");
+/* harmony import */ var _authenticate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./authenticate */ "./resources/js/store/authenticate.js");
 // ====================
 // ルート用Store
 // ====================
 
 
 
- // import authenticate from './authenticate';
+
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     auth: _auth__WEBPACK_IMPORTED_MODULE_2__["default"],
-    error: _error__WEBPACK_IMPORTED_MODULE_3__["default"] // authenticate,
-
+    error: _error__WEBPACK_IMPORTED_MODULE_3__["default"],
+    authenticate: _authenticate__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);

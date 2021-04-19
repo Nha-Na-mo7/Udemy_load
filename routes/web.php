@@ -26,8 +26,6 @@ Route::get('/reflesh-token', function (Illuminate\Http\Request $request){
 });
 // 認証系ルート
 Auth::routes();
-/* TODO Auth::routes()の後に/loginでのルートのビューを指定しないと元のlogin.blade.phpを参照してしまう
-後で修正をすること */
 // ログイン
 Route::get('/login', 'HomeController@index')->name('home.index');
 
@@ -76,6 +74,9 @@ Route::group(['middleware' => 'auth'], function() {
   // ===============
   // アカウント設定関連
   // ===============
+  // ログインしているかをチェックする
+  Route::get('/user/auth/check', 'UserController@auth_check');
+  
   // ユーザーネームを更新する
   Route::post('/user/update/name', 'UserController@update_name');
   // メールアドレスの更新処理
