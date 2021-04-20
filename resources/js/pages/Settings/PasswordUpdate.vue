@@ -10,7 +10,7 @@
         <p>※ 他のサービスと同じパスワードは使用しないでください</p>
       </div>
 
-      <label class="c-form__info" for="old_password">現在のパスワード</label>
+      <label class="c-form__label" for="old_password">現在のパスワード</label>
 
       <ul v-if="errorsOldPassword">
         <li
@@ -28,7 +28,7 @@
           v-model="formPassword.old_password"
       />
 
-      <label class="c-form__info" for="password"
+      <label class="c-form__label" for="password"
       >新しいパスワード (半角英数字 8~50文字)</label
       >
 
@@ -48,7 +48,7 @@
           v-model="formPassword.password"
       />
 
-      <label class="c-form__info" for="password_confirmation"
+      <label class="c-form__label" for="password_confirmation"
       >新しいパスワード【再入力】</label
       >
 

@@ -8,13 +8,13 @@
       <section class="p-record__edit--form">
 
         <form class="p-form">
-          <div class="p-form__description">
+          <div class="c-form__info">
             <p>"コースを追加する" からUdemyの講座を登録してください</p>
           </div>
 
           <!-- タイトル -->
           <label
-              class="p-form__info"
+              class="c-form__label"
               for="record_title">タイトル
           </label>
           <!-- エラーメッセージ -->
@@ -33,13 +33,13 @@
               id="record_title"
               class="p-form__title p-form__item c-form__input"
               v-model="createData.recordForm.title"
-              placeholder="タイトルを入力してください"
+              placeholder="入力してください"
           >
 
           <!-- 説明 -->
           <label
-              class="p-form__info"
-              for="record_description">
+              class="c-form__label"
+              for="record_description">説明
           </label>
           <!-- エラーメッセージ -->
           <ul v-if="errors.errorsDescription">

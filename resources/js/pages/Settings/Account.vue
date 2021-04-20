@@ -18,7 +18,7 @@
           <h3 class="p-setting__title p-setting__title--sub">ユーザー名の変更</h3>
           <div class="p-setting__flex">
             <div class="p-setting__input">
-              <label class="c-form__info" for="name"
+              <label class="c-form__label" for="name"
               >USERNAME (半角英数字 3~32文字)</label
               >
               <ul v-if="errorsName">
@@ -49,7 +49,7 @@
           </h3>
           <div class="p-setting__flex">
             <div class="p-setting__input">
-              <label class="c-form__info" for="email">メールアドレス
+              <label class="c-form__label" for="email">メールアドレス
               </label>
               <ul v-if="errorsEmail">
                 <li class="c-error" v-for="error in errorsEmail">

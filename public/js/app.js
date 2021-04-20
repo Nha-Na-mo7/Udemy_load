@@ -58299,7 +58299,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "label",
-            { staticClass: "p-form__info", attrs: { for: "record_title" } },
+            { staticClass: "c-form__label", attrs: { for: "record_title" } },
             [_vm._v("タイトル\n        ")]
           ),
           _vm._v(" "),
@@ -58328,7 +58328,7 @@ var render = function() {
             attrs: {
               type: "text",
               id: "record_title",
-              placeholder: "タイトルを入力してください"
+              placeholder: "入力してください"
             },
             domProps: { value: _vm.createData.recordForm.title },
             on: {
@@ -58345,10 +58345,14 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", {
-            staticClass: "p-form__info",
-            attrs: { for: "record_description" }
-          }),
+          _c(
+            "label",
+            {
+              staticClass: "c-form__label",
+              attrs: { for: "record_description" }
+            },
+            [_vm._v("説明\n        ")]
+          ),
           _vm._v(" "),
           _vm.errors.errorsDescription
             ? _c(
@@ -58481,7 +58485,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-form__description" }, [
+    return _c("div", { staticClass: "c-form__info" }, [
       _c("p", [_vm._v('"コースを追加する" からUdemyの講座を登録してください')])
     ])
   }
@@ -59128,7 +59132,10 @@ var render = function() {
                     _c("div", { staticClass: "p-setting__input" }, [
                       _c(
                         "label",
-                        { staticClass: "c-form__info", attrs: { for: "name" } },
+                        {
+                          staticClass: "c-form__label",
+                          attrs: { for: "name" }
+                        },
                         [_vm._v("USERNAME (半角英数字 3~32文字)")]
                       ),
                       _vm._v(" "),
@@ -59192,7 +59199,7 @@ var render = function() {
                       _c(
                         "label",
                         {
-                          staticClass: "c-form__info",
+                          staticClass: "c-form__label",
                           attrs: { for: "email" }
                         },
                         [_vm._v("メールアドレス\n            ")]
@@ -59326,9 +59333,11 @@ var render = function() {
     _c("section", { staticClass: "p-setting__item p-form" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("label", { staticClass: "c-form__info", attrs: { for: "password" } }, [
-        _vm._v("新しいパスワード(半角英数字 8~50文字)")
-      ]),
+      _c(
+        "label",
+        { staticClass: "c-form__label", attrs: { for: "password" } },
+        [_vm._v("新しいパスワード(半角英数字 8~50文字)")]
+      ),
       _vm._v(" "),
       _vm.errorsPassword
         ? _c(
@@ -59367,7 +59376,7 @@ var render = function() {
       _c(
         "label",
         {
-          staticClass: "c-form__info",
+          staticClass: "c-form__label",
           attrs: { for: "password_confirmation" }
         },
         [_vm._v("パスワード【再入力】")]
@@ -59500,7 +59509,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "label",
-        { staticClass: "c-form__info", attrs: { for: "old_password" } },
+        { staticClass: "c-form__label", attrs: { for: "old_password" } },
         [_vm._v("現在のパスワード")]
       ),
       _vm._v(" "),
@@ -59538,9 +59547,11 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("label", { staticClass: "c-form__info", attrs: { for: "password" } }, [
-        _vm._v("新しいパスワード (半角英数字 8~50文字)")
-      ]),
+      _c(
+        "label",
+        { staticClass: "c-form__label", attrs: { for: "password" } },
+        [_vm._v("新しいパスワード (半角英数字 8~50文字)")]
+      ),
       _vm._v(" "),
       _vm.errorsPassword
         ? _c(
@@ -59579,7 +59590,7 @@ var render = function() {
       _c(
         "label",
         {
-          staticClass: "c-form__info",
+          staticClass: "c-form__label",
           attrs: { for: "password_confirmation" }
         },
         [_vm._v("新しいパスワード【再入力】")]
