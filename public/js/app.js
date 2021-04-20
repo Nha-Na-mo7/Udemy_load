@@ -4554,6 +4554,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -58425,7 +58427,7 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "c-btn c-btn__addCourse",
+            staticClass: "c-btn c-btn__course--add",
             on: { click: _vm.toggleModalFlg }
           },
           [_vm._v("\n        + コースを追加する\n      ")]
@@ -59052,18 +59054,25 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("img", { attrs: { src: _vm.getImage, alt: "" } }),
+    _c("img", {
+      staticClass: "p-course__card--img",
+      attrs: { src: _vm.getImage, alt: "" }
+    }),
     _vm._v(" "),
     _c("div", { staticClass: "u-mt-l u-mb-l" }, [
-      _c("label", { attrs: { for: "" } }),
+      _c(
+        "label",
+        { staticClass: "c-form__label", attrs: { for: "course_description" } },
+        [_vm._v("コースの説明")]
+      ),
       _vm._v(" "),
       _c("textarea", {
         staticClass: "c-form__textarea p-course__selected--textarea",
         attrs: {
           name: "",
-          id: "",
+          id: "course_description",
           placeholder:
-            "説明(このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？)",
+            "このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？",
           maxlength: "200"
         },
         domProps: { value: this.courseDescription },
@@ -59076,9 +59085,19 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", [
-      _c("button", { staticClass: "c-btn", on: { click: _vm.deleteCourse } }, [
-        _vm._v("削除する")
-      ])
+      _c(
+        "button",
+        {
+          staticClass: "c-btn c-btn__course--delete",
+          on: { click: _vm.deleteCourse }
+        },
+        [
+          _c("i", {
+            staticClass: "far fa-trash-alt p-mypage__record-list--icon"
+          }),
+          _vm._v(" 削除する\n    ")
+        ]
+      )
     ])
   ])
 }

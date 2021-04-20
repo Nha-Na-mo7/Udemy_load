@@ -1737,8 +1737,12 @@ input[type=checkbox] {
   font-size: 18px;
 }
 
-.c-btn__addCourse {
+.c-btn__course--add,
+.c-btn__course--delete {
   width: 100%;
+}
+
+.c-btn__course--add {
   border: 4px dashed #888;
   background: #fff;
   padding: 32px 0;
@@ -1746,11 +1750,24 @@ input[type=checkbox] {
 }
 
 @media screen and (max-width: 414px) {
-  .c-btn__addCourse {
+  .c-btn__course--add {
     border-width: 2px;
     padding: 20px 0;
     font-size: 1.2rem;
   }
+}
+
+.c-btn__course--add:hover {
+  background: #cdcdcd;
+  font-weight: bold;
+}
+
+.c-btn__course--delete {
+  background: #f3e397;
+}
+
+.c-btn__course--delete:hover {
+  background: #d0be66;
 }
 
 .c-btn__edit--submit {

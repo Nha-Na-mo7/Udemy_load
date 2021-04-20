@@ -76,7 +76,7 @@
 
       <!-- コースを追加する -->
       <div class="u-mb-3l">
-        <button class="c-btn c-btn__addCourse" @click="toggleModalFlg">
+        <button class="c-btn c-btn__course--add" @click="toggleModalFlg">
           + コースを追加する
         </button>
       </div>

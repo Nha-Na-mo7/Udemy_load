@@ -20,17 +20,17 @@
     </div>
 
     <!-- サムネイル -->
-    <img :src="getImage" alt="">
+    <img :src="getImage" alt="" class="p-course__card--img">
 
     <div class="u-mt-l u-mb-l">
-      <label for=""></label>
+      <label class="c-form__label" for="course_description">コースの説明</label>
       <textarea
           name=""
-          id=""
+          id="course_description"
           :value="this.courseDescription"
           @input="$emit('input', $event.target.value)"
           class="c-form__textarea p-course__selected--textarea"
-          placeholder="説明(このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？)"
+          placeholder="このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？"
           maxlength="200"
       ></textarea>
     </div>
@@ -38,9 +38,11 @@
     <!-- 削除ボタン -->
     <div>
       <button
-          class="c-btn"
+          class="c-btn c-btn__course--delete"
           @click="deleteCourse"
-      >削除する</button>
+      >
+        <i class="far fa-trash-alt p-mypage__record-list--icon"></i> 削除する
+      </button>
     </div>
 
   </div>

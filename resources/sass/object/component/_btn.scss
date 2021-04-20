@@ -48,17 +48,32 @@
       font-size: 18px;
     }
   }
-  // コースを追加するボタン
-  &__addCourse {
-    width: 100%;
-    border: 4px dashed #888;
-    background: #fff;
-    padding: 32px 0;
-    font-size: 1.6rem;
-    @include mq() {
-      border-width: 2px;
-      padding: 20px 0;
-      font-size: 1.2rem;
+  &__course {
+    &--add, &--delete {
+      width: 100%;
+    }
+    // コースを追加するボタン
+    &--add {
+      border: 4px dashed #888;
+      background: #fff;
+      padding: 32px 0;
+      font-size: 1.6rem;
+      @include mq() {
+        border-width: 2px;
+        padding: 20px 0;
+        font-size: 1.2rem;
+      }
+      &:hover {
+        background: #cdcdcd;
+        font-weight: bold;
+      }
+    }
+    // コース1つの削除
+    &--delete {
+      background: #f3e397;
+      &:hover {
+        background: #d0be66;
+      }
     }
   }
   // 編集投稿ページの送信ボタン
