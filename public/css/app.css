@@ -1287,9 +1287,15 @@ input[type=checkbox] {
 }
 
 .p-record__list {
-  padding-top: 120px;
+  padding-top: 60px;
   padding-bottom: 120px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .p-record__list {
+    padding-top: 40px;
+  }
 }
 
 .p-record__list--inner {
@@ -1299,15 +1305,28 @@ input[type=checkbox] {
   background: #fff;
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 768px) {
   .p-record__list--inner {
     width: 90%;
   }
 }
 
+.p-record__list--title {
+  text-align: center;
+  font-size: 20px;
+  padding: 12px 0;
+  border-bottom: #cdcdcd 1px solid;
+}
+
 .p-record__list-item {
   padding: 15px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+@media screen and (max-width: 414px) {
+  .p-record__list-item {
+    padding: 6px 10px;
+  }
 }
 
 .p-record__list-item--title {

@@ -3135,6 +3135,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -4048,6 +4049,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -58235,6 +58237,8 @@ var render = function() {
           [_vm._v("@" + _vm._s(this.ownerName) + "\n    ")]
         ),
         _vm._v(" "),
+        _c("br", { staticClass: "u-sp__block" }),
+        _vm._v(" "),
         _c("span", { staticClass: "p-record__list-item--date" }, [
           _vm._v(_vm._s(_vm._f("recordAt")(_vm.item.created_at)) + "投稿")
         ])
@@ -58735,6 +58739,10 @@ var render = function() {
       "div",
       { staticClass: "p-record__list--inner", attrs: { id: "records" } },
       [
+        _c("h2", { staticClass: "p-record__list--title" }, [
+          _vm._v("レコード")
+        ]),
+        _vm._v(" "),
         _vm._l(_vm.getRecordsItems, function(Record) {
           return _c("Record", { key: Record.id, attrs: { item: Record } })
         }),

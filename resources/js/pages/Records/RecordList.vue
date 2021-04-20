@@ -1,6 +1,7 @@
 <template>
   <div class="p-record__list">
     <div class="p-record__list--inner" id="records">
+      <h2 class="p-record__list--title">レコード</h2>
       <Record
           v-for="Record in getRecordsItems"
           :key="Record.id"

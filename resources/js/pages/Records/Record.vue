@@ -9,6 +9,7 @@
           :to="`/mypage/${ this.ownerName }`"
       >@{{ this.ownerName }}
       </RouterLink>
+      <br class="u-sp__block">
       <span class="p-record__list-item--date">{{ item.created_at | recordAt }}投稿</span>
     </div>
     <h2 class="p-record__list-item--title">
