@@ -961,14 +961,9 @@ input[type=checkbox] {
 }
 
 .p-form__auth {
-  width: 450px;
+  max-width: 440px;
+  width: 100%;
   margin: 0 auto;
-}
-
-@media screen and (max-width: 414px) {
-  .p-form__auth {
-    width: 100%;
-  }
 }
 
 .p-form__title {

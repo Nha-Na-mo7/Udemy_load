@@ -10,11 +10,9 @@
     border: 1px solid #000;
   }
   &__auth {
-    width: 450px;
+    max-width: 440px;
+    width: 100%;
     margin: 0 auto;
-    @include mq() {
-      width: 100%;
-    }
   }
   &__title {
     font-size: $font-size_xl;
