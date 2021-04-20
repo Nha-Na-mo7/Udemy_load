@@ -57313,9 +57313,11 @@ var render = function() {
               }
             },
             [
-              _c("label", { attrs: { for: "login-email" } }, [
-                _vm._v("メールアドレス")
-              ]),
+              _c(
+                "label",
+                { staticClass: "c-form__label", attrs: { for: "login-email" } },
+                [_vm._v("メールアドレス")]
+              ),
               _vm._v(" "),
               _vm.loginErrors
                 ? _c(
@@ -57351,9 +57353,14 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("label", { attrs: { for: "login-password" } }, [
-                _vm._v("パスワード")
-              ]),
+              _c(
+                "label",
+                {
+                  staticClass: "c-form__label",
+                  attrs: { for: "login-password" }
+                },
+                [_vm._v("パスワード")]
+              ),
               _vm._v(" "),
               _vm.loginErrors
                 ? _c(
@@ -57390,58 +57397,62 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("div", { staticClass: "c-form__info c-form__checkbox" }, [
-                _c("label", { attrs: { for: "remember" } }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.loginForm.remember,
-                        expression: "loginForm.remember"
-                      }
-                    ],
-                    staticClass: "c-form__checkbox--check",
-                    attrs: {
-                      type: "checkbox",
-                      name: "remember",
-                      id: "remember"
-                    },
-                    domProps: {
-                      checked: Array.isArray(_vm.loginForm.remember)
-                        ? _vm._i(_vm.loginForm.remember, null) > -1
-                        : _vm.loginForm.remember
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.loginForm.remember,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.loginForm,
-                                "remember",
-                                $$a.concat([$$v])
-                              )
+                _c(
+                  "label",
+                  { staticClass: "c-form__label", attrs: { for: "remember" } },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.loginForm.remember,
+                          expression: "loginForm.remember"
+                        }
+                      ],
+                      staticClass: "c-form__checkbox--check",
+                      attrs: {
+                        type: "checkbox",
+                        name: "remember",
+                        id: "remember"
+                      },
+                      domProps: {
+                        checked: Array.isArray(_vm.loginForm.remember)
+                          ? _vm._i(_vm.loginForm.remember, null) > -1
+                          : _vm.loginForm.remember
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.loginForm.remember,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.loginForm,
+                                  "remember",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.loginForm,
+                                  "remember",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
                           } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.loginForm,
-                                "remember",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
+                            _vm.$set(_vm.loginForm, "remember", $$c)
                           }
-                        } else {
-                          _vm.$set(_vm.loginForm, "remember", $$c)
                         }
                       }
-                    }
-                  }),
-                  _vm._v("\n            ログイン状態を維持する\n          ")
-                ])
+                    }),
+                    _vm._v("\n            ログイン状態を維持する\n          ")
+                  ]
+                )
               ]),
               _vm._v(" "),
               _vm._m(0)
@@ -57476,9 +57487,11 @@ var render = function() {
               }
             },
             [
-              _c("label", { attrs: { for: "username" } }, [
-                _vm._v("ユーザーネーム")
-              ]),
+              _c(
+                "label",
+                { staticClass: "c-form__label", attrs: { for: "username" } },
+                [_vm._v("ユーザーネーム")]
+              ),
               _vm._v(" "),
               _vm.registerErrors
                 ? _c(
@@ -57514,9 +57527,11 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("label", { attrs: { for: "email" } }, [
-                _vm._v("メールアドレス")
-              ]),
+              _c(
+                "label",
+                { staticClass: "c-form__label", attrs: { for: "email" } },
+                [_vm._v("メールアドレス")]
+              ),
               _vm._v(" "),
               _vm.registerErrors
                 ? _c(
@@ -57552,9 +57567,11 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("label", { attrs: { for: "password" } }, [
-                _vm._v("パスワード")
-              ]),
+              _c(
+                "label",
+                { staticClass: "c-form__label", attrs: { for: "password" } },
+                [_vm._v("パスワード")]
+              ),
               _vm._v(" "),
               _vm.registerErrors
                 ? _c(
@@ -57590,9 +57607,14 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("label", { attrs: { for: "password-confirmation" } }, [
-                _vm._v("パスワードの再入力")
-              ]),
+              _c(
+                "label",
+                {
+                  staticClass: "c-form__label",
+                  attrs: { for: "password-confirmation" }
+                },
+                [_vm._v("パスワードの再入力")]
+              ),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -57636,7 +57658,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "form__button" }, [
       _c(
         "button",
-        { staticClass: "c-btn c-btn__auth", attrs: { type: "submit" } },
+        { staticClass: "c-btn c-btn__auth u-mt-xl", attrs: { type: "submit" } },
         [_vm._v("ログイン")]
       )
     ])
@@ -57648,7 +57670,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "p-form__button" }, [
       _c(
         "button",
-        { staticClass: "c-btn c-btn__auth", attrs: { type: "submit" } },
+        { staticClass: "c-btn c-btn__auth u-mt-xl", attrs: { type: "submit" } },
         [_vm._v("新規登録")]
       )
     ])

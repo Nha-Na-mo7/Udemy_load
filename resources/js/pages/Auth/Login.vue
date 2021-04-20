@@ -21,7 +21,7 @@
             class="p-form__auth"
             @submit.prevent="login"
         >
-          <label for="login-email">メールアドレス</label>
+          <label class="c-form__label" for="login-email">メールアドレス</label>
           <ul v-if="loginErrors">
             <li
                 class="c-error"
@@ -36,7 +36,7 @@
               v-model="loginForm.email"
           >
 
-          <label for="login-password">パスワード</label>
+          <label class="c-form__label" for="login-password">パスワード</label>
           <ul v-if="loginErrors">
             <li
                 class="c-error"
@@ -53,7 +53,7 @@
 
           <!-- remember me -->
           <div class="c-form__info c-form__checkbox">
-            <label for="remember">
+            <label class="c-form__label" for="remember">
               <input
                   type="checkbox"
                   name="remember"
@@ -66,7 +66,7 @@
           </div>
 
           <div class="form__button">
-            <button type="submit" class="c-btn c-btn__auth">ログイン</button>
+            <button type="submit" class="c-btn c-btn__auth u-mt-xl">ログイン</button>
           </div>
         </form>
       </section>
@@ -75,7 +75,7 @@
       <section class="c-panel" v-show="tab === 2">
         <form class="p-form__auth" @submit.prevent="register">
 
-          <label for="username">ユーザーネーム</label>
+          <label class="c-form__label" for="username">ユーザーネーム</label>
           <ul v-if="registerErrors">
             <li
                 class="c-error"
@@ -89,7 +89,7 @@
                  v-model="registerForm.name"
           >
 
-          <label for="email">メールアドレス</label>
+          <label class="c-form__label" for="email">メールアドレス</label>
           <ul v-if="registerErrors">
             <li
                 class="c-error"
@@ -104,7 +104,7 @@
               v-model="registerForm.email"
           >
 
-          <label for="password">パスワード</label>
+          <label class="c-form__label" for="password">パスワード</label>
           <ul v-if="registerErrors">
             <li
                 class="c-error"
@@ -118,7 +118,7 @@
               id="password"
               v-model="registerForm.password"
           >
-          <label for="password-confirmation">パスワードの再入力</label>
+          <label class="c-form__label" for="password-confirmation">パスワードの再入力</label>
           <input
               type="password"
               class="c-input c-form__input"
@@ -126,7 +126,7 @@
               v-model="registerForm.password_confirmation"
           >
           <div class="p-form__button">
-            <button type="submit" class="c-btn c-btn__auth">新規登録</button>
+            <button type="submit" class="c-btn c-btn__auth u-mt-xl">新規登録</button>
           </div>
         </form>
       </section>

@@ -1691,12 +1691,13 @@ input[type=checkbox] {
 }
 
 .c-btn__auth {
-  background: #d2d2d2;
+  background: #a7d7f8;
   font-weight: bold;
+  width: 100%;
 }
 
 .c-btn__modal {
-  background: #d2d2d2;
+  background: #a7d7f8;
   border: #8a8a8a;
   width: 100px;
   height: auto;
@@ -1930,6 +1931,11 @@ input[type=checkbox] {
 
 .c-flash__error {
   background: #e08a8e;
+}
+
+.c-form__label {
+  display: block;
+  margin-bottom: 5px;
 }
 
 .c-form__input {

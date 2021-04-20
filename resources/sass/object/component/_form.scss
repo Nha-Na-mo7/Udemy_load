@@ -2,6 +2,10 @@
 //  c-form
 //  =============
 .c-form {
+  &__label {
+    display: block;
+    margin-bottom: $space_s;
+  }
   &__input {
     border: 1px solid #666;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0);
