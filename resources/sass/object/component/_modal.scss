@@ -2,8 +2,6 @@
 //  c-modal
 //  ==========
 .c-modal {
-  background: #ffffff;
-  border-radius: 4px;
   transition: 0.3s all;
   width: 60%;
   max-height: 80%;
@@ -19,7 +17,7 @@
   }
   @include mq() {
     width: 90%;
-    padding: 12px 8px;
+    padding: 20px 12px;
     left: 5%;
   }
   &__title {

@@ -37,7 +37,8 @@
   &__modal {
     background: $btn-color_auth;
     border: #8a8a8a;
-    width: 100px;
+    width: 40%;
+    max-width: 160px;
     height: auto;
     padding: 15px 5px;
     &:hover {

@@ -1189,6 +1189,11 @@ input[type=checkbox] {
   transform: translateY(-15px) rotate(45deg);
 }
 
+.p-modal {
+  background: #ffffff;
+  border-radius: 4px;
+}
+
 .p-modal__search__form {
   padding: 5px;
 }
@@ -1723,7 +1728,8 @@ input[type=checkbox] {
 .c-btn__modal {
   background: #a7d7f8;
   border: #8a8a8a;
-  width: 100px;
+  width: 40%;
+  max-width: 160px;
   height: auto;
   padding: 15px 5px;
 }
@@ -2269,8 +2275,6 @@ input[type=checkbox] {
 }
 
 .c-modal {
-  background: #ffffff;
-  border-radius: 4px;
   transition: 0.3s all;
   width: 60%;
   max-height: 80%;
@@ -2292,7 +2296,7 @@ input[type=checkbox] {
 @media screen and (max-width: 414px) {
   .c-modal {
     width: 90%;
-    padding: 12px 8px;
+    padding: 20px 12px;
     left: 5%;
   }
 }
