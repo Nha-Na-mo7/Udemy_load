@@ -53,7 +53,7 @@
 
           <!-- ログインボタン(未ログイン時) -->
           <li v-else class="p-header__item">
-            <a class="c-btn__header" href="/login">
+            <a class="p-header__item--link c-btn__header" href="/login">
               ログイン / 新規登録
             </a>
           </li>

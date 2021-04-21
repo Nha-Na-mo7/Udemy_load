@@ -57207,7 +57207,10 @@ var render = function() {
               : _c("li", { staticClass: "p-header__item" }, [
                   _c(
                     "a",
-                    { staticClass: "c-btn__header", attrs: { href: "/login" } },
+                    {
+                      staticClass: "p-header__item--link c-btn__header",
+                      attrs: { href: "/login" }
+                    },
                     [_vm._v("\n            ログイン / 新規登録\n          ")]
                   )
                 ])
