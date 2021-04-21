@@ -16,7 +16,6 @@
                 <!-- 投稿/更新時刻 -->
                 <p class="p-record__info--date">投稿時刻: {{ this.createdAt | recordAt }}</p>
                 <p class="p-record__info--date" v-if="checkUpdated">最終更新: {{ this.updatedAt | recordAt }}</p>
-
                 <!-- タイトル -->
                 <h2 class="p-record__info--title">{{ this.title }}</h2>
                 <!-- 投稿者 -->
@@ -26,11 +25,9 @@
                 >ユーザー名: {{ this.ownerName }}
                 </RouterLink>
               </div>
-
               <!-- Description -->
               <p v-html="description" class="p-record__info--description"></p>
             </div>
-
             <!-- 編集ボタン/投稿者自身の場合のみ-->
             <div class="p-record__info--column">
               <RouterLink
@@ -42,7 +39,7 @@
             </div>
           </div>
         </section>
-        <!-- TODO 詳細 -->
+        <!-- 詳細 -->
         <section class="p-record__detail">
           <!-- コースコンポーネント -->
           <div class="p-record__detail--list">
@@ -57,7 +54,6 @@
         <!-- コメント欄 -->
         <section class="p-record__comment">
           <h3 class="p-record__comment--head">コメント{{ countComments | addBrackets }}</h3>
-
           <!-- 一覧 -->
           <ul
               v-if="existComments"
@@ -69,7 +65,13 @@
                 class="p-record__comment--item"
             >
               <p>{{ index + 1 | addBrackets}}</p>
-              <p class="p-record__comment--author">{{ Comment.author.name }} さんが{{ Comment.created_at }}に投稿</p>
+              <p class="p-record__comment--author">
+                <RouterLink
+                    class="p-record__list-item__username"
+                    :to="`/mypage/${ Comment.author.name }`"
+                >{{ Comment.author.name }}
+                </RouterLink> が{{ Comment.created_at }}に投稿
+              </p>
               <p class="p-record__comment--content">{{ Comment.content }}</p>
             </li>
           </ul>
@@ -93,6 +95,7 @@
           </div>
         </section>
       </div>
+      <!-- レコードがない場合 -->
       <div v-else>
         <NothingRecordDetail />
       </div>

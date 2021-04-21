@@ -3814,6 +3814,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -58708,13 +58711,29 @@ var render = function() {
                                 "p",
                                 { staticClass: "p-record__comment--author" },
                                 [
+                                  _c(
+                                    "RouterLink",
+                                    {
+                                      staticClass:
+                                        "p-record__list-item__username",
+                                      attrs: {
+                                        to: "/mypage/" + Comment.author.name
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(Comment.author.name) +
+                                          "\n              "
+                                      )
+                                    ]
+                                  ),
                                   _vm._v(
-                                    _vm._s(Comment.author.name) +
-                                      " さんが" +
+                                    " が" +
                                       _vm._s(Comment.created_at) +
-                                      "に投稿"
+                                      "に投稿\n            "
                                   )
-                                ]
+                                ],
+                                1
                               ),
                               _vm._v(" "),
                               _c(
