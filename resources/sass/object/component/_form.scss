@@ -2,14 +2,19 @@
 //  c-form
 //  =============
 .c-form {
+  &__label {
+    display: block;
+    margin-bottom: $space_s;
+  }
   &__input {
-    border: 1px solid #666;
+    border: 1px solid #cdcdcd;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0);
     border-radius: 4px;
     width: 100%;
     padding: 10px;
     margin-bottom: $space_xl;
     font-size: $font-size_l;
+    background: #fff;
     &:focus {
       border: 1px solid $input-color;
       box-shadow: 0 0 5px $input-color;
@@ -21,19 +26,16 @@
     }
   }
   &__info {
-    margin-bottom: $space_s;
-    display: inline-block;
-    @include mq() {
-      font-size: $font-size_s;
-    }
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 20px;
   }
   &__textarea {
     box-sizing: border-box;
     background: #fcfcfc;
     resize: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    margin: 10px 0;
+    padding: 8px 12px;
+    font-size: 15px;
     border: 1px solid #cdcdcd;
     border-radius: 4px;
     line-height: 1.5;
@@ -41,6 +43,12 @@
       border: #f66d9b 1px solid;
       box-shadow: #f66d9b 0 0 5px;
       background: #fffbf5;
+    }
+    &::placeholder {
+      font-size: 14px;
+    }
+    &--attention {
+      background: #ffdbe8;
     }
   }
   &__checkbox {

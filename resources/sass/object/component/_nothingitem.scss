@@ -3,14 +3,14 @@
 //  =============
 //記事やアカウントが、検索の結果見つからなかった場合のコンポーネント
 .c-nothing {
-  padding: 15px 25px;
+  padding: 80px 25px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   box-shadow: none;
   &__title {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 40px;
     margin-bottom: 20px;
     line-height: 140%;
   }

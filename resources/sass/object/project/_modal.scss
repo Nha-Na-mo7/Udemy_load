@@ -1,0 +1,19 @@
+// ==============
+//  p-modal
+//  =============
+.p-modal {
+  background: #ffffff;
+  border-radius: 4px;
+  &__search {
+    &__form {
+      padding: 5px;
+    }
+    &__title {
+      font-size: 18px;
+    }
+    &__btn-inner {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}

@@ -2,8 +2,6 @@
 //  c-modal
 //  ==========
 .c-modal {
-  background: #ffffff;
-  border-radius: 4px;
   transition: 0.3s all;
   width: 60%;
   max-height: 80%;
@@ -19,8 +17,11 @@
   }
   @include mq() {
     width: 90%;
-    padding: 12px 8px;
+    padding: 20px 12px;
     left: 5%;
+  }
+  &__title {
+    text-align: center;
   }
   &__cover {
     transition: 0.3s all;
@@ -31,9 +32,5 @@
     left: 0;
     z-index: 4;
     background: rgba(49, 64, 103, 0.3);
-  }
-  &__searchform {
-    padding: 5px;
-    background: inherit;
   }
 }

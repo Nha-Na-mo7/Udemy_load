@@ -7,9 +7,13 @@
   margin-bottom: 120px;
   &__container {
     max-width: 768px;
-    margin: 120px auto 0;
+    margin: 0 auto;
+    padding: 60px;
     @include mq($breakpoint: md) {
       max-width: 100%;
+    }
+    @include mq() {
+      padding: 5px 32px;
     }
   }
   &__statusCode {
@@ -33,7 +37,9 @@
     }
   }
   &__description {
-    font-size: $font-size_l;
+    font-size: 20px;
     margin-bottom: 60px;
+    line-height: 1.5;
+    text-align: left;
   }
 }

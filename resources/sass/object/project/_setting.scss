@@ -1,0 +1,77 @@
+// ==============
+//  p-setting
+// ==============
+.p-setting {
+  width: 100%;
+  background: #fff;
+  box-shadow: #bfbfbf 0 5px 15px;
+  &__container {
+    padding: 20px 30px;
+    margin-bottom: $space_3l;
+  }
+  // 設定項目リスト
+  &__list {
+    min-width: 120px;
+    margin-right: 30px;
+    @include mq($breakpoint: md) {
+      text-align: center;
+      margin-right: unset;
+      margin-bottom: 8px;
+    }
+    &--container {
+      width: 100%;
+      border-radius: 4px;
+      box-shadow: #cdcdcd 0 3px 5px;
+      @include mq($breakpoint: md) {
+        margin-bottom: 30px;
+      }
+    }
+    &--item {
+      background: #fff;
+      display: block;
+      padding: 15px 10px;
+      border-bottom: 1px solid #cdcdcd;
+      border-radius: 4px;
+      &:hover {
+        background: #d8d8d8;
+      }
+    }
+  }
+  &__title {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 20px 0;
+    &--sub {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+  }
+  &__item {
+    border-top: 1px solid #cdcdcd;
+    box-shadow: 0 1px 0 #fff;
+    padding: 32px 0;
+    margin-bottom: 25px;
+  }
+  &__input {
+    width: 70%;
+    padding-right: 15px;
+  }
+  &__btn {
+    display: flex;
+    align-items: center;
+  }
+  &__flex {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  &__updatename {
+
+  }
+  &__updatemail {
+
+  }
+  &__withdraw {
+
+  }
+}

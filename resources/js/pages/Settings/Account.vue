@@ -1,53 +1,245 @@
 <template>
-  <div>
+  <div class="l-container__setting u-flex u-space-between">
+    <!-- リスト -->
     <SettingItemList />
 
-    <h1>アカウントに関する設定</h1>
-    <p>ユーザー名の更新</p>
+    <!-- 読み込み中 -->
+    <div v-if="isLoading">
+      <Loading />
+    </div>
 
-    <!-- アカウントの削除 -->
-    <div class="">
-      <div class="">
-        <h2 class="">
-          <i class="fas fa-sign-out-alt"></i>
-          アカウントを削除する
-        </h2>
-      </div>
-      <div class="">
-        <div class="">
-          <p>
-            アカウントを削除すると元に戻すことはできなくなります。
-          </p>
-        </div>
-        <div class="">
-          <button class="c-btn" @click="withdraw">退会する</button>
-        </div>
+    <!-- アカウント関連 -->
+    <div v-else class="p-setting">
+      <div class="p-setting__container">
+        <h2 class="p-setting__title">アカウント設定</h2>
+
+        <!-- ユーザーネームの更新 -->
+        <section class="p-setting__item p-setting__updatename">
+          <h3 class="p-setting__title p-setting__title--sub">ユーザー名の変更</h3>
+          <div class="p-setting__flex">
+            <div class="p-setting__input">
+              <label class="c-form__label" for="name"
+              >USERNAME (半角英数字 3~32文字)</label
+              >
+              <ul v-if="errorsName">
+                <li class="c-error" v-for="error in errorsName">
+                  <span>{{ error }}</span>
+                </li>
+              </ul>
+              <input
+                  id="name"
+                  class="c-form__input"
+                  type="text"
+                  v-model="formName"
+                  maxlength="32">
+            </div>
+            <div class="p-setting__btn">
+              <button
+                  class="c-btn c-btn__setting--update"
+                  @click="updateName"
+              >変更</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- メールアドレスの更新 -->
+        <section class="p-setting__item p-setting__updatemail">
+          <h3 class="p-setting__title p-setting__title--sub">
+            <i class="far fa-envelope"></i>メールアドレスの変更
+          </h3>
+          <div class="p-setting__flex">
+            <div class="p-setting__input">
+              <label class="c-form__label" for="email">メールアドレス
+              </label>
+              <ul v-if="errorsEmail">
+                <li class="c-error" v-for="error in errorsEmail">
+                  <span>{{ error }}</span>
+                </li>
+              </ul>
+              <input
+                  id="email"
+                  class="c-form__input"
+                  type="text"
+                  v-model="formEmail"
+                  maxlength="100">
+            </div>
+            <div class="p-setting__btn">
+              <button
+                  class="c-btn c-btn__setting--update"
+                  @click="updateEmail"
+              >変更</button>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- アカウントの削除 -->
+        <section class="p-setting__item p-setting__withdraw">
+          <h3 class="p-setting__title p-setting__title--sub">
+            アカウントを削除する
+          </h3>
+          <p class="u-mb-l u-text--center u-color--red">【!】アカウントを削除すると元に戻すことはできなくなります。</p>
+          <div class="u-text--center">
+            <button class="c-btn c-btn__setting--withdraw" @click="withdraw">
+              <i class="fas fa-sign-out-alt"></i>
+               アカウント削除
+            </button>
+          </div>
+        </section>
+
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
-
+import Loading from '../../components/Loading.vue';
+import { OK, UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR } from "../../util.js"
 import SettingItemList from "./SettingItemList.vue";
 
 export default {
+  data() {
+    return {
+      isLoading: true,
+      isUpdating: false,
+      // ユーザーネームのフォーム
+      formName: '',
+      // メールアドレスのフォーム
+      formEmail: '',
+      systemError: [],
+      errorsName: [],
+      errorsEmail: [],
+    }
+  },
   methods: {
+    // ログイン中のユーザーデータを取得する
+    async getUser() {
+      const response = await axios
+          .get(`/user/info`)
+          .catch((error) => error.response || error);
+
+      // エラーチェック
+      if (response.status === OK) {
+        // ユーザーネームをformNameに格納
+        console.log(response.data)
+        if (response.data.name !== null) {
+          this.formName = response.data.name;
+        }
+        // メールアドレスをformEmailに格納
+        if (response.data.email !== null) {
+          this.formEmail = response.data.email;
+        }
+        this.isLoading = false;
+      }
+    },
+    // ユーザーネームの変更
+    async updateName() {
+      // 更新処理中は複数回起動できないようにする
+      if (this.isUpdating) {
+        return false;
+      }
+      this.isUpdating = true;
+
+      // 更新処理にアクセスする
+      const response = await axios
+          .post(`/user/update/name`, { name: this.formName })
+          .catch((error) => error.response || error);
+
+      // エラーチェック
+      if (response.status === UNPROCESSABLE_ENTITY) {
+        // バリデーションエラー
+        this.errorsName = response.data.errors.name;
+        // 更新失敗(500)
+      } else if (response.status === INTERNAL_SERVER_ERROR) {
+        console.log('500 ERROR')
+        // // フラッシュメッセージをセット
+        // this.$store.commit('message/setContentError', {
+        //   content: response.data.error,
+        // });
+      } else {
+        // 更新成功したらエラーメッセージは空にする
+        this.errorsName = [];
+
+        console.log('ユーザーネーム更新成功！')
+        // // フラッシュメッセージをセット
+        // this.$store.commit('message/setContentSuccess', {
+        //   content: response.data.success,
+        // });
+        // ページをリロードする
+        this.$router.go({
+          path: this.$router.currentRoute.path,
+          force: true
+        })
+      }
+      this.isUpdating = false;
+
+    },
+    // メールアドレスの変更
+    async updateEmail() {
+      // 更新処理中は複数回起動できないようにする
+      if (this.isUpdating) {
+        return false;
+      }
+      this.isUpdating = true;
+
+      const response = await axios
+          .post(`/user/update/email`, { email: this.formEmail })
+          .catch((error) => error.response || error);
+
+      // バリデーションエラー時
+      if (response.status === UNPROCESSABLE_ENTITY) {
+        this.errorsEmail = response.data.errors.email;
+        this.isUpdating = false;
+        // 500エラー時
+      } else if (response.status === INTERNAL_SERVER_ERROR) {
+        console.log('500 ERROR!')
+        // // フラッシュメッセージをセット
+        // this.$store.commit('message/setContentError', {
+        //   content: response.data.error,
+        // });
+      } else {
+        console.log('EMAIL UPDATE SUCCESS!!!')
+        // 送信完了したらフラッシュメッセージを表示し、バリデーションエラーリストを空にする
+        // this.$store.commit('message/setContentSuccess', {
+        //   content: response.data.success,
+        // });
+        this.errorsEmail = [];
+        // ページをリロードする
+        this.$router.go({
+          path: this.$router.currentRoute.path,
+          force: true
+        })
+      }
+      this.isUpdating = false;
+    },
     // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
     async withdraw() {
-      if (
-          confirm(
-              '【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。',
-          )
-      )
-      {
-        console.log('ここで退会処理が行われます')
+      if (confirm('【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。',)){
+        // TODO テストユーザーの場合は退会処理を行わない
+        const response = await axios.post(`/withdraw`);
+        if (response.status === OK) {
+          window.location = '/';
+        } else {
+          window.location = '/login';
+        }
       }
     },
   },
   components: {
+    Loading,
     SettingItemList
-  }
+  },
+  watch: {
+    $route: {
+      async handler() {
+        // ページの読み込み直後にユーザーの取得を行う
+        await this.getUser();
+      },
+      immediate: true,
+    },
+  },
 }
 </script>
 

@@ -1,45 +1,75 @@
 <template>
-  <nav class="p-header__nav p-header__nav__sp js-toggle-sp-nav">
-    <RouterLink class="p-header__logo" to="/">
-      UdemyLoad
-    </RouterLink>
-    <div class="p-header__menu">
+  <div class="p-header">
 
-      <!-- 投稿ボタン(仮)(ログイン中の場合) -->
-      <div v-if="isLogin" class="p-header__item">
-        <RouterLink class="c-btn" to="/records/new">
-          投稿する
-        </RouterLink>
-      </div>
-
-      <!-- ユーザーネーム(ログイン中の場合) -->
-      <span v-if="isLogin" class="p-header__item">
-        <RouterLink class="c-btn" :to="`/mypage/${ this.username }`">
-          {{ username | addAtSign }}
-        </RouterLink>
-
-      </span>
-
-      <!-- ログアウトボタン -->
-      <button
-          v-if="isLogin"
-          class="c-btn"
-          @click="logout"
-      >ログアウト</button>
-
-      <!-- ログインボタン(未ログイン時) -->
-      <div v-else class="p-header__item">
-        <RouterLink class="c-btn" to="/login">
-          ログイン / 新規登録
-        </RouterLink>
-      </div>
-
+    <!-- ロゴ -->
+    <div class="p-header__left">
+      <a class="p-header__logo" href="/">
+        <!-- TODO 本番用に画像ファイルの場所が変更される余地あり -->
+        <img
+            src="../../../storage/app/public/images/logos/udemyload_logo.svg"
+            alt="UdemyLoad"
+            class="p-header__logo--img"
+        >
+      </a>
     </div>
-  </nav>
+
+    <!-- 右側 -->
+    <div class="p-header__right">
+      <!-- SPサイト用メニュー -->
+      <div class="p-header__trigger" :class="{ 'active' : isActive }" @click="toggleSpMenu">
+        <span class="p-header__trigger--bar"></span>
+        <span class="p-header__trigger--bar"></span>
+        <span class="p-header__trigger--bar"></span>
+      </div>
+
+      <!-- メニュー -->
+      <nav class="p-header__nav p-header__nav__sp" :class="{ 'active' : isActive }">
+        <ul class="p-header__menu">
+          <!-- 投稿ボタン(仮)(ログイン中の場合) -->
+          <li v-if="isLogin" class="p-header__item">
+            <a class="p-header__item--link c-btn__header" href="/records/new">
+              投稿する
+            </a>
+          </li>
+
+          <!-- ユーザーネーム(ログイン中の場合) -->
+          <li v-if="isLogin" class="p-header__item">
+            <a class="p-header__item--link c-btn__header" :href="`/mypage/${ this.username }`">
+              マイページ
+            </a>
+          </li>
+
+          <!-- ログアウトボタン -->
+          <li
+              v-if="isLogin"
+              class="p-header__item"
+          >
+            <button
+                class="p-header__item--link c-btn__header"
+                @click="logout">
+              ログアウト
+            </button>
+          </li>
+
+          <!-- ログインボタン(未ログイン時) -->
+          <li v-else class="p-header__item">
+            <a class="p-header__item--link c-btn__header" href="/login">
+              ログイン / 新規登録
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      isActive: false,
+    }
+  },
   computed: {
     apiStatus() {
       return this.$store.state.auth.apiStatus
@@ -52,19 +82,22 @@ export default {
     },
   },
   methods: {
+    // ナビバー切り替え
+    toggleSpMenu() {
+      this.isActive = !this.isActive
+    },
     // ログアウト
     async logout() {
       await this.$store.dispatch('auth/logout')
       // 処理成功時のみ遷移
       if (this.apiStatus) {
-        this.$router.push('/login')
+        // トップに遷移させる
+        this.$router.go({
+          path: `/`,
+          force: true
+        })
       }
     }
   },
-  filters: {
-    addAtSign: function (username) {
-      return '@' + username
-    }
-  }
 }
 </script>

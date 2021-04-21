@@ -6,7 +6,7 @@ import Vuex from 'vuex';
 
 import auth from './auth';
 import error from './error';
-// import authenticate from './authenticate';
+import authenticate from './authenticate';
 
 Vue.use(Vuex);
 
@@ -14,7 +14,7 @@ const store = new Vuex.Store({
   modules: {
     auth,
     error,
-    // authenticate,
+    authenticate,
   },
 });
 

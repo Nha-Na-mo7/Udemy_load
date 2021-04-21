@@ -5,10 +5,10 @@
   <div class="p-course p-course__selected">
 
     <!-- 講座名とリンク -->
-    <div class="p-course__item--title">
+    <div class="p-course__card--title">
       <h2>
         <a
-            class="p-course__item--title--link"
+            class="p-course__card--title--link"
             :href="getUrl | addUdemyBaseUrl"
             target="_blank"
             rel="noopener noreferrer"
@@ -16,21 +16,21 @@
         >
       </h2>
       <!-- 講師名 -->
-      <p class="p-course__item--instructor">{{ getInstructor }}</p>
+      <p class="p-course__card--instructor">{{ getInstructor }}</p>
     </div>
 
     <!-- サムネイル -->
-    <img :src="getImage" alt="">
+    <img :src="getImage" alt="" class="p-course__card--img">
 
-    <div>
-      <label for=""></label>
+    <div class="u-mt-l u-mb-l">
+      <label class="c-form__label" for="course_description">コースの説明</label>
       <textarea
           name=""
-          id=""
-          :value="courseDescription"
+          id="course_description"
+          :value="this.courseDescription"
           @input="$emit('input', $event.target.value)"
-          class="c-form__textarea f-textarea"
-          placeholder="説明(このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？)"
+          class="c-form__textarea p-course__selected--textarea"
+          placeholder="このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？"
           maxlength="200"
       ></textarea>
     </div>
@@ -38,9 +38,11 @@
     <!-- 削除ボタン -->
     <div>
       <button
-          class="c-btn"
+          class="c-btn c-btn__course--delete"
           @click="deleteCourse"
-      >削除する</button>
+      >
+        <i class="far fa-trash-alt p-mypage__record-list--icon"></i> 削除する
+      </button>
     </div>
 
   </div>
@@ -132,7 +134,5 @@ export default {
 </script>
 
 <style scoped>
-.f-textarea {
-  width: 100%;
-}
+
 </style>

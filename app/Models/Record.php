@@ -8,11 +8,11 @@ use Illuminate\Support\Arr;
 class Record extends Model
 {
     // fill
-    protected $fillable = ['user_id', 'title', 'description'];
+    protected $fillable = ['user_id', 'title', 'description', 'delete_flg'];
     
     // Jsonで表示させる項目
     protected $visible = [
-        'id', 'user_id', 'title', 'description', 'owner', 'courses', 'comments'
+        'id', 'user_id', 'title', 'description', 'owner', 'courses', 'comments', 'created_at', 'updated_at'
     ];
   
     // プライマリーキーの型をstringに

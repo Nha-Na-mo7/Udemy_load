@@ -24,6 +24,13 @@
     }
   }
 
+  &-bt {
+    border-top: 1px solid #8a8a8a;
+  }
+  &-bb {
+    border-bottom: 1px solid #8a8a8a;
+  }
+
   &-scroll-prevent {
     position: fixed;
     width: 100%;
@@ -38,5 +45,12 @@
     @include mq() {
       display: block;
     }
+  }
+
+  &-flex {
+    display: flex;
+  }
+  &-space-between {
+    justify-content: space-between;
   }
 }

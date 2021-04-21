@@ -1,14 +1,16 @@
 <!--コース検索結果で表示させるコンポーネント-->
 <template>
-  <div class="p-course__item">
+  <div class="p-course__card">
 
     <!-- サムネイル -->
-    <img :src="getImage" alt="">
+    <div class="p-course__card--left u-text--center">
+      <img :src="getImage" alt="" class="p-course__card--img">
+    </div>
     <!-- 講座名とリンク -->
-    <div class="p-course__item--title">
-      <h2>
+    <div class="p-course__card--right p-course__card--info">
+      <h2 class="p-course__card--title">
         <a
-            class="p-course__item--title--link"
+            class="p-course__card--title--link"
             :href="getUrl"
             target="_blank"
             rel="noopener noreferrer"
@@ -16,14 +18,11 @@
         >
       </h2>
       <!-- 講師名 -->
-      <p class="p-course__item--instructor">{{ getInstructor }}</p>
-    </div>
+      <p class="p-course__card--instructor">{{ getInstructor }}</p>
 
-    <!-- 追加するボタン -->
-    <div>
-      <button class="c-btn" @click="addCourse">追加する</button>
+      <!-- 追加するボタン -->
+      <button class="c-btn c-btn__modal--add" @click="addCourse">追加する</button>
     </div>
-
   </div>
 </template>
 
@@ -77,18 +76,6 @@ export default {
 </script>
 
 <style scoped>
-.p-course__item {
-  padding: 12px;
-  border: 1px solid #000000;
-  margin-bottom: 5px;
-  animation: fadeIn 1s;
-}
-.p-course__item--title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -.02rem;
-}
 @keyframes fadeIn {
   0% {
     opacity: 0;

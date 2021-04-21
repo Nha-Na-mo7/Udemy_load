@@ -18,16 +18,14 @@
       <div class="p-mypage">
         <!-- プロフィール -->
         <div class="p-mypage__column">
-          <h2>{{ this.userName }}さんのマイページ</h2>
-          <pre>プロフィール400文字まで</pre>
-          <span>ホームページ</span>
-          <span>所属・組織</span>
-          <span>住んでいるところ</span>
+          <h2 class="p-mypage__title u-mb-xl">{{ this.userName }}さんのマイページ</h2>
 
           <!-- プロフィール編集 -->
-          <div v-if="isAuthUser">
+          <div class="u-text--center" v-if="isAuthUser">
             <button class="c-btn">
-              <RouterLink to="/settings/profile">プロフィール設定</RouterLink>
+              <RouterLink to="/settings/account">
+                <i class="fas fa-cog"></i> アカウント設定
+              </RouterLink>
             </button>
           </div>
         </div>
@@ -35,7 +33,7 @@
         <!-- 投稿記事一覧 -->
         <!-- TODO 投稿した記事・コメントした記事をタブで切り替えられるようにする -->
         <div class="p-mypage__column">
-          <h2>投稿履歴</h2>
+          <h2 class="p-mypage__title u-mb-xl">投稿履歴</h2>
           <UserRecordList
               v-if="isExistUserObj"
               :user="this.user"

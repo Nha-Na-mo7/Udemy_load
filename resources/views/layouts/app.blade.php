@@ -20,9 +20,31 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+
+    {{-- flash message --}}
+    @if(Session::has('session_msg'))
+        <div class="c-flash js-flash-system-message" role="alert">
+            <p>{{ session('session_msg') }}</p>
+        </div>
+    @endif
+
+    {{-- flash success message --}}
+    @if(Session::has('session_success'))
+        <div class="c-flash c-flash__success js-flash-system-message" role="alert">
+            <p>{{ session('session_success') }}</p>
+        </div>
+    @endif
+
+    {{-- flash error message --}}
+    @if(Session::has('session_error'))
+        <div class="c-flash c-flash__error js-flash-system-message" role="alert">
+            <p>{{ session('session_error') }}</p>
+        </div>
+    @endif
 
     {{-- メインコンテンツ --}}
     <main class="l-container">

@@ -51,12 +51,30 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $message = [
-            'email.unique' => '入力されたメールアドレスは無効です。他のメールアドレスをご利用ください。'
+            'name.required' => '入力してください。',
+            'name.unique' => '入力されたユーザーネームは使用できません。',
+            'name.string' => '半角英数字で入力してください。',
+            'name.min' => '3文字以上で入力してください。',
+            'name.max' => '32文字以内で入力してください。',
+            'name.regex' => '半角英数字で入力してください。',
+          
+            'email.required' => '入力してください。',
+            'email.unique' => '入力されたメールアドレスは使用できません。他のメールアドレスを入力してください。',
+            'email.string' => 'メールアドレスの形式で入力してください。',
+            'email.email' => 'メールアドレスの形式で入力してください。',
+            'email.max' => '100文字以内で入力してください。',
+          
+            'password.required' => '入力してください。',
+            'password.string' => '半角英数字で入力してください。',
+            'password.min' => '8文字以上で入力してください。',
+            'password.max' => '50文字以内で入力してください。',
+            'password.confirmed' => 'パスワードと再入力が一致しません。',
+            'password.regex' => '半角英数字で入力してください。',
         ];
         
         return Validator::make($data, [
             // ユーザーネーム: 半角英数字とアンダースコア
-            'name' => ['required', 'string', 'min:3', 'max:32', 'regex:/^[\w]+$/'],
+            'name' => ['required', 'string', 'min:3', 'max:32', 'regex:/^[\w]+$/', 'unique:users'],
             'email' => ['required', 'string', 'email:strict,dns,spoof', 'max:100', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'max:50', 'confirmed',  'regex:/^[a-zA-Z0-9]+$/'],
         ], $message);
@@ -80,6 +98,7 @@ class RegisterController extends Controller
     // registeredメソッドを上書き
     protected function registered(Request $request, $user)
     {
+        session()->flash('session_msg', '登録ありがとうございます');
         return $user;
     }
 }

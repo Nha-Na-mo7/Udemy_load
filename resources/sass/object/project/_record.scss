@@ -5,14 +5,36 @@
   background: #e6f7ff;
   // 一覧
   &__list {
+    padding-top: 60px;
+    padding-bottom: 120px;
+    margin: 0 auto;
+    @include mq($breakpoint: md) {
+      padding-top: 40px;
+    }
+    // リストの大枠
     &--inner {
       width: 50%;
+      @include mq($breakpoint: md) {
+        width: 90%;
+      }
       margin: 0 auto;
-      padding: 5px;
+      padding: 12px;
+      background: #fff;
     }
+    // 「レコード」の文言
+    &--title {
+      text-align: center;
+      font-size: 20px;
+      padding: 12px 0;
+      border-bottom: #cdcdcd 1px solid;
+    }
+    // コースのデータ1つ1つ
     &-item {
       padding: 15px;
-      border-top: 1px solid rgba(0, 0, 0, .12);
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+      @include mq() {
+        padding: 6px 10px;
+      }
       &--title {
         font-size: 20px;
         font-weight: 600;
@@ -21,6 +43,16 @@
         word-break: break-all;
         :hover {
           border-bottom: 1px solid #000;
+        }
+      }
+      &--username, &--date {
+        font-size: 12px;
+        color: #8a8a8a;
+      }
+      &--username {
+        font-weight: 700;
+        &:hover {
+          text-decoration: underline;
         }
       }
       &--description {
@@ -32,10 +64,11 @@
   // レコード詳細画面
   &__detail {
     width: 80%;
-    margin: 0 auto 20px;
+    margin: 0 auto;
     justify-content: center;
+    position: relative;
+    display: flex;
     &--list {
-      background: #efefef;
       padding: 12px;
     }
   }
@@ -49,6 +82,16 @@
       width: 80%;
       margin: 0 auto;
       padding: 5px;
+      display: flex;
+      justify-content: space-between;
+    }
+    &--column {
+      width: auto;
+      max-width: 90%;
+    }
+    &--date {
+      font-size: 12px;
+      margin-bottom: $space_s;
     }
     &--title {
       font-size: 40px;
@@ -56,39 +99,80 @@
       line-height: 1.5;
       word-break: break-all;
       margin-bottom: 5px;
+      @include mq() {
+        font-size: 32px;
+      }
     }
     &--description {
       font-size: 20px;
       letter-spacing: 2.5px;
       min-height: 240px;
+      line-height: 1.5;
+      // 改行に対応
+      white-space: pre-line;
+      @include mq() {
+        font-size: 16px;
+        line-height: 1.3;
+      }
     }
   }
   // 編集・投稿画面
   &__edit {
+    padding: 120px 0;
+    @include mq() {
+      padding: 50px 0;
+    }
     &--inner {
-      width: 80%;
+      background: #fff;
+      box-shadow: #cdcdcd 0 3px 5px;
+      padding: 40px;
       margin: 0 auto;
+      width: 60%;
+      @include mq($breakpoint: md) {
+        width: 90%;
+        padding: 30px 15px;
+      }
+    }
+    &--title {
+      text-align: center;
+      font-size: 25px;
+      font-weight: 600;
+    }
+    &--form {
+      border-top: 1px solid #cdcdcd;
     }
     &--textarea {
       width: 100%;
+      min-height: 180px;
     }
+  }
+  &__delete {
+    margin-top: $space_xxl;
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid #cdcdcd;
   }
   // コメント関連
   &__comment {
     width: 80%;
     padding: 15px 5px;
-    margin: 0 auto;
+    margin: 40px auto;
+    background: #fff;
     &--head {
       font-size: 24px;
       font-weight: 700;
-      padding: 30px 15px 10px;
+      padding: 15px 15px;
     }
     &--list {
 
     }
     &--item {
-      padding: 20px 30px;
+      margin: 15px 10px;
+      padding: 15px 20px;
       border-top: 1px solid #8a8a8a;
+      @include mq() {
+        padding: 5px 10px;
+      }
     }
     &--author {
       font-size: 12px;
@@ -98,12 +182,23 @@
       font-size: 16px;
       line-height: 1.5;
       padding: 10px;
-      white-space: pre-wrap;
+      white-space: pre-line;
       font-weight: unset;
+      @include mq() {
+        font-size: 14px;
+        padding: 10px 0;
+      }
+    }
+    &--form {
+      text-align: center;
+      padding: 25px 0;
+      width: 90%;
+      margin: 0 auto;
     }
     &--textarea {
-      min-width: 640px;
+      text-align: left;
       min-height: 180px;
+      width: 100%;
     }
   }
 }

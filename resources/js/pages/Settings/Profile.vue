@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="l-container__setting u-flex u-space-between">
     <SettingItemList />
 
     <h1>公開用プロフィールの設定</h1>

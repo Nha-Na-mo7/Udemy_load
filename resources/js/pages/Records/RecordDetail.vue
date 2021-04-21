@@ -1,94 +1,114 @@
 <template>
-  <div class="p-record">
+  <div class="p-record u-pb-50">
 
     <div v-if="loading">
       <Loading />
     </div>
 
     <div v-else>
-      <!-- インフォメーション -->
-      <div class="p-record__info">
-        <div class="p-record__info--inner">
-          <!-- 編集ボタン/投稿者自身の場合のみ-->
-          <RouterLink
-              v-if="isOwner"
-              class="c-btn"
-              :to="`/records/${this.id}/edit`">
-            編集する
-          </RouterLink>
+      <div v-if="checkExistRecord">
+        <!-- インフォメーション -->
+        <section class="p-record__info">
+          <div class="p-record__info--inner">
+            <div class="p-record__info--column">
 
-          <!-- タイトル -->
-          <h2 class="p-record__info--title">{{ this.title }}</h2>
-          <!-- 投稿者 -->
-          <RouterLink
-              class="p-record__list-item__username"
-              :to="`/mypage/${ this.ownerName }`"
-          >ユーザー名: {{ this.ownerName }}
-          </RouterLink>
-          <!-- Description -->
-          <p v-html="description" class="p-record__info--description"></p>
-        </div>
-      </div>
-
-      <!-- 詳細 -->
-      <div class="p-record__detail">
-        <!-- コースコンポーネント -->
-        <div class="p-record__detail--list">
-          <!-- TODO INDEXによる並び替えをサーバサイドで行う処理を書いてください-->
-          <CourseDetail
-              v-for="Course in this.record.courses"
-              :key="Course.id"
-              :course="Course"
-          />
-        </div>
-      </div>
-
-      <!-- コメント欄 -->
-      <div class="p-record__comment">
-        <h3 class="p-record__comment--head">コメント</h3>
-
-        <!-- 一覧 -->
-        <ul
-            v-if="existComments"
-            class="p-record__comment--list"
-        >
-          <li
-              v-for="Comment in record.comments"
-              :key="Comment.content"
-              class="p-record__comment--item"
-          >
-            <p class="p-record__comment--author">{{ Comment.author.name }} さんが{{ Comment.created_at }}に投稿</p>
-            <pre class="p-record__comment--content">{{ Comment.content }}</pre>
-          </li>
-        </ul>
-
-        <!-- コメントがない時 -->
-        <div v-else>
-          <h3>コメントはありません</h3>
-        </div>
-
-        <!-- 投稿フォーム(ログイン必須) -->
-        <div v-if="isLogin">
-          <h3>投稿する</h3>
-          <form class="c-form" @submit.prevent="addComment">
-        <textarea
-            class="p-record__comment--textarea c-form__textarea"
-            v-model="commentContent"
-        ></textarea>
-            <div class="c-form__button">
-              <button class="c-btn">コメントを投稿</button>
+              <div class="u-mb-m">
+                <!-- 投稿/更新時刻 -->
+                <p class="p-record__info--date">投稿時刻: {{ this.createdAt | recordAt }}</p>
+                <p class="p-record__info--date" v-if="checkUpdated">最終更新: {{ this.updatedAt | recordAt }}</p>
+                <!-- タイトル -->
+                <h2 class="p-record__info--title">{{ this.title }}</h2>
+                <!-- 投稿者 -->
+                <RouterLink
+                    class="p-record__list-item__username"
+                    :to="`/mypage/${ this.ownerName }`"
+                >ユーザー名: {{ this.ownerName }}
+                </RouterLink>
+              </div>
+              <!-- Description -->
+              <p v-html="description" class="p-record__info--description"></p>
             </div>
-          </form>
-        </div>
+            <!-- 編集ボタン/投稿者自身の場合のみ-->
+            <div class="p-record__info--column">
+              <RouterLink
+                  v-if="isOwner"
+                  class=""
+                  :to="`/records/${this.id}/edit`">
+                <i class="fas fa-pencil-alt c-icon__fa"></i>
+              </RouterLink>
+            </div>
+          </div>
+        </section>
+        <!-- 詳細 -->
+        <section class="p-record__detail">
+          <!-- コースコンポーネント -->
+          <div class="p-record__detail--list">
+            <CourseDetail
+                v-for="(Course, index) in this.record.courses"
+                :key="Course.id"
+                :course="Course"
+                :index="index"
+            />
+          </div>
+        </section>
+        <!-- コメント欄 -->
+        <section class="p-record__comment">
+          <h3 class="p-record__comment--head">コメント{{ countComments | addBrackets }}</h3>
+          <!-- 一覧 -->
+          <ul
+              v-if="existComments"
+              class="p-record__comment--list"
+          >
+            <li
+                v-for="(Comment, index) in record.comments"
+                :key="Comment.content"
+                class="p-record__comment--item"
+            >
+              <p>{{ index + 1 | addBrackets}}</p>
+              <p class="p-record__comment--author">
+                <RouterLink
+                    class="p-record__list-item__username"
+                    :to="`/mypage/${ Comment.author.name }`"
+                >{{ Comment.author.name }}
+                </RouterLink> が{{ Comment.created_at }}に投稿
+              </p>
+              <p class="p-record__comment--content">{{ Comment.content }}</p>
+            </li>
+          </ul>
+
+          <!-- コメントがない時 -->
+          <div v-else>
+            <h3 class="p-record__comment--item">コメントはありません</h3>
+          </div>
+
+          <!-- 投稿フォーム(ログイン必須) -->
+          <div v-if="isLogin" class="">
+            <form class="p-record__comment--form c-form" @submit.prevent="addComment">
+              <textarea
+                  class="p-record__comment--textarea c-form__textarea u-mb-xl"
+                  v-model="commentContent"
+              ></textarea>
+              <div class="c-form__button">
+                <button class="c-btn c-btn__edit--submit" v-bind:disabled="checkVoidComment">コメントを投稿</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+      <!-- レコードがない場合 -->
+      <div v-else>
+        <NothingRecordDetail />
       </div>
     </div>
   </div>
 </template>
 <script>
 
-import { OK, CREATED, UNPROCESSABLE_ENTITY } from '../../util.js'
+import {OK, CREATED, UNPROCESSABLE_ENTITY, NOT_FOUND} from '../../util.js'
 import Loading from '../../components/Loading'
+import NothingRecordDetail from './NothingRecordDetail'
 import CourseDetail from './CourseDetail'
+import moment from "moment";
 
 export default {
   props: {
@@ -106,6 +126,14 @@ export default {
     }
   },
   computed: {
+    // レコードが存在するかどうか
+    checkExistRecord() {
+      return !!Object.keys(this.record).length
+    },
+    // コメントが未入力かどうか
+    checkVoidComment() {
+      return this.commentContent === ''
+    },
     isLogin() {
       return this.$store.getters['auth/check']
     },
@@ -118,13 +146,29 @@ export default {
     description() {
       return this.record.description
     },
+    // コメント数
+    countComments() {
+      return this.record.comments.length ?? 0
+    },
     existComments() {
       return this.record.comments.length > 0
     },
     // 投稿者と自分が同一か
     isOwner() {
       return this.ownerName === this.$store.getters['auth/username']
-    }
+    },
+    // 投稿時刻
+    createdAt() {
+      return this.record.created_at
+    },
+    // 更新時刻
+    updatedAt() {
+      return this.record.updated_at
+    },
+    // 更新されているか(投稿時刻と更新時刻が同一ではないか)
+    checkUpdated() {
+      return this.createdAt < this.updatedAt
+    },
   },
   methods: {
     // ========================
@@ -134,6 +178,12 @@ export default {
       console.log('レコード情報を取得しました。')
       // レコード情報を取得
       const response = await axios.get(`/record/${this.id}`)
+
+      // レコードが見つからなかった場合
+      if (response.status === NOT_FOUND) {
+        this.loading = false
+        return false
+      }
       // エラー時の処理
       if (response.status !== OK) {
         this.$store.commit('error/setCode', response.status);
@@ -148,6 +198,11 @@ export default {
     // コメントを投稿
     // ================
     async addComment() {
+      if(this.checkVoidComment) {
+        alert('コメントを入力してください')
+        return false
+      }
+
       const response = await axios.post(`/record/${this.id}/comments`,{
         content: this.commentContent
       })
@@ -162,12 +217,20 @@ export default {
       this.commentContent = ''
       this.commentErrors = null
 
+      // コメントを投稿する間に既に削除されているなどの場合
+      if (response.status === NOT_FOUND) {
+        // 一覧ページへ戻す
+        this.$router.go({
+          path: this.$router.currentRoute.path,
+          force: true
+        })
+        return false
+      }
       // それ以外のエラー
       if (response.status !== CREATED) {
         this.$store.commit('error/setCode', response.status)
         return false
       }
-
       // ページをリロードする
       this.$router.go({
         path: this.$router.currentRoute.path,
@@ -177,7 +240,16 @@ export default {
   },
   components: {
     Loading,
+    NothingRecordDetail,
     CourseDetail,
+  },
+  filters: {
+    addBrackets(count) {
+      return '(' + count + ')'
+    },
+    recordAt(date) {
+      return moment(date).format('YYYY/MM/DD HH:mm');
+    },
   },
   watch: {
     $route: {

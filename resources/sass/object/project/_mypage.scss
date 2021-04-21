@@ -10,6 +10,58 @@
     width: 49%;
     @include mq() {
       width: 100%;
+      margin-bottom: 50px;
+    }
+  }
+  &__title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  // 一覧
+  &__record-list {
+    &--inner {
+      background: #fff;
+      margin: 0 auto;
+      padding: 12px;
+    }
+    &-item {
+      padding: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+      display: flex;
+      justify-content: space-between;
+      &--column {
+        width: 100%;
+        &--left, &--right {
+          width: auto;
+        }
+        &--right {
+          display: flex;
+          flex-flow: column;
+          right: 0;
+          padding-left: 10px;
+        }
+      }
+      &--date {
+        font-size: 10px;
+        margin-bottom: $space_s;
+        color: #8a8a8a;
+      }
+      &--title {
+        font-size: 20px;
+        font-weight: 600;
+        margin: $space_s 0;
+        line-height: 1.5;
+        word-break: break-all;
+        :hover {
+          border-bottom: 1px solid #000;
+        }
+      }
+      &--description {
+        font-size: 12px;
+        line-height: 1.6;
+      }
     }
   }
 }

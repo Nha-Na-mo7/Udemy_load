@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RecordRequest;
 use App\Http\Requests\StoreComment;
 use App\Models\Comment;
 use App\Models\Course;
@@ -15,12 +16,28 @@ class RecordController extends Controller
     public function __construct()
     {
         // 基本的に認証必須 / expectは認証不要
-        $this->middleware('auth')->except(['show', 'index']);
+        $this->middleware('auth')->except(['show', 'index', 'get_list']);
     }
     
+    // ============
+    // ビューを返却
+    // ============
+    // 詳細画面
+    public function index()
+    {
+      return view('pages.records');
+    }
+    // 投稿画面
+    public function index_create()
+    {
+      return view('pages.record_create');
+    }
+  
+    // ==============
     // レコードの投稿
     // TODO 未実装項目: IDが被った時に再抽選する機能、
-    public function create(Request $request)
+    // ============
+    public function create(RecordRequest $request)
     {
         Log::debug('==============');
         Log::debug(' レコードの投稿');
@@ -54,11 +71,14 @@ class RecordController extends Controller
             ]);
         }
         
+        session()->flash('session_success', '投稿しました');
         return response($record, 201);
     }
     
+    // ============
     // レコードの更新
-    public function update(Request $request, string $id)
+    // ============
+    public function update(RecordRequest $request, string $id)
     {
         Log::debug('==========================');
         Log::debug(' レコード更新 ID:' . $id);
@@ -66,7 +86,16 @@ class RecordController extends Controller
         
         // TODO 認証中ユーザーか二重チェックする？
         // IDに合致するレコード情報を取得
-        $record = Record::where('id', $id)->with(['courses'])->first();
+        $record = Record::where('id', $id)
+            ->with(['courses'])
+            ->where('delete_flg', false)
+            ->first();
+        
+        if ($record === null) {
+          Log::debug('レコードが見当たらない、あるいは既に削除済みです');
+          session()->flash('session_error', 'レコードが見つかりませんでした');
+          return abort(404);
+        }
         // recordsテーブルのtitleとdescriptionを更新
         Auth::user()->records()->save($record->fill($request->recordForm));
         // Log::debug('print_r($record, true)');
@@ -135,35 +164,42 @@ class RecordController extends Controller
         Course::where('record_id', $id)
             ->where('record_index', '>', count($request->selectedCourses) - 1)
             ->delete();
-        
+  
+        session()->flash('session_success', '更新が完了しました');
         return response([], 200);
     }
     
+    // ==============
     // レコード詳細の取得
+    // ==============
     public function show(string $id, bool $owner_flg = false) {
         Log::debug('==================================');
         Log::debug('レコード詳細取得/ID:'.$id);
         Log::debug('==================================');
         // IDに合致するレコード情報を取得
-        $record = Record::where('id', $id)->with(['owner', 'courses', 'comments.author'])->first();
-        
+        $record = Record::where('id', $id)
+            ->with(['owner', 'courses', 'comments.author'])
+            ->where('delete_flg', false)
+            ->first();
+  
+        // レコードを返すが、存在しない場合は404を返す
+        if ($record ===  null) {
+          Log::debug('存在しないか、削除されています');
+          return abort(404);
+        }
         // レコードの所持者かを確認し、違うなら403を返す(Edit時のみ)
         if ($owner_flg) {
           if (Auth::user()->id !== $record->user_id) {
             return abort(403);
           };
         }
-        
-        // descriptionの改行タグを<br>に置き換え
-        $record->description = str_replace("\r\n", '<br>', $record->description);
-        
-        // TODO course内のindex項目による並び替えを行ってからreturnしてください
-        // レコードを返すが、存在しない場合は404を返す
-        return $record ?? abort(404);
+        return $record;
     }
     
+    // ==============
     // レコード一覧の取得
-    public function index($user_id = null) {
+    // ==============
+    public function get_list($user_id = null) {
         Log::debug('==============');
         Log::debug('レコード一覧取得');
         Log::debug('==============');
@@ -171,45 +207,65 @@ class RecordController extends Controller
         if ($user_id === null) {
             Log::debug('USER_ID:'.$user_id);
             $records = Record::with(['owner'])
+                ->where('delete_flg', 0)
                 ->orderBy(Course::CREATED_AT, 'desc')
-                ->paginate();
+                ->get();
       
             return $records;
         }
         // ユーザーIDがある場合、そのユーザーが投稿したレコードに絞って取得する
-      
         $records = Record::where('user_id', $user_id)
             ->with(['owner'])
+            ->where('delete_flg', 0)
             ->orderBy(Record::CREATED_AT, 'desc')
-            ->paginate();
+            ->get();
         
         return $records;
     }
     
+    // ==============
     // レコードの削除
+    // ==============
     public function delete(string $id) {
         Log::debug('===============================');
         Log::debug('レコード削除/ID:'.$id);
         Log::debug('===============================');
   
         // 現在認証中のユーザーの投稿済みレコードの中に指定したIDのレコードがあれば取得する
-        $record = Auth::user()->records()->find($id);
+        $record = Auth::user()->records()->where('id', $id)->first();
+        
         if ($record) {
+            Log::debug('delete_flgをtrueにします');
             // delete_flgをtrueにする
-            $record->delete_flg->save(true);
+            $record->update([
+                'delete_flg' => true,
+            ]);
             Log::debug($id.'のdelete_flgをtrueにし、論理削除されました。');
+            session()->flash('session_success', '削除が完了しました');
             return response([], 200);
         }
-        // TODO ない場合404を返す?500にする?
         Log::debug('レコードはありませんでした');
+        session()->flash('session_error', 'レコードが見つかりませんでした');
         return abort(404);
     }
     
+    // ==============
     // コメントの投稿
+    // ==============
     public function addComment(Record $record, StoreComment $request) {
         Log::debug('===========');
         Log::debug('コメント投稿');
         Log::debug('===========');
+        // 投稿対象となるレコードの存在確認
+        $id = $record->id;
+        $checkExistRecord = Record::where('id', $id)->where('delete_flg', false)->first();
+        if ($checkExistRecord === null) {
+          Log::debug('レコードは削除されています');
+          session()->flash('session_error', 'レコードは削除されています');
+          return abort(404);
+        }
+        
+        Log::debug('コメントを投稿します');
         $comment = new Comment();
         $comment->content = $request->get('content');
         $comment->user_id = Auth::user()->id;
@@ -217,7 +273,8 @@ class RecordController extends Controller
         
         // authorリレーションロードようにコメントを取得し直す
         $new_comment = Comment::where('id', $comment->id)->with('author')->first();
-        
+  
+        session()->flash('session_success', 'コメントが投稿されました');
         return response($new_comment, 201);
     }
 }

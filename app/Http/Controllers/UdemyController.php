@@ -30,18 +30,26 @@ class UdemyController extends Controller
     // ------------------
     // GETパラメータの値を元に、講座情報を取得する
     $keywords = filter_input(INPUT_GET, 'keywords') ? filter_input(INPUT_GET, 'keywords') : '';
+    $url = filter_input(INPUT_GET, 'url') ? filter_input(INPUT_GET, 'url') : '';
     
     Log::debug('検索ワード: '.$keywords);
-
-    // APIへのリクエストURLを作成
-    // キーワード検索時のベースとなるURL
-    $API_BASE_URL = 'https://www.udemy.com/api-2.0/courses/?language=ja&search=';
-    // 検索キーワードの文字コードを変更
-    $query = urlencode(mb_convert_encoding($keywords, "UTF-8", "auto"));
-  
-    // APIへのリクエストURLを作成
-    $api_url = $API_BASE_URL . $query;
+    Log::debug('url: '.$url);
     
+    // URLが指定されている時はそのURLで検索をかける
+    if ($url !== '') {
+      Log::debug('urlによる検索');
+      $api_url = $url;
+    }else{
+      Log::debug('検索ワードによる検索');
+      // APIへのリクエストURLを作成
+      // キーワード検索時のベースとなるURL
+      $API_BASE_URL = 'https://www.udemy.com/api-2.0/courses/?language=ja&search=';
+      // 検索キーワードの文字コードを変更
+      $query = urlencode(mb_convert_encoding($keywords, "UTF-8", "auto"));
+  
+      // APIへのリクエストURLを作成
+      $api_url = $API_BASE_URL . $query;
+    }
     // ----------------------------------
     // APIへリクエストを飛ばし、コース一覧を取得
     // ----------------------------------
@@ -70,16 +78,13 @@ class UdemyController extends Controller
     // ----------------------
     // 必要な情報をレスポンスする
     // ----------------------
-    // 講座数をカウント、0の場合は空のままレスポンスする
+    // TODO 講座数をカウント、0の場合は空のままレスポンスする
     if(!!$data['count']) {
       Log::debug('コース総数: '. $data['count']);
     } else {
       Log::debug('見つかりませんでした、検索ワードを変えてください');
     }
-    // レスポンスする記事の配列
-    // Log::debug('レスポンスする記事の配列: '. print_r($scraped_entry_list, true));
     
-    // 取得したニュースの配列を返却
     return $data;
   }
 }

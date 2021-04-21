@@ -14,30 +14,128 @@
   }
   // 選択されたコース
   &__selected {
-    padding: 5px;
-    border: 1px solid #000;
-    margin-bottom: 12px;
+    padding: 15px;
+    border: 1px solid #cdcdcd;
+    border-radius: 4px;
+    margin-bottom: 40px;
+    &--textarea {
+      width: 100%;
+      min-height: 120px;
+    }
   }
 
-  // 詳細ページのコースコンポーネント
-  &__item {
-    box-shadow: #cdcdcd 0 3px 5px;
-    margin-bottom: 12px;
-    padding: 5px 10px;
-    &:nth-of-type(3n) {
-      background: #d6fbff;
+  &__card {
+    position: relative;
+    display: flex;
+    @include mq($breakpoint: lg) {
+      flex-flow: column;
     }
-    &:nth-of-type(3n-1) {
-      background: #e1ffd6;
+    animation: fadeIn 1s;
+    box-shadow: #cdcdcd 0 3px 8px;
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    &:nth-of-type(5n) {
+      background: #f1fff2;
     }
-    &:nth-of-type(3n-2) {
+    &:nth-of-type(5n-1) {
+      background: #e2faff;
+    }
+    &:nth-of-type(5n-2) {
+      background: #fffbee;
+    }
+    &:nth-of-type(5n-3) {
+      background: #f0f0fc;
+    }
+    &:nth-of-type(5n-4) {
+      background: #fcfcfc;
+    }
+    &--left {
+      margin-right: 15px;
+      @include mq($breakpoint: lg) {
+        margin-right: unset;
+        margin-bottom: 15px;
+      }
+    }
+    &--right {
+      width: 100%;
+      padding: 15px;
       background: #fff;
+      border-radius: 4px;
+    }
+    &--img {
+      max-width: 100%;
+      box-shadow: #8a8a8a 0 2px 5px;
+    }
+    &--line {
+      background: #f66d9b;
+      position: absolute;
+      width: 35px;
+      height: 3px;
+      top: 50%;
+      left: -2em;
+      @include mq() {
+        position: unset;
+        width: 0;
+        height: 0;
+      }
+      &::before, &::after {
+        position: absolute;
+        border-radius: 50%;
+        display: block;
+      }
+      &::before {
+        background: #ffc2d5;
+        border: 3px solid #f59dbb;
+
+        content: attr(detail-index);
+
+        width: 50px;
+        height: 50px;
+        left: -35px;
+        top: -20px;
+
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        vertical-align: middle;
+        @include mq() {
+          left: -15px;
+          top: -12px;
+          font-size: 2.5rem;
+          font-weight: 600;
+        }
+      }
+      &::after {
+        background: #f66d9b;
+        content: '';
+
+        width: 10px;
+        height: 10px;
+        right: -5px;
+        top: -3.5px;
+
+        z-index: 2;
+        @include mq() {
+          display: none;
+        }
+      }
     }
     // 講座タイトル
+    &--info {
+      line-height: 1.2;
+      letter-spacing: -.02rem;
+      margin-bottom: 15px;
+    }
     &--title {
-      font-weight: bold;
-      font-size: 20px;
-      margin-bottom: 4px;
+      font-weight: 700;
+      font-size: 1.5em;
+      margin-bottom: 8px;
+      @include mq() {
+        font-size: 1.2rem;
+        line-height: 1.2;
+      }
       // 講座タイトルリンク
       &--link {
         &:hover {
@@ -47,7 +145,17 @@
     }
     // 講師名
     &--instructor {
-      font-size: 12px;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+    &--description {
+      font-size: 1.4rem;
+      line-height: 1.5;
+      white-space: pre-line;
+      @include mq() {
+        font-size: 1.2rem;
+        line-height: 1.2;
+      }
     }
   }
 }

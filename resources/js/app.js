@@ -1,6 +1,9 @@
 // Ajax通信用のAxiosライブラリの設定が記述されている、デフォルトのjsファイル
 import './bootstrap.js';
 
+// jQuery
+import jQuery from './jquery.js';
+
 // Vue.js
 import Vue from 'vue';
 // ルーティングの定義
@@ -23,6 +26,7 @@ const createApp = async () => {
             el: '#app',
             router, // ルーティング定義
             store, // ストア
+            jQuery,
             components: { App }, // ルートコンポーネントの使用宣言
             template: '<App />' //ルートコンポーネントの描画
         });

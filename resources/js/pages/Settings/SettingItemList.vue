@@ -1,9 +1,25 @@
 <!-- 設定項目リスト -->
 <template>
-  <div>
-    <RouterLink class="c-btn" to="/settings/profile">プロフィール</RouterLink>
-    <RouterLink class="c-btn" to="/settings/account">アカウント</RouterLink>
-    <RouterLink class="c-btn" to="/settings/password">パスワード</RouterLink>
+  <div class="p-setting__list">
+    <ul class="p-setting__list--container">
+      <li class="">
+        <RouterLink
+            class="p-setting__list--item"
+            to="/settings/account"
+        >
+          <i class="fas fa-cog"></i>
+          アカウント
+        </RouterLink>
+      </li>
+      <li class="">
+        <RouterLink
+            class="p-setting__list--item"
+            to="/settings/password">
+          <i class="fas fa-key"></i>
+          パスワード
+        </RouterLink>
+      </li>
+    </ul>
   </div>
 </template>
 

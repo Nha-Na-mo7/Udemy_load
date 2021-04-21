@@ -6,9 +6,8 @@
         <span class="p-error__statusCode--text">Server Error</span>
       </div>
       <div class="p-error__description">
-        <span
-        >サーバーで問題が発生しました。お手数ですが、しばらく時間を置いてからやり直してください。</span
-        >
+        <p>サーバーで問題が発生しました。</p>
+        <p>お手数ですが、しばらく時間を置いてからやり直してください。</p>
       </div>
       <!-- トップへ戻る -->
     </div>

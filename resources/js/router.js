@@ -23,7 +23,7 @@ import store from './store'
 Vue.use(VueRouter);
 
 // vue-routerからvuexを参照するには直接インポートする
-// 認証切れの場合に"/login"へ遷移させる
+// 認証切れの場合その場でリロードし、/loginへ遷移する
 async function checkLoginToken(to, from, next) {
   await auth.actions.check_authenticate();
   if (!auth.state.authenticate) {

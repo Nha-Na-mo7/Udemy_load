@@ -2,26 +2,38 @@
 //  l-container
 //  =============
 .l-container {
+  background-color: #f8f8f8;
   width: 100%;
   height: auto;
 
   &__auth {
     max-width: 768px;
-    margin: 80px auto;
-    padding: 0 $space_l;
+    margin: 0 auto;
+    padding: 120px $space_l;
     @include mq($breakpoint: md) {
       max-width: 100%;
-      margin: 50px auto;
+      padding: 40px $space_l;
     }
   }
   &__content {
     max-width: 980px;
-    margin: 100px auto 120px;
-    padding: 0 $space_l;
+    margin: 0 auto;
+    padding: 80px $space_l 120px;
   }
   &__profile-edit {
     max-width: 800px;
     margin: 100px auto 135px;
     padding: 0 $space_l;
+  }
+  &__setting {
+    width: 80%;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 40px $space_l 100px;
+    @include mq($breakpoint: md) {
+      width: 90%;
+      display: flex;
+      flex-flow: column;
+    }
   }
 }

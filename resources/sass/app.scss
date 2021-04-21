@@ -23,6 +23,8 @@
 @import 'layout/header';
 //  footer
 @import 'layout/footer';
+//  main
+@import 'layout/main';
 //  container
 @import 'layout/container';
 
@@ -48,10 +50,16 @@
 @import 'object/project/form';
 //  header
 @import 'object/project/header';
+//  modal
+@import 'object/project/modal';
 //  mypage
 @import 'object/project/mypage';
+//  nothing
+@import 'object/project/nothing';
 //  record
 @import 'object/project/record';
+//  setting
+@import 'object/project/setting';
 
 //  -----------------------------
 //  component
@@ -69,6 +77,8 @@
 @import 'object/component/flash';
 //  form
 @import 'object/component/form';
+//  icon
+@import 'object/component/icon';
 //  input
 @import 'object/component/input';
 //  loading

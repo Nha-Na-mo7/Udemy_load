@@ -4,28 +4,28 @@
 .p-form {
   padding: $space_xxl 0;
   @include mq() {
-    padding: 0 $space_l;
+    padding: $space_m 0;
   }
   &__item {
     border: 1px solid #000;
   }
   &__auth {
-    width: 450px;
+    max-width: 440px;
+    width: 100%;
     margin: 0 auto;
-    @include mq() {
-      width: 100%;
-    }
   }
   &__title {
     font-size: $font-size_xl;
-    font-weight: bold;
-    text-align: center;
+    font-weight: 500;
     margin-bottom: $space_l;
+    &::placeholder {
+      font-size: 12px;
+      font-weight: unset;
+    }
   }
   &__description {
     margin-bottom: $space_xl;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 12px;
     line-height: 1.5;
   }
   &__send {

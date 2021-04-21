@@ -45,6 +45,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
       // ログイン処理後にリダイレクトする先を指定する
+      session()->flash('session_msg', 'ログインしました');
       return $user;
     }
     
@@ -53,10 +54,22 @@ class LoginController extends Controller
     // ===================================
     protected function validateLogin(Request $request)
     {
+      $message = [
+          'email.email' => 'メールアドレスの形式で入力してください。',
+          'email.max' => '100文字以内で入力してください。',
+          'email.required' => '入力してください。',
+      
+          'password.string' => '半角英数字で入力してください。',
+          'password.min' => '8文字以上で入力してください。',
+          'password.max' => '50文字以内で入力してください。',
+          'password.regex' => '半角英数字で入力してください。',
+          'password.required' => '入力してください。',
+      ];
+      
       $request->validate([
           $this->username() => 'required|email:strict,spoof|max:100',
           'password' => 'required|string|min:8|max:50|regex:/^[a-zA-Z0-9]+$/',
-      ]);
+      ], $message);
     }
     
     // ===================================
@@ -69,7 +82,7 @@ class LoginController extends Controller
     {
       // セッションの再生成
       $request->session()->regenerate();
-      
+
       // jsonを返却 要検討
       return response()->json();
     }
