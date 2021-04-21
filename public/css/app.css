@@ -641,12 +641,14 @@ input[type=checkbox] {
   width: 80%;
   max-width: 1024px;
   margin: 0 auto;
-  padding: 80px 15px 120px;
+  padding: 40px 15px 100px;
 }
 
 @media screen and (max-width: 768px) {
   .l-container__setting {
     width: 90%;
+    display: flex;
+    flex-flow: column;
   }
 }
 
@@ -1599,10 +1601,24 @@ input[type=checkbox] {
   margin-right: 30px;
 }
 
+@media screen and (max-width: 768px) {
+  .p-setting__list {
+    text-align: center;
+    margin-right: unset;
+    margin-bottom: 8px;
+  }
+}
+
 .p-setting__list--container {
   width: 100%;
   border-radius: 4px;
   box-shadow: #cdcdcd 0 3px 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .p-setting__list--container {
+    margin-bottom: 30px;
+  }
 }
 
 .p-setting__list--item {
@@ -1614,7 +1630,7 @@ input[type=checkbox] {
 }
 
 .p-setting__list--item:hover {
-  background: #cdcdcd;
+  background: #d8d8d8;
 }
 
 .p-setting__title {
@@ -1866,8 +1882,13 @@ input[type=checkbox] {
 }
 
 .c-btn__setting--update {
-  width: 100px;
-  min-width: unset;
+  min-width: 180px;
+}
+
+@media screen and (max-width: 414px) {
+  .c-btn__setting--update {
+    min-width: unset;
+  }
 }
 
 .c-btn__setting--withdraw {

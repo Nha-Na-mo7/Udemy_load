@@ -153,8 +153,10 @@
   // アカウント設定画面用
   &__setting {
     &--update {
-      width: 100px;
-      min-width: unset;
+      min-width: 180px;
+      @include mq() {
+        min-width: unset;
+      }
     }
     &--withdraw {
       background: #f8f8f8;

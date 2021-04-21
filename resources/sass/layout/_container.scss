@@ -29,9 +29,11 @@
     width: 80%;
     max-width: 1024px;
     margin: 0 auto;
-    padding: 80px $space_l 120px;
+    padding: 40px $space_l 100px;
     @include mq($breakpoint: md) {
       width: 90%;
+      display: flex;
+      flex-flow: column;
     }
   }
 }

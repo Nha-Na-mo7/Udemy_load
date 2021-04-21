@@ -69,7 +69,7 @@
       />
 
       <div class="c-form__submit u-text--center">
-        <button class="c-btn" @click="updatePassword">
+        <button class="c-btn c-btn__setting--update" @click="updatePassword">
           <i class="fas fa-key"></i> 変更する
         </button>
       </div>

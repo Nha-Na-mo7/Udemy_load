@@ -59520,7 +59520,10 @@ var render = function() {
       _c("div", { staticClass: "c-form__submit u-text--center" }, [
         _c(
           "button",
-          { staticClass: "c-btn", on: { click: _vm.createPassword } },
+          {
+            staticClass: "c-btn c-btn__setting--update",
+            on: { click: _vm.createPassword }
+          },
           [_c("i", { staticClass: "fas fa-key" }), _vm._v(" 登録する\n      ")]
         )
       ])
@@ -59734,7 +59737,10 @@ var render = function() {
       _c("div", { staticClass: "c-form__submit u-text--center" }, [
         _c(
           "button",
-          { staticClass: "c-btn", on: { click: _vm.updatePassword } },
+          {
+            staticClass: "c-btn c-btn__setting--update",
+            on: { click: _vm.updatePassword }
+          },
           [_c("i", { staticClass: "fas fa-key" }), _vm._v(" 変更する\n      ")]
         )
       ])
