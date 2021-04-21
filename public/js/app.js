@@ -2104,6 +2104,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      isActive: false
+    };
+  },
   computed: {
     apiStatus: function apiStatus() {
       return this.$store.state.auth.apiStatus;
@@ -2116,6 +2121,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    // ナビバー切り替え
+    toggleSpMenu: function toggleSpMenu() {
+      this.isActive = !this.isActive;
+    },
     // ログアウト
     logout: function logout() {
       var _this = this;
@@ -57134,11 +57143,28 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "p-header__right" }, [
-      _vm._m(1),
+      _c(
+        "div",
+        {
+          staticClass: "p-header__trigger",
+          class: { active: _vm.isActive },
+          on: { click: _vm.toggleSpMenu }
+        },
+        [
+          _c("span", { staticClass: "p-header__trigger--bar" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "p-header__trigger--bar" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "p-header__trigger--bar" })
+        ]
+      ),
       _vm._v(" "),
       _c(
         "nav",
-        { staticClass: "p-header__nav p-header__nav__sp js-toggle-sp-nav" },
+        {
+          staticClass: "p-header__nav p-header__nav__sp",
+          class: { active: _vm.isActive }
+        },
         [
           _c("ul", { staticClass: "p-header__menu" }, [
             _vm.isLogin
@@ -57146,7 +57172,7 @@ var render = function() {
                   _c(
                     "a",
                     {
-                      staticClass: "c-btn__header",
+                      staticClass: "p-header__item--link c-btn__header",
                       attrs: { href: "/records/new" }
                     },
                     [_vm._v("\n            投稿する\n          ")]
@@ -57159,7 +57185,7 @@ var render = function() {
                   _c(
                     "a",
                     {
-                      staticClass: "c-btn__header",
+                      staticClass: "p-header__item--link c-btn__header",
                       attrs: { href: "/mypage/" + this.username }
                     },
                     [_vm._v("\n            マイページ\n          ")]
@@ -57171,7 +57197,10 @@ var render = function() {
               ? _c("li", { staticClass: "p-header__item" }, [
                   _c(
                     "button",
-                    { staticClass: "c-btn__header", on: { click: _vm.logout } },
+                    {
+                      staticClass: "p-header__item--link c-btn__header",
+                      on: { click: _vm.logout }
+                    },
                     [_vm._v("\n            ログアウト\n          ")]
                   )
                 ])
@@ -57203,18 +57232,6 @@ var staticRenderFns = [
           }
         })
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-header__trigger js-toggle-sp-menu" }, [
-      _c("span", { staticClass: "p-header__trigger--bar" }),
-      _vm._v(" "),
-      _c("span", { staticClass: "p-header__trigger--bar" }),
-      _vm._v(" "),
-      _c("span", { staticClass: "p-header__trigger--bar" })
     ])
   }
 ]
@@ -76832,32 +76849,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 $(function () {
-  // ============================
-  // SPバーガーメニュー
-  // ============================
-  $('body').removeClass('u-scroll-prevent');
-  var spnav = $('.js-toggle-sp-nav'); // 背景がスクロールしないように固定する
-
-  $('.js-toggle-sp-menu').on('click', function () {
-    $(this).toggleClass('active');
-    spnav.toggleClass('active');
-
-    if (spnav.hasClass('active')) {
-      scrollPosition = $(window).scrollTop();
-      $('body').toggleClass('u-scroll-prevent').css({
-        top: -scrollPosition
-      });
-    } else {
-      scrollPosition = $(window).scrollTop();
-      $('body').toggleClass('u-scroll-prevent').css({
-        top: 0
-      });
-      window.scrollTo(0, scrollPosition);
-    }
-  }); // ==========================
+  // ==========================
   // フラッシュメッセージのfadeout
   // ==========================
-
   $('.js-flash-system-message').fadeOut(5000);
 });
 

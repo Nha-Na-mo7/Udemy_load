@@ -22,8 +22,8 @@
     color: #fff;
   }
   &__header {
+    transition: all .5s;
     box-sizing: border-box;
-    padding: $space_m $space_xl;
     &:hover {
       background: #efefef;
     }

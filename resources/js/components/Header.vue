@@ -16,25 +16,25 @@
     <!-- 右側 -->
     <div class="p-header__right">
       <!-- SPサイト用メニュー -->
-      <div class="p-header__trigger js-toggle-sp-menu">
+      <div class="p-header__trigger" :class="{ 'active' : isActive }" @click="toggleSpMenu">
         <span class="p-header__trigger--bar"></span>
         <span class="p-header__trigger--bar"></span>
         <span class="p-header__trigger--bar"></span>
       </div>
 
       <!-- メニュー -->
-      <nav class="p-header__nav p-header__nav__sp js-toggle-sp-nav">
+      <nav class="p-header__nav p-header__nav__sp" :class="{ 'active' : isActive }">
         <ul class="p-header__menu">
           <!-- 投稿ボタン(仮)(ログイン中の場合) -->
           <li v-if="isLogin" class="p-header__item">
-            <a class="c-btn__header" href="/records/new">
+            <a class="p-header__item--link c-btn__header" href="/records/new">
               投稿する
             </a>
           </li>
 
           <!-- ユーザーネーム(ログイン中の場合) -->
           <li v-if="isLogin" class="p-header__item">
-            <a class="c-btn__header" :href="`/mypage/${ this.username }`">
+            <a class="p-header__item--link c-btn__header" :href="`/mypage/${ this.username }`">
               マイページ
             </a>
           </li>
@@ -45,7 +45,7 @@
               class="p-header__item"
           >
             <button
-                class="c-btn__header"
+                class="p-header__item--link c-btn__header"
                 @click="logout">
               ログアウト
             </button>
@@ -65,6 +65,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isActive: false,
+    }
+  },
   computed: {
     apiStatus() {
       return this.$store.state.auth.apiStatus
@@ -77,6 +82,10 @@ export default {
     },
   },
   methods: {
+    // ナビバー切り替え
+    toggleSpMenu() {
+      this.isActive = !this.isActive
+    },
     // ログアウト
     async logout() {
       await this.$store.dispatch('auth/logout')
