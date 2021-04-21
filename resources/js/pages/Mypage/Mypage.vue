@@ -33,7 +33,7 @@
         <!-- 投稿記事一覧 -->
         <!-- TODO 投稿した記事・コメントした記事をタブで切り替えられるようにする -->
         <div class="p-mypage__column">
-          <h2 class="p-mypage__title u-mb-xl">{{ this.userName }}さんの投稿履歴</h2>
+          <h2 class="p-mypage__title u-mb-xl">投稿履歴</h2>
           <UserRecordList
               v-if="isExistUserObj"
               :user="this.user"

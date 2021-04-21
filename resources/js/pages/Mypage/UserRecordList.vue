@@ -2,41 +2,46 @@
 <template>
   <div class="p-mypage__record-list">
     <div class="p-mypage__record-list--inner">
-      <UserRecord
-          v-for="Record in getRecordsItems"
-          :key="Record.id"
-          :item="Record"
-      />
-      <!-- ページネーション -->
-      <div class="u-text--center">
-        <paginate
-            v-model="currentPage"
-            :page-count="getPageCount"
-            :page-range="3"
-            :margin-pages="1"
-            :click-handler="clickCallback"
-            :prev-text="'<'"
-            :next-text="'>'"
-            :break-view-class="'c-paginate__item--break-view'"
-            :hide-prev-next="true"
-            :containerClass="'c-paginate'"
-            :page-class="'c-paginate__item'"
-            :page-link-class="'c-paginate__link'"
-            :prev-class="'c-paginate__item c-paginate__item--prev'"
-            :prev-link-class="'c-paginate__link'"
-            :next-class="'c-paginate__item c-paginate__item--next'"
-            :next-link-class="'c-paginate__link'"
-            :active-class="'c-paginate__item--active'"
-            list=""
-            name=""
-        >
-        </paginate>
-        <div>
-          <p>
-            {{ this.getStartCount }} - {{ this.getEndCount }} /
-            全 {{ this.records.length }} 投稿
-          </p>
+      <div v-if="!!recordLength">
+        <UserRecord
+            v-for="Record in getRecordsItems"
+            :key="Record.id"
+            :item="Record"
+        />
+        <!-- ページネーション -->
+        <div class="u-text--center">
+          <paginate
+              v-model="currentPage"
+              :page-count="getPageCount"
+              :page-range="3"
+              :margin-pages="1"
+              :click-handler="clickCallback"
+              :prev-text="'<'"
+              :next-text="'>'"
+              :break-view-class="'c-paginate__item--break-view'"
+              :hide-prev-next="true"
+              :containerClass="'c-paginate'"
+              :page-class="'c-paginate__item'"
+              :page-link-class="'c-paginate__link'"
+              :prev-class="'c-paginate__item c-paginate__item--prev'"
+              :prev-link-class="'c-paginate__link'"
+              :next-class="'c-paginate__item c-paginate__item--next'"
+              :next-link-class="'c-paginate__link'"
+              :active-class="'c-paginate__item--active'"
+              list=""
+              name=""
+          >
+          </paginate>
+          <div>
+            <p>
+              {{ this.getStartCount }} - {{ this.getEndCount }} /
+              全 {{ this.recordLength }} 投稿
+            </p>
+          </div>
         </div>
+      </div>
+      <div v-else>
+        <NothingUserRecord />
       </div>
     </div>
   </div>
@@ -45,6 +50,7 @@
 <script>
 import { OK } from '../../util.js'
 import UserRecord from "./UserRecord";
+import NothingUserRecord from "./NothingUserRecord";
 
 import Vue from 'vue';
 import Paginate from 'vuejs-paginate';
@@ -75,6 +81,9 @@ export default {
     },
     userId() {
       return this.user.id
+    },
+    recordLength() {
+      return this.records.length
     },
     // ======================
     // ページネーション用
@@ -137,6 +146,7 @@ export default {
   },
   components: {
     UserRecord,
+    NothingUserRecord,
   },
   watch: {
     $route: {

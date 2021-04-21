@@ -2666,6 +2666,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Mypage/UserRecord.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Mypage/UserRecord.vue?vue&type=script&lang=js& ***!
@@ -2776,10 +2800,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
 /* harmony import */ var _UserRecord__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UserRecord */ "./resources/js/pages/Mypage/UserRecord.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
-/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _NothingUserRecord__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NothingUserRecord */ "./resources/js/pages/Mypage/NothingUserRecord.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_5__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2830,11 +2855,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate__WEBPACK_IMPORTED_MODULE_4___default.a);
+
+vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('paginate', vuejs_paginate__WEBPACK_IMPORTED_MODULE_5___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -2860,6 +2891,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate_
     },
     userId: function userId() {
       return this.user.id;
+    },
+    recordLength: function recordLength() {
+      return this.records.length;
     },
     // ======================
     // ページネーション用
@@ -2946,7 +2980,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate_
     }
   },
   components: {
-    UserRecord: _UserRecord__WEBPACK_IMPORTED_MODULE_2__["default"]
+    UserRecord: _UserRecord__WEBPACK_IMPORTED_MODULE_2__["default"],
+    NothingUserRecord: _NothingUserRecord__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   watch: {
     $route: {
@@ -57845,7 +57880,7 @@ var render = function() {
               { staticClass: "p-mypage__column" },
               [
                 _c("h2", { staticClass: "p-mypage__title u-mb-xl" }, [
-                  _vm._v(_vm._s(this.userName) + "さんの投稿履歴")
+                  _vm._v("投稿履歴")
                 ]),
                 _vm._v(" "),
                 _vm.isExistUserObj
@@ -57896,6 +57931,43 @@ var staticRenderFns = [
         _vm._v(
           "お探しのユーザーは存在しない、あるいは削除された可能性があります。"
         )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=template&id=50615a84&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=template&id=50615a84&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("article", { staticClass: "p-mypage__record-list-item" }, [
+      _c("div", { staticClass: "p-mypage__record-list-item--column" }, [
+        _c("h2", { staticClass: "p-mypage__record-list-item--title" }, [
+          _vm._v("\n      投稿履歴はありません\n    ")
+        ])
       ])
     ])
   }
@@ -58023,67 +58095,73 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-mypage__record-list" }, [
-    _c(
-      "div",
-      { staticClass: "p-mypage__record-list--inner" },
-      [
-        _vm._l(_vm.getRecordsItems, function(Record) {
-          return _c("UserRecord", { key: Record.id, attrs: { item: Record } })
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "u-text--center" },
-          [
-            _c("paginate", {
-              attrs: {
-                "page-count": _vm.getPageCount,
-                "page-range": 3,
-                "margin-pages": 1,
-                "click-handler": _vm.clickCallback,
-                "prev-text": "<",
-                "next-text": ">",
-                "break-view-class": "c-paginate__item--break-view",
-                "hide-prev-next": true,
-                containerClass: "c-paginate",
-                "page-class": "c-paginate__item",
-                "page-link-class": "c-paginate__link",
-                "prev-class": "c-paginate__item c-paginate__item--prev",
-                "prev-link-class": "c-paginate__link",
-                "next-class": "c-paginate__item c-paginate__item--next",
-                "next-link-class": "c-paginate__link",
-                "active-class": "c-paginate__item--active",
-                list: "",
-                name: ""
-              },
-              model: {
-                value: _vm.currentPage,
-                callback: function($$v) {
-                  _vm.currentPage = $$v
-                },
-                expression: "currentPage"
-              }
-            }),
-            _vm._v(" "),
-            _c("div", [
-              _c("p", [
-                _vm._v(
-                  "\n          " +
-                    _vm._s(this.getStartCount) +
-                    " - " +
-                    _vm._s(this.getEndCount) +
-                    " /\n          全 " +
-                    _vm._s(this.records.length) +
-                    " 投稿\n        "
-                )
-              ])
-            ])
-          ],
-          1
-        )
-      ],
-      2
-    )
+    _c("div", { staticClass: "p-mypage__record-list--inner" }, [
+      !!_vm.recordLength
+        ? _c(
+            "div",
+            [
+              _vm._l(_vm.getRecordsItems, function(Record) {
+                return _c("UserRecord", {
+                  key: Record.id,
+                  attrs: { item: Record }
+                })
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "u-text--center" },
+                [
+                  _c("paginate", {
+                    attrs: {
+                      "page-count": _vm.getPageCount,
+                      "page-range": 3,
+                      "margin-pages": 1,
+                      "click-handler": _vm.clickCallback,
+                      "prev-text": "<",
+                      "next-text": ">",
+                      "break-view-class": "c-paginate__item--break-view",
+                      "hide-prev-next": true,
+                      containerClass: "c-paginate",
+                      "page-class": "c-paginate__item",
+                      "page-link-class": "c-paginate__link",
+                      "prev-class": "c-paginate__item c-paginate__item--prev",
+                      "prev-link-class": "c-paginate__link",
+                      "next-class": "c-paginate__item c-paginate__item--next",
+                      "next-link-class": "c-paginate__link",
+                      "active-class": "c-paginate__item--active",
+                      list: "",
+                      name: ""
+                    },
+                    model: {
+                      value: _vm.currentPage,
+                      callback: function($$v) {
+                        _vm.currentPage = $$v
+                      },
+                      expression: "currentPage"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("p", [
+                      _vm._v(
+                        "\n            " +
+                          _vm._s(this.getStartCount) +
+                          " - " +
+                          _vm._s(this.getEndCount) +
+                          " /\n            全 " +
+                          _vm._s(this.recordLength) +
+                          " 投稿\n          "
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            2
+          )
+        : _c("div", [_c("NothingUserRecord")], 1)
+    ])
   ])
 }
 var staticRenderFns = []
@@ -77097,6 +77175,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NothingUser_vue_vue_type_template_id_5163268d_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NothingUser_vue_vue_type_template_id_5163268d_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/Mypage/NothingUserRecord.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/pages/Mypage/NothingUserRecord.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NothingUserRecord_vue_vue_type_template_id_50615a84_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NothingUserRecord.vue?vue&type=template&id=50615a84&scoped=true& */ "./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=template&id=50615a84&scoped=true&");
+/* harmony import */ var _NothingUserRecord_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NothingUserRecord.vue?vue&type=script&lang=js& */ "./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _NothingUserRecord_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NothingUserRecord_vue_vue_type_template_id_50615a84_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NothingUserRecord_vue_vue_type_template_id_50615a84_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "50615a84",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/Mypage/NothingUserRecord.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NothingUserRecord_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./NothingUserRecord.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NothingUserRecord_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=template&id=50615a84&scoped=true&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=template&id=50615a84&scoped=true& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NothingUserRecord_vue_vue_type_template_id_50615a84_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./NothingUserRecord.vue?vue&type=template&id=50615a84&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Mypage/NothingUserRecord.vue?vue&type=template&id=50615a84&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NothingUserRecord_vue_vue_type_template_id_50615a84_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NothingUserRecord_vue_vue_type_template_id_50615a84_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
