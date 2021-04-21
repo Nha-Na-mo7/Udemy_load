@@ -3814,11 +3814,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -58599,52 +58594,54 @@ var render = function() {
             ? _c("div", [
                 _c("section", { staticClass: "p-record__info" }, [
                   _c("div", { staticClass: "p-record__info--inner" }, [
-                    _c(
-                      "div",
-                      { staticClass: "p-record__info--column" },
-                      [
-                        _c("p", { staticClass: "p-record__info--date" }, [
-                          _vm._v(
-                            "投稿時刻: " +
-                              _vm._s(_vm._f("recordAt")(this.createdAt))
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm.checkUpdated
-                          ? _c("p", { staticClass: "p-record__info--date" }, [
-                              _vm._v(
-                                "最終更新: " +
-                                  _vm._s(_vm._f("recordAt")(this.updatedAt))
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("h2", { staticClass: "p-record__info--title" }, [
-                          _vm._v(_vm._s(this.title))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "RouterLink",
-                          {
-                            staticClass: "p-record__list-item__username",
-                            attrs: { to: "/mypage/" + this.ownerName }
-                          },
-                          [
+                    _c("div", { staticClass: "p-record__info--column" }, [
+                      _c(
+                        "div",
+                        { staticClass: "u-mb-m" },
+                        [
+                          _c("p", { staticClass: "p-record__info--date" }, [
                             _vm._v(
-                              "ユーザー名: " +
-                                _vm._s(this.ownerName) +
-                                "\n            "
+                              "投稿時刻: " +
+                                _vm._s(_vm._f("recordAt")(this.createdAt))
                             )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("p", {
-                          staticClass: "p-record__info--description",
-                          domProps: { innerHTML: _vm._s(_vm.description) }
-                        })
-                      ],
-                      1
-                    ),
+                          ]),
+                          _vm._v(" "),
+                          _vm.checkUpdated
+                            ? _c("p", { staticClass: "p-record__info--date" }, [
+                                _vm._v(
+                                  "最終更新: " +
+                                    _vm._s(_vm._f("recordAt")(this.updatedAt))
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("h2", { staticClass: "p-record__info--title" }, [
+                            _vm._v(_vm._s(this.title))
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "RouterLink",
+                            {
+                              staticClass: "p-record__list-item__username",
+                              attrs: { to: "/mypage/" + this.ownerName }
+                            },
+                            [
+                              _vm._v(
+                                "ユーザー名: " +
+                                  _vm._s(this.ownerName) +
+                                  "\n              "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("p", {
+                        staticClass: "p-record__info--description",
+                        domProps: { innerHTML: _vm._s(_vm.description) }
+                      })
+                    ]),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -58670,21 +58667,17 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("section", { staticClass: "p-record__detail" }, [
-                  _c("div", { staticClass: "p-record__detail--left" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "p-record__detail--right" }, [
-                    _c(
-                      "div",
-                      { staticClass: "p-record__detail--list" },
-                      _vm._l(this.record.courses, function(Course, index) {
-                        return _c("CourseDetail", {
-                          key: Course.id,
-                          attrs: { course: Course, index: index }
-                        })
-                      }),
-                      1
-                    )
-                  ])
+                  _c(
+                    "div",
+                    { staticClass: "p-record__detail--list" },
+                    _vm._l(this.record.courses, function(Course, index) {
+                      return _c("CourseDetail", {
+                        key: Course.id,
+                        attrs: { course: Course, index: index }
+                      })
+                    }),
+                    1
+                  )
                 ]),
                 _vm._v(" "),
                 _c("section", { staticClass: "p-record__comment" }, [

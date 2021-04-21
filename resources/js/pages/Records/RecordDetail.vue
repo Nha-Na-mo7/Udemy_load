@@ -12,18 +12,20 @@
           <div class="p-record__info--inner">
             <div class="p-record__info--column">
 
-              <!-- 投稿/更新時刻 -->
-              <p class="p-record__info--date">投稿時刻: {{ this.createdAt | recordAt }}</p>
-              <p class="p-record__info--date" v-if="checkUpdated">最終更新: {{ this.updatedAt | recordAt }}</p>
+              <div class="u-mb-m">
+                <!-- 投稿/更新時刻 -->
+                <p class="p-record__info--date">投稿時刻: {{ this.createdAt | recordAt }}</p>
+                <p class="p-record__info--date" v-if="checkUpdated">最終更新: {{ this.updatedAt | recordAt }}</p>
 
-              <!-- タイトル -->
-              <h2 class="p-record__info--title">{{ this.title }}</h2>
-              <!-- 投稿者 -->
-              <RouterLink
-                  class="p-record__list-item__username"
-                  :to="`/mypage/${ this.ownerName }`"
-              >ユーザー名: {{ this.ownerName }}
-              </RouterLink>
+                <!-- タイトル -->
+                <h2 class="p-record__info--title">{{ this.title }}</h2>
+                <!-- 投稿者 -->
+                <RouterLink
+                    class="p-record__list-item__username"
+                    :to="`/mypage/${ this.ownerName }`"
+                >ユーザー名: {{ this.ownerName }}
+                </RouterLink>
+              </div>
 
               <!-- Description -->
               <p v-html="description" class="p-record__info--description"></p>
@@ -42,21 +44,14 @@
         </section>
         <!-- TODO 詳細 -->
         <section class="p-record__detail">
-          <!-- バーの配置用エリア -->
-          <div class="p-record__detail--left">
-            <!--          <span class="p-record__detail&#45;&#45;line"></span>-->
-          </div>
-
           <!-- コースコンポーネント -->
-          <div class="p-record__detail--right">
-            <div class="p-record__detail--list">
-              <CourseDetail
-                  v-for="(Course, index) in this.record.courses"
-                  :key="Course.id"
-                  :course="Course"
-                  :index="index"
-              />
-            </div>
+          <div class="p-record__detail--list">
+            <CourseDetail
+                v-for="(Course, index) in this.record.courses"
+                :key="Course.id"
+                :course="Course"
+                :index="index"
+            />
           </div>
         </section>
         <!-- コメント欄 -->

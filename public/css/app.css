@@ -795,7 +795,7 @@ input[type=checkbox] {
 }
 
 .p-course__card--line::before {
-  background: #f66d9b;
+  background: #ffc2d5;
   border: 3px solid #f59dbb;
   content: attr(detail-index);
   width: 50px;
@@ -1376,54 +1376,8 @@ input[type=checkbox] {
   display: flex;
 }
 
-.p-record__detail--left {
-  width: 10%;
-}
-
-@media screen and (max-width: 414px) {
-  .p-record__detail--left {
-    width: 5%;
-  }
-}
-
-.p-record__detail--right {
-  width: auto;
-}
-
 .p-record__detail--list {
   padding: 12px;
-}
-
-.p-record__detail--line {
-  position: absolute;
-  left: -2em;
-  background: #f66d9b;
-  width: 5px;
-  height: 100%;
-}
-
-.p-record__detail--line::before,
-.p-record__detail--line::after {
-  display: block;
-  position: absolute;
-  content: "";
-  border-radius: 50%;
-  background: #f66d9b;
-}
-
-.p-record__detail--line::before {
-  left: -10px;
-  top: 0;
-  width: 25px;
-  height: 25px;
-  border: 3px solid #f59dbb;
-}
-
-.p-record__detail--line::after {
-  left: -4px;
-  top: 100%;
-  width: 15px;
-  height: 15px;
 }
 
 .p-record__info {
