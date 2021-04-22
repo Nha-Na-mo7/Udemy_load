@@ -4312,6 +4312,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
 /* harmony import */ var _SearchResultCourse_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SearchResultCourse.vue */ "./resources/js/pages/Records/SearchResultCourse.vue");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util */ "./resources/js/util.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4382,6 +4383,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4400,7 +4410,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         url: ''
       },
       responseData: [],
-      selectedCourses: []
+      selectedCourses: [],
+      errors: ''
     };
   },
   computed: {
@@ -4438,16 +4449,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 // 検索開始
                 _this.isSearching = true;
-                _this.isNotSearchedYet = false; // 検索ワードを元にUdemyAPIにリクエストする
+                _this.isNotSearchedYet = false; // エラーをリセット
+
+                _this.errors = ''; // 検索ワードを元にUdemyAPIにリクエストする
 
                 params = flg === 0 ? _this.searchData : flg === 1 ? _this.prevUrl : _this.nextUrl;
-                _context.next = 7;
+                _context.next = 8;
                 return axios.get('/udemy/course/get', {
                   params: params
                 });
 
-              case 7:
+              case 8:
                 response = _context.sent;
+
+                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_3__["INTERNAL_SERVER_ERROR"])) {
+                  _context.next = 13;
+                  break;
+                }
+
+                _this.errors = 'Udemyコース検索でエラーが発生しました。しばらく時間を置いてからやり直してください。';
+                _this.isSearching = false;
+                return _context.abrupt("return", false);
+
+              case 13:
                 // 検索結果を取得
                 _this.responseData = response.data.results;
                 _this.nextUrl.url = (_response$data$next = response.data.next) !== null && _response$data$next !== void 0 ? _response$data$next : '';
@@ -4455,7 +4479,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.isSearching = false;
 
-              case 12:
+              case 17:
               case "end":
                 return _context.stop();
             }
@@ -59091,6 +59115,16 @@ var render = function() {
         [
           _vm.isSearching
             ? _c("div", [_c("Loading")], 1)
+            : _vm.errors
+            ? _c("div", { staticClass: "c-modal__error" }, [
+                _c("i", {
+                  staticClass: "fas fa-exclamation-circle c-modal__nothing--fa"
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "c-error" }, [
+                  _vm._v(_vm._s(_vm.errors))
+                ])
+              ])
             : _vm.isExistResult
             ? _c(
                 "div",

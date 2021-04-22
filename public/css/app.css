@@ -2282,15 +2282,18 @@ input[type=checkbox] {
   text-align: center;
 }
 
-.c-modal__nothing {
+.c-modal__nothing,
+.c-modal__error {
   display: flex;
   flex-flow: column;
   text-align: center;
   font-size: 15px;
   margin-top: 12px;
+  line-height: 1.5;
 }
 
-.c-modal__nothing--fa {
+.c-modal__nothing--fa,
+.c-modal__error--fa {
   font-size: 40px;
   margin-bottom: 20px;
 }
