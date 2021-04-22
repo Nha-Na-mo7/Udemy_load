@@ -4860,6 +4860,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -59430,7 +59434,12 @@ var render = function() {
                           }
                         ],
                         staticClass: "c-form__input",
-                        attrs: { id: "name", type: "text", maxlength: "32" },
+                        attrs: {
+                          id: "name",
+                          type: "text",
+                          maxlength: "32",
+                          placeholder: "半角英数字 3~32字"
+                        },
                         domProps: { value: _vm.formName },
                         on: {
                           input: function($event) {
@@ -59496,7 +59505,12 @@ var render = function() {
                           }
                         ],
                         staticClass: "c-form__input",
-                        attrs: { id: "email", type: "text", maxlength: "100" },
+                        attrs: {
+                          id: "email",
+                          type: "text",
+                          maxlength: "100",
+                          placeholder: "example@mail.com"
+                        },
                         domProps: { value: _vm.formEmail },
                         on: {
                           input: function($event) {

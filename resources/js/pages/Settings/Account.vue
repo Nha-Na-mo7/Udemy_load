@@ -31,7 +31,9 @@
                   class="c-form__input"
                   type="text"
                   v-model="formName"
-                  maxlength="32">
+                  maxlength="32"
+                  placeholder="半角英数字 3~32字"
+              >
             </div>
             <div class="p-setting__btn">
               <button
@@ -61,7 +63,9 @@
                   class="c-form__input"
                   type="text"
                   v-model="formEmail"
-                  maxlength="100">
+                  maxlength="100"
+                  placeholder="example@mail.com"
+              >
             </div>
             <div class="p-setting__btn">
               <button
