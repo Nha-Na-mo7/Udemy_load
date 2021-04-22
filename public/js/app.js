@@ -3379,6 +3379,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -58527,6 +58530,7 @@ var render = function() {
             attrs: {
               type: "text",
               id: "record_title",
+              maxlength: "100",
               placeholder: "入力してください"
             },
             domProps: { value: _vm.createData.recordForm.title },
@@ -58578,6 +58582,7 @@ var render = function() {
               "p-form__description p-form__item p-record__edit--textarea c-form__textarea",
             attrs: {
               id: "record_description",
+              maxlength: "500",
               placeholder: "説明文を入力してください"
             },
             domProps: { value: _vm.createData.recordForm.description },

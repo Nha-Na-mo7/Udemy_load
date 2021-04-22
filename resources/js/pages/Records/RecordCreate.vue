@@ -33,6 +33,7 @@
               id="record_title"
               class="p-form__title p-form__item c-form__input"
               v-model="createData.recordForm.title"
+              maxlength="100"
               placeholder="入力してください"
           >
 
@@ -52,10 +53,12 @@
             </li>
           </ul>
           <!-- テキストエリア -->
+          <!-- TODO サニタイズして本文が表示されるようにすること -->
           <textarea
               id="record_description"
               class="p-form__description p-form__item p-record__edit--textarea c-form__textarea"
               v-model="createData.recordForm.description"
+              maxlength="500"
               placeholder="説明文を入力してください"
           ></textarea>
         </form>
