@@ -2469,6 +2469,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 /***/ }),
 
@@ -57783,6 +57788,12 @@ var staticRenderFns = [
               "また、URL、ファイル名にタイプミスがないか再度ご確認ください。"
             )
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("a", { staticClass: "c-btn", attrs: { href: "/" } }, [
+            _vm._v("\n        レコード一覧へ戻る\n      ")
+          ])
         ])
       ])
     ])
@@ -57833,6 +57844,12 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("p", [
             _vm._v("お手数ですが、しばらく時間を置いてからやり直してください。")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("a", { staticClass: "c-btn", attrs: { href: "/" } }, [
+            _vm._v("\n        レコード一覧へ戻る\n      ")
           ])
         ])
       ])
