@@ -2550,8 +2550,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -57987,23 +57985,24 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm.isAuthUser
-                ? _c("div", { staticClass: "u-text--center" }, [
-                    _c(
-                      "button",
-                      { staticClass: "c-btn" },
-                      [
-                        _c(
-                          "RouterLink",
-                          { attrs: { to: "/settings/account" } },
-                          [
-                            _c("i", { staticClass: "fas fa-cog" }),
-                            _vm._v(" アカウント設定\n            ")
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ])
+                ? _c(
+                    "div",
+                    { staticClass: "u-text--center" },
+                    [
+                      _c(
+                        "RouterLink",
+                        {
+                          staticClass: "c-btn",
+                          attrs: { to: "/settings/account" }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-cog" }),
+                          _vm._v(" アカウント設定\n          ")
+                        ]
+                      )
+                    ],
+                    1
+                  )
                 : _vm._e()
             ]),
             _vm._v(" "),

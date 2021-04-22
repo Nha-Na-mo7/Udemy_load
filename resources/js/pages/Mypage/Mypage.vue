@@ -22,11 +22,9 @@
 
           <!-- プロフィール編集 -->
           <div class="u-text--center" v-if="isAuthUser">
-            <button class="c-btn">
-              <RouterLink to="/settings/account">
-                <i class="fas fa-cog"></i> アカウント設定
-              </RouterLink>
-            </button>
+            <RouterLink class="c-btn" to="/settings/account">
+              <i class="fas fa-cog"></i> アカウント設定
+            </RouterLink>
           </div>
         </div>
 
