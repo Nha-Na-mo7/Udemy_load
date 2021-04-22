@@ -2343,6 +2343,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -57461,7 +57465,11 @@ var render = function() {
                   }
                 ],
                 staticClass: "c-input c-form__input",
-                attrs: { type: "password", id: "login-password" },
+                attrs: {
+                  type: "password",
+                  id: "login-password",
+                  maxlength: "50"
+                },
                 domProps: { value: _vm.loginForm.password },
                 on: {
                   input: function($event) {
@@ -57595,6 +57603,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   id: "username",
+                  maxlength: "32",
                   placeholder: "半角英数字 3~32字"
                 },
                 domProps: { value: _vm.registerForm.name },
@@ -57683,6 +57692,7 @@ var render = function() {
                 attrs: {
                   type: "password",
                   id: "password",
+                  maxlength: "50",
                   placeholder: "半角英数字 8~50字"
                 },
                 domProps: { value: _vm.registerForm.password },
@@ -57718,6 +57728,7 @@ var render = function() {
                 attrs: {
                   type: "password",
                   id: "password-confirmation",
+                  maxlength: "50",
                   placeholder: ""
                 },
                 domProps: { value: _vm.registerForm.password_confirmation },

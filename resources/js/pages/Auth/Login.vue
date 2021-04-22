@@ -49,6 +49,7 @@
               class="c-input c-form__input"
               id="login-password"
               v-model="loginForm.password"
+              maxlength="50"
           >
 
           <!-- remember me -->
@@ -87,6 +88,7 @@
                  class="c-input c-form__input"
                  id="username"
                  v-model="registerForm.name"
+                 maxlength="32"
                  placeholder="半角英数字 3~32字"
           >
 
@@ -119,6 +121,7 @@
               class="c-input c-form__input"
               id="password"
               v-model="registerForm.password"
+              maxlength="50"
               placeholder="半角英数字 8~50字"
           >
           <label class="c-form__label" for="password-confirmation">パスワードの再入力</label>
@@ -127,6 +130,7 @@
               class="c-input c-form__input"
               id="password-confirmation"
               v-model="registerForm.password_confirmation"
+              maxlength="50"
               placeholder=""
           >
           <div class="p-form__button">
