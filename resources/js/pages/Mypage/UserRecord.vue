@@ -17,7 +17,7 @@
           {{ this.title }}
         </RouterLink>
       </h2>
-      <p v-html="description" class="p-mypage__record-list-item--description"></p>
+      <p class="p-mypage__record-list-item--description">{{ this.description }}</p>
 
     </div>
     <div class="p-mypage__record-list-item--column p-mypage__record-list-item--column--right">

@@ -3935,25 +3935,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log('レコード情報を取得しました。'); // レコード情報を取得
-
-                _context.next = 3;
+                _context.next = 2;
                 return axios.get("/record/".concat(_this.id));
 
-              case 3:
+              case 2:
                 response = _context.sent;
 
                 if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["NOT_FOUND"])) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
                 _this.loading = false;
                 return _context.abrupt("return", false);
 
-              case 7:
+              case 6:
                 if (!(response.status !== _util_js__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 10;
+                  _context.next = 9;
                   break;
                 }
 
@@ -3961,13 +3959,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 10:
-                console.log(response.data); // 格納
-
+              case 9:
+                // 格納
                 _this.record = response.data;
                 _this.loading = false;
 
-              case 13:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -58174,10 +58171,9 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("p", {
-          staticClass: "p-mypage__record-list-item--description",
-          domProps: { innerHTML: _vm._s(_vm.description) }
-        })
+        _c("p", { staticClass: "p-mypage__record-list-item--description" }, [
+          _vm._v(_vm._s(this.description))
+        ])
       ]
     ),
     _vm._v(" "),
@@ -58476,10 +58472,9 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("p", {
-      staticClass: "p-record__list-item--description",
-      domProps: { innerHTML: _vm._s(_vm.description) }
-    })
+    _c("p", { staticClass: "p-record__list-item--description" }, [
+      _vm._v(_vm._s(this.description))
+    ])
   ])
 }
 var staticRenderFns = []
@@ -58771,7 +58766,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "ユーザー名: " +
+                                "投稿者: " +
                                   _vm._s(this.ownerName) +
                                   "\n              "
                               )
@@ -58781,10 +58776,11 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("p", {
-                        staticClass: "p-record__info--description",
-                        domProps: { innerHTML: _vm._s(_vm.description) }
-                      })
+                      _c(
+                        "pre",
+                        { staticClass: "p-record__info--description" },
+                        [_vm._v(_vm._s(this.description))]
+                      )
                     ]),
                     _vm._v(" "),
                     _c(

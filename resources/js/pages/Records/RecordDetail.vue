@@ -22,11 +22,11 @@
                 <RouterLink
                     class="p-record__list-item__username"
                     :to="`/mypage/${ this.ownerName }`"
-                >ユーザー名: {{ this.ownerName }}
+                >投稿者: {{ this.ownerName }}
                 </RouterLink>
               </div>
               <!-- Description -->
-              <p v-html="description" class="p-record__info--description"></p>
+              <pre class="p-record__info--description">{{ this.description }}</pre>
             </div>
             <!-- 編集ボタン/投稿者自身の場合のみ-->
             <div class="p-record__info--column">
@@ -175,7 +175,6 @@ export default {
     // レコードの情報をDBから取得
     // ========================
     async fetchRecord() {
-      console.log('レコード情報を取得しました。')
       // レコード情報を取得
       const response = await axios.get(`/record/${this.id}`)
 
@@ -189,7 +188,6 @@ export default {
         this.$store.commit('error/setCode', response.status);
         return false
       }
-      console.log(response.data)
       // 格納
       this.record = response.data
       this.loading = false
