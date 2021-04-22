@@ -57567,7 +57567,7 @@ var render = function() {
               _c(
                 "label",
                 { staticClass: "c-form__label", attrs: { for: "username" } },
-                [_vm._v("USERNAME (半角英数字 3~16字)")]
+                [_vm._v("USERNAME (半角英数字 3~32字)")]
               ),
               _vm._v(" "),
               _vm.registerErrors
@@ -57595,7 +57595,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   id: "username",
-                  placeholder: "半角英数字 3~16字"
+                  placeholder: "半角英数字 3~32字"
                 },
                 domProps: { value: _vm.registerForm.name },
                 on: {

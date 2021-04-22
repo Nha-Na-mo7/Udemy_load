@@ -75,7 +75,7 @@
       <section class="c-panel" v-show="tab === 2">
         <form class="p-form__auth" @submit.prevent="register">
 
-          <label class="c-form__label" for="username">USERNAME (半角英数字 3~16字)</label>
+          <label class="c-form__label" for="username">USERNAME (半角英数字 3~32字)</label>
           <ul v-if="registerErrors">
             <li
                 class="c-error"
@@ -87,7 +87,7 @@
                  class="c-input c-form__input"
                  id="username"
                  v-model="registerForm.name"
-                 placeholder="半角英数字 3~16字"
+                 placeholder="半角英数字 3~32字"
           >
 
           <label class="c-form__label" for="email">メールアドレス</label>
