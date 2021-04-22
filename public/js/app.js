@@ -2562,7 +2562,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       user: {},
-      loading: false,
+      loading: true,
       nothingUser: false
     };
   },
@@ -2602,16 +2602,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context.sent;
 
                 if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_4__["NOT_FOUND"])) {
-                  _context.next = 6;
+                  _context.next = 7;
                   break;
                 }
 
                 _this.nothingUser = true;
+                _this.loading = false;
                 return _context.abrupt("return", false);
 
-              case 6:
+              case 7:
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_4__["OK"])) {
-                  _context.next = 9;
+                  _context.next = 10;
                   break;
                 }
 
@@ -2619,10 +2620,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 9:
-                _this.user = response.data;
-
               case 10:
+                _this.user = response.data;
+                _this.loading = false;
+
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -2817,12 +2819,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
-/* harmony import */ var _UserRecord__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UserRecord */ "./resources/js/pages/Mypage/UserRecord.vue");
-/* harmony import */ var _NothingUserRecord__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NothingUserRecord */ "./resources/js/pages/Mypage/NothingUserRecord.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
-/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
+/* harmony import */ var _UserRecord__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./UserRecord */ "./resources/js/pages/Mypage/UserRecord.vue");
+/* harmony import */ var _NothingUserRecord__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NothingUserRecord */ "./resources/js/pages/Mypage/NothingUserRecord.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_6__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2878,12 +2881,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('paginate', vuejs_paginate__WEBPACK_IMPORTED_MODULE_5___default.a);
+
+vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('paginate', vuejs_paginate__WEBPACK_IMPORTED_MODULE_6___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -2898,12 +2905,16 @@ vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('paginate', vuejs_paginate_
   },
   data: function data() {
     return {
+      loading: true,
       records: [],
       parPage: 10,
       currentPage: 1
     };
   },
   computed: {
+    isLoading: function isLoading() {
+      return this.loading;
+    },
     userName: function userName() {
       return this.user.name;
     },
@@ -2975,8 +2986,9 @@ vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('paginate', vuejs_paginate_
 
               case 6:
                 _this.records = response.data;
+                _this.loading = false;
 
-              case 7:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -2998,8 +3010,9 @@ vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('paginate', vuejs_paginate_
     }
   },
   components: {
-    UserRecord: _UserRecord__WEBPACK_IMPORTED_MODULE_2__["default"],
-    NothingUserRecord: _NothingUserRecord__WEBPACK_IMPORTED_MODULE_3__["default"]
+    Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    UserRecord: _UserRecord__WEBPACK_IMPORTED_MODULE_3__["default"],
+    NothingUserRecord: _NothingUserRecord__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   watch: {
     $route: {
@@ -58151,7 +58164,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-mypage__record-list" }, [
     _c("div", { staticClass: "p-mypage__record-list--inner" }, [
-      !!_vm.recordLength
+      _vm.isLoading
+        ? _c("div", [_c("Loading")], 1)
+        : !!_vm.recordLength
         ? _c(
             "div",
             [

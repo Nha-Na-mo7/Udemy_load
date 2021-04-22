@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       user: {},
-      loading: false,
+      loading: true,
       nothingUser: false,
     };
   },
@@ -90,6 +90,7 @@ export default {
       // ユーザーが存在しなかった時の処理
       if (response.status === NOT_FOUND) {
         this.nothingUser = true
+        this.loading = false
         return false
       }
       // その他エラー時の処理
@@ -98,6 +99,7 @@ export default {
         return false
       }
       this.user = response.data
+      this.loading = false
     }
   },
   components: {
