@@ -2061,12 +2061,10 @@ input[type=checkbox] {
 }
 
 .c-input {
-  border-radius: 4px;
   font-size: 20px;
   height: 100%;
   padding: 5px 10px;
   width: 100%;
-  border: 1px solid #8a8a8a;
   margin-bottom: 15px;
   /* 旧Edge対応 */
   /* IE対応 */
