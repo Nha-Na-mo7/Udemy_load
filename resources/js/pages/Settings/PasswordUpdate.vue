@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR } from '../../util.js';
+import {UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR} from '../../util.js';
 
 export default {
   data() {
@@ -102,7 +102,6 @@ export default {
       if (this.isUpdating) {
         return false;
       }
-      console.log('パスワードの更新処理です')
       this.isUpdating = true;
 
       // 更新処理にアクセス
@@ -117,21 +116,12 @@ export default {
         this.errorsPassword = response.data.errors.password;
         this.errorsPasswordConfirmation =
             response.data.errors.password_confirmation;
-
-        // 500エラーの時
+      // 500エラーの時
       } else if (response.status === INTERNAL_SERVER_ERROR) {
-        console.log('500 ERROR')
-        // // フラッシュメッセージをセット
-        // this.$store.commit('message/setContentError', {
-        //   content: response.data.errors,
-        // });
-        // 成功時
+        this.$store.commit('error/setCode', response.status)
+        return false
+      // 成功時
       } else {
-        console.log('PASSWORD UPDATE SUCCESS!!!')
-        // // フラッシュメッセージをセット
-        // this.$store.commit('message/setContentSuccess', {
-        //   content: response.data.success,
-        // });
         // パスワード更新完了後はマイページに戻す
         this.$router.push(`/mypage/${this.$store.getters['auth/username']}`);
       }
