@@ -3379,7 +3379,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -4950,33 +4949,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 5:
                 response = _context2.sent;
 
-                // エラーチェック
-                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"]) {
-                  // バリデーションエラー
-                  _this2.errorsName = response.data.errors.name; // 更新失敗(500)
-                } else if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"]) {
-                  console.log('500 ERROR'); // // フラッシュメッセージをセット
-                  // this.$store.commit('message/setContentError', {
-                  //   content: response.data.error,
-                  // });
-                } else {
-                  // 更新成功したらエラーメッセージは空にする
-                  _this2.errorsName = [];
-                  console.log('ユーザーネーム更新成功！'); // // フラッシュメッセージをセット
-                  // this.$store.commit('message/setContentSuccess', {
-                  //   content: response.data.success,
-                  // });
-                  // ページをリロードする
-
-                  _this2.$router.go({
-                    path: _this2.$router.currentRoute.path,
-                    force: true
-                  });
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"])) {
+                  _context2.next = 10;
+                  break;
                 }
 
+                // バリデーションエラー
+                _this2.errorsName = response.data.errors.name; // 更新失敗(500)
+
+                _context2.next = 16;
+                break;
+
+              case 10:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"])) {
+                  _context2.next = 14;
+                  break;
+                }
+
+                return _context2.abrupt("return", false);
+
+              case 14:
+                // 更新成功したらエラーメッセージは空にする
+                _this2.errorsName = []; // ページをリロードする
+
+                _this2.$router.go({
+                  path: _this2.$router.currentRoute.path,
+                  force: true
+                });
+
+              case 16:
                 _this2.isUpdating = false;
 
-              case 8:
+              case 17:
               case "end":
                 return _context2.stop();
             }
@@ -5013,32 +5017,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 5:
                 response = _context3.sent;
 
-                // バリデーションエラー時
-                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"]) {
-                  _this3.errorsEmail = response.data.errors.email;
-                  _this3.isUpdating = false; // 500エラー時
-                } else if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"]) {
-                  console.log('500 ERROR!'); // // フラッシュメッセージをセット
-                  // this.$store.commit('message/setContentError', {
-                  //   content: response.data.error,
-                  // });
-                } else {
-                  console.log('EMAIL UPDATE SUCCESS!!!'); // 送信完了したらフラッシュメッセージを表示し、バリデーションエラーリストを空にする
-                  // this.$store.commit('message/setContentSuccess', {
-                  //   content: response.data.success,
-                  // });
-
-                  _this3.errorsEmail = []; // ページをリロードする
-
-                  _this3.$router.go({
-                    path: _this3.$router.currentRoute.path,
-                    force: true
-                  });
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"])) {
+                  _context3.next = 11;
+                  break;
                 }
 
+                _this3.errorsEmail = response.data.errors.email;
+                _this3.isUpdating = false; // 500エラー時
+
+                _context3.next = 17;
+                break;
+
+              case 11:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"])) {
+                  _context3.next = 15;
+                  break;
+                }
+
+                return _context3.abrupt("return", false);
+
+              case 15:
+                // バリデーションエラーリストを空にする
+                _this3.errorsEmail = []; // ページをリロードする
+
+                _this3.$router.go({
+                  path: _this3.$router.currentRoute.path,
+                  force: true
+                });
+
+              case 17:
                 _this3.isUpdating = false;
 
-              case 8:
+              case 18:
               case "end":
                 return _context3.stop();
             }

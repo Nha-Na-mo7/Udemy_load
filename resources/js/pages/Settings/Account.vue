@@ -157,20 +157,10 @@ export default {
         this.errorsName = response.data.errors.name;
         // 更新失敗(500)
       } else if (response.status === INTERNAL_SERVER_ERROR) {
-        console.log('500 ERROR')
-        // // フラッシュメッセージをセット
-        // this.$store.commit('message/setContentError', {
-        //   content: response.data.error,
-        // });
+        return false
       } else {
         // 更新成功したらエラーメッセージは空にする
         this.errorsName = [];
-
-        console.log('ユーザーネーム更新成功！')
-        // // フラッシュメッセージをセット
-        // this.$store.commit('message/setContentSuccess', {
-        //   content: response.data.success,
-        // });
         // ページをリロードする
         this.$router.go({
           path: this.$router.currentRoute.path,
@@ -198,17 +188,9 @@ export default {
         this.isUpdating = false;
         // 500エラー時
       } else if (response.status === INTERNAL_SERVER_ERROR) {
-        console.log('500 ERROR!')
-        // // フラッシュメッセージをセット
-        // this.$store.commit('message/setContentError', {
-        //   content: response.data.error,
-        // });
+        return false
       } else {
-        console.log('EMAIL UPDATE SUCCESS!!!')
-        // 送信完了したらフラッシュメッセージを表示し、バリデーションエラーリストを空にする
-        // this.$store.commit('message/setContentSuccess', {
-        //   content: response.data.success,
-        // });
+        // バリデーションエラーリストを空にする
         this.errorsEmail = [];
         // ページをリロードする
         this.$router.go({
