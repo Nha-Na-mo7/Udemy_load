@@ -53,7 +53,7 @@
             </li>
           </ul>
           <!-- テキストエリア -->
-          <!-- TODO サニタイズして本文が表示されるようにすること -->
+          <!-- TODO サニタイズされていない状態なので施すこと -->
           <textarea
               id="record_description"
               class="p-form__description p-form__item p-record__edit--textarea c-form__textarea"
