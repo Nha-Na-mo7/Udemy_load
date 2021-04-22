@@ -2339,6 +2339,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -57550,7 +57554,7 @@ var render = function() {
               _c(
                 "label",
                 { staticClass: "c-form__label", attrs: { for: "username" } },
-                [_vm._v("ユーザーネーム")]
+                [_vm._v("USERNAME (半角英数字 3~16字)")]
               ),
               _vm._v(" "),
               _vm.registerErrors
@@ -57575,7 +57579,11 @@ var render = function() {
                   }
                 ],
                 staticClass: "c-input c-form__input",
-                attrs: { type: "text", id: "username" },
+                attrs: {
+                  type: "text",
+                  id: "username",
+                  placeholder: "半角英数字 3~16字"
+                },
                 domProps: { value: _vm.registerForm.name },
                 on: {
                   input: function($event) {
@@ -57615,7 +57623,11 @@ var render = function() {
                   }
                 ],
                 staticClass: "c-input c-form__input",
-                attrs: { type: "text", id: "email" },
+                attrs: {
+                  type: "text",
+                  id: "email",
+                  placeholder: "example@mail.com"
+                },
                 domProps: { value: _vm.registerForm.email },
                 on: {
                   input: function($event) {
@@ -57630,7 +57642,7 @@ var render = function() {
               _c(
                 "label",
                 { staticClass: "c-form__label", attrs: { for: "password" } },
-                [_vm._v("パスワード")]
+                [_vm._v("パスワード (半角英数字 8~50字)")]
               ),
               _vm._v(" "),
               _vm.registerErrors
@@ -57655,7 +57667,11 @@ var render = function() {
                   }
                 ],
                 staticClass: "c-input c-form__input",
-                attrs: { type: "password", id: "password" },
+                attrs: {
+                  type: "password",
+                  id: "password",
+                  placeholder: "半角英数字 8~50字"
+                },
                 domProps: { value: _vm.registerForm.password },
                 on: {
                   input: function($event) {
@@ -57686,7 +57702,11 @@ var render = function() {
                   }
                 ],
                 staticClass: "c-input c-form__input",
-                attrs: { type: "password", id: "password-confirmation" },
+                attrs: {
+                  type: "password",
+                  id: "password-confirmation",
+                  placeholder: ""
+                },
                 domProps: { value: _vm.registerForm.password_confirmation },
                 on: {
                   input: function($event) {

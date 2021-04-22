@@ -75,7 +75,7 @@
       <section class="c-panel" v-show="tab === 2">
         <form class="p-form__auth" @submit.prevent="register">
 
-          <label class="c-form__label" for="username">ユーザーネーム</label>
+          <label class="c-form__label" for="username">USERNAME (半角英数字 3~16字)</label>
           <ul v-if="registerErrors">
             <li
                 class="c-error"
@@ -87,6 +87,7 @@
                  class="c-input c-form__input"
                  id="username"
                  v-model="registerForm.name"
+                 placeholder="半角英数字 3~16字"
           >
 
           <label class="c-form__label" for="email">メールアドレス</label>
@@ -102,9 +103,10 @@
               class="c-input c-form__input"
               id="email"
               v-model="registerForm.email"
+              placeholder="example@mail.com"
           >
 
-          <label class="c-form__label" for="password">パスワード</label>
+          <label class="c-form__label" for="password">パスワード (半角英数字 8~50字)</label>
           <ul v-if="registerErrors">
             <li
                 class="c-error"
@@ -117,6 +119,7 @@
               class="c-input c-form__input"
               id="password"
               v-model="registerForm.password"
+              placeholder="半角英数字 8~50字"
           >
           <label class="c-form__label" for="password-confirmation">パスワードの再入力</label>
           <input
@@ -124,6 +127,7 @@
               class="c-input c-form__input"
               id="password-confirmation"
               v-model="registerForm.password_confirmation"
+              placeholder=""
           >
           <div class="p-form__button">
             <button type="submit" class="c-btn c-btn__auth u-mt-xl">新規登録</button>
