@@ -15,15 +15,16 @@
           <button
               class="c-btn c-btn__modal"
               @click="searchCourse(0)"
-          >講座検索
+          >
+            <i class="fas fa-search"></i> 検索
           </button>
           <button
               class="c-btn c-btn__modal"
               @click="resetSearchWord"
-          >リセット
+          >
+            リセット
           </button>
         </div>
-
       </div>
 
       <!-- 検索結果一覧 -->
@@ -34,7 +35,7 @@
         </div>
 
         <!-- 結果コンポーネント一覧 -->
-        <div v-else>
+        <div v-else-if="isExistResult">
           <SearchResultCourse
               v-for="Course in responseData"
               :key="Course.id"
@@ -42,6 +43,14 @@
               @addCourse="addCourseObject"
           />
         </div>
+        <!-- 未検索時 -->
+        <div v-else-if="isNotSearchedYet" class="u-none"></div>
+        <!-- 検索結果がない場合 -->
+        <div v-else class="c-modal__nothing">
+          <i class="fas fa-exclamation-circle c-modal__nothing--fa"></i>
+          <h3>コースが見つかりませんでした</h3>
+        </div>
+
       </div>
 
       <!-- 前へ / 次へ -->
@@ -61,6 +70,7 @@ export default {
   data() {
     return {
       isSearching: false,
+      isNotSearchedYet: true,
       searchWord: '',
       searchData: {
         keywords: '',
@@ -76,6 +86,10 @@ export default {
     }
   },
   computed: {
+    // 検索した結果が存在するか
+    isExistResult() {
+      return !!this.responseData.length
+    },
     existPrevUrl() {
       return this.prevUrl.url !== ''
     },
@@ -92,6 +106,7 @@ export default {
       }
       // 検索開始
       this.isSearching = true;
+      this.isNotSearchedYet = false;
 
       // 検索ワードを元にUdemyAPIにリクエストする
       const params = flg === 0 ? this.searchData : flg === 1 ? this.prevUrl : this.nextUrl
@@ -107,8 +122,8 @@ export default {
     },
     // 検索ワードを空に
     resetSearchWord() {
-      this.searchWord = ''
-      this.searchData.keywords = ''
+      this.searchWord = '';
+      this.searchData.keywords = '';
     },
     // 検索をリセット
     resetSearch() {
@@ -128,7 +143,7 @@ export default {
   },
   components: {
     Loading,
-    SearchResultCourse
+    SearchResultCourse,
   }
 }
 

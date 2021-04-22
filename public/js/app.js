@@ -4373,12 +4373,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       isSearching: false,
+      isNotSearchedYet: true,
       searchWord: '',
       searchData: {
         keywords: ''
@@ -4394,6 +4404,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   computed: {
+    // 検索した結果が存在するか
+    isExistResult: function isExistResult() {
+      return !!this.responseData.length;
+    },
     existPrevUrl: function existPrevUrl() {
       return this.prevUrl.url !== '';
     },
@@ -4423,15 +4437,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 // 検索開始
-                _this.isSearching = true; // 検索ワードを元にUdemyAPIにリクエストする
+                _this.isSearching = true;
+                _this.isNotSearchedYet = false; // 検索ワードを元にUdemyAPIにリクエストする
 
                 params = flg === 0 ? _this.searchData : flg === 1 ? _this.prevUrl : _this.nextUrl;
-                _context.next = 6;
+                _context.next = 7;
                 return axios.get('/udemy/course/get', {
                   params: params
                 });
 
-              case 6:
+              case 7:
                 response = _context.sent;
                 // 検索結果を取得
                 _this.responseData = response.data.results;
@@ -4440,7 +4455,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.isSearching = false;
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -4487,7 +4502,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
-//
 //
 //
 //
@@ -59051,7 +59065,10 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("講座検索\n        ")]
+            [
+              _c("i", { staticClass: "fas fa-search" }),
+              _vm._v(" 検索\n        ")
+            ]
           ),
           _vm._v(" "),
           _c(
@@ -59060,7 +59077,7 @@ var render = function() {
               staticClass: "c-btn c-btn__modal",
               on: { click: _vm.resetSearchWord }
             },
-            [_vm._v("リセット\n        ")]
+            [_vm._v("\n          リセット\n        ")]
           )
         ])
       ]),
@@ -59074,7 +59091,8 @@ var render = function() {
         [
           _vm.isSearching
             ? _c("div", [_c("Loading")], 1)
-            : _c(
+            : _vm.isExistResult
+            ? _c(
                 "div",
                 _vm._l(_vm.responseData, function(Course) {
                   return _c("SearchResultCourse", {
@@ -59085,6 +59103,15 @@ var render = function() {
                 }),
                 1
               )
+            : _vm.isNotSearchedYet
+            ? _c("div", { staticClass: "u-none" })
+            : _c("div", { staticClass: "c-modal__nothing" }, [
+                _c("i", {
+                  staticClass: "fas fa-exclamation-circle c-modal__nothing--fa"
+                }),
+                _vm._v(" "),
+                _c("h3", [_vm._v("コースが見つかりませんでした")])
+              ])
         ]
       ),
       _vm._v(" "),
