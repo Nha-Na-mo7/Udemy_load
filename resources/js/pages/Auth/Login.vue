@@ -70,6 +70,19 @@
             <button type="submit" class="c-btn c-btn__auth u-mt-xl">ログイン</button>
           </div>
         </form>
+
+        <!-- その他 -->
+        <div class="p-auth__another">
+          <div class="c-border">
+            <div class="c-border__dividingText">
+              <span class="c-border__dividingText-spanborder">または</span>
+            </div>
+          </div>
+
+          <section>
+            <button class="c-btn" @click="addTestUserForm">TEST USER</button>
+          </section>
+        </div>
       </section>
 
       <!-- 新規登録フォーム -->
@@ -139,11 +152,12 @@
         </form>
       </section>
     </div>
-
   </div>
 </template>
 
 <script>
+const testUserEmail = 'testuser@example.com'
+const testUserPassword = 'testtest'
 export default {
   data () {
     return {
@@ -206,7 +220,15 @@ export default {
     clearError() {
       this.$store.commit('auth/setRegisterErrorMessages', null)
       this.$store.commit('auth/setLoginErrorMessages', null)
-    }
+    },
+    // ====================
+    // テストユーザー用
+    // ====================
+    addTestUserForm() {
+      this.loginForm.email = testUserEmail
+      this.loginForm.password = testUserPassword
+    },
+
   },
   created() {
     this.clearError()

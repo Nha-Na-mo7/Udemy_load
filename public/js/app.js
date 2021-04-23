@@ -2347,6 +2347,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var testUserEmail = 'testuser@example.com';
+var testUserPassword = 'testtest';
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2445,6 +2459,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     clearError: function clearError() {
       this.$store.commit('auth/setRegisterErrorMessages', null);
       this.$store.commit('auth/setLoginErrorMessages', null);
+    },
+    // ====================
+    // テストユーザー用
+    // ====================
+    addTestUserForm: function addTestUserForm() {
+      this.loginForm.email = testUserEmail;
+      this.loginForm.password = testUserPassword;
     }
   },
   created: function created() {
@@ -57648,7 +57669,19 @@ var render = function() {
               _vm._v(" "),
               _vm._m(0)
             ]
-          )
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "p-auth__another" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("section", [
+              _c(
+                "button",
+                { staticClass: "c-btn", on: { click: _vm.addTestUserForm } },
+                [_vm._v("TEST USER")]
+              )
+            ])
+          ])
         ]
       ),
       _vm._v(" "),
@@ -57852,7 +57885,7 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(2)
             ]
           )
         ]
@@ -57871,6 +57904,18 @@ var staticRenderFns = [
         { staticClass: "c-btn c-btn__auth u-mt-xl", attrs: { type: "submit" } },
         [_vm._v("ログイン")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "c-border" }, [
+      _c("div", { staticClass: "c-border__dividingText" }, [
+        _c("span", { staticClass: "c-border__dividingText-spanborder" }, [
+          _vm._v("または")
+        ])
+      ])
     ])
   },
   function() {
