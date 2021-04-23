@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import {UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR} from '../../util.js';
+import {FORBIDDEN, UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR} from '../../util.js';
 
 export default {
   data() {
@@ -116,6 +116,12 @@ export default {
         this.errorsPassword = response.data.errors.password;
         this.errorsPasswordConfirmation =
             response.data.errors.password_confirmation;
+      // テストユーザーなどで403が帰ってきた時はリロード
+      } else if (response.status === FORBIDDEN){
+        this.$router.go({
+          path: this.$router.currentRoute.path,
+          force: true
+        })
       // 500エラーの時
       } else if (response.status === INTERNAL_SERVER_ERROR) {
         this.$store.commit('error/setCode', response.status)

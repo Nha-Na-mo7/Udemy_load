@@ -82,6 +82,11 @@ class UserController extends Controller
       Log::debug('UserController.update_mail メールアドレスの更新');
       try {
         $user = Auth::user();
+        // テストユーザーの場合は更新処理は行われない
+        if ($user->test_user_flg) {
+          session()->flash('session_error', 'テストユーザーはメールアドレスを変更できません。');
+          return response([], 403);
+        }
         
         $new_email = $request->email;
         Log::debug('変更後のemail :'.$new_email);
@@ -126,14 +131,14 @@ class UserController extends Controller
     // =========================
     // パスワードを更新する
     // =========================
-    // こちらは純粋なパスワードの更新処理メソッド。
+    // こちらは純粋なパスワードの更新処理
     public function update_password(UpdatePasswordRequest $request) {
       Log::debug('UserController.password_update パスワードの更新');
       
       try {
         // ログインユーザーの情報を取得
         $user = Auth::user();
-        
+
         // 更新の場合は旧パスワードと一致するかを確認する工程が入る
         // Hash::makeでは毎回違うハッシュ値になるので比較できない
         // Hash::checkを使ってDBのパスワードと比較する
@@ -146,34 +151,40 @@ class UserController extends Controller
                   ]
               ], 422);
         }
-        
-        // TODO テストユーザーの場合は更新処理は行われない
-        // if ($user->test_user_flg) {
-        //   return response()->json(
-        //       ['success' => '【テストユーザーはパスワード変更できません】'], 200);
-        // }
+        // テストユーザーの場合は更新処理は行わない(パス一致チェックは見せるためtestuserチェックはここにする)
+        if ($user->test_user_flg) {
+          session()->flash('session_error', 'テストユーザーはパスワードを変更できません。');
+          return response([], 403);
+        }
         
         Log::debug('old_passwordが認証ユーザーのテーブルのパスワードと一致しました。更新処理を開始します。');
         $user->password = Hash::make($request->password);
         $user->save();
         
         Log::debug('パスワードが更新されました');
-        
-        return response()->json(['success' => 'パスワードを更新しました！'], 200);
+        session()->flash('session_success', 'パスワードが更新されました！');
+        return response()->json([], 200);
         
       } catch (\Exception $e){
         Log::debug('エラーが発生しました。'. $e->getMessage());
-        return response()->json(['errors' => 'エラーが発生しました。'], 500);
+        session()->flash('session_error', 'パスワード更新処理中エラーが発生しました。時間を置いてやり直してください。');
+        return response()->json([], 500);
       }
     }
     // ======================
-    // 退会
+    // アカウント削除
     // ======================
     public function withdraw(){
-      Log::debug('UserController.withdraw 退会処理');
+      Log::debug('UserController.withdraw アカウントの削除');
       try {
         // 認証済みユーザーを取得
         $user = Auth::user();
+        Log::debug($user->test_user_flg);
+        // テストユーザーは退会させない
+        if (!!$user->test_user_flg) {
+          session()->flash('session_error', 'テストユーザーはアカウントを削除できません。');
+          return response([], 403);
+        }
         // 先にログアウトしてから後続の処理を行う
         Auth::logout();
         // user情報を削除する
@@ -183,7 +194,7 @@ class UserController extends Controller
         // csrfトークンを再生成
         session()->regenerateToken();
 
-        session()->flash('session_msg', '退会処理が完了しました。');
+        session()->flash('session_msg', 'アカウントが削除されました。');
         return response([], 200);
         
       } catch (\Exception $e) {
@@ -195,7 +206,7 @@ class UserController extends Controller
         // csrfトークンを再生成
         session()->regenerateToken();
 
-        session()->flash('session_msg', '退会処理中にエラーが発生しました');
+        session()->flash('session_msg', 'アカウントの削除処理でエラーが発生しました。時間を置いてやり直してください。');
         return response([], 500);
       }
     }

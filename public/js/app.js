@@ -5023,20 +5023,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this3.errorsEmail = response.data.errors.email;
-                _this3.isUpdating = false; // 500エラー時
+                _this3.isUpdating = false; // テストユーザーなどで403が帰ってきた時
 
-                _context3.next = 17;
+                _context3.next = 21;
                 break;
 
               case 11:
-                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"])) {
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["FORBIDDEN"])) {
                   _context3.next = 15;
+                  break;
+                }
+
+                _this3.$router.go({
+                  path: _this3.$router.currentRoute.path,
+                  force: true
+                }); // 500エラー時
+
+
+                _context3.next = 21;
+                break;
+
+              case 15:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"])) {
+                  _context3.next = 19;
                   break;
                 }
 
                 return _context3.abrupt("return", false);
 
-              case 15:
+              case 19:
                 // バリデーションエラーリストを空にする
                 _this3.errorsEmail = []; // ページをリロードする
 
@@ -5045,10 +5060,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   force: true
                 });
 
-              case 17:
+              case 21:
                 _this3.isUpdating = false;
 
-              case 18:
+              case 22:
               case "end":
                 return _context3.stop();
             }
@@ -5250,14 +5265,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 // バリデーションエラー。帰ってきたエラーメッセージを格納
                 _this.errorsPassword = response.data.errors.password;
-                _this.errorsPasswordConfirmation = response.data.errors.password_confirmation; // 500エラーの時は更新失敗
+                _this.errorsPasswordConfirmation = response.data.errors.password_confirmation; // テストユーザーなどで403が帰ってきた時はリロード
 
-                _context.next = 17;
+                _context.next = 21;
                 break;
 
               case 11:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["FORBIDDEN"])) {
+                  _context.next = 15;
+                  break;
+                }
+
+                _this.$router.go({
+                  path: _this.$router.currentRoute.path,
+                  force: true
+                }); // 500エラーの時は更新失敗
+
+
+                _context.next = 21;
+                break;
+
+              case 15:
                 if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["INTERNAL_SERVER_ERROR"])) {
-                  _context.next = 16;
+                  _context.next = 20;
                   break;
                 }
 
@@ -5265,14 +5295,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 16:
+              case 20:
                 // パスワード作成完了後はマイページに戻す
                 _this.$router.push("/mypage/".concat(_this.$store.getters['auth/username']));
 
-              case 17:
+              case 21:
                 _this.isUpdating = false;
 
-              case 18:
+              case 22:
               case "end":
                 return _context.stop();
             }
@@ -5564,14 +5594,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // バリデーションエラー。帰ってきたエラーメッセージを格納
                 _this.errorsOldPassword = response.data.errors.old_password;
                 _this.errorsPassword = response.data.errors.password;
-                _this.errorsPasswordConfirmation = response.data.errors.password_confirmation; // 500エラーの時
+                _this.errorsPasswordConfirmation = response.data.errors.password_confirmation; // テストユーザーなどで403が帰ってきた時はリロード
 
-                _context.next = 18;
+                _context.next = 22;
                 break;
 
               case 12:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["FORBIDDEN"])) {
+                  _context.next = 16;
+                  break;
+                }
+
+                _this.$router.go({
+                  path: _this.$router.currentRoute.path,
+                  force: true
+                }); // 500エラーの時
+
+
+                _context.next = 22;
+                break;
+
+              case 16:
                 if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["INTERNAL_SERVER_ERROR"])) {
-                  _context.next = 17;
+                  _context.next = 21;
                   break;
                 }
 
@@ -5579,14 +5624,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 17:
+              case 21:
                 // パスワード更新完了後はマイページに戻す
                 _this.$router.push("/mypage/".concat(_this.$store.getters['auth/username']));
 
-              case 18:
+              case 22:
                 _this.isUpdating = false;
 
-              case 19:
+              case 23:
               case "end":
                 return _context.stop();
             }

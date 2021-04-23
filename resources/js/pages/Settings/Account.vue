@@ -100,7 +100,7 @@
 
 <script>
 import Loading from '../../components/Loading.vue';
-import { OK, UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR } from "../../util.js"
+import {OK, UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR, FORBIDDEN} from "../../util.js"
 import SettingItemList from "./SettingItemList.vue";
 
 export default {
@@ -186,6 +186,12 @@ export default {
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.errorsEmail = response.data.errors.email;
         this.isUpdating = false;
+      // テストユーザーなどで403が帰ってきた時
+      } else if (response.status === FORBIDDEN){
+        this.$router.go({
+          path: this.$router.currentRoute.path,
+          force: true
+        })
         // 500エラー時
       } else if (response.status === INTERNAL_SERVER_ERROR) {
         return false
