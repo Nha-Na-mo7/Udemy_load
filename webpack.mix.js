@@ -13,4 +13,15 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
+    .options({
+      autoprefixer: {
+        options: {
+          browsers: [
+            "last 2 versions",
+            "Android >= 4.4",
+            "iOS >= 10",
+          ],
+        }
+      }
+    })
     .version();

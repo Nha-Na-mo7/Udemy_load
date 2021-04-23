@@ -172,8 +172,7 @@ abbr[title] {
   /* 1 */
   text-decoration: underline;
   /* 2 */
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
   /* 2 */
 }
 
@@ -263,8 +262,7 @@ optgroup,
 select,
 textarea {
   -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
   vertical-align: middle;
   color: inherit;
   font: inherit;
@@ -283,14 +281,12 @@ textarea {
 
 [type=checkbox] {
   -webkit-appearance: checkbox;
-  -moz-appearance: checkbox;
-       appearance: checkbox;
+  appearance: checkbox;
 }
 
 [type=radio] {
   -webkit-appearance: radio;
-  -moz-appearance: radio;
-       appearance: radio;
+  appearance: radio;
 }
 
 /**
@@ -325,8 +321,7 @@ button,
 [type=submit] {
   cursor: pointer;
   -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
 }
 
 button[disabled],
@@ -558,6 +553,7 @@ body {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
   letter-spacing: 0.1em;
 }
@@ -712,8 +708,7 @@ input[type=checkbox] {
 .p-course__card {
   position: relative;
   display: flex;
-  -webkit-animation: fadeIn 1s;
-          animation: fadeIn 1s;
+  animation: fadeIn 1s;
   box-shadow: #cdcdcd 0 3px 8px;
   margin-bottom: 30px;
   padding: 15px;
@@ -983,16 +978,6 @@ input[type=checkbox] {
   margin-bottom: 15px;
 }
 
-.p-form__title::-moz-placeholder {
-  font-size: 12px;
-  font-weight: unset;
-}
-
-.p-form__title:-ms-input-placeholder {
-  font-size: 12px;
-  font-weight: unset;
-}
-
 .p-form__title::placeholder {
   font-size: 12px;
   font-weight: unset;
@@ -1054,8 +1039,7 @@ input[type=checkbox] {
 .p-header__logo--img {
   display: block;
   width: 120px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .p-header__nav {
@@ -2011,14 +1995,6 @@ input[type=checkbox] {
   background: #fffbf5;
 }
 
-.c-form__textarea::-moz-placeholder {
-  font-size: 14px;
-}
-
-.c-form__textarea:-ms-input-placeholder {
-  font-size: 14px;
-}
-
 .c-form__textarea::placeholder {
   font-size: 14px;
 }
@@ -2068,14 +2044,6 @@ input[type=checkbox] {
   margin-bottom: 15px;
   /* 旧Edge対応 */
   /* IE対応 */
-}
-
-.c-input::-moz-placeholder {
-  opacity: 0.5;
-}
-
-.c-input:-ms-input-placeholder {
-  opacity: 0.5;
 }
 
 .c-input::placeholder {
@@ -2151,6 +2119,8 @@ input[type=checkbox] {
 }
 
 .c-loading .c-loading__circle--2 {
+  -webkit-transform: rotate(36deg);
+  -ms-transform: rotate(36deg);
   transform: rotate(36deg);
 }
 
@@ -2160,6 +2130,8 @@ input[type=checkbox] {
 }
 
 .c-loading .c-loading__circle--3 {
+  -webkit-transform: rotate(72deg);
+  -ms-transform: rotate(72deg);
   transform: rotate(72deg);
 }
 
@@ -2169,6 +2141,8 @@ input[type=checkbox] {
 }
 
 .c-loading .c-loading__circle--4 {
+  -webkit-transform: rotate(108deg);
+  -ms-transform: rotate(108deg);
   transform: rotate(108deg);
 }
 
@@ -2178,6 +2152,8 @@ input[type=checkbox] {
 }
 
 .c-loading .c-loading__circle--5 {
+  -webkit-transform: rotate(144deg);
+  -ms-transform: rotate(144deg);
   transform: rotate(144deg);
 }
 
@@ -2187,6 +2163,8 @@ input[type=checkbox] {
 }
 
 .c-loading .c-loading__circle--6 {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
@@ -2196,6 +2174,8 @@ input[type=checkbox] {
 }
 
 .c-loading .c-loading__circle--7 {
+  -webkit-transform: rotate(216deg);
+  -ms-transform: rotate(216deg);
   transform: rotate(216deg);
 }
 
@@ -2205,6 +2185,8 @@ input[type=checkbox] {
 }
 
 .c-loading .c-loading__circle--8 {
+  -webkit-transform: rotate(252deg);
+  -ms-transform: rotate(252deg);
   transform: rotate(252deg);
 }
 
@@ -2214,6 +2196,8 @@ input[type=checkbox] {
 }
 
 .c-loading .c-loading__circle--9 {
+  -webkit-transform: rotate(288deg);
+  -ms-transform: rotate(288deg);
   transform: rotate(288deg);
 }
 
@@ -2223,6 +2207,8 @@ input[type=checkbox] {
 }
 
 .c-loading .c-loading__circle--10 {
+  -webkit-transform: rotate(324deg);
+  -ms-transform: rotate(324deg);
   transform: rotate(324deg);
 }
 
