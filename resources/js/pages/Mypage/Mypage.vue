@@ -22,11 +22,9 @@
 
           <!-- プロフィール編集 -->
           <div class="u-text--center" v-if="isAuthUser">
-            <button class="c-btn">
-              <RouterLink to="/settings/account">
-                <i class="fas fa-cog"></i> アカウント設定
-              </RouterLink>
-            </button>
+            <RouterLink class="c-btn" to="/settings/account">
+              <i class="fas fa-cog"></i> アカウント設定
+            </RouterLink>
           </div>
         </div>
 
@@ -60,7 +58,7 @@ export default {
   data() {
     return {
       user: {},
-      loading: false,
+      loading: true,
       nothingUser: false,
     };
   },
@@ -90,6 +88,7 @@ export default {
       // ユーザーが存在しなかった時の処理
       if (response.status === NOT_FOUND) {
         this.nothingUser = true
+        this.loading = false
         return false
       }
       // その他エラー時の処理
@@ -98,6 +97,7 @@ export default {
         return false
       }
       this.user = response.data
+      this.loading = false
     }
   },
   components: {

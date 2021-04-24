@@ -49,6 +49,7 @@
               class="c-input c-form__input"
               id="login-password"
               v-model="loginForm.password"
+              maxlength="50"
           >
 
           <!-- remember me -->
@@ -69,13 +70,26 @@
             <button type="submit" class="c-btn c-btn__auth u-mt-xl">ログイン</button>
           </div>
         </form>
+
+        <!-- その他 -->
+        <div class="p-auth__another">
+          <div class="c-border">
+            <div class="c-border__dividingText">
+              <span class="c-border__dividingText-spanborder">または</span>
+            </div>
+          </div>
+
+          <section>
+            <button class="c-btn" @click="addTestUserForm">TEST USER</button>
+          </section>
+        </div>
       </section>
 
       <!-- 新規登録フォーム -->
       <section class="c-panel" v-show="tab === 2">
         <form class="p-form__auth" @submit.prevent="register">
 
-          <label class="c-form__label" for="username">ユーザーネーム</label>
+          <label class="c-form__label" for="username">USERNAME (半角英数字 3~32字)</label>
           <ul v-if="registerErrors">
             <li
                 class="c-error"
@@ -87,6 +101,8 @@
                  class="c-input c-form__input"
                  id="username"
                  v-model="registerForm.name"
+                 maxlength="32"
+                 placeholder="半角英数字 3~32字"
           >
 
           <label class="c-form__label" for="email">メールアドレス</label>
@@ -102,9 +118,10 @@
               class="c-input c-form__input"
               id="email"
               v-model="registerForm.email"
+              placeholder="example@mail.com"
           >
 
-          <label class="c-form__label" for="password">パスワード</label>
+          <label class="c-form__label" for="password">パスワード (半角英数字 8~50字)</label>
           <ul v-if="registerErrors">
             <li
                 class="c-error"
@@ -117,6 +134,8 @@
               class="c-input c-form__input"
               id="password"
               v-model="registerForm.password"
+              maxlength="50"
+              placeholder="半角英数字 8~50字"
           >
           <label class="c-form__label" for="password-confirmation">パスワードの再入力</label>
           <input
@@ -124,6 +143,8 @@
               class="c-input c-form__input"
               id="password-confirmation"
               v-model="registerForm.password_confirmation"
+              maxlength="50"
+              placeholder=""
           >
           <div class="p-form__button">
             <button type="submit" class="c-btn c-btn__auth u-mt-xl">新規登録</button>
@@ -131,11 +152,12 @@
         </form>
       </section>
     </div>
-
   </div>
 </template>
 
 <script>
+const testUserEmail = 'testuser@example.com'
+const testUserPassword = 'testtest'
 export default {
   data () {
     return {
@@ -198,7 +220,15 @@ export default {
     clearError() {
       this.$store.commit('auth/setRegisterErrorMessages', null)
       this.$store.commit('auth/setLoginErrorMessages', null)
-    }
+    },
+    // ====================
+    // テストユーザー用
+    // ====================
+    addTestUserForm() {
+      this.loginForm.email = testUserEmail
+      this.loginForm.password = testUserPassword
+    },
+
   },
   created() {
     this.clearError()

@@ -24,7 +24,7 @@ class RecordRequest extends FormRequest
     public function rules()
     {
         return [
-            'recordForm.title' => 'required|max:30',
+            'recordForm.title' => 'required|max:100',
             'recordForm.description' => 'required|max:500',
             'selectedCourses' => 'required',
         ];

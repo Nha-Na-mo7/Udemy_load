@@ -43,8 +43,8 @@ class RecordController extends Controller
         Log::debug(' レコードの投稿');
         Log::debug('==============');
         
-        // Log::debug(print_r($request->input('selectedCourses'), true));
-        // Log::debug(print_r($request->input('recordForm'), true));
+        Log::debug(print_r($request->input('selectedCourses'), true));
+        Log::debug(print_r($request->input('recordForm'), true));
         $record = new Record();
         $keep_id = $record->id;
         

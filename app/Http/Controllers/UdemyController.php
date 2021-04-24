@@ -61,10 +61,10 @@ class UdemyController extends Controller
             config('services.udemy')['client_password']
         ]
     ]);
-    
-    // TODO UdemyAPI側に問題があった場合はエラーメッセージを返却させる
+
+    // UdemyAPI側に問題があった場合はエラー返却
     if ($response->getStatusCode() === 500) {
-      return response()->json(['error' => 'UdemyAPIにエラーが発生しました。しばらく時間をおいてやり直してください。'], 500);
+      return abort(500);
     }
     
     // 帰ってきた検索データをjsonに
@@ -75,16 +75,16 @@ class UdemyController extends Controller
     // Log::debug($data['count']);
     // Log::debug($data['results']);
 
-    // ----------------------
-    // 必要な情報をレスポンスする
-    // ----------------------
-    // TODO 講座数をカウント、0の場合は空のままレスポンスする
-    if(!!$data['count']) {
-      Log::debug('コース総数: '. $data['count']);
-    } else {
-      Log::debug('見つかりませんでした、検索ワードを変えてください');
-    }
-    
+    // // ----------------------
+    // // 必要な情報をレスポンスする
+    // // ----------------------
+    // // TODO 講座数をカウント、0の場合は空のままレスポンスする
+    // if(!!$data['count']) {
+    //   Log::debug('コース総数: '. $data['count']);
+    // } else {
+    //   Log::debug('見つかりませんでした、検索ワードを変えてください');
+    // }
+    //
     return $data;
   }
 }

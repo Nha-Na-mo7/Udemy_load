@@ -2,7 +2,10 @@
 <template>
   <div class="p-mypage__record-list">
     <div class="p-mypage__record-list--inner">
-      <div v-if="!!recordLength">
+      <div v-if="isLoading">
+        <Loading />
+      </div>
+      <div v-else-if="!!recordLength">
         <UserRecord
             v-for="Record in getRecordsItems"
             :key="Record.id"
@@ -49,6 +52,7 @@
 
 <script>
 import { OK } from '../../util.js'
+import Loading from '../../components/Loading.vue';
 import UserRecord from "./UserRecord";
 import NothingUserRecord from "./NothingUserRecord";
 
@@ -70,12 +74,16 @@ export default {
   },
   data() {
     return {
+      loading: true,
       records: [],
       parPage: 10,
       currentPage: 1,
     }
   },
   computed: {
+    isLoading() {
+      return this.loading;
+    },
     userName() {
       return this.user.name
     },
@@ -129,6 +137,7 @@ export default {
         return false
       }
       this.records = response.data
+      this.loading = false
     },
     // ======================
     // ページネーション用
@@ -145,6 +154,7 @@ export default {
     },
   },
   components: {
+    Loading,
     UserRecord,
     NothingUserRecord,
   },

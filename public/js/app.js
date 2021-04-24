@@ -2339,6 +2339,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var testUserEmail = 'testuser@example.com';
+var testUserPassword = 'testtest';
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2437,6 +2459,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     clearError: function clearError() {
       this.$store.commit('auth/setRegisterErrorMessages', null);
       this.$store.commit('auth/setLoginErrorMessages', null);
+    },
+    // ====================
+    // テストユーザー用
+    // ====================
+    addTestUserForm: function addTestUserForm() {
+      this.loginForm.email = testUserEmail;
+      this.loginForm.password = testUserPassword;
     }
   },
   created: function created() {
@@ -2453,6 +2482,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2537,8 +2571,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -2553,7 +2585,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       user: {},
-      loading: false,
+      loading: true,
       nothingUser: false
     };
   },
@@ -2593,16 +2625,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context.sent;
 
                 if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_4__["NOT_FOUND"])) {
-                  _context.next = 6;
+                  _context.next = 7;
                   break;
                 }
 
                 _this.nothingUser = true;
+                _this.loading = false;
                 return _context.abrupt("return", false);
 
-              case 6:
+              case 7:
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_4__["OK"])) {
-                  _context.next = 9;
+                  _context.next = 10;
                   break;
                 }
 
@@ -2610,10 +2643,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 9:
-                _this.user = response.data;
-
               case 10:
+                _this.user = response.data;
+                _this.loading = false;
+
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -2808,12 +2842,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
-/* harmony import */ var _UserRecord__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UserRecord */ "./resources/js/pages/Mypage/UserRecord.vue");
-/* harmony import */ var _NothingUserRecord__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NothingUserRecord */ "./resources/js/pages/Mypage/NothingUserRecord.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
-/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
+/* harmony import */ var _UserRecord__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./UserRecord */ "./resources/js/pages/Mypage/UserRecord.vue");
+/* harmony import */ var _NothingUserRecord__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NothingUserRecord */ "./resources/js/pages/Mypage/NothingUserRecord.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_6__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2869,12 +2904,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('paginate', vuejs_paginate__WEBPACK_IMPORTED_MODULE_5___default.a);
+
+vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('paginate', vuejs_paginate__WEBPACK_IMPORTED_MODULE_6___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -2889,12 +2928,16 @@ vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('paginate', vuejs_paginate_
   },
   data: function data() {
     return {
+      loading: true,
       records: [],
       parPage: 10,
       currentPage: 1
     };
   },
   computed: {
+    isLoading: function isLoading() {
+      return this.loading;
+    },
     userName: function userName() {
       return this.user.name;
     },
@@ -2966,8 +3009,9 @@ vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('paginate', vuejs_paginate_
 
               case 6:
                 _this.records = response.data;
+                _this.loading = false;
 
-              case 7:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -2989,8 +3033,9 @@ vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('paginate', vuejs_paginate_
     }
   },
   components: {
-    UserRecord: _UserRecord__WEBPACK_IMPORTED_MODULE_2__["default"],
-    NothingUserRecord: _NothingUserRecord__WEBPACK_IMPORTED_MODULE_3__["default"]
+    Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    UserRecord: _UserRecord__WEBPACK_IMPORTED_MODULE_3__["default"],
+    NothingUserRecord: _NothingUserRecord__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   watch: {
     $route: {
@@ -3237,6 +3282,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -3906,25 +3953,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log('レコード情報を取得しました。'); // レコード情報を取得
-
-                _context.next = 3;
+                _context.next = 2;
                 return axios.get("/record/".concat(_this.id));
 
-              case 3:
+              case 2:
                 response = _context.sent;
 
                 if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["NOT_FOUND"])) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
                 _this.loading = false;
                 return _context.abrupt("return", false);
 
-              case 7:
+              case 6:
                 if (!(response.status !== _util_js__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 10;
+                  _context.next = 9;
                   break;
                 }
 
@@ -3932,13 +3977,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 10:
-                console.log(response.data); // 格納
-
+              case 9:
+                // 格納
                 _this.record = response.data;
                 _this.loading = false;
 
-              case 13:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -4286,6 +4330,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
 /* harmony import */ var _SearchResultCourse_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SearchResultCourse.vue */ "./resources/js/pages/Records/SearchResultCourse.vue");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util */ "./resources/js/util.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4347,12 +4392,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       isSearching: false,
+      isNotSearchedYet: true,
       searchWord: '',
       searchData: {
         keywords: ''
@@ -4364,10 +4428,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         url: ''
       },
       responseData: [],
-      selectedCourses: []
+      selectedCourses: [],
+      errors: ''
     };
   },
   computed: {
+    // 検索した結果が存在するか
+    isExistResult: function isExistResult() {
+      return !!this.responseData.length;
+    },
     existPrevUrl: function existPrevUrl() {
       return this.prevUrl.url !== '';
     },
@@ -4397,16 +4466,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 // 検索開始
-                _this.isSearching = true; // 検索ワードを元にUdemyAPIにリクエストする
+                _this.isSearching = true;
+                _this.isNotSearchedYet = false; // エラーをリセット
+
+                _this.errors = ''; // 検索ワードを元にUdemyAPIにリクエストする
 
                 params = flg === 0 ? _this.searchData : flg === 1 ? _this.prevUrl : _this.nextUrl;
-                _context.next = 6;
+                _context.next = 8;
                 return axios.get('/udemy/course/get', {
                   params: params
                 });
 
-              case 6:
+              case 8:
                 response = _context.sent;
+
+                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_3__["INTERNAL_SERVER_ERROR"])) {
+                  _context.next = 13;
+                  break;
+                }
+
+                _this.errors = 'Udemyコース検索でエラーが発生しました。しばらく時間を置いてからやり直してください。';
+                _this.isSearching = false;
+                return _context.abrupt("return", false);
+
+              case 13:
                 // 検索結果を取得
                 _this.responseData = response.data.results;
                 _this.nextUrl.url = (_response$data$next = response.data.next) !== null && _response$data$next !== void 0 ? _response$data$next : '';
@@ -4414,7 +4497,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.isSearching = false;
 
-              case 11:
+              case 17:
               case "end":
                 return _context.stop();
             }
@@ -4461,7 +4544,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
-//
 //
 //
 //
@@ -4793,6 +4875,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -4884,33 +4970,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 5:
                 response = _context2.sent;
 
-                // エラーチェック
-                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"]) {
-                  // バリデーションエラー
-                  _this2.errorsName = response.data.errors.name; // 更新失敗(500)
-                } else if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"]) {
-                  console.log('500 ERROR'); // // フラッシュメッセージをセット
-                  // this.$store.commit('message/setContentError', {
-                  //   content: response.data.error,
-                  // });
-                } else {
-                  // 更新成功したらエラーメッセージは空にする
-                  _this2.errorsName = [];
-                  console.log('ユーザーネーム更新成功！'); // // フラッシュメッセージをセット
-                  // this.$store.commit('message/setContentSuccess', {
-                  //   content: response.data.success,
-                  // });
-                  // ページをリロードする
-
-                  _this2.$router.go({
-                    path: _this2.$router.currentRoute.path,
-                    force: true
-                  });
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"])) {
+                  _context2.next = 10;
+                  break;
                 }
 
+                // バリデーションエラー
+                _this2.errorsName = response.data.errors.name; // 更新失敗(500)
+
+                _context2.next = 16;
+                break;
+
+              case 10:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"])) {
+                  _context2.next = 14;
+                  break;
+                }
+
+                return _context2.abrupt("return", false);
+
+              case 14:
+                // 更新成功したらエラーメッセージは空にする
+                _this2.errorsName = []; // ページをリロードする
+
+                _this2.$router.go({
+                  path: _this2.$router.currentRoute.path,
+                  force: true
+                });
+
+              case 16:
                 _this2.isUpdating = false;
 
-              case 8:
+              case 17:
               case "end":
                 return _context2.stop();
             }
@@ -4947,32 +5038,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 5:
                 response = _context3.sent;
 
-                // バリデーションエラー時
-                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"]) {
-                  _this3.errorsEmail = response.data.errors.email;
-                  _this3.isUpdating = false; // 500エラー時
-                } else if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"]) {
-                  console.log('500 ERROR!'); // // フラッシュメッセージをセット
-                  // this.$store.commit('message/setContentError', {
-                  //   content: response.data.error,
-                  // });
-                } else {
-                  console.log('EMAIL UPDATE SUCCESS!!!'); // 送信完了したらフラッシュメッセージを表示し、バリデーションエラーリストを空にする
-                  // this.$store.commit('message/setContentSuccess', {
-                  //   content: response.data.success,
-                  // });
-
-                  _this3.errorsEmail = []; // ページをリロードする
-
-                  _this3.$router.go({
-                    path: _this3.$router.currentRoute.path,
-                    force: true
-                  });
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"])) {
+                  _context3.next = 11;
+                  break;
                 }
 
+                _this3.errorsEmail = response.data.errors.email;
+                _this3.isUpdating = false; // テストユーザーなどで403が帰ってきた時
+
+                _context3.next = 21;
+                break;
+
+              case 11:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["FORBIDDEN"])) {
+                  _context3.next = 15;
+                  break;
+                }
+
+                _this3.$router.go({
+                  path: _this3.$router.currentRoute.path,
+                  force: true
+                }); // 500エラー時
+
+
+                _context3.next = 21;
+                break;
+
+              case 15:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"])) {
+                  _context3.next = 19;
+                  break;
+                }
+
+                return _context3.abrupt("return", false);
+
+              case 19:
+                // バリデーションエラーリストを空にする
+                _this3.errorsEmail = []; // ページをリロードする
+
+                _this3.$router.go({
+                  path: _this3.$router.currentRoute.path,
+                  force: true
+                });
+
+              case 21:
                 _this3.isUpdating = false;
 
-              case 8:
+              case 22:
               case "end":
                 return _context3.stop();
             }
@@ -5157,40 +5269,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 2:
-                console.log('パスワードの新規登録処理です');
                 _this.isUpdating = true; // 更新処理にアクセス
 
-                _context.next = 6;
+                _context.next = 5;
                 return axios.post("/user/create/password", _this.formPassword)["catch"](function (error) {
                   return error.response || error;
                 });
 
-              case 6:
+              case 5:
                 response = _context.sent;
 
-                // エラーチェック
-                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
-                  // バリデーションエラー。帰ってきたエラーメッセージを格納
-                  _this.errorsPassword = response.data.errors.password;
-                  _this.errorsPasswordConfirmation = response.data.errors.password_confirmation; // 500エラーの時は更新失敗
-                } else if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["INTERNAL_SERVER_ERROR"]) {
-                  console.log('500 ERROR'); // // フラッシュメッセージをセット
-                  // this.$store.commit('message/setContentError', {
-                  //   content: response.data.errors,
-                  // });
-                } else {
-                  console.log('PASSWORD CREATE SUCCESS!!!'); // // フラッシュメッセージをセット
-                  // this.$store.commit('message/setContentSuccess', {
-                  //   content: response.data.success,
-                  // });
-                  // パスワード作成完了後はマイページに戻す
-
-                  _this.$router.push("/mypage/".concat(_this.$store.getters['auth/username']));
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
+                  _context.next = 11;
+                  break;
                 }
 
+                // バリデーションエラー。帰ってきたエラーメッセージを格納
+                _this.errorsPassword = response.data.errors.password;
+                _this.errorsPasswordConfirmation = response.data.errors.password_confirmation; // テストユーザーなどで403が帰ってきた時はリロード
+
+                _context.next = 21;
+                break;
+
+              case 11:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["FORBIDDEN"])) {
+                  _context.next = 15;
+                  break;
+                }
+
+                _this.$router.go({
+                  path: _this.$router.currentRoute.path,
+                  force: true
+                }); // 500エラーの時は更新失敗
+
+
+                _context.next = 21;
+                break;
+
+              case 15:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["INTERNAL_SERVER_ERROR"])) {
+                  _context.next = 20;
+                  break;
+                }
+
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 20:
+                // パスワード作成完了後はマイページに戻す
+                _this.$router.push("/mypage/".concat(_this.$store.getters['auth/username']));
+
+              case 21:
                 _this.isUpdating = false;
 
-              case 9:
+              case 22:
               case "end":
                 return _context.stop();
             }
@@ -5464,42 +5597,62 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 2:
-                console.log('パスワードの更新処理です');
                 _this.isUpdating = true; // 更新処理にアクセス
 
-                _context.next = 6;
+                _context.next = 5;
                 return axios.post("/user/update/password", _this.formPassword)["catch"](function (error) {
                   return error.response || error;
                 });
 
-              case 6:
+              case 5:
                 response = _context.sent;
 
-                // エラーチェック
-                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
-                  // バリデーションエラー。帰ってきたエラーメッセージを格納
-                  _this.errorsOldPassword = response.data.errors.old_password;
-                  _this.errorsPassword = response.data.errors.password;
-                  _this.errorsPasswordConfirmation = response.data.errors.password_confirmation; // 500エラーの時
-                } else if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["INTERNAL_SERVER_ERROR"]) {
-                  console.log('500 ERROR'); // // フラッシュメッセージをセット
-                  // this.$store.commit('message/setContentError', {
-                  //   content: response.data.errors,
-                  // });
-                  // 成功時
-                } else {
-                  console.log('PASSWORD UPDATE SUCCESS!!!'); // // フラッシュメッセージをセット
-                  // this.$store.commit('message/setContentSuccess', {
-                  //   content: response.data.success,
-                  // });
-                  // パスワード更新完了後はマイページに戻す
-
-                  _this.$router.push("/mypage/".concat(_this.$store.getters['auth/username']));
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
+                  _context.next = 12;
+                  break;
                 }
 
+                // バリデーションエラー。帰ってきたエラーメッセージを格納
+                _this.errorsOldPassword = response.data.errors.old_password;
+                _this.errorsPassword = response.data.errors.password;
+                _this.errorsPasswordConfirmation = response.data.errors.password_confirmation; // テストユーザーなどで403が帰ってきた時はリロード
+
+                _context.next = 22;
+                break;
+
+              case 12:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["FORBIDDEN"])) {
+                  _context.next = 16;
+                  break;
+                }
+
+                _this.$router.go({
+                  path: _this.$router.currentRoute.path,
+                  force: true
+                }); // 500エラーの時
+
+
+                _context.next = 22;
+                break;
+
+              case 16:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["INTERNAL_SERVER_ERROR"])) {
+                  _context.next = 21;
+                  break;
+                }
+
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 21:
+                // パスワード更新完了後はマイページに戻す
+                _this.$router.push("/mypage/".concat(_this.$store.getters['auth/username']));
+
+              case 22:
                 _this.isUpdating = false;
 
-              case 9:
+              case 23:
               case "end":
                 return _context.stop();
             }
@@ -5602,7 +5755,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n@-webkit-keyframes fadeIn-data-v-7170a194 {\n0% {\n    opacity: 0;\n}\n100% {\n    opacity: 1;\n}\n}\n@keyframes fadeIn-data-v-7170a194 {\n0% {\n    opacity: 0;\n}\n100% {\n    opacity: 1;\n}\n}\n", ""]);
+exports.push([module.i, "\n@keyframes fadeIn-data-v-7170a194 {\n0% {\n    opacity: 0;\n}\n100% {\n    opacity: 1;\n}\n}\n", ""]);
 
 // exports
 
@@ -57439,7 +57592,11 @@ var render = function() {
                   }
                 ],
                 staticClass: "c-input c-form__input",
-                attrs: { type: "password", id: "login-password" },
+                attrs: {
+                  type: "password",
+                  id: "login-password",
+                  maxlength: "50"
+                },
                 domProps: { value: _vm.loginForm.password },
                 on: {
                   input: function($event) {
@@ -57512,7 +57669,19 @@ var render = function() {
               _vm._v(" "),
               _vm._m(0)
             ]
-          )
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "p-auth__another" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("section", [
+              _c(
+                "button",
+                { staticClass: "c-btn", on: { click: _vm.addTestUserForm } },
+                [_vm._v("TEST USER")]
+              )
+            ])
+          ])
         ]
       ),
       _vm._v(" "),
@@ -57545,7 +57714,7 @@ var render = function() {
               _c(
                 "label",
                 { staticClass: "c-form__label", attrs: { for: "username" } },
-                [_vm._v("ユーザーネーム")]
+                [_vm._v("USERNAME (半角英数字 3~32字)")]
               ),
               _vm._v(" "),
               _vm.registerErrors
@@ -57570,7 +57739,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "c-input c-form__input",
-                attrs: { type: "text", id: "username" },
+                attrs: {
+                  type: "text",
+                  id: "username",
+                  maxlength: "32",
+                  placeholder: "半角英数字 3~32字"
+                },
                 domProps: { value: _vm.registerForm.name },
                 on: {
                   input: function($event) {
@@ -57610,7 +57784,11 @@ var render = function() {
                   }
                 ],
                 staticClass: "c-input c-form__input",
-                attrs: { type: "text", id: "email" },
+                attrs: {
+                  type: "text",
+                  id: "email",
+                  placeholder: "example@mail.com"
+                },
                 domProps: { value: _vm.registerForm.email },
                 on: {
                   input: function($event) {
@@ -57625,7 +57803,7 @@ var render = function() {
               _c(
                 "label",
                 { staticClass: "c-form__label", attrs: { for: "password" } },
-                [_vm._v("パスワード")]
+                [_vm._v("パスワード (半角英数字 8~50字)")]
               ),
               _vm._v(" "),
               _vm.registerErrors
@@ -57650,7 +57828,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "c-input c-form__input",
-                attrs: { type: "password", id: "password" },
+                attrs: {
+                  type: "password",
+                  id: "password",
+                  maxlength: "50",
+                  placeholder: "半角英数字 8~50字"
+                },
                 domProps: { value: _vm.registerForm.password },
                 on: {
                   input: function($event) {
@@ -57681,7 +57864,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "c-input c-form__input",
-                attrs: { type: "password", id: "password-confirmation" },
+                attrs: {
+                  type: "password",
+                  id: "password-confirmation",
+                  maxlength: "50",
+                  placeholder: ""
+                },
                 domProps: { value: _vm.registerForm.password_confirmation },
                 on: {
                   input: function($event) {
@@ -57697,7 +57885,7 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(2)
             ]
           )
         ]
@@ -57716,6 +57904,18 @@ var staticRenderFns = [
         { staticClass: "c-btn c-btn__auth u-mt-xl", attrs: { type: "submit" } },
         [_vm._v("ログイン")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "c-border" }, [
+      _c("div", { staticClass: "c-border__dividingText" }, [
+        _c("span", { staticClass: "c-border__dividingText-spanborder" }, [
+          _vm._v("または")
+        ])
+      ])
     ])
   },
   function() {
@@ -57783,6 +57983,12 @@ var staticRenderFns = [
               "また、URL、ファイル名にタイプミスがないか再度ご確認ください。"
             )
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("a", { staticClass: "c-btn", attrs: { href: "/" } }, [
+            _vm._v("\n        レコード一覧へ戻る\n      ")
+          ])
         ])
       ])
     ])
@@ -57834,6 +58040,12 @@ var staticRenderFns = [
           _c("p", [
             _vm._v("お手数ですが、しばらく時間を置いてからやり直してください。")
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("a", { staticClass: "c-btn", attrs: { href: "/" } }, [
+            _vm._v("\n        レコード一覧へ戻る\n      ")
+          ])
         ])
       ])
     ])
@@ -57873,23 +58085,24 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm.isAuthUser
-                ? _c("div", { staticClass: "u-text--center" }, [
-                    _c(
-                      "button",
-                      { staticClass: "c-btn" },
-                      [
-                        _c(
-                          "RouterLink",
-                          { attrs: { to: "/settings/account" } },
-                          [
-                            _c("i", { staticClass: "fas fa-cog" }),
-                            _vm._v(" アカウント設定\n            ")
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ])
+                ? _c(
+                    "div",
+                    { staticClass: "u-text--center" },
+                    [
+                      _c(
+                        "RouterLink",
+                        {
+                          staticClass: "c-btn",
+                          attrs: { to: "/settings/account" }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-cog" }),
+                          _vm._v(" アカウント設定\n          ")
+                        ]
+                      )
+                    ],
+                    1
+                  )
                 : _vm._e()
             ]),
             _vm._v(" "),
@@ -58057,10 +58270,9 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("p", {
-          staticClass: "p-mypage__record-list-item--description",
-          domProps: { innerHTML: _vm._s(_vm.description) }
-        })
+        _c("p", { staticClass: "p-mypage__record-list-item--description" }, [
+          _vm._v(_vm._s(this.description))
+        ])
       ]
     ),
     _vm._v(" "),
@@ -58114,7 +58326,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-mypage__record-list" }, [
     _c("div", { staticClass: "p-mypage__record-list--inner" }, [
-      !!_vm.recordLength
+      _vm.isLoading
+        ? _c("div", [_c("Loading")], 1)
+        : !!_vm.recordLength
         ? _c(
             "div",
             [
@@ -58357,10 +58571,9 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("p", {
-      staticClass: "p-record__list-item--description",
-      domProps: { innerHTML: _vm._s(_vm.description) }
-    })
+    _c("p", { staticClass: "p-record__list-item--description" }, [
+      _vm._v(_vm._s(this.description))
+    ])
   ])
 }
 var staticRenderFns = []
@@ -58426,6 +58639,7 @@ var render = function() {
             attrs: {
               type: "text",
               id: "record_title",
+              maxlength: "100",
               placeholder: "入力してください"
             },
             domProps: { value: _vm.createData.recordForm.title },
@@ -58477,6 +58691,7 @@ var render = function() {
               "p-form__description p-form__item p-record__edit--textarea c-form__textarea",
             attrs: {
               id: "record_description",
+              maxlength: "500",
               placeholder: "説明文を入力してください"
             },
             domProps: { value: _vm.createData.recordForm.description },
@@ -58650,7 +58865,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "ユーザー名: " +
+                                "投稿者: " +
                                   _vm._s(this.ownerName) +
                                   "\n              "
                               )
@@ -58660,10 +58875,11 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("p", {
-                        staticClass: "p-record__info--description",
-                        domProps: { innerHTML: _vm._s(_vm.description) }
-                      })
+                      _c(
+                        "pre",
+                        { staticClass: "p-record__info--description" },
+                        [_vm._v(_vm._s(this.description))]
+                      )
                     ]),
                     _vm._v(" "),
                     _c(
@@ -58988,7 +59204,10 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("講座検索\n        ")]
+            [
+              _c("i", { staticClass: "fas fa-search" }),
+              _vm._v(" 検索\n        ")
+            ]
           ),
           _vm._v(" "),
           _c(
@@ -58997,7 +59216,7 @@ var render = function() {
               staticClass: "c-btn c-btn__modal",
               on: { click: _vm.resetSearchWord }
             },
-            [_vm._v("リセット\n        ")]
+            [_vm._v("\n          リセット\n        ")]
           )
         ])
       ]),
@@ -59011,7 +59230,18 @@ var render = function() {
         [
           _vm.isSearching
             ? _c("div", [_c("Loading")], 1)
-            : _c(
+            : _vm.errors
+            ? _c("div", { staticClass: "c-modal__error" }, [
+                _c("i", {
+                  staticClass: "fas fa-exclamation-circle c-modal__nothing--fa"
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "c-error" }, [
+                  _vm._v(_vm._s(_vm.errors))
+                ])
+              ])
+            : _vm.isExistResult
+            ? _c(
                 "div",
                 _vm._l(_vm.responseData, function(Course) {
                   return _c("SearchResultCourse", {
@@ -59022,6 +59252,15 @@ var render = function() {
                 }),
                 1
               )
+            : _vm.isNotSearchedYet
+            ? _c("div", { staticClass: "u-none" })
+            : _c("div", { staticClass: "c-modal__nothing" }, [
+                _c("i", {
+                  staticClass: "fas fa-exclamation-circle c-modal__nothing--fa"
+                }),
+                _vm._v(" "),
+                _c("h3", [_vm._v("コースが見つかりませんでした")])
+              ])
         ]
       ),
       _vm._v(" "),
@@ -59290,7 +59529,12 @@ var render = function() {
                           }
                         ],
                         staticClass: "c-form__input",
-                        attrs: { id: "name", type: "text", maxlength: "32" },
+                        attrs: {
+                          id: "name",
+                          type: "text",
+                          maxlength: "32",
+                          placeholder: "半角英数字 3~32字"
+                        },
                         domProps: { value: _vm.formName },
                         on: {
                           input: function($event) {
@@ -59356,7 +59600,12 @@ var render = function() {
                           }
                         ],
                         staticClass: "c-form__input",
-                        attrs: { id: "email", type: "text", maxlength: "100" },
+                        attrs: {
+                          id: "email",
+                          type: "text",
+                          maxlength: "100",
+                          placeholder: "example@mail.com"
+                        },
                         domProps: { value: _vm.formEmail },
                         on: {
                           input: function($event) {

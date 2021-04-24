@@ -38,7 +38,7 @@ class UpdateUsernameRequest extends FormRequest
           'name.unique' => '入力されたユーザーネームは利用できません',
           'name.min' => "3文字以上 32文字以内で入力してください",
           'name.max' => "3文字以上 32文字以内で入力してください",
-          'name.regix' => "半角英数字のみ利用可能です",
+          'name.regex' => "半角英数字のみ利用可能です",
       ];
     }
 }

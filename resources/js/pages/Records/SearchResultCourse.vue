@@ -1,7 +1,6 @@
 <!--コース検索結果で表示させるコンポーネント-->
 <template>
   <div class="p-course__card">
-
     <!-- サムネイル -->
     <div class="p-course__card--left u-text--center">
       <img :src="getImage" alt="" class="p-course__card--img">

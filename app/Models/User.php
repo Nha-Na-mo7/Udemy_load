@@ -21,7 +21,7 @@ class User extends Authenticatable
   
     // Jsonで表示させる項目
     protected $visible = [
-        'id', 'name', 'email', 'records'
+        'id', 'name', 'email', 'records', 'test_user_flg',
     ];
     
     /**
