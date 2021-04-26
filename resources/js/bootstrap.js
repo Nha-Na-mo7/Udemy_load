@@ -1,8 +1,7 @@
-import { getCookieValue } from "./util";
+import { getCookieValue } from './util';
 
 window._ = require('lodash');
 window.$ = window.jQuery = require('jquery');
-
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -16,14 +15,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // X-XSRF-TOKENヘッダーを参照してCSRFトークンをチェックするための記述
 window.axios.interceptors.request.use((config) => {
-    // cookieからXSRF-TOKENを取り出し、ヘッダーに添付
-    config.headers['X-XSRF-TOKEN'] = getCookieValue('XSRF-TOKEN');
-    
-    return config;
-})
+  // cookieからXSRF-TOKENを取り出し、ヘッダーに添付
+  config.headers['X-XSRF-TOKEN'] = getCookieValue('XSRF-TOKEN');
+
+  return config;
+});
 
 // エラーレスポンスが帰ってきた時、レスポンスオブジェクトを返す処理に変更
 window.axios.interceptors.response.use(
-    response => response,
-    error => error.response || error
-)
+  (response) => response,
+  (error) => error.response || error,
+);

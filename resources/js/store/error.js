@@ -5,7 +5,7 @@
 // state
 // ===============
 const state = () => ({
-  code: null
+  code: null,
 });
 
 // ===============
@@ -19,8 +19,8 @@ const getters = {};
 const mutations = {
   // ステータスコードをセット
   setCode(state, code) {
-    state.code = code
-  }
+    state.code = code;
+  },
 };
 
 // ===============

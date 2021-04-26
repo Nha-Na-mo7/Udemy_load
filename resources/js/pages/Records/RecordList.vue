@@ -3,39 +3,39 @@
     <div class="p-record__list--inner" id="records">
       <h2 class="p-record__list--title">レコード</h2>
       <Record
-          v-for="Record in getRecordsItems"
-          :key="Record.id"
-          :item="Record"
+        v-for="Record in getRecordsItems"
+        :key="Record.id"
+        :item="Record"
       />
 
       <!-- ページネーション -->
       <div class="u-text--center">
         <paginate
-            v-model="currentPage"
-            :page-count="getPageCount"
-            :page-range="3"
-            :margin-pages="1"
-            :click-handler="clickCallback"
-            :prev-text="'<'"
-            :next-text="'>'"
-            :break-view-class="'c-paginate__item--break-view'"
-            :hide-prev-next="true"
-            :containerClass="'c-paginate'"
-            :page-class="'c-paginate__item'"
-            :page-link-class="'c-paginate__link'"
-            :prev-class="'c-paginate__item c-paginate__item--prev'"
-            :prev-link-class="'c-paginate__link'"
-            :next-class="'c-paginate__item c-paginate__item--next'"
-            :next-link-class="'c-paginate__link'"
-            :active-class="'c-paginate__item--active'"
-            list=""
-            name=""
+          v-model="currentPage"
+          :page-count="getPageCount"
+          :page-range="3"
+          :margin-pages="1"
+          :click-handler="clickCallback"
+          :prev-text="'<'"
+          :next-text="'>'"
+          :break-view-class="'c-paginate__item--break-view'"
+          :hide-prev-next="true"
+          :containerClass="'c-paginate'"
+          :page-class="'c-paginate__item'"
+          :page-link-class="'c-paginate__link'"
+          :prev-class="'c-paginate__item c-paginate__item--prev'"
+          :prev-link-class="'c-paginate__link'"
+          :next-class="'c-paginate__item c-paginate__item--next'"
+          :next-link-class="'c-paginate__link'"
+          :active-class="'c-paginate__item--active'"
+          list=""
+          name=""
         >
         </paginate>
         <div>
           <p>
-            {{ this.getStartCount }} ~ {{ this.getEndCount }} /
-            全 {{ this.records.length }} 記事
+            {{ this.getStartCount }} ~ {{ this.getEndCount }} / 全
+            {{ this.records.length }} 記事
           </p>
         </div>
       </div>
@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import { OK } from '../../util.js'
-import Record from "./Record";
+import { OK } from '../../util.js';
+import Record from './Record';
 
 import Vue from 'vue';
 import Paginate from 'vuejs-paginate';
@@ -57,7 +57,7 @@ export default {
       type: Number,
       required: false,
       default: 1,
-    }
+    },
   },
   data() {
     return {
@@ -65,7 +65,7 @@ export default {
       parPage: 10,
       currentPage: 1,
       lastPage: 0,
-    }
+    };
   },
   computed: {
     // ======================
@@ -108,11 +108,11 @@ export default {
 
       // エラー時
       if (response.status !== OK) {
-        this.$store.commit('error/setCode', response.status)
-        return false
+        this.$store.commit('error/setCode', response.status);
+        return false;
       }
 
-      this.records = response.data
+      this.records = response.data;
     },
     // ======================
     // ページネーション用
@@ -123,24 +123,22 @@ export default {
     scrollTop: function () {
       window.scrollTo({
         top: this.getRecordsRect,
-        behavior: "smooth"
+        behavior: 'smooth',
       });
     },
   },
   components: {
-    Record
+    Record,
   },
   watch: {
     $route: {
       async handler() {
-        await this.fetchCourse()
+        await this.fetchCourse();
       },
-      immediate: true
-    }
-  }
-}
+      immediate: true,
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

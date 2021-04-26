@@ -2103,6 +2103,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2202,6 +2206,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -2570,7 +2578,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -2706,6 +2713,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /***/ }),
 
@@ -2718,8 +2727,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -2744,6 +2751,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3028,7 +3041,7 @@ vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('paginate', vuejs_paginate_
     scrollTop: function scrollTop() {
       window.scrollTo({
         top: this.getRecordsRect,
-        behavior: "smooth"
+        behavior: 'smooth'
       });
     }
   },
@@ -3075,9 +3088,6 @@ vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('paginate', vuejs_paginate_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util.js */ "./resources/js/util.js");
-//
-//
-//
 //
 //
 //
@@ -3184,6 +3194,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /***/ }),
 
@@ -3198,6 +3210,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+//
 //
 //
 //
@@ -3282,17 +3295,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3873,6 +3875,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4282,7 +4301,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate_
     scrollTop: function scrollTop() {
       window.scrollTo({
         top: this.getRecordsRect,
-        behavior: "smooth"
+        behavior: 'smooth'
       });
     }
   },
@@ -4337,6 +4356,17 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4571,6 +4601,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -4612,7 +4644,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addCourse: function addCourse() {
       // 親コンポーネントの配列にコースオブジェクトを格納する
-      this.$emit("addCourse", this.courseData);
+      this.$emit('addCourse', this.courseData);
     }
   }
 });
@@ -4630,10 +4662,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util */ "./resources/js/util.js");
 /* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Loading */ "./resources/js/components/Loading.vue");
-//
-//
-//
-//
 //
 //
 //
@@ -4779,9 +4807,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
 //
 //
 //
@@ -5233,10 +5258,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -5381,7 +5402,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -5484,14 +5504,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -5732,13 +5744,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "SettingItemList"
+  name: 'SettingItemList'
 });
 
 /***/ }),
@@ -57477,7 +57484,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("ログイン")]
+          [_vm._v("\n        ログイン\n      ")]
         ),
         _vm._v(" "),
         _c(
@@ -57491,7 +57498,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("新規登録")]
+          [_vm._v("\n        新規登録\n      ")]
         )
       ]),
       _vm._v(" "),
@@ -57532,7 +57539,7 @@ var render = function() {
                     "ul",
                     _vm._l(_vm.loginErrors.email, function(msg) {
                       return _c("li", { key: msg, staticClass: "c-error" }, [
-                        _vm._v(_vm._s(msg))
+                        _vm._v("\n            " + _vm._s(msg) + "\n          ")
                       ])
                     }),
                     0
@@ -57575,7 +57582,7 @@ var render = function() {
                     "ul",
                     _vm._l(_vm.loginErrors.password, function(msg) {
                       return _c("li", { key: msg, staticClass: "c-error" }, [
-                        _vm._v(_vm._s(msg))
+                        _vm._v("\n            " + _vm._s(msg) + "\n          ")
                       ])
                     }),
                     0
@@ -57722,7 +57729,7 @@ var render = function() {
                     "ul",
                     _vm._l(_vm.registerErrors.name, function(msg) {
                       return _c("li", { key: msg, staticClass: "c-error" }, [
-                        _vm._v(_vm._s(msg))
+                        _vm._v("\n            " + _vm._s(msg) + "\n          ")
                       ])
                     }),
                     0
@@ -57767,7 +57774,7 @@ var render = function() {
                     "ul",
                     _vm._l(_vm.registerErrors.email, function(msg) {
                       return _c("li", { key: msg, staticClass: "c-error" }, [
-                        _vm._v(_vm._s(msg))
+                        _vm._v("\n            " + _vm._s(msg) + "\n          ")
                       ])
                     }),
                     0
@@ -57811,7 +57818,7 @@ var render = function() {
                     "ul",
                     _vm._l(_vm.registerErrors.password, function(msg) {
                       return _c("li", { key: msg, staticClass: "c-error" }, [
-                        _vm._v(_vm._s(msg))
+                        _vm._v("\n            " + _vm._s(msg) + "\n          ")
                       ])
                     }),
                     0
@@ -57902,7 +57909,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "c-btn c-btn__auth u-mt-xl", attrs: { type: "submit" } },
-        [_vm._v("ログイン")]
+        [_vm._v("\n            ログイン\n          ")]
       )
     ])
   },
@@ -57926,7 +57933,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "c-btn c-btn__auth u-mt-xl", attrs: { type: "submit" } },
-        [_vm._v("新規登録")]
+        [_vm._v("\n            新規登録\n          ")]
       )
     ])
   }
@@ -57974,7 +57981,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "p-error__description" }, [
           _c("p", [
             _vm._v(
-              "お探しのページは一時的にアクセスができない状況か、移動もしくは削除された可能性があります。"
+              "\n        お探しのページは一時的にアクセスができない状況か、移動もしくは削除された可能性があります。\n      "
             )
           ]),
           _vm._v(" "),
@@ -57987,7 +57994,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", [
           _c("a", { staticClass: "c-btn", attrs: { href: "/" } }, [
-            _vm._v("\n        レコード一覧へ戻る\n      ")
+            _vm._v(" レコード一覧へ戻る ")
           ])
         ])
       ])
@@ -58044,7 +58051,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", [
           _c("a", { staticClass: "c-btn", attrs: { href: "/" } }, [
-            _vm._v("\n        レコード一覧へ戻る\n      ")
+            _vm._v(" レコード一覧へ戻る ")
           ])
         ])
       ])
@@ -58081,7 +58088,11 @@ var render = function() {
           _c("div", { staticClass: "p-mypage" }, [
             _c("div", { staticClass: "p-mypage__column" }, [
               _c("h2", { staticClass: "p-mypage__title u-mb-xl" }, [
-                _vm._v(_vm._s(this.userName) + "さんのマイページ")
+                _vm._v(
+                  "\n          " +
+                    _vm._s(this.userName) +
+                    "さんのマイページ\n        "
+                )
               ]),
               _vm._v(" "),
               _vm.isAuthUser
@@ -58160,7 +58171,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", { staticClass: "c-nothing__text" }, [
         _vm._v(
-          "お探しのユーザーは存在しない、あるいは削除された可能性があります。"
+          "\n    お探しのユーザーは存在しない、あるいは削除された可能性があります。\n  "
         )
       ])
     ])
@@ -58197,7 +58208,7 @@ var staticRenderFns = [
     return _c("article", { staticClass: "p-mypage__record-list-item" }, [
       _c("div", { staticClass: "p-mypage__record-list-item--column" }, [
         _c("h2", { staticClass: "p-mypage__record-list-item--title" }, [
-          _vm._v("\n      投稿履歴はありません\n    ")
+          _vm._v("投稿履歴はありません")
         ])
       ])
     ])
@@ -58233,7 +58244,11 @@ var render = function() {
       },
       [
         _c("p", { staticClass: "p-mypage__record-list-item--date" }, [
-          _vm._v("投稿時刻 " + _vm._s(_vm._f("recordAt")(this.createdAt)))
+          _vm._v(
+            "\n      投稿時刻 " +
+              _vm._s(_vm._f("recordAt")(this.createdAt)) +
+              "\n    "
+          )
         ]),
         _vm._v(" "),
         _c(
@@ -58249,7 +58264,13 @@ var render = function() {
             ],
             staticClass: "p-mypage__record-list-item--date"
           },
-          [_vm._v("最終更新 " + _vm._s(_vm._f("recordAt")(this.updatedAt)))]
+          [
+            _vm._v(
+              "\n      最終更新 " +
+                _vm._s(_vm._f("recordAt")(this.updatedAt)) +
+                "\n    "
+            )
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -58271,7 +58292,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("p", { staticClass: "p-mypage__record-list-item--description" }, [
-          _vm._v(_vm._s(this.description))
+          _vm._v("\n      " + _vm._s(this.description) + "\n    ")
         ])
       ]
     ),
@@ -58380,7 +58401,7 @@ var render = function() {
                           _vm._s(this.getStartCount) +
                           " - " +
                           _vm._s(this.getEndCount) +
-                          " /\n            全 " +
+                          " / 全\n            " +
                           _vm._s(this.recordLength) +
                           " 投稿\n          "
                       )
@@ -58509,7 +58530,9 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "c-nothing__text" }, [
-        _vm._v("URLの記事は存在しない、あるいは削除された可能性があります。")
+        _vm._v(
+          "\n    URLの記事は存在しない、あるいは削除された可能性があります。\n  "
+        )
       ])
     ])
   }
@@ -58565,7 +58588,7 @@ var render = function() {
         _c(
           "RouterLink",
           { attrs: { to: "/records/" + _vm.recordId, title: "" + this.title } },
-          [_vm._v("\n    " + _vm._s(this.title) + "\n    ")]
+          [_vm._v("\n      " + _vm._s(this.title) + "\n    ")]
         )
       ],
       1
@@ -58611,7 +58634,7 @@ var render = function() {
           _c(
             "label",
             { staticClass: "c-form__label", attrs: { for: "record_title" } },
-            [_vm._v("タイトル\n        ")]
+            [_vm._v("タイトル ")]
           ),
           _vm._v(" "),
           _vm.errors.errorsTitle
@@ -58663,7 +58686,7 @@ var render = function() {
               staticClass: "c-form__label",
               attrs: { for: "record_description" }
             },
-            [_vm._v("説明\n        ")]
+            [_vm._v("説明 ")]
           ),
           _vm._v(" "),
           _vm.errors.errorsDescription
@@ -58753,7 +58776,7 @@ var render = function() {
             attrs: { disabled: !this.checkAllClear },
             on: { click: this.submitCourse }
           },
-          [_vm._v(_vm._s(_vm.submitButton) + "\n      ")]
+          [_vm._v("\n        " + _vm._s(_vm.submitButton) + "\n      ")]
         )
       ]),
       _vm._v(" "),
@@ -58839,22 +58862,28 @@ var render = function() {
                         [
                           _c("p", { staticClass: "p-record__info--date" }, [
                             _vm._v(
-                              "投稿時刻: " +
-                                _vm._s(_vm._f("recordAt")(this.createdAt))
+                              "\n                投稿時刻: " +
+                                _vm._s(_vm._f("recordAt")(this.createdAt)) +
+                                "\n              "
                             )
                           ]),
                           _vm._v(" "),
                           _vm.checkUpdated
                             ? _c("p", { staticClass: "p-record__info--date" }, [
                                 _vm._v(
-                                  "最終更新: " +
-                                    _vm._s(_vm._f("recordAt")(this.updatedAt))
+                                  "\n                最終更新: " +
+                                    _vm._s(_vm._f("recordAt")(this.updatedAt)) +
+                                    "\n              "
                                 )
                               ])
                             : _vm._e(),
                           _vm._v(" "),
                           _c("h2", { staticClass: "p-record__info--title" }, [
-                            _vm._v(_vm._s(this.title))
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(this.title) +
+                                "\n              "
+                            )
                           ]),
                           _vm._v(" "),
                           _c(
@@ -58922,8 +58951,9 @@ var render = function() {
                 _c("section", { staticClass: "p-record__comment" }, [
                   _c("h3", { staticClass: "p-record__comment--head" }, [
                     _vm._v(
-                      "コメント" +
-                        _vm._s(_vm._f("addBrackets")(_vm.countComments))
+                      "\n          コメント" +
+                        _vm._s(_vm._f("addBrackets")(_vm.countComments)) +
+                        "\n        "
                     )
                   ]),
                   _vm._v(" "),
@@ -58964,7 +58994,7 @@ var render = function() {
                                     ]
                                   ),
                                   _vm._v(
-                                    " が" +
+                                    "\n              が" +
                                       _vm._s(Comment.created_at) +
                                       "に投稿\n            "
                                   )
@@ -58975,7 +59005,13 @@ var render = function() {
                               _c(
                                 "p",
                                 { staticClass: "p-record__comment--content" },
-                                [_vm._v(_vm._s(Comment.content))]
+                                [
+                                  _vm._v(
+                                    "\n              " +
+                                      _vm._s(Comment.content) +
+                                      "\n            "
+                                  )
+                                ]
                               )
                             ]
                           )
@@ -59031,7 +59067,11 @@ var render = function() {
                                   staticClass: "c-btn c-btn__edit--submit",
                                   attrs: { disabled: _vm.checkVoidComment }
                                 },
-                                [_vm._v("コメントを投稿")]
+                                [
+                                  _vm._v(
+                                    "\n                コメントを投稿\n              "
+                                  )
+                                ]
                               )
                             ])
                           ]
@@ -59120,7 +59160,7 @@ var render = function() {
                     _vm._s(this.getStartCount) +
                     " ~ " +
                     _vm._s(this.getEndCount) +
-                    " /\n          全 " +
+                    " / 全\n          " +
                     _vm._s(this.records.length) +
                     " 記事\n        "
                 )
@@ -59164,7 +59204,7 @@ var render = function() {
         _c(
           "p",
           { staticClass: "p-modal__search__title c-modal__title u-mb-l" },
-          [_vm._v("コースを検索してください")]
+          [_vm._v("\n        コースを検索してください\n      ")]
         ),
         _vm._v(" "),
         _c("form", { attrs: { action: "", onsubmit: "return false" } }, [
@@ -59276,7 +59316,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("前へ")]
+              [_vm._v("\n        前へ\n      ")]
             )
           : _vm._e(),
         _vm._v(" "),
@@ -59291,7 +59331,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("次へ")]
+              [_vm._v("\n        次へ\n      ")]
             )
           : _vm._e()
       ])
@@ -59354,7 +59394,7 @@ var render = function() {
           staticClass: "c-btn c-btn__modal--add",
           on: { click: _vm.addCourse }
         },
-        [_vm._v("追加する")]
+        [_vm._v("\n      追加する\n    ")]
       )
     ])
   ])
@@ -59444,7 +59484,7 @@ var render = function() {
           _c("i", {
             staticClass: "far fa-trash-alt p-mypage__record-list--icon"
           }),
-          _vm._v(" 削除する\n    ")
+          _vm._v("\n      削除する\n    ")
         ]
       )
     ])
@@ -59493,7 +59533,7 @@ var render = function() {
                   _c(
                     "h3",
                     { staticClass: "p-setting__title p-setting__title--sub" },
-                    [_vm._v("ユーザー名の変更")]
+                    [_vm._v("\n          ユーザー名の変更\n        ")]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "p-setting__flex" }, [
@@ -59554,7 +59594,7 @@ var render = function() {
                           staticClass: "c-btn c-btn__setting--update",
                           on: { click: _vm.updateName }
                         },
-                        [_vm._v("変更")]
+                        [_vm._v("\n              変更\n            ")]
                       )
                     ])
                   ])
@@ -59575,7 +59615,7 @@ var render = function() {
                           staticClass: "c-form__label",
                           attrs: { for: "email" }
                         },
-                        [_vm._v("メールアドレス\n            ")]
+                        [_vm._v("メールアドレス ")]
                       ),
                       _vm._v(" "),
                       _vm.errorsEmail
@@ -59625,7 +59665,7 @@ var render = function() {
                           staticClass: "c-btn c-btn__setting--update",
                           on: { click: _vm.updateEmail }
                         },
-                        [_vm._v("変更")]
+                        [_vm._v("\n              変更\n            ")]
                       )
                     ])
                   ])
@@ -59647,7 +59687,7 @@ var render = function() {
                     { staticClass: "u-mb-l u-text--center u-color--red" },
                     [
                       _vm._v(
-                        "【!】アカウントを削除すると元に戻すことはできなくなります。"
+                        "\n          【!】アカウントを削除すると元に戻すことはできなくなります。\n        "
                       )
                     ]
                   ),
@@ -59661,7 +59701,7 @@ var render = function() {
                       },
                       [
                         _c("i", { staticClass: "fas fa-sign-out-alt" }),
-                        _vm._v("\n             アカウント削除\n          ")
+                        _vm._v("\n            アカウント削除\n          ")
                       ]
                     )
                   ])

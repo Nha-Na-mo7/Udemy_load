@@ -22,7 +22,7 @@
     color: #fff;
   }
   &__header {
-    transition: all .5s;
+    transition: all 0.5s;
     box-sizing: border-box;
     &:hover {
       background: #efefef;
@@ -50,7 +50,8 @@
     }
   }
   &__course {
-    &--add, &--delete {
+    &--add,
+    &--delete {
       width: 100%;
     }
     // コースを追加するボタン

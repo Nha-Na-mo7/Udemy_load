@@ -18,7 +18,7 @@ import SystemError from './pages/Errors/500_System.vue';
 import NotFound from './pages/Errors/404_NotFound.vue';
 
 // storeのインポート
-import store from './store'
+import store from './store';
 // VueRouterプラグインの使用
 Vue.use(VueRouter);
 
@@ -33,19 +33,19 @@ async function checkLoginToken(to, from, next) {
   }
 }
 // ナビゲーションガード用/ログイン済みの場合は見ることができない
-async function checkAuth(to, from ,next) {
+async function checkAuth(to, from, next) {
   if (store.getters['auth/check']) {
-    next('/')
+    next('/');
   } else {
-    next()
+    next();
   }
 }
 // ログインしていない場合、ログイン画面に遷移させる
-async function requireAuth(to, from ,next) {
+async function requireAuth(to, from, next) {
   if (store.getters['auth/check']) {
-    next()
+    next();
   } else {
-    next('/login')
+    next('/login');
   }
 }
 
@@ -53,62 +53,62 @@ async function requireAuth(to, from ,next) {
 const routes = [
   {
     path: '/',
-    component: RecordList
+    component: RecordList,
   },
   {
     path: '/login',
     component: Login,
-    beforeEnter: checkAuth
+    beforeEnter: checkAuth,
   },
   {
     // マイページ
     path: '/mypage/:username',
     component: Mypage,
-    props: true
+    props: true,
   },
   {
     // 新規投稿ページ
     path: '/records/new',
     component: RecordCreate,
-    beforeEnter: requireAuth
+    beforeEnter: requireAuth,
   },
   {
     // コースレコード詳細ページ
     path: '/records/:id',
     component: RecordDetail,
-    props: true
+    props: true,
   },
   {
     // コースレコード編集ページ
     path: '/records/:id/edit',
     component: RecordCreate,
     props: true,
-    beforeRouteEnter: requireAuth
+    beforeRouteEnter: requireAuth,
   },
   {
     // アカウント設定
     path: '/settings/account',
     component: Account,
     beforeEnter: requireAuth,
-    props: true
+    props: true,
   },
   {
     // プロフィール設定
     path: '/settings/profile',
     component: Profile,
     beforeEnter: requireAuth,
-    props: true
+    props: true,
   },
   {
     // パスワード設定
     path: '/settings/password',
     component: PasswordMenu,
     beforeEnter: requireAuth,
-    props: true
+    props: true,
   },
   {
     path: '/500',
-    component:  SystemError,
+    component: SystemError,
   },
   {
     path: '*',

@@ -1,4 +1,3 @@
-
 <!-- コース詳細画面でのコースコンポーネント -->
 
 <template>
@@ -9,12 +8,12 @@
     <div class="p-course__card--left u-text--center">
       <!-- サムネイル 投稿時の検索モーダルとは違いここにはリンクを貼る -->
       <a
-          class="p-course__card--title--link"
-          :href="getUrl"
-          target="_blank"
-          rel="noopener noreferrer"
+        class="p-course__card--title--link"
+        :href="getUrl"
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        <img :src="getImage" alt="" class="p-course__card--img">
+        <img :src="getImage" alt="" class="p-course__card--img" />
       </a>
     </div>
 
@@ -23,11 +22,11 @@
       <div class="p-course__card--info u-bb">
         <h2 class="p-course__card--title">
           <a
-              class="p-course__card--title--link"
-              :href="getUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-          >{{ getTitle }}</a
+            class="p-course__card--title--link"
+            :href="getUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            >{{ getTitle }}</a
           >
         </h2>
         <!-- 講師名 -->
@@ -39,13 +38,11 @@
         <p class="p-course__card--description">{{ getDescription }}</p>
       </div>
     </div>
-
-
   </div>
 </template>
 
 <script>
-import {UDEMY_BASE_URL} from '../../util.js'
+import { UDEMY_BASE_URL } from '../../util.js';
 
 export default {
   props: {
@@ -56,12 +53,12 @@ export default {
     index: {
       type: Number,
       required: true,
-    }
+    },
   },
   computed: {
     // 描画されているのがn番目か
     recordIndex() {
-      return this.index + 1
+      return this.index + 1;
     },
     // コース名
     getTitle() {
@@ -85,12 +82,10 @@ export default {
     },
     // オブジェクトそのもの
     getCourseObject() {
-      return this.course
-    }
+      return this.course;
+    },
   },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

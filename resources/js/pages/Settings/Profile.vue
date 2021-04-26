@@ -18,16 +18,13 @@
 </template>
 
 <script>
-
-import SettingItemList from "./SettingItemList.vue";
+import SettingItemList from './SettingItemList.vue';
 
 export default {
   components: {
-    SettingItemList
-  }
-}
+    SettingItemList,
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

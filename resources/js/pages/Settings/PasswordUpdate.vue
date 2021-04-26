@@ -13,59 +13,51 @@
       <label class="c-form__label" for="old_password">現在のパスワード</label>
 
       <ul v-if="errorsOldPassword">
-        <li
-            class="c-error"
-            v-for="error in errorsOldPassword"
-            :key="error"
-        >
+        <li class="c-error" v-for="error in errorsOldPassword" :key="error">
           <span>{{ error }}</span>
         </li>
       </ul>
       <input
-          id="old_password"
-          class="c-form__input"
-          type="password"
-          v-model="formPassword.old_password"
+        id="old_password"
+        class="c-form__input"
+        type="password"
+        v-model="formPassword.old_password"
       />
 
       <label class="c-form__label" for="password"
-      >新しいパスワード (半角英数字 8~50文字)</label
+        >新しいパスワード (半角英数字 8~50文字)</label
       >
 
       <ul v-if="errorsPassword">
-        <li
-            class="c-error"
-            v-for="error in errorsPassword"
-            :key="error"
-        >
+        <li class="c-error" v-for="error in errorsPassword" :key="error">
           <span>{{ error }}</span>
         </li>
       </ul>
       <input
-          id="password"
-          class="c-form__input"
-          type="password"
-          v-model="formPassword.password"
+        id="password"
+        class="c-form__input"
+        type="password"
+        v-model="formPassword.password"
       />
 
       <label class="c-form__label" for="password_confirmation"
-      >新しいパスワード【再入力】</label
+        >新しいパスワード【再入力】</label
       >
 
       <ul v-if="errorsPasswordConfirmation">
         <li
-            class="c-error"
-            v-for="error in errorsPasswordConfirmation"
-            :key="error"
+          class="c-error"
+          v-for="error in errorsPasswordConfirmation"
+          :key="error"
         >
           <span>{{ error }}</span>
         </li>
       </ul>
       <input
-          id="password_confirmation"
-          class="c-form__input"
-          type="password"
-          v-model="formPassword.password_confirmation"
+        id="password_confirmation"
+        class="c-form__input"
+        type="password"
+        v-model="formPassword.password_confirmation"
       />
 
       <div class="c-form__submit u-text--center">
@@ -78,7 +70,11 @@
 </template>
 
 <script>
-import {FORBIDDEN, UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR} from '../../util.js';
+import {
+  FORBIDDEN,
+  UNPROCESSABLE_ENTITY,
+  INTERNAL_SERVER_ERROR,
+} from '../../util.js';
 
 export default {
   data() {
@@ -106,8 +102,8 @@ export default {
 
       // 更新処理にアクセス
       const response = await axios
-          .post(`/user/update/password`, this.formPassword)
-          .catch((error) => error.response || error);
+        .post(`/user/update/password`, this.formPassword)
+        .catch((error) => error.response || error);
 
       // エラーチェック
       if (response.status === UNPROCESSABLE_ENTITY) {
@@ -115,18 +111,18 @@ export default {
         this.errorsOldPassword = response.data.errors.old_password;
         this.errorsPassword = response.data.errors.password;
         this.errorsPasswordConfirmation =
-            response.data.errors.password_confirmation;
-      // テストユーザーなどで403が帰ってきた時はリロード
-      } else if (response.status === FORBIDDEN){
+          response.data.errors.password_confirmation;
+        // テストユーザーなどで403が帰ってきた時はリロード
+      } else if (response.status === FORBIDDEN) {
         this.$router.go({
           path: this.$router.currentRoute.path,
-          force: true
-        })
-      // 500エラーの時
+          force: true,
+        });
+        // 500エラーの時
       } else if (response.status === INTERNAL_SERVER_ERROR) {
-        this.$store.commit('error/setCode', response.status)
-        return false
-      // 成功時
+        this.$store.commit('error/setCode', response.status);
+        return false;
+        // 成功時
       } else {
         // パスワード更新完了後はマイページに戻す
         this.$router.push(`/mypage/${this.$store.getters['auth/username']}`);

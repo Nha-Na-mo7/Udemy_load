@@ -7,38 +7,38 @@
       </div>
       <div v-else-if="!!recordLength">
         <UserRecord
-            v-for="Record in getRecordsItems"
-            :key="Record.id"
-            :item="Record"
+          v-for="Record in getRecordsItems"
+          :key="Record.id"
+          :item="Record"
         />
         <!-- ページネーション -->
         <div class="u-text--center">
           <paginate
-              v-model="currentPage"
-              :page-count="getPageCount"
-              :page-range="3"
-              :margin-pages="1"
-              :click-handler="clickCallback"
-              :prev-text="'<'"
-              :next-text="'>'"
-              :break-view-class="'c-paginate__item--break-view'"
-              :hide-prev-next="true"
-              :containerClass="'c-paginate'"
-              :page-class="'c-paginate__item'"
-              :page-link-class="'c-paginate__link'"
-              :prev-class="'c-paginate__item c-paginate__item--prev'"
-              :prev-link-class="'c-paginate__link'"
-              :next-class="'c-paginate__item c-paginate__item--next'"
-              :next-link-class="'c-paginate__link'"
-              :active-class="'c-paginate__item--active'"
-              list=""
-              name=""
+            v-model="currentPage"
+            :page-count="getPageCount"
+            :page-range="3"
+            :margin-pages="1"
+            :click-handler="clickCallback"
+            :prev-text="'<'"
+            :next-text="'>'"
+            :break-view-class="'c-paginate__item--break-view'"
+            :hide-prev-next="true"
+            :containerClass="'c-paginate'"
+            :page-class="'c-paginate__item'"
+            :page-link-class="'c-paginate__link'"
+            :prev-class="'c-paginate__item c-paginate__item--prev'"
+            :prev-link-class="'c-paginate__link'"
+            :next-class="'c-paginate__item c-paginate__item--next'"
+            :next-link-class="'c-paginate__link'"
+            :active-class="'c-paginate__item--active'"
+            list=""
+            name=""
           >
           </paginate>
           <div>
             <p>
-              {{ this.getStartCount }} - {{ this.getEndCount }} /
-              全 {{ this.recordLength }} 投稿
+              {{ this.getStartCount }} - {{ this.getEndCount }} / 全
+              {{ this.recordLength }} 投稿
             </p>
           </div>
         </div>
@@ -51,10 +51,10 @@
 </template>
 
 <script>
-import { OK } from '../../util.js'
+import { OK } from '../../util.js';
 import Loading from '../../components/Loading.vue';
-import UserRecord from "./UserRecord";
-import NothingUserRecord from "./NothingUserRecord";
+import UserRecord from './UserRecord';
+import NothingUserRecord from './NothingUserRecord';
 
 import Vue from 'vue';
 import Paginate from 'vuejs-paginate';
@@ -64,13 +64,13 @@ export default {
   props: {
     user: {
       type: Object,
-      required: true
+      required: true,
     },
     p: {
       type: Number,
       required: false,
-      default: 1
-    }
+      default: 1,
+    },
   },
   data() {
     return {
@@ -78,20 +78,20 @@ export default {
       records: [],
       parPage: 10,
       currentPage: 1,
-    }
+    };
   },
   computed: {
     isLoading() {
       return this.loading;
     },
     userName() {
-      return this.user.name
+      return this.user.name;
     },
     userId() {
-      return this.user.id
+      return this.user.id;
     },
     recordLength() {
-      return this.records.length
+      return this.records.length;
     },
     // ======================
     // ページネーション用
@@ -133,11 +133,11 @@ export default {
 
       // エラー時
       if (response.status !== OK) {
-        this.$store.commit('error/setCode', response.status)
-        return false
+        this.$store.commit('error/setCode', response.status);
+        return false;
       }
-      this.records = response.data
-      this.loading = false
+      this.records = response.data;
+      this.loading = false;
     },
     // ======================
     // ページネーション用
@@ -149,7 +149,7 @@ export default {
     scrollTop: function () {
       window.scrollTo({
         top: this.getRecordsRect,
-        behavior: "smooth"
+        behavior: 'smooth',
       });
     },
   },
@@ -161,14 +161,12 @@ export default {
   watch: {
     $route: {
       async handler() {
-        await this.fetchCourse()
+        await this.fetchCourse();
       },
-      immediate: true
-    }
-  }
-}
+      immediate: true,
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

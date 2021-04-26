@@ -23,7 +23,8 @@
   &__title {
     text-align: center;
   }
-  &__nothing, &__error {
+  &__nothing,
+  &__error {
     display: flex;
     flex-flow: column;
     text-align: center;

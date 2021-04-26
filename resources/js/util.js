@@ -2,7 +2,6 @@
 // utility
 // ==============
 
-
 // -------------------------------
 // 指定した名前のクッキーの値を取得する
 // -------------------------------
@@ -17,9 +16,9 @@ export function getCookieValue(searchKey) {
   if (typeof searchKey === 'undefined') {
     return '';
   }
-  
+
   let val = '';
-  
+
   // name=12345;token=67890;key=abcde;XSRF-TOKEN=hogehoge
   // cookieを";"でsplitし、それをさらに"="でsplit。
   document.cookie.split(';').forEach((cookie) => {
@@ -36,7 +35,8 @@ export function getCookieValue(searchKey) {
 // --------------------------------
 export function isArrayExists(array, value) {
   // 配列の最後までループ、値があればtrueを、なければfalseを返す
-  let i = 0, len = array.length;
+  let i = 0,
+    len = array.length;
   for (; i < len; i++) {
     if (value === array[i]) {
       return true;
@@ -53,4 +53,4 @@ export const UNAUTHORIZED = 419; //認証切れ(Laravel独自のコード)
 export const UNPROCESSABLE_ENTITY = 422; //バリデーションエラー
 export const INTERNAL_SERVER_ERROR = 500;
 
-export const UDEMY_BASE_URL = 'https://www.udemy.com'
+export const UDEMY_BASE_URL = 'https://www.udemy.com';
