@@ -15,11 +15,13 @@
 
         <!-- ユーザーネームの更新 -->
         <section class="p-setting__item p-setting__updatename">
-          <h3 class="p-setting__title p-setting__title--sub">ユーザー名の変更</h3>
+          <h3 class="p-setting__title p-setting__title--sub">
+            ユーザー名の変更
+          </h3>
           <div class="p-setting__flex">
             <div class="p-setting__input">
               <label class="c-form__label" for="name"
-              >USERNAME (半角英数字 3~32文字)</label
+                >USERNAME (半角英数字 3~32文字)</label
               >
               <ul v-if="errorsName">
                 <li class="c-error" v-for="error in errorsName">
@@ -27,19 +29,18 @@
                 </li>
               </ul>
               <input
-                  id="name"
-                  class="c-form__input"
-                  type="text"
-                  v-model="formName"
-                  maxlength="32"
-                  placeholder="半角英数字 3~32字"
-              >
+                id="name"
+                class="c-form__input"
+                type="text"
+                v-model="formName"
+                maxlength="32"
+                placeholder="半角英数字 3~32字"
+              />
             </div>
             <div class="p-setting__btn">
-              <button
-                  class="c-btn c-btn__setting--update"
-                  @click="updateName"
-              >変更</button>
+              <button class="c-btn c-btn__setting--update" @click="updateName">
+                変更
+              </button>
             </div>
           </div>
         </section>
@@ -51,31 +52,27 @@
           </h3>
           <div class="p-setting__flex">
             <div class="p-setting__input">
-              <label class="c-form__label" for="email">メールアドレス
-              </label>
+              <label class="c-form__label" for="email">メールアドレス </label>
               <ul v-if="errorsEmail">
                 <li class="c-error" v-for="error in errorsEmail">
                   <span>{{ error }}</span>
                 </li>
               </ul>
               <input
-                  id="email"
-                  class="c-form__input"
-                  type="text"
-                  v-model="formEmail"
-                  maxlength="100"
-                  placeholder="example@mail.com"
-              >
+                id="email"
+                class="c-form__input"
+                type="text"
+                v-model="formEmail"
+                maxlength="100"
+                placeholder="example@mail.com"
+              />
             </div>
             <div class="p-setting__btn">
-              <button
-                  class="c-btn c-btn__setting--update"
-                  @click="updateEmail"
-              >変更</button>
+              <button class="c-btn c-btn__setting--update" @click="updateEmail">
+                変更
+              </button>
             </div>
-
           </div>
-
         </section>
 
         <!-- アカウントの削除 -->
@@ -83,25 +80,30 @@
           <h3 class="p-setting__title p-setting__title--sub">
             アカウントを削除する
           </h3>
-          <p class="u-mb-l u-text--center u-color--red">【!】アカウントを削除すると元に戻すことはできなくなります。</p>
+          <p class="u-mb-l u-text--center u-color--red">
+            【!】アカウントを削除すると元に戻すことはできなくなります。
+          </p>
           <div class="u-text--center">
             <button class="c-btn c-btn__setting--withdraw" @click="withdraw">
               <i class="fas fa-sign-out-alt"></i>
-               アカウント削除
+              アカウント削除
             </button>
           </div>
         </section>
-
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
 import Loading from '../../components/Loading.vue';
-import {OK, UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR, FORBIDDEN} from "../../util.js"
-import SettingItemList from "./SettingItemList.vue";
+import {
+  OK,
+  UNPROCESSABLE_ENTITY,
+  INTERNAL_SERVER_ERROR,
+  FORBIDDEN,
+} from '../../util.js';
+import SettingItemList from './SettingItemList.vue';
 
 export default {
   data() {
@@ -115,19 +117,18 @@ export default {
       systemError: [],
       errorsName: [],
       errorsEmail: [],
-    }
+    };
   },
   methods: {
     // ログイン中のユーザーデータを取得する
     async getUser() {
       const response = await axios
-          .get(`/user/info`)
-          .catch((error) => error.response || error);
+        .get(`/user/info`)
+        .catch((error) => error.response || error);
 
       // エラーチェック
       if (response.status === OK) {
         // ユーザーネームをformNameに格納
-        console.log(response.data)
         if (response.data.name !== null) {
           this.formName = response.data.name;
         }
@@ -148,8 +149,8 @@ export default {
 
       // 更新処理にアクセスする
       const response = await axios
-          .post(`/user/update/name`, { name: this.formName })
-          .catch((error) => error.response || error);
+        .post(`/user/update/name`, { name: this.formName })
+        .catch((error) => error.response || error);
 
       // エラーチェック
       if (response.status === UNPROCESSABLE_ENTITY) {
@@ -157,18 +158,17 @@ export default {
         this.errorsName = response.data.errors.name;
         // 更新失敗(500)
       } else if (response.status === INTERNAL_SERVER_ERROR) {
-        return false
+        return false;
       } else {
         // 更新成功したらエラーメッセージは空にする
         this.errorsName = [];
         // ページをリロードする
         this.$router.go({
           path: this.$router.currentRoute.path,
-          force: true
-        })
+          force: true,
+        });
       }
       this.isUpdating = false;
-
     },
     // メールアドレスの変更
     async updateEmail() {
@@ -179,37 +179,40 @@ export default {
       this.isUpdating = true;
 
       const response = await axios
-          .post(`/user/update/email`, { email: this.formEmail })
-          .catch((error) => error.response || error);
+        .post(`/user/update/email`, { email: this.formEmail })
+        .catch((error) => error.response || error);
 
       // バリデーションエラー時
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.errorsEmail = response.data.errors.email;
         this.isUpdating = false;
-      // テストユーザーなどで403が帰ってきた時
-      } else if (response.status === FORBIDDEN){
+        // テストユーザーなどで403が帰ってきた時
+      } else if (response.status === FORBIDDEN) {
         this.$router.go({
           path: this.$router.currentRoute.path,
-          force: true
-        })
+          force: true,
+        });
         // 500エラー時
       } else if (response.status === INTERNAL_SERVER_ERROR) {
-        return false
+        return false;
       } else {
         // バリデーションエラーリストを空にする
         this.errorsEmail = [];
         // ページをリロードする
         this.$router.go({
           path: this.$router.currentRoute.path,
-          force: true
-        })
+          force: true,
+        });
       }
       this.isUpdating = false;
     },
-    // 退会処理 PHP側でデータ削除して、フロント側で画面遷移させる。
+    // アカウント削除処理 PHP側でデータ削除して、フロント側で画面遷移させる。
     async withdraw() {
-      if (confirm('【 退会しますか？ 】\n退会すると各種サービスのご利用ができなくなります。',)){
-        // TODO テストユーザーの場合は退会処理を行わない
+      if (
+        confirm(
+          '【アカウントの削除】\nアカウントを削除した場合、元に戻すことはできません。よろしいですか？',
+        )
+      ) {
         const response = await axios.post(`/withdraw`);
         if (response.status === OK) {
           window.location = '/';
@@ -221,7 +224,7 @@ export default {
   },
   components: {
     Loading,
-    SettingItemList
+    SettingItemList,
   },
   watch: {
     $route: {
@@ -232,9 +235,7 @@ export default {
       immediate: true,
     },
   },
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

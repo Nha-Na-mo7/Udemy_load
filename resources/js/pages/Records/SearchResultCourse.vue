@@ -3,30 +3,32 @@
   <div class="p-course__card">
     <!-- サムネイル -->
     <div class="p-course__card--left u-text--center">
-      <img :src="getImage" alt="" class="p-course__card--img">
+      <img :src="getImage" alt="" class="p-course__card--img" />
     </div>
     <!-- 講座名とリンク -->
     <div class="p-course__card--right p-course__card--info">
       <h2 class="p-course__card--title">
         <a
-            class="p-course__card--title--link"
-            :href="getUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-        >{{ getTitle }}</a
+          class="p-course__card--title--link"
+          :href="getUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          >{{ getTitle }}</a
         >
       </h2>
       <!-- 講師名 -->
       <p class="p-course__card--instructor">{{ getInstructor }}</p>
 
       <!-- 追加するボタン -->
-      <button class="c-btn c-btn__modal--add" @click="addCourse">追加する</button>
+      <button class="c-btn c-btn__modal--add" @click="addCourse">
+        追加する
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import {UDEMY_BASE_URL} from '../../util.js'
+import { UDEMY_BASE_URL } from '../../util.js';
 
 export default {
   props: {
@@ -39,9 +41,9 @@ export default {
     return {
       courseData: {
         courseObject: this.course,
-        description: ''
-      }
-    }
+        description: '',
+      },
+    };
   },
   computed: {
     // コース名
@@ -62,15 +64,15 @@ export default {
     },
     // オブジェクトそのもの
     getCourseObject() {
-      return this.course
-    }
+      return this.course;
+    },
   },
   methods: {
     addCourse() {
       // 親コンポーネントの配列にコースオブジェクトを格納する
-      this.$emit("addCourse", this.courseData);
-    }
-  }
+      this.$emit('addCourse', this.courseData);
+    },
+  },
 };
 </script>
 

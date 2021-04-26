@@ -5,23 +5,23 @@
     <div class="p-modal c-modal">
       <!-- コース検索フォーム-->
       <div class="p-modal__search__form c-modal__searchform">
-        <p class="p-modal__search__title c-modal__title u-mb-l">コースを検索してください</p>
+        <p class="p-modal__search__title c-modal__title u-mb-l">
+          コースを検索してください
+        </p>
         <form class="" action="" onsubmit="return false">
           <label>
-            <input type="text" class="c-form__input" v-model="searchData.keywords">
+            <input
+              type="text"
+              class="c-form__input"
+              v-model="searchData.keywords"
+            />
           </label>
         </form>
         <div class="p-modal__search__btn-inner u-mb-l">
-          <button
-              class="c-btn c-btn__modal"
-              @click="searchCourse(0)"
-          >
+          <button class="c-btn c-btn__modal" @click="searchCourse(0)">
             <i class="fas fa-search"></i> 検索
           </button>
-          <button
-              class="c-btn c-btn__modal"
-              @click="resetSearchWord"
-          >
+          <button class="c-btn c-btn__modal" @click="resetSearchWord">
             リセット
           </button>
         </div>
@@ -43,10 +43,10 @@
         <!-- 結果コンポーネント一覧 -->
         <div v-else-if="isExistResult">
           <SearchResultCourse
-              v-for="Course in responseData"
-              :key="Course.id"
-              :course="Course"
-              @addCourse="addCourseObject"
+            v-for="Course in responseData"
+            :key="Course.id"
+            :course="Course"
+            @addCourse="addCourseObject"
           />
         </div>
 
@@ -58,13 +58,24 @@
           <i class="fas fa-exclamation-circle c-modal__nothing--fa"></i>
           <h3>コースが見つかりませんでした</h3>
         </div>
-
       </div>
 
       <!-- 前へ / 次へ -->
       <div class="p-modal__search__btn-inner u-mt-l">
-        <button class="c-btn c-btn__modal" v-if="existPrevUrl" @click="searchCourse(1)">前へ</button>
-        <button class="c-btn c-btn__modal" v-if="existNextUrl" @click="searchCourse(2)">次へ</button>
+        <button
+          class="c-btn c-btn__modal"
+          v-if="existPrevUrl"
+          @click="searchCourse(1)"
+        >
+          前へ
+        </button>
+        <button
+          class="c-btn c-btn__modal"
+          v-if="existNextUrl"
+          @click="searchCourse(2)"
+        >
+          次へ
+        </button>
       </div>
     </div>
   </div>
@@ -73,7 +84,7 @@
 <script>
 import Loading from '../../components/Loading.vue';
 import SearchResultCourse from './SearchResultCourse.vue';
-import {INTERNAL_SERVER_ERROR} from "../../util";
+import { INTERNAL_SERVER_ERROR } from '../../util';
 
 export default {
   data() {
@@ -85,33 +96,33 @@ export default {
         keywords: '',
       },
       prevUrl: {
-        url: ''
+        url: '',
       },
       nextUrl: {
-        url: ''
+        url: '',
       },
       responseData: [],
       selectedCourses: [],
-      errors: ''
-    }
+      errors: '',
+    };
   },
   computed: {
     // 検索した結果が存在するか
     isExistResult() {
-      return !!this.responseData.length
+      return !!this.responseData.length;
     },
     existPrevUrl() {
-      return this.prevUrl.url !== ''
+      return this.prevUrl.url !== '';
     },
     existNextUrl() {
-      return this.nextUrl.url !== ''
+      return this.nextUrl.url !== '';
     },
   },
   methods: {
     // コースの検索
     async searchCourse(flg) {
       // 検索中に重複して呼び出せないようにする
-      if ( this.isSearching ) {
+      if (this.isSearching) {
         return false;
       }
       // 検索開始
@@ -119,17 +130,19 @@ export default {
       this.isNotSearchedYet = false;
 
       // エラーをリセット
-      this.errors = ''
+      this.errors = '';
 
       // 検索ワードを元にUdemyAPIにリクエストする
-      const params = flg === 0 ? this.searchData : flg === 1 ? this.prevUrl : this.nextUrl
+      const params =
+        flg === 0 ? this.searchData : flg === 1 ? this.prevUrl : this.nextUrl;
       const response = await axios.get('/udemy/course/get', { params });
 
       // エラー時処理(UdemyAPIのエラーになる)
       if (response.status === INTERNAL_SERVER_ERROR) {
-        this.errors = 'Udemyコース検索でエラーが発生しました。しばらく時間を置いてからやり直してください。'
+        this.errors =
+          'Udemyコース検索でエラーが発生しました。しばらく時間を置いてからやり直してください。';
         this.isSearching = false;
-        return false
+        return false;
       }
 
       // 検索結果を取得
@@ -147,28 +160,25 @@ export default {
     },
     // 検索をリセット
     resetSearch() {
-      this.resetSearchWord()
-      this.responseData = []
+      this.resetSearchWord();
+      this.responseData = [];
     },
     // オブジェクトを配列に追加した上でモーダルを閉じる
     addCourseObject(e) {
-      this.$emit('pushCourseObjToSelectedCoursesArr', e)
-      this.closeModal()
+      this.$emit('pushCourseObjToSelectedCoursesArr', e);
+      this.closeModal();
     },
     // モーダルを閉じる処理
     closeModal() {
-      this.resetSearch()
-      this.$emit('toggleModal')
+      this.resetSearch();
+      this.$emit('toggleModal');
     },
   },
   components: {
     Loading,
     SearchResultCourse,
-  }
-}
-
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

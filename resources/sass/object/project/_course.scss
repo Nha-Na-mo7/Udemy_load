@@ -80,7 +80,8 @@
         width: 0;
         height: 0;
       }
-      &::before, &::after {
+      &::before,
+      &::after {
         position: absolute;
         border-radius: 50%;
         display: block;
@@ -125,7 +126,7 @@
     // 講座タイトル
     &--info {
       line-height: 1.2;
-      letter-spacing: -.02rem;
+      letter-spacing: -0.02rem;
       margin-bottom: 15px;
     }
     &--title {

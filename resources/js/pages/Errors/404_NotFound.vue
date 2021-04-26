@@ -6,14 +6,14 @@
         <span class="p-error__statusCode--text">Not Found</span>
       </div>
       <div class="p-error__description">
-        <p>お探しのページは一時的にアクセスができない状況か、移動もしくは削除された可能性があります。</p>
+        <p>
+          お探しのページは一時的にアクセスができない状況か、移動もしくは削除された可能性があります。
+        </p>
         <p>また、URL、ファイル名にタイプミスがないか再度ご確認ください。</p>
       </div>
       <!-- 戻るボタン -->
       <div>
-        <a class="c-btn" href="/">
-          レコード一覧へ戻る
-        </a>
+        <a class="c-btn" href="/"> レコード一覧へ戻る </a>
       </div>
     </div>
   </div>

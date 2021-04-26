@@ -18,13 +18,12 @@
       <!-- パスワードがまだ未登録の時 -->
       <PasswordCreate v-else />
     </div>
-
   </div>
 </template>
 
 <script>
 import Loading from '../../components/Loading.vue';
-import SettingItemList from "./SettingItemList.vue";
+import SettingItemList from './SettingItemList.vue';
 import PasswordCreate from './PasswordCreate.vue';
 import PasswordUpdate from './PasswordUpdate.vue';
 import { OK } from '../../util.js';
@@ -40,8 +39,8 @@ export default {
     // ログイン中のユーザーデータを取得する
     async getUser() {
       const response = await axios
-          .get(`/user/info`)
-          .catch((error) => error.response || error);
+        .get(`/user/info`)
+        .catch((error) => error.response || error);
 
       // エラーチェック
       if (response.status === OK) {
