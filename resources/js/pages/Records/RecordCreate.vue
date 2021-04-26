@@ -188,7 +188,6 @@ export default {
           this.$store.commit('error/setCode', response.status);
           return false;
         }
-        console.log(response.data);
         // 格納
         this.createData.recordForm.title = response.data.title;
         this.createData.recordForm.description = response.data.description;
@@ -206,7 +205,6 @@ export default {
         this.createData.selectedCourses.push(e);
       } else {
         // 編集モードの場合は形式を変更
-        console.log('EditMode change');
         const cObj = e.courseObject;
         const updateObj = {
           course_id: cObj.id,
@@ -215,7 +213,6 @@ export default {
           title: cObj.title,
           url: cObj.url,
         };
-        console.log(updateObj);
         this.createData.selectedCourses.push(updateObj);
       }
     },
@@ -256,7 +253,6 @@ export default {
       if (this.isCreateMode) {
         const response = await axios.post(`../records/create`, this.createData);
 
-        console.log(response);
         // バリデーションエラー
         if (response.status === UNPROCESSABLE_ENTITY) {
           this.errors = response.data.errors;
@@ -274,8 +270,6 @@ export default {
           `/record/${this.id}/update`,
           this.createData,
         );
-
-        console.log(response.data);
 
         if (response.status !== OK) {
           this.$store.commit('error/setCode', response.status);
@@ -295,7 +289,6 @@ export default {
           '【レコードを削除します】\n削除すると復元することはできなくなります。よろしいですか？',
         )
       ) {
-        console.log('deleteRecord: ' + this.id);
         const response = await axios.post(`/record/${this.id}/delete`);
 
         // エラー時処理

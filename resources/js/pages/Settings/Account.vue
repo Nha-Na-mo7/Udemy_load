@@ -129,7 +129,6 @@ export default {
       // エラーチェック
       if (response.status === OK) {
         // ユーザーネームをformNameに格納
-        console.log(response.data);
         if (response.data.name !== null) {
           this.formName = response.data.name;
         }
