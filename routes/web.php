@@ -13,13 +13,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
-
-// 本番環境の時、URLをhttpsにする
-if (config('app_env') === 'production') {
-  // asser()やurl()がhttpsで生成される
-  URL::forceScheme('https');
-}
 
 // トップページ
 Route::get('/', 'HomeController@index')->name('home.index');
