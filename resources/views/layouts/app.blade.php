@@ -7,9 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- タイトル -->
+    <!-- title -->
     <title>@yield('title') | UdemyLoad</title>
-    <!-- キーワード -->
+    <!-- keywords -->
     <meta name="keyword" itemprop="keyword" content="@yield('keyword')">
 
     <!-- Scripts -->
