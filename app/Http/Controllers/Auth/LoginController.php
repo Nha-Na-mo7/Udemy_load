@@ -67,7 +67,7 @@ class LoginController extends Controller
       ];
       
       $request->validate([
-          $this->username() => 'required|email:strict,spoof|max:100',
+          $this->username() => 'required|email:strict|max:100',
           'password' => 'required|string|min:8|max:50|regex:/^[a-zA-Z0-9]+$/',
       ], $message);
     }

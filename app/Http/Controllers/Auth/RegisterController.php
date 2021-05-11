@@ -75,7 +75,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             // ユーザーネーム: 半角英数字とアンダースコア
             'name' => ['required', 'string', 'min:3', 'max:32', 'regex:/^[\w]+$/', 'unique:users'],
-            'email' => ['required', 'string', 'email:strict,dns,spoof', 'max:100', 'unique:users'],
+            'email' => ['required', 'string', 'email:strict,dns', 'max:100', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'max:50', 'confirmed',  'regex:/^[a-zA-Z0-9]+$/'],
         ], $message);
     }
