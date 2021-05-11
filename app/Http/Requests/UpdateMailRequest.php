@@ -24,7 +24,7 @@ class UpdateMailRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => "required|unique:users,email|email:strict,dns,spoof|max:100",
+            'email' => "required|unique:users,email|email:strict,dns|max:100",
         ];
 
     }
