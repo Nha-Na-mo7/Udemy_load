@@ -4972,7 +4972,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return", false);
 
               case 2:
-                _this2.isUpdating = true; // 更新処理にアクセスする
+                _this2.isUpdating = true; // 更新処理にアクセス
 
                 _context2.next = 5;
                 return axios.post("/user/update/name", {
@@ -4985,25 +4985,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context2.sent;
 
                 if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"])) {
-                  _context2.next = 10;
+                  _context2.next = 11;
                   break;
                 }
 
                 // バリデーションエラー
-                _this2.errorsName = response.data.errors.name; // 更新失敗(500)
+                _this2.errorsName = response.data.errors.name;
+                _this2.isUpdating = false; // テストユーザーなどで403が帰ってきた時
 
-                _context2.next = 16;
+                _context2.next = 21;
                 break;
 
-              case 10:
+              case 11:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["FORBIDDEN"])) {
+                  _context2.next = 15;
+                  break;
+                }
+
+                _this2.$router.go({
+                  path: _this2.$router.currentRoute.path,
+                  force: true
+                }); // 500エラー時
+
+
+                _context2.next = 21;
+                break;
+
+              case 15:
                 if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"])) {
-                  _context2.next = 14;
+                  _context2.next = 19;
                   break;
                 }
 
                 return _context2.abrupt("return", false);
 
-              case 14:
+              case 19:
                 // 更新成功したらエラーメッセージは空にする
                 _this2.errorsName = []; // ページをリロードする
 
@@ -5012,10 +5028,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   force: true
                 });
 
-              case 16:
+              case 21:
                 _this2.isUpdating = false;
 
-              case 17:
+              case 22:
               case "end":
                 return _context2.stop();
             }
@@ -5041,7 +5057,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context3.abrupt("return", false);
 
               case 2:
-                _this3.isUpdating = true;
+                _this3.isUpdating = true; // 更新処理にアクセス
+
                 _context3.next = 5;
                 return axios.post("/user/update/email", {
                   email: _this3.formEmail
@@ -5057,6 +5074,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
+                // バリデーションエラー時
                 _this3.errorsEmail = response.data.errors.email;
                 _this3.isUpdating = false; // テストユーザーなどで403が帰ってきた時
 
