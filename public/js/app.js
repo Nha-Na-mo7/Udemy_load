@@ -4699,9 +4699,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -59440,7 +59437,7 @@ var render = function() {
       attrs: { src: _vm.getImage, alt: "" }
     }),
     _vm._v(" "),
-    _c("div", { staticClass: "u-mt-l u-mb-l" }, [
+    _c("div", { staticClass: "u-mt-l" }, [
       _c(
         "label",
         { staticClass: "c-form__label", attrs: { for: "course_description" } },
@@ -59465,21 +59462,14 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _c("div", [
-      _c(
-        "button",
-        {
-          staticClass: "c-btn c-btn__course--delete",
-          on: { click: _vm.deleteCourse }
-        },
-        [
-          _c("i", {
-            staticClass: "far fa-trash-alt p-mypage__record-list--icon"
-          }),
-          _vm._v("\n      削除する\n    ")
-        ]
-      )
-    ])
+    _c(
+      "button",
+      {
+        staticClass: "c-btn c-btn__course--delete",
+        on: { click: _vm.deleteCourse }
+      },
+      [_c("i", { staticClass: "fas fa-times p^mypage__record-list--icon" })]
+    )
   ])
 }
 var staticRenderFns = []

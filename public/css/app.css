@@ -682,22 +682,36 @@ input[type=checkbox] {
 }
 
 .p-course:nth-of-type(3n) {
-  background: #d6fbff;
+  background: linear-gradient(to bottom, #fff, #e0f9fc);
 }
 
 .p-course:nth-of-type(3n-1) {
-  background: #e1ffd6;
+  background: linear-gradient(to bottom, #fff, #e4f8da);
 }
 
 .p-course:nth-of-type(3n-2) {
-  background: #fff;
+  background: linear-gradient(to bottom, #fff, #faebfd);
 }
 
 .p-course__selected {
+  position: relative;
   padding: 15px;
   border: 1px solid #cdcdcd;
   border-radius: 4px;
   margin-bottom: 40px;
+  box-shadow: #cdcdcd 3px 3px 5px;
+}
+
+.p-course__selected:nth-of-type(3n) {
+  background: linear-gradient(to bottom, #fff, #efe5dc);
+}
+
+.p-course__selected:nth-of-type(3n-1) {
+  background: linear-gradient(to bottom, #fff, #f5e4d5);
+}
+
+.p-course__selected:nth-of-type(3n-2) {
+  background: linear-gradient(to bottom, #fff, #faecde);
 }
 
 .p-course__selected--textarea {
@@ -723,23 +737,23 @@ input[type=checkbox] {
 }
 
 .p-course__card:nth-of-type(5n) {
-  background: #f1fff2;
+  background: linear-gradient(to bottom, #fcfcfc, #e4f8da);
 }
 
 .p-course__card:nth-of-type(5n-1) {
-  background: #e2faff;
+  background: linear-gradient(to bottom, #fcfcfc, #e0f9fc);
 }
 
 .p-course__card:nth-of-type(5n-2) {
-  background: #fffbee;
+  background: linear-gradient(to bottom, #fcfcfc, #fffbee);
 }
 
 .p-course__card:nth-of-type(5n-3) {
-  background: #f0f0fc;
+  background: linear-gradient(to bottom, #fcfcfc, #f0f0fc);
 }
 
 .p-course__card:nth-of-type(5n-4) {
-  background: #fcfcfc;
+  background: linear-gradient(to bottom, #fcfcfc, #faebfd);
 }
 
 .p-course__card--left {
@@ -1701,12 +1715,8 @@ input[type=checkbox] {
   font-size: 18px;
 }
 
-.c-btn__course--add,
-.c-btn__course--delete {
-  width: 100%;
-}
-
 .c-btn__course--add {
+  width: 100%;
   border: 4px dashed #888;
   background: #fff;
   padding: 32px 0;
@@ -1727,11 +1737,28 @@ input[type=checkbox] {
 }
 
 .c-btn__course--delete {
-  background: #f3e397;
+  position: absolute;
+  top: -15px;
+  right: -25px;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 50%;
+  border: 3px solid #cdcdcd;
+  background: #cdcdcd;
+}
+
+@media screen and (max-width: 768px) {
+  .c-btn__course--delete {
+    top: -20px;
+    right: -12px;
+  }
 }
 
 .c-btn__course--delete:hover {
-  background: #d0be66;
+  background: #fff;
 }
 
 .c-btn__edit--submit {

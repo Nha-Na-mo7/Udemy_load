@@ -21,7 +21,7 @@
     <!-- サムネイル -->
     <img :src="getImage" alt="" class="p-course__card--img" />
 
-    <div class="u-mt-l u-mb-l">
+    <div class="u-mt-l">
       <label class="c-form__label" for="course_description">コースの説明</label>
       <textarea
         name=""
@@ -35,12 +35,9 @@
     </div>
 
     <!-- 削除ボタン -->
-    <div>
-      <button class="c-btn c-btn__course--delete" @click="deleteCourse">
-        <i class="far fa-trash-alt p-mypage__record-list--icon"></i>
-        削除する
-      </button>
-    </div>
+    <button class="c-btn c-btn__course--delete" @click="deleteCourse">
+      <i class="fas fa-times p^mypage__record-list--icon"></i>
+    </button>
   </div>
 </template>
 
