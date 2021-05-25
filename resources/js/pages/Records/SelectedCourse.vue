@@ -3,6 +3,9 @@
 <!-- ========================== -->
 <template>
   <div class="p-course p-course__selected">
+    <!-- span -->
+    <span v-if="getIndex" class="p-course--index-bar"></span>
+
     <!-- 講座名とリンク -->
     <div class="p-course__card--title">
       <h2>
@@ -51,6 +54,10 @@ export default {
       type: Object,
       required: true,
     },
+    index: {
+      type: Number,
+      required: true,
+    },
     createflg: {
       type: Boolean,
       required: true,
@@ -75,6 +82,10 @@ export default {
     // コースのURL(ベースのURLを前に付与しなければならない)
     getUrl() {
       return this.getCourseObj.url;
+    },
+    // コースのインデックス(何番目か)
+    getIndex() {
+      return this.index
     },
     // 講師名
     getInstructor() {

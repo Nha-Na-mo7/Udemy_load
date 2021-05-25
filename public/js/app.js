@@ -3402,6 +3402,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -4699,12 +4700,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     course: {
       type: Object,
+      required: true
+    },
+    index: {
+      type: Number,
       required: true
     },
     createflg: {
@@ -4731,6 +4739,10 @@ __webpack_require__.r(__webpack_exports__);
     // コースのURL(ベースのURLを前に付与しなければならない)
     getUrl: function getUrl() {
       return this.getCourseObj.url;
+    },
+    // コースのインデックス(何番目か)
+    getIndex: function getIndex() {
+      return this.index;
     },
     // 講師名
     getInstructor: function getInstructor() {
@@ -58748,6 +58760,7 @@ var render = function() {
             key: Course.id,
             attrs: {
               course: Course,
+              index: index,
               createflg: _vm.isCreateMode,
               value: Course.description
             },
@@ -59429,6 +59442,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-course p-course__selected" }, [
+    _vm.getIndex
+      ? _c("span", { staticClass: "p-course--index-bar" })
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { staticClass: "p-course__card--title" }, [
       _c("h2", [
         _c(

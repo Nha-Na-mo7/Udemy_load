@@ -170,4 +170,19 @@
       }
     }
   }
+  &--index-bar {
+    content: '';
+    top: -6%;
+    left: 45%;
+    border-top: 5px #8a8a8a dotted;
+    display: inline-block;
+    transition: all 0.5s;
+    position: absolute;
+    transform: rotate(90deg);
+    width: 3%;
+    @include mq() {
+      left: 45%;
+      width: 6%;
+    }
+  }
 }

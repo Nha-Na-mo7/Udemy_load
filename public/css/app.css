@@ -883,6 +883,25 @@ input[type=checkbox] {
   }
 }
 
+.p-course--index-bar {
+  content: "";
+  top: -6%;
+  left: 45%;
+  border-top: 5px #8a8a8a dotted;
+  display: inline-block;
+  transition: all 0.5s;
+  position: absolute;
+  transform: rotate(90deg);
+  width: 3%;
+}
+
+@media screen and (max-width: 414px) {
+  .p-course--index-bar {
+    left: 45%;
+    width: 6%;
+  }
+}
+
 .p-documentbox {
   border-radius: 4px;
   margin-bottom: 30px;
