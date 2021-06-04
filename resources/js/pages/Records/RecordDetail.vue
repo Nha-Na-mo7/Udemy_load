@@ -1,5 +1,6 @@
 <template>
   <div class="p-record u-pb-50">
+    <!-- 読み込み中 -->
     <div v-if="loading">
       <Loading />
     </div>
