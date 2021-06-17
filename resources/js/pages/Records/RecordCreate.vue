@@ -62,6 +62,7 @@
           v-for="(Course, index) in createData.selectedCourses"
           :key="Course.id"
           :course="Course"
+          :index="index"
           :createflg="isCreateMode"
           :value="Course.description"
           @input="Course.description = $event"

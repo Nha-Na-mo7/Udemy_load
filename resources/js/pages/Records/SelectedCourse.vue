@@ -3,6 +3,9 @@
 <!-- ========================== -->
 <template>
   <div class="p-course p-course__selected">
+    <!-- span -->
+    <span v-if="getIndex" class="p-course--index-bar"></span>
+
     <!-- 講座名とリンク -->
     <div class="p-course__card--title">
       <h2>
@@ -21,7 +24,7 @@
     <!-- サムネイル -->
     <img :src="getImage" alt="" class="p-course__card--img" />
 
-    <div class="u-mt-l u-mb-l">
+    <div class="u-mt-l">
       <label class="c-form__label" for="course_description">コースの説明</label>
       <textarea
         name=""
@@ -35,12 +38,9 @@
     </div>
 
     <!-- 削除ボタン -->
-    <div>
-      <button class="c-btn c-btn__course--delete" @click="deleteCourse">
-        <i class="far fa-trash-alt p-mypage__record-list--icon"></i>
-        削除する
-      </button>
-    </div>
+    <button class="c-btn c-btn__course--delete" @click="deleteCourse">
+      <i class="fas fa-times p^mypage__record-list--icon"></i>
+    </button>
   </div>
 </template>
 
@@ -52,6 +52,10 @@ export default {
   props: {
     course: {
       type: Object,
+      required: true,
+    },
+    index: {
+      type: Number,
       required: true,
     },
     createflg: {
@@ -78,6 +82,10 @@ export default {
     // コースのURL(ベースのURLを前に付与しなければならない)
     getUrl() {
       return this.getCourseObj.url;
+    },
+    // コースのインデックス(何番目か)
+    getIndex() {
+      return this.index
     },
     // 講師名
     getInstructor() {

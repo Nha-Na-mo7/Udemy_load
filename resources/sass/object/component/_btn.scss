@@ -50,12 +50,9 @@
     }
   }
   &__course {
-    &--add,
-    &--delete {
-      width: 100%;
-    }
     // コースを追加するボタン
     &--add {
+      width: 100%;
       border: 4px dashed #888;
       background: #fff;
       padding: 32px 0;
@@ -72,9 +69,23 @@
     }
     // コース1つの削除
     &--delete {
-      background: #f3e397;
+      position: absolute;
+      top: -15px;
+      right: -25px;
+      padding: 0;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      font-weight: 700;
+      border-radius: 50%;
+      border: 3px solid #cdcdcd;
+      background: #cdcdcd;
+      @include mq($breakpoint: md) {
+        top: -20px;
+        right: -12px;
+      }
       &:hover {
-        background: #d0be66;
+        background: #fff;
       }
     }
   }

@@ -57,6 +57,11 @@ class UserController extends Controller
       Log::debug('UserController.update_name ユーザーネームの更新');
       try {
         $user = Auth::user();
+        // テストユーザーの場合は更新処理は行われない
+        if ($user->test_user_flg) {
+          session()->flash('session_error', 'テストユーザーはユーザーネームを変更できません。');
+          return response([], 403);
+        }
         
         $new_name = $request->name;
         Log::debug('変更後のユーザーネーム: '.$new_name);

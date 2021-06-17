@@ -147,7 +147,7 @@ export default {
       }
       this.isUpdating = true;
 
-      // 更新処理にアクセスする
+      // 更新処理にアクセス
       const response = await axios
         .post(`/user/update/name`, { name: this.formName })
         .catch((error) => error.response || error);
@@ -156,7 +156,14 @@ export default {
       if (response.status === UNPROCESSABLE_ENTITY) {
         // バリデーションエラー
         this.errorsName = response.data.errors.name;
-        // 更新失敗(500)
+        this.isUpdating = false;
+      // テストユーザーなどで403が帰ってきた時
+      } else if (response.status === FORBIDDEN) {
+        this.$router.go({
+          path: this.$router.currentRoute.path,
+          force: true,
+        });
+      // 500エラー時
       } else if (response.status === INTERNAL_SERVER_ERROR) {
         return false;
       } else {
@@ -178,12 +185,14 @@ export default {
       }
       this.isUpdating = true;
 
+      // 更新処理にアクセス
       const response = await axios
         .post(`/user/update/email`, { email: this.formEmail })
         .catch((error) => error.response || error);
 
-      // バリデーションエラー時
+      // エラーチェック
       if (response.status === UNPROCESSABLE_ENTITY) {
+        // バリデーションエラー時
         this.errorsEmail = response.data.errors.email;
         this.isUpdating = false;
         // テストユーザーなどで403が帰ってきた時
