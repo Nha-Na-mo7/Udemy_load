@@ -11,6 +11,7 @@
 
 
 @section('content')
+    {{--ヒーローバナー--}}
     <section class="p-landing__section p-landing__information">
         <div class="p-landing__container">
             <div class="p-landing__section--info">
@@ -25,6 +26,23 @@
 
                     そんな悩みはUdemyLoadで一瞬で解決します！
                 </pre>
+            </div>
+        </div>
+    </section>
+    {{--UdemyLoadとは?--}}
+    <section class="p-landing__section"></section>
+    {{--できることの紹介--}}
+    <section class="p-landing__section"></section>
+    {{--無料でいますぐはじめよう--}}
+    <section class="p-landing__section">
+        <div class="p-landing__container p-landing__container--flex">
+            <div class="p-landing__section--info">
+                <h1 class="p-landing__section--title">
+                    さあロードマップを作りましょう。
+                </h1>
+                <p class="p-landing__section--text u-mb-3l">
+                    <span>登録は無料。早速学習ロードマップをみんなで共有しましょう。</span>
+                </p>
             </div>
         </div>
     </section>
