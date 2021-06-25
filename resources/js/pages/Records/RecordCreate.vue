@@ -12,7 +12,7 @@
           </div>
 
           <!-- タイトル -->
-          <label class="c-form__label" for="record_title">タイトル </label>
+          <label class="c-form__label" for="record_title">タイトル</label>
           <!-- エラーメッセージ -->
           <ul v-if="errors.errorsTitle">
             <li
@@ -34,7 +34,7 @@
           />
 
           <!-- 説明 -->
-          <label class="c-form__label" for="record_description">説明 </label>
+          <label class="c-form__label" for="record_description">説明</label>
           <!-- エラーメッセージ -->
           <ul v-if="errors.errorsDescription">
             <li
@@ -147,7 +147,7 @@ export default {
       return this.id === undefined;
     },
     pageTitle() {
-      return this.isCreateMode ? 'ロードマップの新規登録' : 'ロードマップの編集';
+      return this.isCreateMode ? 'ロードマップの新規投稿' : 'ロードマップの編集';
     },
     submitButton() {
       return this.isCreateMode ? '投稿する' : '更新する';

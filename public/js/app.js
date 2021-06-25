@@ -3436,7 +3436,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.id === undefined;
     },
     pageTitle: function pageTitle() {
-      return this.isCreateMode ? 'ロードマップの新規登録' : 'ロードマップの編集';
+      return this.isCreateMode ? 'ロードマップの新規投稿' : 'ロードマップの編集';
     },
     submitButton: function submitButton() {
       return this.isCreateMode ? '投稿する' : '更新する';
@@ -58654,7 +58654,7 @@ var render = function() {
           _c(
             "label",
             { staticClass: "c-form__label", attrs: { for: "record_title" } },
-            [_vm._v("タイトル ")]
+            [_vm._v("タイトル")]
           ),
           _vm._v(" "),
           _vm.errors.errorsTitle
@@ -58706,7 +58706,7 @@ var render = function() {
               staticClass: "c-form__label",
               attrs: { for: "record_description" }
             },
-            [_vm._v("説明 ")]
+            [_vm._v("説明")]
           ),
           _vm._v(" "),
           _vm.errors.errorsDescription
