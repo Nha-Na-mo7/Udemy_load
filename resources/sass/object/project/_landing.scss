@@ -1,0 +1,147 @@
+// ==============
+//  p-landing
+//  =============
+.p-landing {
+  &__hero {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('https://cryptotrendstrage.s3-ap-northeast-1.amazonaws.com/images/figures/hero_btc.jpg');
+    width: 100%;
+  }
+  &__container {
+    padding: 0 5%;
+    max-width: 1200px;
+    height: auto;
+    margin: 88px auto;
+    &--flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__introduction {
+    position: absolute;
+    top: 30%;
+    right: 10%;
+    text-align: center;
+    @include mq() {
+      right: 0;
+    }
+
+    &--title {
+      font-size: 48px;
+      font-weight: bold;
+      line-height: 1.5;
+      color: $font-color_white;
+      text-shadow: 0 5px 5px #000000;
+
+      @include mq() {
+        font-size: 23px;
+      }
+    }
+    &--subtitle {
+      margin-top: 16px;
+      margin-bottom: 48px;
+      font-size: 24px;
+      font-weight: bold;
+      color: $font-color_white;
+      text-shadow: 0 5px 5px #000000;
+      @include mq() {
+        font-size: 18px;
+      }
+    }
+  }
+  &__service {
+    height: 100%;
+    width: 100%;
+    margin-top: 60px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    @include mq($breakpoint: md) {
+      flex-direction: column;
+      justify-content: unset;
+    }
+
+    &--item {
+      min-height: 480px;
+      height: 100%;
+      width: 30%;
+      background: #f9fffe;
+      box-shadow: 0 4px 10px #cdcdcd;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+
+      @include mq($breakpoint: md) {
+        width: 90%;
+        height: 100%;
+        margin-bottom: 15px;
+      }
+      &--img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+      }
+      &--info {
+        margin-top: 24px;
+        &--title {
+          font-size: 20px;
+          font-weight: bold;
+          margin-top: 5px;
+          margin-bottom: 12px;
+        }
+        &--text {
+          text-align: left;
+          font-size: 16px;
+          line-height: 1.5;
+          color: #777;
+          word-break: break-all;
+        }
+      }
+    }
+  }
+
+  &__section {
+    background: #ffffff;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+
+    &--info {
+      height: 100%;
+    }
+    &--title {
+      height: 100%;
+      margin-top: 40px;
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 140%;
+    }
+    &--text {
+      height: 100%;
+      margin-top: 32px;
+      font-size: 20px;
+      color: #8a8a8a;
+      line-height: 1.6;
+      text-align: center;
+      @include mq() {
+        text-align: left;
+      }
+    }
+  }
+
+  &__footer {
+    padding-bottom: 120px;
+    text-align: center;
+  }
+}
