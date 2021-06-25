@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // トップページ
-Route::get('/', 'HomeController@index')->name('home.index');
+Route::get('/', 'HomeController@index');
+// ランディングページ
+Route::get('/info', 'HomeController@info')->name('home.info');
+
 // ログインユーザーを返す
 Route::get('/user', fn() => Auth::user())->name('user');
 // トークンリフレッシュ
