@@ -16,7 +16,7 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->comment('コメントの投稿者');
-            $table->string('record_id')->comment('投稿先のレコードID');
+            $table->string('record_id')->comment('投稿先のロードマップID');
             $table->text('content')->comment('実際のコメント内容');
             $table->timestamps();
         });

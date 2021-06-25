@@ -34,13 +34,13 @@ class RecordController extends Controller
     }
   
     // ==============
-    // レコードの投稿
+    // ロードマップの投稿
     // TODO 未実装項目: IDが被った時に再抽選する機能、
     // ============
     public function create(RecordRequest $request)
     {
         Log::debug('==============');
-        Log::debug(' レコードの投稿');
+        Log::debug(' ロードマップ投稿');
         Log::debug('==============');
         
         Log::debug(print_r($request->input('selectedCourses'), true));
@@ -53,7 +53,7 @@ class RecordController extends Controller
         // idが0になるのでkeep_idを格納
         $record->id = $keep_id;
         
-        // coursesテーブルに選択されたコース、コースの説明、レコードの何番目かなどの情報を格納する
+        // coursesテーブルに選択されたコース、コースの説明、ロードマップの何番目かなどの情報を格納する
         for ($i = 0, $iMax = count($request->selectedCourses); $i < $iMax; $i++) {
             $courseData = $request->get('selectedCourses')[$i];
             $courseObj = $courseData['courseObject'];
@@ -76,24 +76,24 @@ class RecordController extends Controller
     }
     
     // ============
-    // レコードの更新
+    // ロードマップの更新
     // ============
     public function update(RecordRequest $request, string $id)
     {
         Log::debug('==========================');
-        Log::debug(' レコード更新 ID:' . $id);
+        Log::debug(' ロードマップ更新 ID:' . $id);
         Log::debug('==========================');
         
         // TODO 認証中ユーザーか二重チェックする？
-        // IDに合致するレコード情報を取得
+        // IDに合致するロードマップを取得
         $record = Record::where('id', $id)
             ->with(['courses'])
             ->where('delete_flg', false)
             ->first();
         
         if ($record === null) {
-          Log::debug('レコードが見当たらない、あるいは既に削除済みです');
-          session()->flash('session_error', 'レコードが見つかりませんでした');
+          Log::debug('ロードマップが見当たらない、あるいは既に削除済みです');
+          session()->flash('session_error', 'ロードマップが見つかりませんでした');
           return abort(404);
         }
         // recordsテーブルのtitleとdescriptionを更新
@@ -106,7 +106,7 @@ class RecordController extends Controller
         // 更新処理
         for ($i = 0, $iMax = count($request->selectedCourses); $i < $iMax; $i++) {
             $courseData = $request->get('selectedCourses')[$i];
-            // 指定のレコードIDのn番目かのレコード情報があるかを確認し、新規作成するか更新する
+            // 指定のロードマップIDのn番目かのロードマップ情報があるかを確認し、新規作成するか更新する
             /* updateOrCreateの動作に不具合がある
              * Course::updateOrCreate([
                 [
@@ -131,7 +131,7 @@ class RecordController extends Controller
             //     ]
             //   ]);
             
-            // リレーションでindexが存在するかにより更新かcourseレコードの新規作成かを分ける
+            // リレーションでindexが存在するかにより更新かcourseロードマップの新規作成かを分ける
             if(!isset($record->courses[$i])) {
               Log::debug('更新処理にあたり追加された項目です');
               // contentsテーブルへ本文を格納
@@ -146,7 +146,7 @@ class RecordController extends Controller
                     'description' => $courseData['description']
                 ]);
             }else{
-                // indexの更新処理のみレコードを取得しupdateする(新規作成時のSQL発行を抑えられる)
+                // indexの更新処理のみロードマップを取得しupdateする(新規作成時のSQL発行を抑えられる)
                 // TODO N+1は大丈夫か？
                 Log::debug('indexの更新をします');
                 $course = Course::where('record_id', $id)->where('record_index', $i)->first();
@@ -160,7 +160,7 @@ class RecordController extends Controller
                 ]);
             }
         }
-        // 更新後、オーバーしたindexのコースレコードは削除する
+        // 更新後、オーバーしたindexのコースロードマップは削除する
         Course::where('record_id', $id)
             ->where('record_index', '>', count($request->selectedCourses) - 1)
             ->delete();
@@ -170,24 +170,24 @@ class RecordController extends Controller
     }
     
     // ==============
-    // レコード詳細の取得
+    // ロードマップ詳細の取得
     // ==============
     public function show(string $id, bool $owner_flg = false) {
         Log::debug('==================================');
-        Log::debug('レコード詳細取得/ID:'.$id);
+        Log::debug('ロードマップ詳細取得/ID:'.$id);
         Log::debug('==================================');
-        // IDに合致するレコード情報を取得
+        // IDに合致するロードマップ情報を取得
         $record = Record::where('id', $id)
             ->with(['owner', 'courses', 'comments.author'])
             ->where('delete_flg', false)
             ->first();
   
-        // レコードを返すが、存在しない場合は404を返す
+        // ロードマップを返すが、存在しない場合は404を返す
         if ($record ===  null) {
           Log::debug('存在しないか、削除されています');
           return abort(404);
         }
-        // レコードの所持者かを確認し、違うなら403を返す(Edit時のみ)
+        // ロードマップの所持者かを確認し、違うなら403を返す(Edit時のみ)
         if ($owner_flg) {
           if (Auth::user()->id !== $record->user_id) {
             return abort(403);
@@ -197,13 +197,13 @@ class RecordController extends Controller
     }
     
     // ==============
-    // レコード一覧の取得
+    // ロードマップ一覧の取得
     // ==============
     public function get_list($user_id = null) {
         Log::debug('==============');
-        Log::debug('レコード一覧取得');
+        Log::debug('ロードマップ一覧取得');
         Log::debug('==============');
-        // ユーザーIDがない場合、全てのレコードを取得する
+        // ユーザーIDがない場合、全てのロードマップを取得する
         if ($user_id === null) {
             Log::debug('USER_ID:'.$user_id);
             $records = Record::with(['owner'])
@@ -213,7 +213,7 @@ class RecordController extends Controller
       
             return $records;
         }
-        // ユーザーIDがある場合、そのユーザーが投稿したレコードに絞って取得する
+        // ユーザーIDがある場合、そのユーザーが投稿したロードマップに絞って取得する
         $records = Record::where('user_id', $user_id)
             ->with(['owner'])
             ->where('delete_flg', 0)
@@ -224,14 +224,14 @@ class RecordController extends Controller
     }
     
     // ==============
-    // レコードの削除
+    // ロードマップの削除
     // ==============
     public function delete(string $id) {
         Log::debug('===============================');
-        Log::debug('レコード削除/ID:'.$id);
+        Log::debug('ロードマップ削除/ID:'.$id);
         Log::debug('===============================');
   
-        // 現在認証中のユーザーの投稿済みレコードの中に指定したIDのレコードがあれば取得する
+        // 現在認証中のユーザーの投稿済みロードマップの中に指定したIDのロードマップがあれば取得する
         $record = Auth::user()->records()->where('id', $id)->first();
         
         if ($record) {
@@ -244,8 +244,8 @@ class RecordController extends Controller
             session()->flash('session_success', '削除が完了しました');
             return response([], 200);
         }
-        Log::debug('レコードはありませんでした');
-        session()->flash('session_error', 'レコードが見つかりませんでした');
+        Log::debug('ロードマップはありませんでした');
+        session()->flash('session_error', 'ロードマップが見つかりませんでした');
         return abort(404);
     }
     
@@ -256,12 +256,12 @@ class RecordController extends Controller
         Log::debug('===========');
         Log::debug('コメント投稿');
         Log::debug('===========');
-        // 投稿対象となるレコードの存在確認
+        // 投稿対象となるロードマップの存在確認
         $id = $record->id;
         $checkExistRecord = Record::where('id', $id)->where('delete_flg', false)->first();
         if ($checkExistRecord === null) {
-          Log::debug('レコードは削除されています');
-          session()->flash('session_error', 'レコードは削除されています');
+          Log::debug('ロードマップは削除されています');
+          session()->flash('session_error', 'ロードマップは削除されています');
           return abort(404);
         }
         

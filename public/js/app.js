@@ -2995,7 +2995,7 @@ vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('paginate', vuejs_paginate_
     }
   },
   methods: {
-    // マイページユーザーが投稿したレコード一覧の取得
+    // マイページユーザーが投稿したロードマップ一覧の取得
     fetchCourse: function fetchCourse() {
       var _this = this;
 
@@ -3408,7 +3408,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  // このpropsはレコードの編集時のみ受け取る
+  // このpropsはロードマップの編集時のみ受け取る
   props: {
     id: {
       type: String
@@ -3436,7 +3436,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.id === undefined;
     },
     pageTitle: function pageTitle() {
-      return this.isCreateMode ? 'レコードの新規登録' : 'レコードの編集';
+      return this.isCreateMode ? 'ロードマップの新規登録' : 'ロードマップの編集';
     },
     submitButton: function submitButton() {
       return this.isCreateMode ? '投稿する' : '更新する';
@@ -3456,7 +3456,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
-    // レコードの情報をDBから取得(編集時のみ)
+    // ロードマップの情報をDBから取得(編集時のみ)
     fetchRecord: function fetchRecord() {
       var _this = this;
 
@@ -3545,7 +3545,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     deleteCourseObject: function deleteCourseObject(index) {
       this.createData.selectedCourses.splice(index, 1);
     },
-    // コースのレコードを投稿 or 上書きする
+    // コースのロードマップを投稿 or 上書きする
     submitCourse: function submitCourse() {
       var _this2 = this;
 
@@ -3656,7 +3656,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    // このレコードを削除する
+    // このロードマップを削除する
     deleteRecord: function deleteRecord() {
       var _this3 = this;
 
@@ -3674,7 +3674,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context3.abrupt("return", false);
 
               case 2:
-                if (!confirm('【レコードを削除します】\n削除すると復元することはできなくなります。よろしいですか？')) {
+                if (!confirm('【ロードマップを削除します】\n削除すると復元することはできなくなります。よろしいですか？')) {
                   _context3.next = 10;
                   break;
                 }
@@ -3909,7 +3909,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   computed: {
-    // レコードが存在するかどうか
+    // ロードマップが存在するかどうか
     checkExistRecord: function checkExistRecord() {
       return !!Object.keys(this.record).length;
     },
@@ -3957,7 +3957,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // ========================
-    // レコードの情報をDBから取得
+    // ロードマップの情報をDBから取得
     // ========================
     fetchRecord: function fetchRecord() {
       var _this = this;
@@ -4252,7 +4252,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate_
     }
   },
   methods: {
-    // コースレコード一覧の取得
+    // ロードマップ一覧の取得
     fetchCourse: function fetchCourse() {
       var _this = this;
 
@@ -58014,7 +58014,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", [
           _c("a", { staticClass: "c-btn", attrs: { href: "/" } }, [
-            _vm._v(" レコード一覧へ戻る ")
+            _vm._v(" ロードマップ一覧へ戻る ")
           ])
         ])
       ])
@@ -58071,7 +58071,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", [
           _c("a", { staticClass: "c-btn", attrs: { href: "/" } }, [
-            _vm._v(" レコード一覧へ戻る ")
+            _vm._v(" ロードマップ一覧へ戻る ")
           ])
         ])
       ])
@@ -58546,7 +58546,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "p-nothing c-nothing" }, [
       _c("h2", { staticClass: "c-nothing__title" }, [
-        _vm._v("レコードが見つかりませんでした。")
+        _vm._v("お探しのロードマップは見つかりませんでした。")
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "c-nothing__text" }, [
@@ -58813,7 +58813,7 @@ var render = function() {
                 _c("i", {
                   staticClass: "far fa-trash-alt p-mypage__record-list--icon"
                 }),
-                _vm._v("\n        このレコードを削除する\n      ")
+                _vm._v("\n        このロードマップを削除する\n      ")
               ]
             )
           ])
@@ -59133,7 +59133,7 @@ var render = function() {
       { staticClass: "p-record__list--inner", attrs: { id: "records" } },
       [
         _c("h2", { staticClass: "p-record__list--title" }, [
-          _vm._v("レコード")
+          _vm._v("みんなのロードマップ")
         ]),
         _vm._v(" "),
         _vm._l(_vm.getRecordsItems, function(Record) {

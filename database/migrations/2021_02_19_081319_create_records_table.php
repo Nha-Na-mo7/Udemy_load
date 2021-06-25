@@ -25,7 +25,7 @@ class CreateRecordsTable extends Migration
             // usersテーブルのidと紐付け
             $table->foreign('user_id')->references('id')->on('users');
         });
-        // レコードIDは大文字小文字を区別する
+        // ロードマップIDは大文字小文字を区別する
         DB::statement('ALTER TABLE records MODIFY id varchar(256) BINARY');
     }
 

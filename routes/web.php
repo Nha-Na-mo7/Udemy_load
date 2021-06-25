@@ -37,7 +37,7 @@ Route::get('/user/info/{username?}', 'UserController@get_user');
 Route::get('/mypage/{any?}', 'MypageController@index')->name('mypage.index')->where('any', '.+');
 
 // =============
-// レコード取得
+// ロードマップ取得
 // =============
 // 詳細/編集画面
 Route::get('/record/{id}/{owner_flg?}', 'RecordController@show')->name('record.show');
@@ -46,14 +46,14 @@ Route::get('/records/index/{id?}', 'RecordController@get_list')->where('id', '[\
 
 // 投稿画面のビュー
 Route::get('/records/new', 'RecordController@index_create')->name('record.index');
-// レコード詳細画面のビュー
+// ロードマップ詳細画面のビュー
 Route::get('/records/{any?}', 'RecordController@index')->name('record.index')->where('any', '.+');
 
 
 // 以下は認証必須
 Route::group(['middleware' => 'auth'], function() {
   // ==============
-  // レコード編集関連
+  // ロードマップ編集関連
   // ==============
   // 投稿
   Route::post('/records/create', 'RecordController@create')->name('record.create');
