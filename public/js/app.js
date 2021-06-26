@@ -2822,6 +2822,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var _this2 = this;
 
         return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+          var titleUserName;
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
@@ -2830,6 +2831,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return _this2.fetchUser();
 
                 case 2:
+                  titleUserName = _this2.nothingUser ? 'ユーザーが見つかりません' : "".concat(_this2.userName, "\u3055\u3093\u306E\u30DE\u30A4\u30DA\u30FC\u30B8");
+                  document.title = "".concat(titleUserName, " |  UdemyLoad");
+
+                case 4:
                 case "end":
                   return _context2.stop();
               }
@@ -4261,6 +4266,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return _this3.fetchRecord();
 
                 case 2:
+                  document.title = "".concat(_this3.title, " |  UdemyLoad");
+                  document.querySelector("meta[property='og:title']").setAttribute('content', pageTitle);
+
+                case 4:
                 case "end":
                   return _context3.stop();
               }
