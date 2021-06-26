@@ -271,7 +271,6 @@ export default {
       async handler() {
         await this.fetchRecord();
         document.title = `${this.title} |  UdemyLoad`
-        document.querySelector("meta[property='og:title']").setAttribute('content', pageTitle)
       },
       immediate: true,
     },

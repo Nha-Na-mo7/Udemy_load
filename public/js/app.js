@@ -4267,9 +4267,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 case 2:
                   document.title = "".concat(_this3.title, " |  UdemyLoad");
-                  document.querySelector("meta[property='og:title']").setAttribute('content', pageTitle);
 
-                case 4:
+                case 3:
                 case "end":
                   return _context3.stop();
               }
