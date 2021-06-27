@@ -1,6 +1,6 @@
 <!--ヒーローバナー-->
 <template>
-  <section class="p-landing__section p-landing__information">
+  <section class="p-landing__hero p-landing__section p-landing__information">
     <div class="p-landing__container">
       <div class="p-landing__section--info">
         <h1 class="p-landing__section--title">

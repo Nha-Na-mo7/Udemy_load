@@ -58332,7 +58332,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "section",
-      { staticClass: "p-landing__section p-landing__information" },
+      {
+        staticClass: "p-landing__hero p-landing__section p-landing__information"
+      },
       [
         _c("div", { staticClass: "p-landing__container" }, [
           _c("div", { staticClass: "p-landing__section--info" }, [

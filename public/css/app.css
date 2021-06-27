@@ -603,7 +603,6 @@ input[type=checkbox] {
 }
 
 .l-container {
-  background-color: #f8f8f8;
   width: 100%;
   height: auto;
 }
@@ -1212,11 +1211,17 @@ input[type=checkbox] {
   transform: translateY(-15px) rotate(45deg);
 }
 
-.p-landing__hero {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url("https://cryptotrendstrage.s3-ap-northeast-1.amazonaws.com/images/figures/hero_btc.jpg");
+.p-landing__hero:before {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
   width: 100%;
+  height: 100vh;
+  background: url(https://y-com.info/contents/wp-content/uploads/2017/05/IMG_1894.jpg) center no-repeat;
+  background-size: cover;
 }
 
 .p-landing__container {
@@ -1342,7 +1347,6 @@ input[type=checkbox] {
 }
 
 .p-landing__section {
-  background: #ffffff;
   height: 100%;
   width: 100%;
   display: inline-block;
@@ -1406,13 +1410,17 @@ input[type=checkbox] {
 }
 
 .p-mypage__column {
+  background: #f8fcf8;
+  padding: 12px 0;
+  border-radius: 4px;
+  box-shadow: #cdcdcd 0 0 10px;
   width: 49%;
 }
 
 @media screen and (max-width: 414px) {
   .p-mypage__column {
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
   }
 }
 
@@ -1497,10 +1505,12 @@ input[type=checkbox] {
 }
 
 .p-record__list--inner {
-  width: 50%;
+  background: #f8fcf8;
+  width: 60%;
   margin: 0 auto;
-  padding: 12px;
-  background: #fff;
+  padding: 8px 28px;
+  border-radius: 4px;
+  box-shadow: #cdcdcd 0 0 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -1517,6 +1527,7 @@ input[type=checkbox] {
 }
 
 .p-record__list-item {
+  background: #fff;
   padding: 15px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
@@ -1635,8 +1646,9 @@ input[type=checkbox] {
 }
 
 .p-record__edit--inner {
-  background: #fff;
-  box-shadow: #cdcdcd 0 3px 5px;
+  background: #f8fcf8;
+  box-shadow: #cdcdcd 0 0 10px;
+  border-radius: 4px;
   padding: 40px;
   margin: 0 auto;
   width: 60%;
