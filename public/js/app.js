@@ -2590,13 +2590,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Hero.vue"
 });
@@ -58347,13 +58340,7 @@ var staticRenderFns = [
               _vm._v("\n        UdemyLoadは"),
               _c("br"),
               _vm._v(
-                "\n        「Udemy」 に特化した学習記録サービスです。\n      "
-              )
-            ]),
-            _vm._v(" "),
-            _c("pre", { staticClass: "p-landing__section--text" }, [
-              _vm._v(
-                "                  「Udemyの講座を組み合わせればプログラミングスクールはいらない」\n                  「良質なUdemyの講座ならたくさんある」\n                  ...とよく聞くけれど、肝心のどんな講座の組み合わせが良いかは教えてくれない。\n\n                  そんな悩みはUdemyLoadで一瞬で解決します！\n              "
+                "\n        「Udemy」に特化したロードマップ記録サービスです。\n      "
               )
             ])
           ])
