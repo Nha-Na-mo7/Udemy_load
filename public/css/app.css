@@ -1531,11 +1531,13 @@ input[type=checkbox] {
   background: #fff;
   padding: 15px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 414px) {
   .p-record__list-item {
     padding: 6px 10px;
+    margin-bottom: 5px;
   }
 }
 
