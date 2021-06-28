@@ -1,6 +1,6 @@
 <!--無料で今すぐはじめよう-->
 <template>
-  <section class="p-landing__section">
+  <section class="p-landing__section u-bg-info">
     <div class="p-landing__container p-landing__container--flex">
       <div class="p-landing__section--info">
         <h1 class="p-landing__section--title">

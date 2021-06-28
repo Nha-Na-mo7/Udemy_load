@@ -2561,6 +2561,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Features"
 });
@@ -2642,6 +2644,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -58255,7 +58261,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "p-landing__section" }, [
+    return _c("section", { staticClass: "p-landing__section u-bg-info" }, [
       _c(
         "div",
         { staticClass: "p-landing__container p-landing__container--flex" },
@@ -58299,9 +58305,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "p-landing__section" })
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "p-landing__section u-bg-info" }, [
+      _c(
+        "div",
+        { staticClass: "p-landing__container p-landing__container--flex" },
+        [_c("h1", [_vm._v("ここがすごい!")])]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -58415,8 +58434,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "p-landing__section" }, [
-      _c("h1", [_vm._v("UdemyLoadとは?")])
+    return _c("section", { staticClass: "p-landing__section u-bg-info" }, [
+      _c(
+        "div",
+        { staticClass: "p-landing__container p-landing__container--flex" },
+        [
+          _c("h1", [_vm._v("UdemyLoadとは?")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v("皆さんはこのようなツイートを見たことがありませんか？")
+          ]),
+          _vm._v(" "),
+          _c("p", [_vm._v("※ツイートは全て架空のものです")])
+        ]
+      )
     ])
   }
 ]
