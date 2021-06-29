@@ -2723,13 +2723,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Overview.vue"
 });
@@ -58684,29 +58677,29 @@ var staticRenderFns = [
             _c("div", { staticClass: "p-landing__section--info" }, [
               _c("h1", { staticClass: "p-landing__section--title" }, [
                 _vm._v(
-                  '\n            "Udemy"に特化した学習ロードマップ作成サービス\n          '
+                  '\n          "Udemy"に特化した学習ロードマップ作成サービス\n        '
                 )
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "p-landing__section--text" }, [
                 _vm._v(
-                  '\n            "UdemyLoad"では、Udemy講座でオリジナル学習ロードマップを作れます。'
+                  '\n          "UdemyLoad"では、Udemy講座でオリジナル学習ロードマップを作れます。'
                 ),
                 _c("br"),
                 _c("br"),
-                _vm._v("\n\n            順序を間違って学習して欲しくない... "),
+                _vm._v("\n\n          順序を間違って学習して欲しくない... "),
                 _c("br"),
                 _vm._v(
-                  "\n            私の学習の記録をわかりやすく見てもらいたい...!"
+                  "\n          私の学習の記録をわかりやすく見てもらいたい...!"
                 ),
                 _c("br"),
                 _vm._v(
-                  "\n            あのUdemy講座をもっといろいろな人に見てもらいたい...!"
+                  "\n          あのUdemy講座をもっといろいろな人に見てもらいたい...!"
                 ),
                 _c("br"),
                 _c("br"),
                 _vm._v(
-                  "\n            UdemyLoadで、このような悩みは解決します！\n          "
+                  "\n          UdemyLoadで、このような悩みは解決します！\n        "
                 )
               ])
             ])
