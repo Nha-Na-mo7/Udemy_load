@@ -1408,6 +1408,10 @@ input[type=checkbox] {
   }
 }
 
+.p-landing__section--bigimg {
+  width: 100%;
+}
+
 .p-landing__footer {
   padding-bottom: 120px;
   text-align: center;

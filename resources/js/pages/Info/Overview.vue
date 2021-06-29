@@ -16,6 +16,9 @@
             UdemyLoadで、このような悩みは解決します！
           </p>
         </div>
+        <div class="u-mt-50">
+          <img class="p-landing__section--bigimg" src="../../../../public/images/UdemyLoadInfoRecord.png" alt="">
+        </div>
       </div>
     </div>
   </section>

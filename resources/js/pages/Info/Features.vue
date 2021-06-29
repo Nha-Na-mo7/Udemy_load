@@ -1,48 +1,17 @@
 <template>
   <!-- サービスができること・特徴 -->
   <section class="p-landing__section u-bg-info">
-    <div class="p-landing__container p-landing__container--flex">
-      <div class="p-landing__service">
-        <div class="p-landing__service--item">
-          <div class="">
-            <img class="p-landing__service--item--img" src="https://cryptotrendstrage.s3-ap-northeast-1.amazonaws.com/images/figures/index_section_twitter350.jpeg" alt="テキスト1" />
-          </div>
-          <div class="p-landing__service--item--info">
-            <h1 class="p-landing__service--item--info--title">テキスト1</h1>
-            <p class="p-landing__service--item--info--text">
-              ああああああああああああああああああああああああああ、
-              あああああああああああああああああああああああああああああ。
-            </p>
-          </div>
-        </div>
-
-        <div class="p-landing__service--item">
-          <div class="">
-            <img class="p-landing__service--item--img" src="https://cryptotrendstrage.s3-ap-northeast-1.amazonaws.com/images/figures/index_section_news.jpeg" alt="テキスト2" />
-          </div>
-          <div class="p-landing__service--item--info">
-            <h1 class="p-landing__service--item--info--title">テキスト2</h1>
-            <p class="p-landing__service--item--info--text">
-              ああああああああああああああああああああああああああ。
-              ああああああああああああああああああああああああああっっ。
-            </p>
-          </div>
-        </div>
-
-        <div class="p-landing__service--item">
-          <div class="">
-            <img class="p-landing__service--item--img" src="https://cryptotrendstrage.s3-ap-northeast-1.amazonaws.com/images/figures/index_section_follow.jpeg" alt="テキスト3" />
-          </div>
-          <div class="p-landing__service--item--info">
-            <h1 class="p-landing__service--item--info--title">テキスト3</h1>
-            <p class="p-landing__service--item--info--text">
-              ああああああああああああああああああああああああああ。
-              ああああああああああああああああああああああああああ。
-            </p>
-          </div>
-        </div>
+    <div class="p-landing__container">
+      <!-- picture -->
+      <div class="u-mt-50">
+        <h1 class="p-landing__section--title">下記画像のような今までの状況はもう訪れません</h1>
+        <img class="p-landing__section--bigimg u-mt-50" src="../../../../public/images/UdemyLoadInfoImage1.png" alt="">
+        <p class="p-landing__section--text">
+          具体的な学習ロードマップが示されないままUdemyを推奨されるため、初心者は混乱していました。<br />
+          これからはUdemyLoadでロードマップが示されるので、未経験エンジニアでも安心です！
+        </p>
       </div>
-    </div>
+    </div>å
   </section>
 </template>
 
