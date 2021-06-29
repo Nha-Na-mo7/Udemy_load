@@ -2757,6 +2757,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Problems"
 });
@@ -58745,20 +58765,64 @@ var staticRenderFns = [
           _c("div", { staticClass: "p-landing__container" }, [
             _c("div", { staticClass: "p-landing__section--info" }, [
               _c("h1", { staticClass: "p-landing__section--title" }, [
-                _vm._v(
-                  "\n            皆さんはこのような悩みを持ったことがありませんか？\n          "
-                )
+                _vm._v("\n            「学習順序」を具体的に示せる\n          ")
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "p-landing__section--text" }, [
                 _vm._v(
-                  "\n            Udemyは安価で良質とは聞くけど、「どのコース」を「どの順番で学習すれば良いか」はわからない..."
+                  "\n            「Udemyは安価で良質」「高額なプログラミングスクールは不要」"
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v("\n            ーと言う人は多くても、"),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  "\n            「どのコース」を「どの順番で学習すれば良いか」"
                 ),
                 _c("br"),
                 _c("br"),
                 _vm._v(
-                  "\n            オススメしたいコースがあるけど、うまく伝えられない...\n          "
+                  "\n            まで具体的に説明してくれる人は多くありません。"
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  '\n            "UdemyLoad"ではこのような悩みも解決します。\n          '
                 )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-landing__service" }, [
+                _c("div", { staticClass: "p-landing__service--item" }, [
+                  _c("div", {}, [
+                    _c("img", {
+                      staticClass: "p-landing__service--item--img",
+                      attrs: {
+                        src:
+                          "https://cryptotrendstrage.s3-ap-northeast-1.amazonaws.com/images/figures/index_section_twitter350.jpeg",
+                        alt: "テキスト1"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "p-landing__service--item--info" }, [
+                    _c(
+                      "h1",
+                      { staticClass: "p-landing__service--item--info--title" },
+                      [_vm._v("テキスト1")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      { staticClass: "p-landing__service--item--info--text" },
+                      [
+                        _vm._v(
+                          "\n                  ああああああああああああああああああああああああああ、\n                  あああああああああああああああああああああああああああああ。\n                "
+                        )
+                      ]
+                    )
+                  ])
+                ])
               ])
             ])
           ])
