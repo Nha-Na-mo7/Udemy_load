@@ -2764,8 +2764,12 @@ input[type=checkbox] {
   background: #f0f5e7;
 }
 
-.u-bg-info {
+.u-bg-info:nth-of-type(2n) {
   background: #fff;
+}
+
+.u-bg-info:nth-of-type(2n-1) {
+  background: #f8f8f8;
 }
 
 .u-color--red {
