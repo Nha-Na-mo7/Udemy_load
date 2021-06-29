@@ -2775,8 +2775,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Problems"
 });
@@ -58765,7 +58763,9 @@ var staticRenderFns = [
           _c("div", { staticClass: "p-landing__container" }, [
             _c("div", { staticClass: "p-landing__section--info" }, [
               _c("h1", { staticClass: "p-landing__section--title" }, [
-                _vm._v("\n            「学習順序」を具体的に示せる\n          ")
+                _vm._v(
+                  '\n            "Udemyなら安く学べる" と簡単に言う人に\n          '
+                )
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "p-landing__section--text" }, [
@@ -58774,7 +58774,7 @@ var staticRenderFns = [
                 ),
                 _c("br"),
                 _c("br"),
-                _vm._v("\n            ーと言う人は多くても、"),
+                _vm._v("\n            …と言う人は多くても、"),
                 _c("br"),
                 _c("br"),
                 _vm._v(
@@ -58788,7 +58788,7 @@ var staticRenderFns = [
                 _c("br"),
                 _c("br"),
                 _vm._v(
-                  '\n            "UdemyLoad"ではこのような悩みも解決します。\n          '
+                  '\n            "UdemyLoad"で具体的な学習ロードマップを作成し、より説得力を持たせましょう。\n          '
                 )
               ]),
               _vm._v(" "),
@@ -58800,7 +58800,7 @@ var staticRenderFns = [
                       attrs: {
                         src:
                           "https://cryptotrendstrage.s3-ap-northeast-1.amazonaws.com/images/figures/index_section_twitter350.jpeg",
-                        alt: "テキスト1"
+                        alt: "Udemyは順序が大切"
                       }
                     })
                   ]),
@@ -58809,7 +58809,7 @@ var staticRenderFns = [
                     _c(
                       "h1",
                       { staticClass: "p-landing__service--item--info--title" },
-                      [_vm._v("テキスト1")]
+                      [_vm._v("画像のような今までの状況はもう訪れません")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -58817,7 +58817,7 @@ var staticRenderFns = [
                       { staticClass: "p-landing__service--item--info--text" },
                       [
                         _vm._v(
-                          "\n                  ああああああああああああああああああああああああああ、\n                  あああああああああああああああああああああああああああああ。\n                "
+                          "\n                  今までは画像のような、具体的な学習ロードマップは少ない状態でしたが、これからは未経験エンジニアでも安心です！\n                "
                         )
                       ]
                     )
