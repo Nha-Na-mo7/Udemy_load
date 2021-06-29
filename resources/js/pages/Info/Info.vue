@@ -2,7 +2,7 @@
 <div>
   <Hero />
   <Overview />
-  <Problem />
+  <Problems />
   <Features />
   <Begin />
 </div>
@@ -11,7 +11,7 @@
 <script>
 import Hero from './Hero.vue'
 import Overview from './Overview.vue'
-import Problem from './Problem.vue'
+import Problems from './Problems.vue'
 import Features from './Features.vue'
 import Begin from './Begin.vue'
 
@@ -20,7 +20,7 @@ export default {
   components: {
     Hero,
     Overview,
-    Problem,
+    Problems,
     Features,
     Begin,
   }
