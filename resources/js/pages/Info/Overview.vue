@@ -1,6 +1,6 @@
 <template>
   <!--UdemyLoadとは?-->
-  <section class="p-landing__section u-bg-info">
+  <section class="p-landing__section p-landing__section--bg">
     <div class="p-landing__container p-landing__container--flex">
       <div class="p-landing__container">
         <div class="p-landing__section--info">

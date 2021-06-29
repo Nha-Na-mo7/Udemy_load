@@ -1,6 +1,6 @@
 <template>
   <!-- サービスができること・特徴 -->
-  <section class="p-landing__section u-bg-info">
+  <section class="p-landing__section p-landing__section--bg">
     <div class="p-landing__container">
       <!-- picture -->
       <div class="u-mt-50">

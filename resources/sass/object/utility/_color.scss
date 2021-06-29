@@ -11,14 +11,6 @@
   &-green {
     background: #f0f5e7;
   }
-  &-info {
-    &:nth-of-type(2n) {
-      background: #fff;
-    }
-    &:nth-of-type(2n-1) {
-      background: #f8f8f8;
-    }
-  }
 }
 
 .u-color {

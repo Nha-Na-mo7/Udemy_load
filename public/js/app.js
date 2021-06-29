@@ -58336,35 +58336,43 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "p-landing__section u-bg-info" }, [
-      _c(
-        "div",
-        { staticClass: "p-landing__container p-landing__container--flex" },
-        [
-          _c("div", { staticClass: "p-landing__section--info" }, [
-            _c("h1", { staticClass: "p-landing__section--title" }, [
-              _vm._v("\n        ロードマップを作りましょう\n      ")
+    return _c(
+      "section",
+      { staticClass: "p-landing__section p-landing__section--bg" },
+      [
+        _c(
+          "div",
+          { staticClass: "p-landing__container p-landing__container--flex" },
+          [
+            _c("div", { staticClass: "p-landing__section--info" }, [
+              _c("h1", { staticClass: "p-landing__section--title" }, [
+                _vm._v("\n        ロードマップを作りましょう\n      ")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "p-landing__section--text u-mb-3l" }, [
+                _c("span", [
+                  _vm._v(
+                    "登録は無料。早速学習ロードマップをみんなで共有しましょう。"
+                  )
+                ])
+              ])
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "p-landing__section--text u-mb-3l" }, [
-              _c("span", [
-                _vm._v(
-                  "登録は無料。早速学習ロードマップをみんなで共有しましょう。"
-                )
-              ])
+            _c("div", { staticClass: "u-text--center u-mt-xl" }, [
+              _c(
+                "button",
+                { staticClass: "c-btn u-color--info u-font--bold" },
+                [
+                  _c("a", { attrs: { href: "/login" } }, [
+                    _vm._v("\n          今すぐはじめる\n        ")
+                  ])
+                ]
+              )
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "u-text--center u-mt-xl" }, [
-            _c("button", { staticClass: "c-btn u-color--info u-font--bold" }, [
-              _c("a", { attrs: { href: "/login" } }, [
-                _vm._v("\n          今すぐはじめる\n        ")
-              ])
-            ])
-          ])
-        ]
-      )
-    ])
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -58395,34 +58403,38 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "p-landing__section u-bg-info" }, [
-      _c("div", { staticClass: "p-landing__container" }, [
-        _c("div", { staticClass: "u-mt-50" }, [
-          _c("h1", { staticClass: "p-landing__section--title" }, [
-            _vm._v("下記画像のような今までの状況はもう訪れません")
-          ]),
-          _vm._v(" "),
-          _c("img", {
-            staticClass: "p-landing__section--bigimg u-mt-50",
-            attrs: {
-              src: __webpack_require__(/*! ../../../../public/images/UdemyLoadInfoImage1.png */ "./public/images/UdemyLoadInfoImage1.png"),
-              alt: ""
-            }
-          }),
-          _vm._v(" "),
-          _c("p", { staticClass: "p-landing__section--text" }, [
-            _vm._v(
-              "\n        具体的な学習ロードマップが示されないままUdemyを推奨されるため、初心者は混乱していました。"
-            ),
-            _c("br"),
-            _vm._v(
-              "\n        これからはUdemyLoadでロードマップが示されるので、未経験エンジニアでも安心です！\n      "
-            )
+    return _c(
+      "section",
+      { staticClass: "p-landing__section p-landing__section--bg" },
+      [
+        _c("div", { staticClass: "p-landing__container" }, [
+          _c("div", { staticClass: "u-mt-50" }, [
+            _c("h1", { staticClass: "p-landing__section--title" }, [
+              _vm._v("下記画像のような今までの状況はもう訪れません")
+            ]),
+            _vm._v(" "),
+            _c("img", {
+              staticClass: "p-landing__section--bigimg u-mt-50",
+              attrs: {
+                src: __webpack_require__(/*! ../../../../public/images/UdemyLoadInfoImage1.png */ "./public/images/UdemyLoadInfoImage1.png"),
+                alt: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "p-landing__section--text" }, [
+              _vm._v(
+                "\n        具体的な学習ロードマップが示されないままUdemyを推奨されるため、初心者は混乱していました。"
+              ),
+              _c("br"),
+              _vm._v(
+                "\n        これからはUdemyLoadでロードマップが示されるので、未経験エンジニアでも安心です！\n      "
+              )
+            ])
           ])
-        ])
-      ]),
-      _vm._v("å\n")
-    ])
+        ]),
+        _vm._v("å\n")
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -58567,55 +58579,59 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "p-landing__section u-bg-info" }, [
-      _c(
-        "div",
-        { staticClass: "p-landing__container p-landing__container--flex" },
-        [
-          _c("div", { staticClass: "p-landing__container" }, [
-            _c("div", { staticClass: "p-landing__section--info" }, [
-              _c("h1", { staticClass: "p-landing__section--title" }, [
-                _vm._v(
-                  '\n          "Udemy"に特化した学習ロードマップ作成サービス\n        '
-                )
+    return _c(
+      "section",
+      { staticClass: "p-landing__section p-landing__section--bg" },
+      [
+        _c(
+          "div",
+          { staticClass: "p-landing__container p-landing__container--flex" },
+          [
+            _c("div", { staticClass: "p-landing__container" }, [
+              _c("div", { staticClass: "p-landing__section--info" }, [
+                _c("h1", { staticClass: "p-landing__section--title" }, [
+                  _vm._v(
+                    '\n          "Udemy"に特化した学習ロードマップ作成サービス\n        '
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "p-landing__section--text" }, [
+                  _vm._v(
+                    '\n          "UdemyLoad"では、Udemy講座でオリジナル学習ロードマップを作れます。'
+                  ),
+                  _c("br"),
+                  _c("br"),
+                  _vm._v("\n\n          順序を間違って学習して欲しくない... "),
+                  _c("br"),
+                  _vm._v(
+                    "\n          私の学習の記録をわかりやすく見てもらいたい...!"
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "\n          あのUdemy講座をもっといろいろな人に見てもらいたい...!"
+                  ),
+                  _c("br"),
+                  _c("br"),
+                  _vm._v(
+                    "\n          UdemyLoadで、このような悩みは解決します！\n        "
+                  )
+                ])
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "p-landing__section--text" }, [
-                _vm._v(
-                  '\n          "UdemyLoad"では、Udemy講座でオリジナル学習ロードマップを作れます。'
-                ),
-                _c("br"),
-                _c("br"),
-                _vm._v("\n\n          順序を間違って学習して欲しくない... "),
-                _c("br"),
-                _vm._v(
-                  "\n          私の学習の記録をわかりやすく見てもらいたい...!"
-                ),
-                _c("br"),
-                _vm._v(
-                  "\n          あのUdemy講座をもっといろいろな人に見てもらいたい...!"
-                ),
-                _c("br"),
-                _c("br"),
-                _vm._v(
-                  "\n          UdemyLoadで、このような悩みは解決します！\n        "
-                )
+              _c("div", { staticClass: "u-mt-50" }, [
+                _c("img", {
+                  staticClass: "p-landing__section--bigimg",
+                  attrs: {
+                    src: __webpack_require__(/*! ../../../../public/images/UdemyLoadInfoRecord.png */ "./public/images/UdemyLoadInfoRecord.png"),
+                    alt: ""
+                  }
+                })
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "u-mt-50" }, [
-              _c("img", {
-                staticClass: "p-landing__section--bigimg",
-                attrs: {
-                  src: __webpack_require__(/*! ../../../../public/images/UdemyLoadInfoRecord.png */ "./public/images/UdemyLoadInfoRecord.png"),
-                  alt: ""
-                }
-              })
             ])
-          ])
-        ]
-      )
-    ])
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -58646,45 +58662,49 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "p-landing__section u-bg-info" }, [
-      _c(
-        "div",
-        { staticClass: "p-landing__container p-landing__container--flex" },
-        [
-          _c("div", { staticClass: "p-landing__section--info" }, [
-            _c("h1", { staticClass: "p-landing__section--title" }, [
-              _vm._v(
-                '\n          "Udemyなら安く学べる" と簡単に言う人に\n        '
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "p-landing__section--text" }, [
-              _vm._v(
-                "\n          「Udemyは安価で良質」「高額なプログラミングスクールは不要」"
-              ),
-              _c("br"),
-              _c("br"),
-              _vm._v("\n          …と言う人は多くても、"),
-              _c("br"),
-              _c("br"),
-              _vm._v(
-                "\n          「どのコース」を「どの順番で学習すれば良いか」"
-              ),
-              _c("br"),
-              _c("br"),
-              _vm._v(
-                "\n          まで具体的に説明してくれる人は多くありません。"
-              ),
-              _c("br"),
-              _c("br"),
-              _vm._v(
-                '\n          "UdemyLoad"で具体的な学習ロードマップを作成し、より説得力を持たせましょう。\n        '
-              )
+    return _c(
+      "section",
+      { staticClass: "p-landing__section p-landing__section--bg" },
+      [
+        _c(
+          "div",
+          { staticClass: "p-landing__container p-landing__container--flex" },
+          [
+            _c("div", { staticClass: "p-landing__section--info" }, [
+              _c("h1", { staticClass: "p-landing__section--title" }, [
+                _vm._v(
+                  '\n          "Udemyなら安く学べる" と簡単に言う人に\n        '
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "p-landing__section--text" }, [
+                _vm._v(
+                  "\n          「Udemyは安価で良質」「高額なプログラミングスクールは不要」"
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v("\n          …と言う人は多くても、"),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  "\n          「どのコース」を「どの順番で学習すれば良いか」"
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  "\n          まで具体的に説明してくれる人は多くありません。"
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  '\n          "UdemyLoad"で具体的な学習ロードマップを作成し、より説得力を持たせましょう。\n        '
+                )
+              ])
             ])
-          ])
-        ]
-      )
-    ])
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
