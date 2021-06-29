@@ -2106,7 +2106,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2539,6 +2538,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Begin"
 });
@@ -2563,6 +2569,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Features"
 });
@@ -2578,6 +2623,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2644,6 +2696,25 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58268,7 +58339,7 @@ var staticRenderFns = [
         [
           _c("div", { staticClass: "p-landing__section--info" }, [
             _c("h1", { staticClass: "p-landing__section--title" }, [
-              _vm._v("\n        さあロードマップを作りましょう。\n      ")
+              _vm._v("\n        ロードマップを作りましょう\n      ")
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "p-landing__section--text u-mb-3l" }, [
@@ -58276,6 +58347,14 @@ var staticRenderFns = [
                 _vm._v(
                   "登録は無料。早速学習ロードマップをみんなで共有しましょう。"
                 )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "u-text--center u-mt-xl" }, [
+            _c("button", { staticClass: "c-btn u-color--info u-font--bold" }, [
+              _c("a", { attrs: { href: "/login" } }, [
+                _vm._v("\n          今すぐはじめる\n        ")
               ])
             ])
           ])
@@ -58316,7 +58395,102 @@ var staticRenderFns = [
       _c(
         "div",
         { staticClass: "p-landing__container p-landing__container--flex" },
-        [_c("h1", [_vm._v("ここがすごい!")])]
+        [
+          _c("div", { staticClass: "p-landing__service" }, [
+            _c("div", { staticClass: "p-landing__service--item" }, [
+              _c("div", {}, [
+                _c("img", {
+                  staticClass: "p-landing__service--item--img",
+                  attrs: {
+                    src:
+                      "https://cryptotrendstrage.s3-ap-northeast-1.amazonaws.com/images/figures/index_section_twitter350.jpeg",
+                    alt: "テキスト1"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-landing__service--item--info" }, [
+                _c(
+                  "h1",
+                  { staticClass: "p-landing__service--item--info--title" },
+                  [_vm._v("テキスト1")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  { staticClass: "p-landing__service--item--info--text" },
+                  [
+                    _vm._v(
+                      "\n            ああああああああああああああああああああああああああ、\n            あああああああああああああああああああああああああああああ。\n          "
+                    )
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "p-landing__service--item" }, [
+              _c("div", {}, [
+                _c("img", {
+                  staticClass: "p-landing__service--item--img",
+                  attrs: {
+                    src:
+                      "https://cryptotrendstrage.s3-ap-northeast-1.amazonaws.com/images/figures/index_section_news.jpeg",
+                    alt: "テキスト2"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-landing__service--item--info" }, [
+                _c(
+                  "h1",
+                  { staticClass: "p-landing__service--item--info--title" },
+                  [_vm._v("テキスト2")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  { staticClass: "p-landing__service--item--info--text" },
+                  [
+                    _vm._v(
+                      "\n            ああああああああああああああああああああああああああ。\n            ああああああああああああああああああああああああああっっ。\n          "
+                    )
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "p-landing__service--item" }, [
+              _c("div", {}, [
+                _c("img", {
+                  staticClass: "p-landing__service--item--img",
+                  attrs: {
+                    src:
+                      "https://cryptotrendstrage.s3-ap-northeast-1.amazonaws.com/images/figures/index_section_follow.jpeg",
+                    alt: "テキスト3"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-landing__service--item--info" }, [
+                _c(
+                  "h1",
+                  { staticClass: "p-landing__service--item--info--title" },
+                  [_vm._v("テキスト3")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  { staticClass: "p-landing__service--item--info--text" },
+                  [
+                    _vm._v(
+                      "\n            ああああああああああああああああああああああああああ。\n            ああああああああああああああああああああああああああ。\n          "
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
+        ]
       )
     ])
   }
@@ -58327,10 +58501,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022&scoped=true&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022&scoped=true& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022& ***!
+  \*******************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -58355,17 +58529,44 @@ var staticRenderFns = [
         staticClass: "p-landing__hero p-landing__section p-landing__information"
       },
       [
-        _c("div", { staticClass: "p-landing__container" }, [
-          _c("div", { staticClass: "p-landing__section--info" }, [
-            _c("h1", { staticClass: "p-landing__section--title" }, [
-              _vm._v("\n        UdemyLoadは"),
-              _c("br"),
-              _vm._v(
-                "\n        「Udemy」に特化したロードマップ記録サービスです。\n      "
+        _c(
+          "div",
+          { staticClass: "p-landing__container p-landing__container--hero" },
+          [
+            _c(
+              "div",
+              { staticClass: "p-landing__section--info u-text--left" },
+              [
+                _c(
+                  "h1",
+                  {
+                    staticClass:
+                      "p-landing__section--title p-landing__section--title--logo"
+                  },
+                  [
+                    _vm._v("\n        Udemyの講座を組み合わせて"),
+                    _c("br"),
+                    _vm._v(
+                      "\n        あなただけの学習ロードマップを作ろう\n      "
+                    )
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "u-text--center u-mt-50" }, [
+              _c(
+                "button",
+                { staticClass: "c-btn u-color--info u-font--bold" },
+                [
+                  _c("a", { attrs: { href: "/login" } }, [
+                    _vm._v("\n          今すぐはじめる\n        ")
+                  ])
+                ]
               )
             ])
-          ])
-        ])
+          ]
+        )
       ]
     )
   }
@@ -58439,13 +58640,37 @@ var staticRenderFns = [
         "div",
         { staticClass: "p-landing__container p-landing__container--flex" },
         [
-          _c("h1", [_vm._v("UdemyLoadとは?")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v("皆さんはこのようなツイートを見たことがありませんか？")
-          ]),
-          _vm._v(" "),
-          _c("p", [_vm._v("※ツイートは全て架空のものです")])
+          _c("div", { staticClass: "p-landing__container" }, [
+            _c("div", { staticClass: "p-landing__section--info" }, [
+              _c("h1", { staticClass: "p-landing__section--title" }, [
+                _vm._v(
+                  '\n            "Udemy"に特化した学習ロードマップ作成サービス\n          '
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "p-landing__section--text" }, [
+                _vm._v(
+                  '\n            "UdemyLoad"では、Udemy講座でオリジナル学習ロードマップを作れます。'
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v("\n\n            順序を間違って学習して欲しくない... "),
+                _c("br"),
+                _vm._v(
+                  "\n            私の学習の記録をわかりやすく見てもらいたい...!"
+                ),
+                _c("br"),
+                _vm._v(
+                  "\n            あのUdemy講座をもっといろいろな人に見てもらいたい...!"
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  "\n            UdemyLoadで、このような悩みは解決します！\n          "
+                )
+              ])
+            ])
+          ])
         ]
       )
     ])
@@ -77881,7 +78106,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Hero_vue_vue_type_template_id_61056022_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Hero.vue?vue&type=template&id=61056022&scoped=true& */ "./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022&scoped=true&");
+/* harmony import */ var _Hero_vue_vue_type_template_id_61056022___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Hero.vue?vue&type=template&id=61056022& */ "./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022&");
 /* harmony import */ var _Hero_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Hero.vue?vue&type=script&lang=js& */ "./resources/js/pages/Info/Hero.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -77893,11 +78118,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Hero_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Hero_vue_vue_type_template_id_61056022_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Hero_vue_vue_type_template_id_61056022_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Hero_vue_vue_type_template_id_61056022___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Hero_vue_vue_type_template_id_61056022___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "61056022",
+  null,
   null
   
 )
@@ -77923,19 +78148,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022&scoped=true&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022&scoped=true& ***!
-  \*************************************************************************************/
+/***/ "./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022& ***!
+  \*************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Hero_vue_vue_type_template_id_61056022_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Hero.vue?vue&type=template&id=61056022&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Hero_vue_vue_type_template_id_61056022_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Hero_vue_vue_type_template_id_61056022___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Hero.vue?vue&type=template&id=61056022& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Info/Hero.vue?vue&type=template&id=61056022&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Hero_vue_vue_type_template_id_61056022___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Hero_vue_vue_type_template_id_61056022_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Hero_vue_vue_type_template_id_61056022___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
