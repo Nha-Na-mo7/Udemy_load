@@ -17,7 +17,11 @@
           </p>
         </div>
         <div class="u-mt-50">
-          <img class="p-landing__section--bigimg" src="../../../../public/images/UdemyLoadInfoRecord.png" alt="">
+          <img
+              class="p-landing__section--bigimg"
+              src="https://udemyloadstorage.s3.ap-northeast-1.amazonaws.com/images/figures/UdemyLoadInfoRecord.png"
+              alt=""
+          >
         </div>
       </div>
     </div>
