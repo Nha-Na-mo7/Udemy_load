@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 // トップページ
 Route::get('/', 'HomeController@index');
-// ランディングページ
-Route::get('/info', 'HomeController@info')->name('home.info');
+// ロードマップ一覧
+Route::get('/recordlist', 'RecordController@index');
 
 // ログインユーザーを返す
 Route::get('/user', fn() => Auth::user())->name('user');
