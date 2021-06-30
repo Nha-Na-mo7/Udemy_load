@@ -2,7 +2,7 @@
   <div class="p-header">
     <!-- ロゴ -->
     <div class="p-header__left">
-      <a class="p-header__logo" href="/">
+      <a class="p-header__logo" href="/recordlist">
         <img
           src="../../../storage/app/public/images/logos/udemyload_logo.svg"
           alt="UdemyLoad"

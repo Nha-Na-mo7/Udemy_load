@@ -11,7 +11,7 @@
       </div>
       <!-- 戻るボタン -->
       <div>
-        <a class="c-btn" href="/"> ロードマップ一覧へ戻る </a>
+        <a class="c-btn" href="/recordlist"> ロードマップ一覧へ戻る </a>
       </div>
     </div>
   </div>

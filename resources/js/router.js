@@ -54,11 +54,11 @@ async function requireAuth(to, from, next) {
 const routes = [
   {
     path: '/',
-    component: RecordList,
+    component: Info,
   },
   {
-    path: '/info',
-    component: Info,
+    path: '/recordlist',
+    component: RecordList,
   },
   {
     path: '/login',
