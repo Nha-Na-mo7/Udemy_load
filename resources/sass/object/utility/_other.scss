@@ -24,6 +24,15 @@
     }
   }
 
+  &-fs {
+    &--xxl {
+      font-size: $font-size_xxl;
+    }
+    &--3l {
+      font-size: $font-size_3l;
+    }
+  }
+
   &-bt {
     border-top: 1px solid #8a8a8a;
   }

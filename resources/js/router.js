@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 // コンポーネント
 import RecordList from './pages/Records/RecordList.vue';
+import Info from './pages/Info/Info.vue';
 import Mypage from './pages/Mypage/Mypage.vue';
 import RecordCreate from './pages/Records/RecordCreate.vue';
 import RecordDetail from './pages/Records/RecordDetail.vue';
@@ -53,6 +54,10 @@ async function requireAuth(to, from, next) {
 const routes = [
   {
     path: '/',
+    component: Info,
+  },
+  {
+    path: '/recordlist',
     component: RecordList,
   },
   {

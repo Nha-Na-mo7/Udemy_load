@@ -1,4 +1,4 @@
-<!-- マイページで表示させる、投稿済みのレコード一覧用コンポーネント -->
+<!-- マイページで表示させる、投稿済みのロードマップ一覧用コンポーネント -->
 <template>
   <div class="p-mypage__record-list">
     <div class="p-mypage__record-list--inner">
@@ -127,7 +127,7 @@ export default {
     },
   },
   methods: {
-    // マイページユーザーが投稿したレコード一覧の取得
+    // マイページユーザーが投稿したロードマップ一覧の取得
     async fetchCourse() {
       const response = await axios.get(`/records/index/${this.userId}`);
 

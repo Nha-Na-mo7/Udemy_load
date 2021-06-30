@@ -13,15 +13,17 @@
     }
     // リストの大枠
     &--inner {
-      width: 50%;
+      background: $background-color_content-inner;
+      width: 60%;
       @include mq($breakpoint: md) {
         width: 90%;
       }
       margin: 0 auto;
-      padding: 12px;
-      background: #fff;
+      padding: 8px 28px;
+      border-radius: 4px;
+      box-shadow: #cdcdcd 0 0 10px;
     }
-    // 「レコード」の文言
+    // 「ロードマップ」の文言
     &--title {
       text-align: center;
       font-size: 20px;
@@ -30,10 +32,13 @@
     }
     // コースのデータ1つ1つ
     &-item {
+      background: #fff;
       padding: 15px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      margin-bottom: 10px;
       @include mq() {
         padding: 6px 10px;
+        margin-bottom: 5px;
       }
       &--title {
         font-size: 20px;
@@ -62,7 +67,7 @@
       }
     }
   }
-  // レコード詳細画面
+  // ロードマップ詳細画面
   &__detail {
     width: 80%;
     margin: 0 auto;
@@ -124,8 +129,9 @@
       padding: 50px 0;
     }
     &--inner {
-      background: #fff;
-      box-shadow: #cdcdcd 0 3px 5px;
+      background: $background-color_content-inner;
+      box-shadow: #cdcdcd 0 0 10px;
+      border-radius: 4px;
       padding: 40px;
       margin: 0 auto;
       width: 60%;

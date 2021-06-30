@@ -7,10 +7,14 @@
   justify-content: space-between;
 
   &__column {
+    background: $background-color_content-inner;
+    padding: 12px 0;
+    border-radius: 4px;
+    box-shadow: #cdcdcd 0 0 10px;
     width: 49%;
     @include mq() {
       width: 100%;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
     }
   }
   &__title {

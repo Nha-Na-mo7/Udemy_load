@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // トップページ
-Route::get('/', 'HomeController@index')->name('home.index');
+Route::get('/', 'HomeController@index');
+// ランディングページ
+Route::get('/info', 'HomeController@info')->name('home.info');
+
 // ログインユーザーを返す
 Route::get('/user', fn() => Auth::user())->name('user');
 // トークンリフレッシュ
@@ -37,7 +40,7 @@ Route::get('/user/info/{username?}', 'UserController@get_user');
 Route::get('/mypage/{any?}', 'MypageController@index')->name('mypage.index')->where('any', '.+');
 
 // =============
-// レコード取得
+// ロードマップ取得
 // =============
 // 詳細/編集画面
 Route::get('/record/{id}/{owner_flg?}', 'RecordController@show')->name('record.show');
@@ -46,14 +49,14 @@ Route::get('/records/index/{id?}', 'RecordController@get_list')->where('id', '[\
 
 // 投稿画面のビュー
 Route::get('/records/new', 'RecordController@index_create')->name('record.index');
-// レコード詳細画面のビュー
+// ロードマップ詳細画面のビュー
 Route::get('/records/{any?}', 'RecordController@index')->name('record.index')->where('any', '.+');
 
 
 // 以下は認証必須
 Route::group(['middleware' => 'auth'], function() {
   // ==============
-  // レコード編集関連
+  // ロードマップ編集関連
   // ==============
   // 投稿
   Route::post('/records/create', 'RecordController@create')->name('record.create');

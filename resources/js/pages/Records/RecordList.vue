@@ -1,7 +1,7 @@
 <template>
   <div class="p-record__list">
     <div class="p-record__list--inner" id="records">
-      <h2 class="p-record__list--title">レコード</h2>
+      <h2 class="p-record__list--title">みんなのロードマップ</h2>
       <Record
         v-for="Record in getRecordsItems"
         :key="Record.id"
@@ -102,7 +102,7 @@ export default {
     },
   },
   methods: {
-    // コースレコード一覧の取得
+    // ロードマップ一覧の取得
     async fetchCourse() {
       const response = await axios.get(`/records/index`);
 

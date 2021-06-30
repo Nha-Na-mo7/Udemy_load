@@ -16,8 +16,8 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('record_id')->comment('紐付けられたレコードID');
-            $table->unsignedInteger('record_index')->comment('レコードのn番目のコース');
+            $table->string('record_id')->comment('紐付けられたロードマップID');
+            $table->unsignedInteger('record_index')->comment('ロードマップのn番目のコース');
             $table->String('course_id')->comment('Udemyが振り分けたコースごとのID');
             $table->string('title')->comment('コースのタイトル');
             $table->string('instructor')->comment('講師名');
@@ -26,7 +26,7 @@ class CreateCoursesTable extends Migration
             $table->text('image_url')->comment('コースの画像URL');
             $table->timestamps();
         });
-        // レコードIDは大文字小文字を区別する
+        // ロードマップIDは大文字小文字を区別する
         DB::statement('ALTER TABLE courses MODIFY record_id varchar(256) BINARY');
     }
 

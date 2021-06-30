@@ -1,4 +1,4 @@
-<!-- レコードの新規投稿 / 編集用 -->
+<!-- ロードマップの新規投稿 / 編集用 -->
 <template>
   <div class="p-record__edit">
     <div class="p-record__edit--inner">
@@ -12,7 +12,7 @@
           </div>
 
           <!-- タイトル -->
-          <label class="c-form__label" for="record_title">タイトル </label>
+          <label class="c-form__label" for="record_title">タイトル</label>
           <!-- エラーメッセージ -->
           <ul v-if="errors.errorsTitle">
             <li
@@ -34,7 +34,7 @@
           />
 
           <!-- 説明 -->
-          <label class="c-form__label" for="record_description">説明 </label>
+          <label class="c-form__label" for="record_description">説明</label>
           <!-- エラーメッセージ -->
           <ul v-if="errors.errorsDescription">
             <li
@@ -88,11 +88,11 @@
         </button>
       </div>
 
-      <!-- レコードを削除する(編集時のみ) -->
+      <!-- ロードマップを削除する(編集時のみ) -->
       <div v-if="!isCreateMode" class="p-record__delete">
         <button class="c-btn c-btn--delete" @click="deleteRecord">
           <i class="far fa-trash-alt p-mypage__record-list--icon"></i>
-          このレコードを削除する
+          このロードマップを削除する
         </button>
       </div>
       <!-- モーダルがONになったら表示される -->
@@ -119,7 +119,7 @@ import SelectedCourse from './SelectedCourse.vue';
 import SearchModal from './SearchModal.vue';
 
 export default {
-  // このpropsはレコードの編集時のみ受け取る
+  // このpropsはロードマップの編集時のみ受け取る
   props: {
     id: {
       type: String,
@@ -147,7 +147,7 @@ export default {
       return this.id === undefined;
     },
     pageTitle() {
-      return this.isCreateMode ? 'レコードの新規登録' : 'レコードの編集';
+      return this.isCreateMode ? 'ロードマップの新規投稿' : 'ロードマップの編集';
     },
     submitButton() {
       return this.isCreateMode ? '投稿する' : '更新する';
@@ -172,10 +172,10 @@ export default {
     },
   },
   methods: {
-    // レコードの情報をDBから取得(編集時のみ)
+    // ロードマップの情報をDBから取得(編集時のみ)
     async fetchRecord() {
       if (!this.isCreateMode) {
-        // レコード情報を取得
+        // ロードマップ情報を取得
         const response = await axios.get(`/record/${this.id}/${true}`);
 
         // オーナー以外が閲覧した場合(403)、詳細画面に戻す
@@ -226,7 +226,7 @@ export default {
     deleteCourseObject(index) {
       this.createData.selectedCourses.splice(index, 1);
     },
-    // コースのレコードを投稿 or 上書きする
+    // コースのロードマップを投稿 or 上書きする
     async submitCourse() {
       // 以下、disabledを無理やり突破して来た場合に警告を出す
       // タイトルが未入力の時
@@ -280,14 +280,14 @@ export default {
         this.$router.push(`/records/${this.id}`);
       }
     },
-    // このレコードを削除する
+    // このロードマップを削除する
     async deleteRecord() {
       if (this.isCreateMode) {
         return false;
       }
       if (
         confirm(
-          '【レコードを削除します】\n削除すると復元することはできなくなります。よろしいですか？',
+          '【ロードマップを削除します】\n削除すると復元することはできなくなります。よろしいですか？',
         )
       ) {
         const response = await axios.post(`/record/${this.id}/delete`);

@@ -113,7 +113,7 @@
           </div>
         </section>
       </div>
-      <!-- レコードがない場合 -->
+      <!-- ロードマップがない場合 -->
       <div v-else>
         <NothingRecordDetail />
       </div>
@@ -143,7 +143,7 @@ export default {
     };
   },
   computed: {
-    // レコードが存在するかどうか
+    // ロードマップが存在するかどうか
     checkExistRecord() {
       return !!Object.keys(this.record).length;
     },
@@ -189,13 +189,13 @@ export default {
   },
   methods: {
     // ========================
-    // レコードの情報をDBから取得
+    // ロードマップの情報をDBから取得
     // ========================
     async fetchRecord() {
-      // レコード情報を取得
+      // ロードマップ情報を取得
       const response = await axios.get(`/record/${this.id}`);
 
-      // レコードが見つからなかった場合
+      // ロードマップが見つからなかった場合
       if (response.status === NOT_FOUND) {
         this.loading = false;
         return false;
@@ -270,6 +270,7 @@ export default {
     $route: {
       async handler() {
         await this.fetchRecord();
+        document.title = `${this.title} |  UdemyLoad`
       },
       immediate: true,
     },

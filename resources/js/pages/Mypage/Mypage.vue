@@ -108,6 +108,8 @@ export default {
     $route: {
       async handler() {
         await this.fetchUser();
+        const titleUserName = this.nothingUser ? 'ユーザーが見つかりません' : `${this.userName}さんのマイページ`
+        document.title = `${titleUserName} |  UdemyLoad`
       },
       immediate: true,
     },
