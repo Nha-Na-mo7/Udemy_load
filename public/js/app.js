@@ -2542,8 +2542,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Begin"
+  computed: {
+    isNotLogin: function isNotLogin() {
+      return !this.$store.getters['auth/check'];
+    }
+  }
 });
 
 /***/ }),
@@ -2614,8 +2623,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Hero.vue"
+  computed: {
+    isNotLogin: function isNotLogin() {
+      return !this.$store.getters['auth/check'];
+    }
+  }
 });
 
 /***/ }),
@@ -58338,50 +58357,58 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "section",
+    { staticClass: "p-landing__section p-landing__section--bg" },
+    [
+      _c(
+        "div",
+        { staticClass: "p-landing__container p-landing__container--flex" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "u-text--center u-mt-xl" }, [
+            _vm.isNotLogin
+              ? _c(
+                  "button",
+                  { staticClass: "c-btn u-color--info u-font--bold" },
+                  [
+                    _c("a", { attrs: { href: "/login" } }, [
+                      _vm._v("\n          今すぐはじめる\n        ")
+                    ])
+                  ]
+                )
+              : _c(
+                  "button",
+                  { staticClass: "c-btn u-color--info u-font--bold" },
+                  [
+                    _c("a", { attrs: { href: "/records/new" } }, [
+                      _vm._v("\n          今すぐロードマップを作成\n        ")
+                    ])
+                  ]
+                )
+          ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      { staticClass: "p-landing__section p-landing__section--bg" },
-      [
-        _c(
-          "div",
-          { staticClass: "p-landing__container p-landing__container--flex" },
-          [
-            _c("div", { staticClass: "p-landing__section--info" }, [
-              _c("h1", { staticClass: "p-landing__section--title" }, [
-                _vm._v("\n        ロードマップを作りましょう\n      ")
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "p-landing__section--text u-mb-3l" }, [
-                _c("span", [
-                  _vm._v(
-                    "登録は無料。早速学習ロードマップをみんなで共有しましょう。"
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "u-text--center u-mt-xl" }, [
-              _c(
-                "button",
-                { staticClass: "c-btn u-color--info u-font--bold" },
-                [
-                  _c("a", { attrs: { href: "/login" } }, [
-                    _vm._v("\n          今すぐはじめる\n        ")
-                  ])
-                ]
-              )
-            ])
-          ]
-        )
-      ]
-    )
+    return _c("div", { staticClass: "p-landing__section--info" }, [
+      _c("h1", { staticClass: "p-landing__section--title" }, [
+        _vm._v("\n        ロードマップを作りましょう\n      ")
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "p-landing__section--text u-mb-3l" }, [
+        _c("span", [
+          _vm._v("登録は無料。早速学習ロードマップをみんなで共有しましょう。")
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -58470,59 +58497,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "section",
+    {
+      staticClass: "p-landing__hero p-landing__section p-landing__information"
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "p-landing__container p-landing__container--hero" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "u-text--center u-mt-50" }, [
+            _vm.isNotLogin
+              ? _c(
+                  "button",
+                  { staticClass: "c-btn u-color--info u-font--bold u-mb-xl" },
+                  [
+                    _c("a", { attrs: { href: "/login" } }, [
+                      _vm._v("\n          今すぐはじめる\n        ")
+                    ])
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      {
-        staticClass: "p-landing__hero p-landing__section p-landing__information"
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "p-landing__container p-landing__container--hero" },
-          [
-            _c(
-              "div",
-              { staticClass: "p-landing__section--info u-text--left" },
-              [
-                _c(
-                  "h1",
-                  {
-                    staticClass:
-                      "p-landing__section--title p-landing__section--title--logo"
-                  },
-                  [
-                    _vm._v("\n        Udemyの講座を組み合わせて"),
-                    _c("br"),
-                    _vm._v(
-                      "\n        あなただけの学習ロードマップを作ろう\n      "
-                    )
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "u-text--center u-mt-50" }, [
-              _c(
-                "button",
-                { staticClass: "c-btn u-color--info u-font--bold" },
-                [
-                  _c("a", { attrs: { href: "/login" } }, [
-                    _vm._v("\n          今すぐはじめる\n        ")
-                  ])
-                ]
-              )
-            ])
-          ]
-        )
-      ]
-    )
+    return _c("div", { staticClass: "p-landing__section--info u-text--left" }, [
+      _c(
+        "h1",
+        {
+          staticClass:
+            "p-landing__section--title p-landing__section--title--logo"
+        },
+        [
+          _vm._v("\n        Udemyの講座を組み合わせて"),
+          _c("br"),
+          _vm._v("\n        あなただけの学習ロードマップを作ろう\n      ")
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "c-btn u-color--info u-font--bold" }, [
+      _c("a", { attrs: { href: "/recordlist" } }, [
+        _vm._v("\n          みんなのロードマップを見る\n        ")
+      ])
+    ])
   }
 ]
 render._withStripped = true

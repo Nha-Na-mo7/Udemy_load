@@ -11,9 +11,14 @@
         </p>
       </div>
       <div class="u-text--center u-mt-xl">
-        <button class="c-btn u-color--info u-font--bold">
+        <button v-if="isNotLogin" class="c-btn u-color--info u-font--bold">
           <a class="" href="/login">
             今すぐはじめる
+          </a>
+        </button>
+        <button v-else class="c-btn u-color--info u-font--bold">
+          <a class="" href="/records/new">
+            今すぐロードマップを作成
           </a>
         </button>
       </div>
@@ -23,6 +28,10 @@
 
 <script>
 export default {
-name: "Begin"
+  computed: {
+    isNotLogin() {
+      return !this.$store.getters['auth/check'];
+    },
+  },
 }
 </script>
