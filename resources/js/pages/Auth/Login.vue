@@ -196,9 +196,8 @@ export default {
     // ======================================
     async register() {
       await this.$store.dispatch('auth/register', this.registerForm);
-      // ログイン成功時に遷移
       if (this.apiStatus) {
-        this.$router.go({
+        this.$router.push({
           path: `/recordlist`,
           force: true,
         });
@@ -210,7 +209,7 @@ export default {
     async login() {
       await this.$store.dispatch('auth/login', this.loginForm);
       if (this.apiStatus) {
-        this.$router.go({
+        this.$router.push({
           path: `/recordlist`,
           force: true,
         });
