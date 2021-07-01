@@ -2144,7 +2144,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // 処理成功時のみ遷移
                 if (_this.apiStatus) {
                   // トップに遷移させる
-                  _this.$router.push({
+                  _this.$router.go({
                     path: "/",
                     force: true
                   });

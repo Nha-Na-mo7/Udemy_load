@@ -95,7 +95,7 @@ export default {
       // 処理成功時のみ遷移
       if (this.apiStatus) {
         // トップに遷移させる
-        this.$router.push({
+        this.$router.go({
           path: `/`,
           force: true,
         });
