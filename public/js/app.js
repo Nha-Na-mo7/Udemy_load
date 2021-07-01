@@ -60166,7 +60166,7 @@ var render = function() {
           id: "course_description",
           placeholder:
             "このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？",
-          maxlength: "200"
+          maxlength: "250"
         },
         domProps: { value: this.courseDescription },
         on: {

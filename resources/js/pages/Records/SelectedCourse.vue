@@ -33,7 +33,7 @@
         @input="$emit('input', $event.target.value)"
         class="c-form__textarea p-course__selected--textarea"
         placeholder="このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？"
-        maxlength="200"
+        maxlength="250"
       ></textarea>
     </div>
 
