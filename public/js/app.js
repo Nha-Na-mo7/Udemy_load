@@ -5022,11 +5022,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     // 毎度if文を書かないようにするための関数
     checkCreateOrEdit: function checkCreateOrEdit(createReturnVal, editReturnVal) {
-      if (this.createflg) {
-        return createReturnVal;
-      } else {
-        return editReturnVal;
-      }
+      return this.createflg ? createReturnVal : editReturnVal;
     },
     // コースの削除
     deleteCourse: function deleteCourse() {
