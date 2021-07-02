@@ -870,14 +870,14 @@ input[type=checkbox] {
 }
 
 .p-course__card--description {
-  font-size: 1.4rem;
+  font-size: 16px;
   line-height: 1.5;
   white-space: pre-line;
 }
 
 @media screen and (max-width: 414px) {
   .p-course__card--description {
-    font-size: 1.2rem;
+    font-size: 14px;
     line-height: 1.2;
   }
 }
@@ -1519,7 +1519,7 @@ input[type=checkbox] {
 
 .p-mypage__record-list-item--description {
   font-size: 12px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .p-nothing {
@@ -1607,8 +1607,8 @@ input[type=checkbox] {
 }
 
 .p-record__list-item--description {
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .p-record__detail {

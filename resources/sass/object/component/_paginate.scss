@@ -20,7 +20,7 @@
     position: relative;
     @include mq() {
       width: 35px;
-      font-size: 12px;
+      font-size: $font-size_s;
       margin: 4px;
     }
     &:hover {
