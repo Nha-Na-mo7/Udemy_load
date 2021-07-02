@@ -4,7 +4,7 @@
 .p-setting {
   width: 100%;
   background: #fff;
-  box-shadow: #bfbfbf 0 5px 15px;
+  box-shadow: 0 5px 15px $shadow-dark;
   &__container {
     padding: 20px 30px;
     margin-bottom: $space_3l;

@@ -1780,7 +1780,7 @@ input[type=checkbox] {
 .p-setting {
   width: 100%;
   background: #fff;
-  box-shadow: #bfbfbf 0 5px 15px;
+  box-shadow: 0 5px 15px #cdcdcd;
 }
 
 .p-setting__container {
