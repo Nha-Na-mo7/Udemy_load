@@ -1498,6 +1498,7 @@ input[type=checkbox] {
 }
 
 .p-mypage__record-list-item--title {
+  border-bottom: #cdcdcd 1px dotted;
   font-size: 20px;
   font-weight: 600;
   margin: 5px 0;
@@ -1573,6 +1574,7 @@ input[type=checkbox] {
 }
 
 .p-record__list-item--title {
+  border-bottom: #cdcdcd 1px dotted;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 5px;
