@@ -115,35 +115,6 @@
       background: $btn-color-twitter_hover;
     }
   }
-  &__follow {
-    min-width: 100px;
-    padding: 10px 18px;
-    border-radius: 20px;
-    border: 2px solid $btn-color_twitter;
-    color: $color_twitter;
-    background: #ffffff;
-    @include mq($breakpoint: md) {
-      min-width: 60px;
-      font-size: $font-size_m;
-      padding: 10px 8px;
-    }
-    @include mq() {
-      min-width: 40px;
-      font-size: 11px;
-      padding: 10px 6px;
-    }
-    &:hover {
-      background: #257cc4;
-      color: $font-color_white;
-    }
-    &--destroy {
-      border: 2px solid $btn-color_danger;
-      color: $btn-color_danger;
-      &:hover {
-        background: $btn-color_danger-hover;
-      }
-    }
-  }
   &__link {
     border: 0;
   }

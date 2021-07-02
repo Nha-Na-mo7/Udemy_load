@@ -98,7 +98,7 @@
         display: block;
       }
       &::before {
-        background: linear-gradient(to bottom, #ffc2d5, #f59dbb);
+        background: linear-gradient(to bottom, #faebfd, #f59dbb);
         border: 3px solid #f59dbb;
 
         content: attr(detail-index);

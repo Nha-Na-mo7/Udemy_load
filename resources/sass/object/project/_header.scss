@@ -75,7 +75,7 @@
     @include mq($breakpoint: lg) {
       width: 100%;
       text-align: center;
-      font-size: 25px;
+      font-size: $font-size_xl;
       font-weight: 700;
       margin-left: unset;
       border-bottom: 1px solid #cdcdcd;
@@ -94,7 +94,7 @@
         padding: 25px;
       }
       @include mq() {
-        font-size: 20px;
+        font-size: $font-size_ll;
       }
     }
   }

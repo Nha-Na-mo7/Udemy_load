@@ -86,7 +86,7 @@
       height: 100%;
       width: 30%;
       background: #f9fffe;
-      box-shadow: 0 4px 10px #cdcdcd;
+      box-shadow: 0 4px 10px $shadow-dark;
       border-radius: 8px;
       padding: 16px;
       display: flex;
@@ -108,7 +108,7 @@
       &--info {
         margin-top: 24px;
         &--title {
-          font-size: 20px;
+          font-size: $font-size_ll;
           font-weight: bold;
           margin-top: 5px;
           margin-bottom: 12px;
@@ -160,7 +160,7 @@
     &--text {
       height: 100%;
       margin-top: 32px;
-      font-size: 20px;
+      font-size: $font-size_ll;
       color: #8a8a8a;
       line-height: 1.6;
       text-align: center;

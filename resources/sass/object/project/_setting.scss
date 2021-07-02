@@ -21,7 +21,7 @@
     &--container {
       width: 100%;
       border-radius: 4px;
-      box-shadow: #cdcdcd 0 3px 5px;
+      box-shadow: 0 2px 5px $shadow-dark;
       @include mq($breakpoint: md) {
         margin-bottom: 30px;
       }
