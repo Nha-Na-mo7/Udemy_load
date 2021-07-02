@@ -7,7 +7,7 @@
     margin-bottom: $space_s;
   }
   &__input {
-    border: 1px solid #cdcdcd;
+    border: 1px solid $border-dark;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0);
     border-radius: 4px;
     width: 100%;
@@ -36,12 +36,12 @@
     resize: none;
     padding: 8px 12px;
     font-size: $font-size_default;
-    border: 1px solid #cdcdcd;
+    border: 1px solid $border-dark;
     border-radius: 4px;
     line-height: 1.5;
     &:focus {
-      border: #f66d9b 1px solid;
-      box-shadow: #f66d9b 0 0 5px;
+      border: $input-color 1px solid;
+      box-shadow: $input-color 0 0 5px;
       background: #fffbf5;
     }
     &::placeholder {

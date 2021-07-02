@@ -36,13 +36,14 @@
   // モーダル用
   &__modal {
     background: $btn-color_auth;
-    border: #8a8a8a;
+    font-weight: bold;
     width: 40%;
     max-width: 160px;
     height: auto;
     padding: 15px 5px;
     &:hover {
-      background: #888888;
+      background: #649ec4;
+      color: #f1f1f1;
     }
     &--add {
       width: 100%;
@@ -53,7 +54,7 @@
     // コースを追加するボタン
     &--add {
       width: 100%;
-      border: 4px dashed #888;
+      border: 4px dashed $border-dark;
       background: #fff;
       padding: 32px 0;
       font-size: 1.6rem;
@@ -63,7 +64,7 @@
         font-size: 1.2rem;
       }
       &:hover {
-        background: #cdcdcd;
+        background: $color_Primary;
         font-weight: bold;
       }
     }
@@ -78,7 +79,7 @@
       font-size: $font-size_xl;
       font-weight: 700;
       border-radius: 50%;
-      border: 3px solid #cdcdcd;
+      border: 3px solid $border-dark;
       background: #cdcdcd;
       @include mq($breakpoint: md) {
         top: -20px;
