@@ -803,7 +803,7 @@ input[type=checkbox] {
 }
 
 .p-course__card--line::before {
-  background: #ffc2d5;
+  background: linear-gradient(to bottom, #ffc2d5, #f59dbb);
   border: 3px solid #f59dbb;
   content: attr(detail-index);
   width: 50px;

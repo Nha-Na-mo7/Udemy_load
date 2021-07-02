@@ -96,7 +96,7 @@
       max-width: 90%;
     }
     &--date {
-      font-size: 12px;
+      font-size: $font-size_s;
       margin-bottom: $space_s;
     }
     &--title {
@@ -181,7 +181,7 @@
       }
     }
     &--author {
-      font-size: 12px;
+      font-size: $font-size_s;
       color: #8a8a8a;
     }
     &--content {

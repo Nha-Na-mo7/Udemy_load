@@ -19,7 +19,7 @@
     font-weight: 500;
     margin-bottom: $space_l;
     &::placeholder {
-      font-size: 12px;
+      font-size: $font-size_s;
       font-weight: unset;
     }
   }
