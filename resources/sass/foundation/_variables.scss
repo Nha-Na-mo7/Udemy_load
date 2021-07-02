@@ -16,11 +16,13 @@ $color_Primary: #bce0f1;
 // 背景
 $background-color_base: #f6f6f6;
 $background-color_content-title: #52a5e3;
-$background-color_content-inner: #f8fcf8;
+$background-color_content-inner: #f2f5fa;
 $background-color_header: #fff;
 $background-color_footer: #969696;
 $background-color_success: #acdb8b;
 $background-color_error: #e08a8e;
+$background-color_rosa: #faebfd;
+
 
 // ボタン
 $btn-color_auth: #a7d7f8;
@@ -32,8 +34,12 @@ $btn-color_scroll: #ddb3d1;
 
 // フォームのフォーカス時
 $input-color: #f66d9b;
-// new!!アイコン
-$icon-color-new: #f6e47d;
+
+// other
+$shadow-dark: #cdcdcd;
+$border-dark: #cdcdcd;
+
+$border-rosa: #f59dbb;
 
 // -----------------
 // font-size
@@ -43,6 +49,7 @@ $font-size_s: 12px;
 $font-size_m: 14px;
 $font-size_default: 16px;
 $font-size_l: 18px;
+$font-size_ll: 20px;
 $font-size_xl: 24px;
 $font-size_xxl: 30px;
 $font-size_3l: 38px;

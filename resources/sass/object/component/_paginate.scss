@@ -14,13 +14,13 @@
   }
   &__item {
     background: #ffffff;
-    border: 1px solid #cdcdcd;
+    border: 1px solid $border-dark;
     border-radius: 4px;
     margin: 5px;
     position: relative;
     @include mq() {
       width: 35px;
-      font-size: 12px;
+      font-size: $font-size_s;
       margin: 4px;
     }
     &:hover {

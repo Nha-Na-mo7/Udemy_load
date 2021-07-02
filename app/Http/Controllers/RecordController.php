@@ -35,7 +35,6 @@ class RecordController extends Controller
   
     // ==============
     // ロードマップの投稿
-    // TODO 未実装項目: IDが被った時に再抽選する機能、
     // ============
     public function create(RecordRequest $request)
     {
@@ -84,7 +83,6 @@ class RecordController extends Controller
         Log::debug(' ロードマップ更新 ID:' . $id);
         Log::debug('==========================');
         
-        // TODO 認証中ユーザーか二重チェックする？
         // IDに合致するロードマップを取得
         $record = Record::where('id', $id)
             ->with(['courses'])
@@ -106,31 +104,7 @@ class RecordController extends Controller
         // 更新処理
         for ($i = 0, $iMax = count($request->selectedCourses); $i < $iMax; $i++) {
             $courseData = $request->get('selectedCourses')[$i];
-            // 指定のロードマップIDのn番目かのロードマップ情報があるかを確認し、新規作成するか更新する
-            /* updateOrCreateの動作に不具合がある
-             * Course::updateOrCreate([
-                [
-                    "record_id" => $id,
-                    "record_index" => $i,
-                ],
-                とした時、SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Poti3aCNw6s6xKQt' in 'where clause' (SQL: select * from `courses` where (`Poti3aCNw6s6xKQt` = 0 /course/rails-kj/ ...
-                のようなずれ込んだSQL分が発行されてしまう
-             */
-            // Course::updateOrCreate([
-            //     [
-            //         "record_id" => $id,
-            //         "record_index" => $i,
-            //     ],
-            //     [
-            //         'course_id' => $courseData['id'],
-            //         'title' => $courseData['title'],
-            //         'instructor' => $courseData['instructor'],
-            //         'url' => $courseData['url'],
-            //         'image_url' => $courseData['image_url'],
-            //         'description' => $courseData['description']
-            //     ]
-            //   ]);
-            
+
             // リレーションでindexが存在するかにより更新かcourseロードマップの新規作成かを分ける
             if(!isset($record->courses[$i])) {
               Log::debug('更新処理にあたり追加された項目です');
@@ -147,7 +121,6 @@ class RecordController extends Controller
                 ]);
             }else{
                 // indexの更新処理のみロードマップを取得しupdateする(新規作成時のSQL発行を抑えられる)
-                // TODO N+1は大丈夫か？
                 Log::debug('indexの更新をします');
                 $course = Course::where('record_id', $id)->where('record_index', $i)->first();
                 $course->update([
@@ -183,7 +156,7 @@ class RecordController extends Controller
             ->first();
   
         // ロードマップを返すが、存在しない場合は404を返す
-        if ($record ===  null) {
+        if ($record === null) {
           Log::debug('存在しないか、削除されています');
           return abort(404);
         }
@@ -210,7 +183,6 @@ class RecordController extends Controller
                 ->where('delete_flg', 0)
                 ->orderBy(Course::CREATED_AT, 'desc')
                 ->get();
-      
             return $records;
         }
         // ユーザーIDがある場合、そのユーザーが投稿したロードマップに絞って取得する

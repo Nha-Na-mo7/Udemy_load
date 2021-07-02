@@ -2,7 +2,7 @@
 //  c-input
 //  =============
 .c-input {
-  font-size: 20px;
+  font-size: $font-size_ll;
   height: 100%;
   padding: 5px 10px;
   width: 100%;
@@ -29,7 +29,7 @@
       width: 60px;
       z-index: 2;
 
-      font-size: 25px;
+      font-size: $font-size_xl;
 
       display: flex;
       align-items: center;

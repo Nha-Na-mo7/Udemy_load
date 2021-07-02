@@ -10,13 +10,13 @@
     background: linear-gradient(to bottom, #fff, #e4f8da);
   }
   &:nth-of-type(3n-2) {
-    background: linear-gradient(to bottom, #fff, #faebfd);
+    background: linear-gradient(to bottom, #fff, $background-color_rosa);
   }
   // 選択されたコース
   &__selected {
     position: relative;
     padding: 15px;
-    border: 1px solid #cdcdcd;
+    border: 1px solid $border-dark;
     border-radius: 4px;
     margin-bottom: 40px;
     box-shadow: #cdcdcd 3px 3px 5px;
@@ -42,25 +42,25 @@
       flex-flow: column;
     }
     animation: fadeIn 1s;
-    box-shadow: #cdcdcd 0 3px 8px;
+    box-shadow: $shadow-dark 0 3px 8px;
     margin-bottom: 30px;
     padding: 15px;
-    border: 1px solid #c8c8c8;
+    border: 1px solid $border-dark;
     border-radius: 4px;
     &:nth-of-type(5n) {
-      background: linear-gradient(to bottom, #fcfcfc, #e4f8da);
+      background: linear-gradient(to bottom, #fcfcfc, #f3f8f1);
     }
     &:nth-of-type(5n-1) {
-      background: linear-gradient(to bottom, #fcfcfc, #e0f9fc);
+      background: linear-gradient(to bottom, #fcfcfc, #e7f4f5);
     }
     &:nth-of-type(5n-2) {
-      background: linear-gradient(to bottom, #fcfcfc, #fffbee);
+      background: linear-gradient(to bottom, #fcfcfc, #f6f5ef);
     }
     &:nth-of-type(5n-3) {
       background: linear-gradient(to bottom, #fcfcfc, #f0f0fc);
     }
     &:nth-of-type(5n-4) {
-      background: linear-gradient(to bottom, #fcfcfc, #faebfd);
+      background: linear-gradient(to bottom, #fcfcfc, $background-color_rosa);
     }
     &--left {
       margin-right: 15px;
@@ -98,8 +98,8 @@
         display: block;
       }
       &::before {
-        background: #ffc2d5;
-        border: 3px solid #f59dbb;
+        background: linear-gradient(to bottom, $background-color_rosa, $border-rosa);
+        border: 3px solid $border-rosa;
 
         content: attr(detail-index);
 
@@ -161,11 +161,11 @@
       margin-bottom: 5px;
     }
     &--description {
-      font-size: 1.4rem;
+      font-size: $font-size_default;
       line-height: 1.5;
       white-space: pre-line;
       @include mq() {
-        font-size: 1.2rem;
+        font-size: $font-size_m;
         line-height: 1.2;
       }
     }

@@ -58,12 +58,12 @@
     &--subtitle {
       margin-top: 16px;
       margin-bottom: 48px;
-      font-size: 24px;
+      font-size: $font-size_xl;
       font-weight: bold;
       color: $font-color_white;
       text-shadow: 0 5px 5px #000000;
       @include mq() {
-        font-size: 18px;
+        font-size: $font-size_l;
       }
     }
   }
@@ -86,7 +86,7 @@
       height: 100%;
       width: 30%;
       background: #f9fffe;
-      box-shadow: 0 4px 10px #cdcdcd;
+      box-shadow: 0 4px 10px $shadow-dark;
       border-radius: 8px;
       padding: 16px;
       display: flex;
@@ -108,14 +108,14 @@
       &--info {
         margin-top: 24px;
         &--title {
-          font-size: 20px;
+          font-size: $font-size_ll;
           font-weight: bold;
           margin-top: 5px;
           margin-bottom: 12px;
         }
         &--text {
           text-align: left;
-          font-size: 16px;
+          font-size: $font-size_default;
           line-height: 1.5;
           color: #777;
           word-break: break-all;
@@ -141,7 +141,7 @@
     &--title {
       height: 100%;
       margin-top: 28px;
-      font-size: 30px;
+      font-size: $font-size_xxl;
       font-weight: 700;
       line-height: 180%;
       text-align: center;
@@ -160,7 +160,7 @@
     &--text {
       height: 100%;
       margin-top: 32px;
-      font-size: 20px;
+      font-size: $font-size_ll;
       color: #8a8a8a;
       line-height: 1.6;
       text-align: center;

@@ -2,7 +2,7 @@
 //  p-record
 //  =============
 .p-record {
-  background: #e6f7ff;
+  background: $background-color_content-inner;
   // 一覧
   &__list {
     padding-top: 60px;
@@ -21,12 +21,12 @@
       margin: 0 auto;
       padding: 8px 28px;
       border-radius: 4px;
-      box-shadow: #cdcdcd 0 0 10px;
+      box-shadow: 0 0 8px $shadow-dark;
     }
     // 「ロードマップ」の文言
     &--title {
       text-align: center;
-      font-size: 20px;
+      font-size: $font-size_ll;
       padding: 12px 0;
       border-bottom: #cdcdcd 1px solid;
     }
@@ -41,7 +41,8 @@
         margin-bottom: 5px;
       }
       &--title {
-        font-size: 20px;
+        border-bottom: #cdcdcd 1px dotted;
+        font-size: $font-size_ll;
         font-weight: 600;
         margin-bottom: 5px;
         line-height: 1.5;
@@ -52,7 +53,7 @@
       }
       &--username,
       &--date {
-        font-size: 12px;
+        font-size: $font-size_s;
         color: #8a8a8a;
       }
       &--username {
@@ -62,8 +63,8 @@
         }
       }
       &--description {
-        font-size: 14px;
-        line-height: 1.8;
+        font-size: $font-size_s;
+        line-height: 1.5;
       }
     }
   }
@@ -96,7 +97,7 @@
       max-width: 90%;
     }
     &--date {
-      font-size: 12px;
+      font-size: $font-size_s;
       margin-bottom: $space_s;
     }
     &--title {
@@ -110,14 +111,14 @@
       }
     }
     &--description {
-      font-size: 20px;
+      font-size: $font-size_ll;
       letter-spacing: 2.5px;
       min-height: 240px;
       line-height: 1.5;
       // 改行に対応
       white-space: pre-line;
       @include mq() {
-        font-size: 16px;
+        font-size: $font-size_default;
         line-height: 1.3;
       }
     }
@@ -166,7 +167,7 @@
     margin: 40px auto;
     background: #fff;
     &--head {
-      font-size: 24px;
+      font-size: $font-size_xl;
       font-weight: 700;
       padding: 15px 15px;
     }
@@ -181,17 +182,17 @@
       }
     }
     &--author {
-      font-size: 12px;
+      font-size: $font-size_s;
       color: #8a8a8a;
     }
     &--content {
-      font-size: 16px;
+      font-size: $font-size_default;
       line-height: 1.5;
       padding: 10px;
       white-space: pre-line;
       font-weight: unset;
       @include mq() {
-        font-size: 14px;
+        font-size: $font-size_m;
         padding: 10px 0;
       }
     }

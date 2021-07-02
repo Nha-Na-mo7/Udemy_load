@@ -33,7 +33,7 @@
         @input="$emit('input', $event.target.value)"
         class="c-form__textarea p-course__selected--textarea"
         placeholder="このコースではどんなことが学べますか？また、後に学ぶコースのためにどういった点が必要になりますか？"
-        maxlength="200"
+        maxlength="250"
       ></textarea>
     </div>
 
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { UDEMY_BASE_URL } from '../../util';
+import {UDEMY_BASE_URL} from '../../util';
 import Loading from '../../components/Loading';
 
 export default {
@@ -114,11 +114,7 @@ export default {
   methods: {
     // 毎度if文を書かないようにするための関数
     checkCreateOrEdit(createReturnVal, editReturnVal) {
-      if (this.createflg) {
-        return createReturnVal;
-      } else {
-        return editReturnVal;
-      }
+      return this.createflg ? createReturnVal : editReturnVal;
     },
     // コースの削除
     deleteCourse() {

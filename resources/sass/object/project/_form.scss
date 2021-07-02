@@ -19,13 +19,13 @@
     font-weight: 500;
     margin-bottom: $space_l;
     &::placeholder {
-      font-size: 12px;
+      font-size: $font-size_s;
       font-weight: unset;
     }
   }
   &__description {
     margin-bottom: $space_xl;
-    font-size: 16px;
+    font-size: $font-size_default;
     line-height: 1.5;
   }
   &__send {
