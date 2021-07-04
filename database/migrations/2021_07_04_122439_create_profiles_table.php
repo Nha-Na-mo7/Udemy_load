@@ -15,7 +15,8 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
-            $table->text('profile_text')->nullable()->comment('プロフィールテキスト');
+            $table->string('organization')->nullable()->comment('所属企業・組織など');
+            $table->text('profile_text')->nullable()->comment('自己紹介');
             $table->timestamps();
         });
     }
