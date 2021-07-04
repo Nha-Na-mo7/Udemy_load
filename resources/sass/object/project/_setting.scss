@@ -71,6 +71,9 @@
   &__flex {
     display: flex;
     justify-content: space-evenly;
+    @include mq($breakpoint: lg) {
+      flex-wrap: wrap;
+    }
   }
   &__updatename {
   }

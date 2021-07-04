@@ -1872,6 +1872,12 @@ input[type=checkbox] {
   justify-content: space-evenly;
 }
 
+@media screen and (max-width: 1024px) {
+  .p-setting__flex {
+    flex-wrap: wrap;
+  }
+}
+
 .c-border {
   text-align: center;
 }
