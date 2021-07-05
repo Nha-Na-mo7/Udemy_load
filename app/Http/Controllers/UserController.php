@@ -176,6 +176,21 @@ class UserController extends Controller
         return response()->json([], 500);
       }
     }
+    
+    // ======================
+    // プロフィール更新
+    // ======================
+    public function update_profile(Request $request) {
+      Log::debug('【UserController】update_profile プロフィールの更新');
+      try {
+        $user = Auth::user();
+        
+        
+      } catch (\Exception $e) {
+        session()->flash('session_error', 'プロフィール更新中にエラーが発生しました。時間を置いてやり直してください。');
+        return response()->json([], 500);
+      }
+    }
     // ======================
     // アカウント削除
     // ======================

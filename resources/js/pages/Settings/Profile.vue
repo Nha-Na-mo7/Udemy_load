@@ -48,7 +48,7 @@
           </div>
 
           <div class="u-text--center u-mt-xl">
-            <button class="c-btn" @click="update">更新する</button>
+            <button class="c-btn" @click="updateProfile">更新する</button>
           </div>
 
         </section>
@@ -92,7 +92,7 @@ export default {
 
     },
 
-    update() {
+    updateProfile() {
       alert('ここで更新処理をします')
     }
   },

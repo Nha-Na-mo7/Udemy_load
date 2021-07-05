@@ -6070,7 +6070,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    update: function update() {
+    updateProfile: function updateProfile() {
       alert('ここで更新処理をします');
     }
   },
@@ -61040,7 +61040,7 @@ var render = function() {
                 _c("div", { staticClass: "u-text--center u-mt-xl" }, [
                   _c(
                     "button",
-                    { staticClass: "c-btn", on: { click: _vm.update } },
+                    { staticClass: "c-btn", on: { click: _vm.updateProfile } },
                     [_vm._v("更新する")]
                   )
                 ])
