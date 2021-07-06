@@ -120,7 +120,7 @@ export default {
     };
   },
   methods: {
-    // ログイン中のユーザーデータを取得する
+    // ストアからユーザーデータを取得
     async getUser() {
       this.formName = this.$store.getters['auth/username']
       this.formEmail = this.$store.getters['auth/email']
@@ -156,6 +156,8 @@ export default {
       } else {
         // 更新成功したらエラーメッセージは空にする
         this.errorsName = [];
+        // storeを更新
+        this.$store.dispatch('auth/currentUser');
         // ページをリロードする
         this.$router.go({
           path: this.$router.currentRoute.path,
@@ -194,6 +196,8 @@ export default {
       } else {
         // バリデーションエラーリストを空にする
         this.errorsEmail = [];
+        // storeを更新
+        this.$store.dispatch('auth/currentUser');
         // ページをリロードする
         this.$router.go({
           path: this.$router.currentRoute.path,
