@@ -30,4 +30,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.router-link-active {
+  background: #d8d8d8;
+}
+</style>
