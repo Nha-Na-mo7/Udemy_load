@@ -140,27 +140,27 @@ export default {
         .catch((error) => error.response || error);
 
       // エラーチェック
-      if (response.status === UNPROCESSABLE_ENTITY) {
+      switch (response.status) {
         // バリデーションエラー
-        this.errorsName = response.data.errors.name;
-        this.isUpdating = false;
-      // テストユーザーなどで403が帰ってきた時
-      } else if (response.status === FORBIDDEN) {
-        this.$router.go({
-          path: this.$router.currentRoute.path,
-          force: true,
-        });
-      // 500エラー時
-      } else if (response.status === INTERNAL_SERVER_ERROR) {
-        return false;
-      } else {
-        // 更新成功したらエラーメッセージは空にする
-        this.errorsName = [];
-        // ページをリロードする
-        this.$router.go({
-          path: this.$router.currentRoute.path,
-          force: true,
-        });
+        case UNPROCESSABLE_ENTITY:
+          this.errorsName = response.data.errors.name;
+          this.isUpdating = false;
+          break;
+        case FORBIDDEN:
+        case INTERNAL_SERVER_ERROR:
+          this.$router.go({
+            path: this.$router.currentRoute.path,
+            force: true,
+          });
+          return false;
+        default:
+          // 更新成功したらエラーメッセージは空にする
+          this.errorsName = [];
+          // ページをリロードする
+          this.$router.go({
+            path: this.$router.currentRoute.path,
+            force: true,
+          });
       }
       this.isUpdating = false;
     },
@@ -178,27 +178,27 @@ export default {
         .catch((error) => error.response || error);
 
       // エラーチェック
-      if (response.status === UNPROCESSABLE_ENTITY) {
-        // バリデーションエラー時
-        this.errorsEmail = response.data.errors.email;
-        this.isUpdating = false;
-        // テストユーザーなどで403が帰ってきた時
-      } else if (response.status === FORBIDDEN) {
-        this.$router.go({
-          path: this.$router.currentRoute.path,
-          force: true,
-        });
-        // 500エラー時
-      } else if (response.status === INTERNAL_SERVER_ERROR) {
-        return false;
-      } else {
-        // バリデーションエラーリストを空にする
-        this.errorsEmail = [];
-        // ページをリロードする
-        this.$router.go({
-          path: this.$router.currentRoute.path,
-          force: true,
-        });
+      switch (response.status) {
+          // バリデーションエラー時
+        case UNPROCESSABLE_ENTITY:
+          this.errorsEmail = response.data.errors.email;
+          this.isUpdating = false;
+          break;
+        case FORBIDDEN:
+        case INTERNAL_SERVER_ERROR:
+          this.$router.go({
+            path: this.$router.currentRoute.path,
+            force: true,
+          });
+          return false;
+        default:
+          // バリデーションエラーリストを空にする
+          this.errorsEmail = [];
+          // ページをリロードする
+          this.$router.go({
+            path: this.$router.currentRoute.path,
+            force: true,
+          });
       }
       this.isUpdating = false;
     },
