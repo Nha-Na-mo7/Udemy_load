@@ -26,7 +26,7 @@
                   class="c-form__input"
                   type="text"
                   maxlength="32"
-                  v-model="formOrganization"
+                  v-model="formProfiles.organization"
               />
 
               <label class="c-form__label" for="profileText">自己紹介(200文字まで)</label>
@@ -41,7 +41,7 @@
                   type="text"
                   maxlength="200"
                   rows="10"
-                  v-model="formProfileText"
+                  v-model="formProfiles.profileText"
               />
 
             </div>
@@ -72,30 +72,67 @@ import SettingItemList from './SettingItemList.vue';
 export default {
   data() {
     return {
-      isLoading: false,
+      isLoading: true,
       isUpdating: false,
-      // 所属企業・組織
-      formOrganization: '',
-      // プロフィール本文
-      formProfileText: '',
+      formProfiles: {
+        // 所属企業・組織
+        organization: '',
+        // プロフィール本文
+        profileText: '',
+      },
       systemError: [],
       errorsOrganization: [],
       errorsProfileText: [],
     };
   },
   methods: {
-    // ログイン中のユーザーのプロフィールを取得
+    // ストアからプロフィールを取得
     async getProf() {
-      // const response = await axios
-      //     .get(`/user/info`)
-      //     .catch((error) => error.response || error);
-      //
-      // this.$store.dispatch('auth/currentUser')
-      // console.log(333)
+      this.formProfiles.organization = this.$store.getters['auth/organization'] ?? ''
+      this.formProfiles.profileText = this.$store.getters['auth/profile_text'] ?? ''
+      this.isLoading = false;
     },
+    // プロフィールの更新
+    async updateProfile() {
+      if (this.isUpdating) {
+        return false;
+      }
+      this.isUpdating = true;
 
-    updateProfile() {
-      alert('ここで更新処理をします')
+      // 更新処理
+      const response = await axios
+          .post(`/user/update/profiles`, { profile: this.formProfiles })
+          .catch((error) => error.response || error);
+
+      // エラーチェック
+      switch (response.status) {
+        // バリデーションエラー
+        case UNPROCESSABLE_ENTITY:
+          this.errorsProfileText = response.data.errors.profile;
+          this.errorsOrganization = response.data.errors.organization;
+          this.isUpdating = false;
+          break;
+        // テストユーザーなどの時
+        case FORBIDDEN:
+          this.$router.go({
+            path: this.$router.currentRoute.path,
+            force: true,
+          });
+          break;
+        // 500エラー
+        case INTERNAL_SERVER_ERROR:
+          return false
+        // エラーがない場合の処理
+        default:
+          // バリデーションエラーリストを空にする
+          this.errorsEmail = [];
+          // ページをリロードする
+          this.$router.go({
+            path: this.$router.currentRoute.path,
+            force: true,
+          });
+      }
+      this.isUpdating = false;
     }
   },
   components: {
@@ -105,7 +142,6 @@ export default {
   watch: {
     $route: {
       async handler() {
-        // ページ読み込み直後にプロフィール取得
         await this.getProf();
       },
       immediate: true,

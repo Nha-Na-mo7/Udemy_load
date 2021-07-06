@@ -83,6 +83,8 @@ Route::group(['middleware' => 'auth'], function() {
   Route::post('/user/update/name', 'UserController@update_name');
   // メールアドレスの更新処理
   Route::post('/user/update/email', 'UserController@update_email');
+  // プロフィールの更新処理
+  Route::post('/user/update/profiles', 'UserController@update_profiles');
   // TODO メールアドレスのリセットを確定
   Route::get('/user/update/email/{token}', 'UserController@reset_email');
   // パスワードの新規登録

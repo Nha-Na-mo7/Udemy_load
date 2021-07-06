@@ -6014,31 +6014,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      isLoading: false,
+      isLoading: true,
       isUpdating: false,
-      // 所属企業・組織
-      formOrganization: '',
-      // プロフィール本文
-      formProfileText: '',
+      formProfiles: {
+        // 所属企業・組織
+        organization: '',
+        // プロフィール本文
+        profileText: ''
+      },
       systemError: [],
       errorsOrganization: [],
       errorsProfileText: []
     };
   },
   methods: {
-    // ログイン中のユーザーのプロフィールを取得
-    getProf: function getProf() {// const response = await axios
-      //     .get(`/user/info`)
-      //     .catch((error) => error.response || error);
-      //
-      // this.$store.dispatch('auth/currentUser')
-      // console.log(333)
+    // ストアからプロフィールを取得
+    getProf: function getProf() {
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _this$$store$getters$, _this$$store$getters$2;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _this.formProfiles.organization = (_this$$store$getters$ = _this.$store.getters['auth/organization']) !== null && _this$$store$getters$ !== void 0 ? _this$$store$getters$ : '';
+                _this.formProfiles.profileText = (_this$$store$getters$2 = _this.$store.getters['auth/profile_text']) !== null && _this$$store$getters$2 !== void 0 ? _this$$store$getters$2 : '';
+                _this.isLoading = false;
+
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -6046,8 +6051,75 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    // プロフィールの更新
     updateProfile: function updateProfile() {
-      alert('ここで更新処理をします');
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!_this2.isUpdating) {
+                  _context2.next = 2;
+                  break;
+                }
+
+                return _context2.abrupt("return", false);
+
+              case 2:
+                _this2.isUpdating = true; // 更新処理
+
+                _context2.next = 5;
+                return axios.post("/user/update/profiles", {
+                  profile: _this2.formProfiles
+                })["catch"](function (error) {
+                  return error.response || error;
+                });
+
+              case 5:
+                response = _context2.sent;
+                _context2.t0 = response.status;
+                _context2.next = _context2.t0 === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"] ? 9 : _context2.t0 === _util_js__WEBPACK_IMPORTED_MODULE_2__["FORBIDDEN"] ? 13 : _context2.t0 === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"] ? 15 : 16;
+                break;
+
+              case 9:
+                _this2.errorsProfileText = response.data.errors.profile;
+                _this2.errorsOrganization = response.data.errors.organization;
+                _this2.isUpdating = false;
+                return _context2.abrupt("break", 18);
+
+              case 13:
+                _this2.$router.go({
+                  path: _this2.$router.currentRoute.path,
+                  force: true
+                });
+
+                return _context2.abrupt("break", 18);
+
+              case 15:
+                return _context2.abrupt("return", false);
+
+              case 16:
+                // バリデーションエラーリストを空にする
+                _this2.errorsEmail = []; // ページをリロードする
+
+                _this2.$router.go({
+                  path: _this2.$router.currentRoute.path,
+                  force: true
+                });
+
+              case 18:
+                _this2.isUpdating = false;
+
+              case 19:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
   components: {
@@ -6057,22 +6129,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       handler: function handler() {
-        var _this = this;
+        var _this3 = this;
 
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
             while (1) {
-              switch (_context2.prev = _context2.next) {
+              switch (_context3.prev = _context3.next) {
                 case 0:
-                  _context2.next = 2;
-                  return _this.getProf();
+                  _context3.next = 2;
+                  return _this3.getProf();
 
                 case 2:
                 case "end":
-                  return _context2.stop();
+                  return _context3.stop();
               }
             }
-          }, _callee2);
+          }, _callee3);
         }))();
       },
       immediate: true
@@ -60940,8 +61012,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formOrganization,
-                          expression: "formOrganization"
+                          value: _vm.formProfiles.organization,
+                          expression: "formProfiles.organization"
                         }
                       ],
                       staticClass: "c-form__input",
@@ -60950,13 +61022,17 @@ var render = function() {
                         type: "text",
                         maxlength: "32"
                       },
-                      domProps: { value: _vm.formOrganization },
+                      domProps: { value: _vm.formProfiles.organization },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.formOrganization = $event.target.value
+                          _vm.$set(
+                            _vm.formProfiles,
+                            "organization",
+                            $event.target.value
+                          )
                         }
                       }
                     }),
@@ -60989,8 +61065,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formProfileText,
-                          expression: "formProfileText"
+                          value: _vm.formProfiles.profileText,
+                          expression: "formProfiles.profileText"
                         }
                       ],
                       staticClass: "c-form__input",
@@ -61000,13 +61076,17 @@ var render = function() {
                         maxlength: "200",
                         rows: "10"
                       },
-                      domProps: { value: _vm.formProfileText },
+                      domProps: { value: _vm.formProfiles.profileText },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.formProfileText = $event.target.value
+                          _vm.$set(
+                            _vm.formProfiles,
+                            "profileText",
+                            $event.target.value
+                          )
                         }
                       }
                     })

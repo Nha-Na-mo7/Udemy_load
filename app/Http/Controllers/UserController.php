@@ -82,7 +82,6 @@ class UserController extends Controller
     // =========================
     // メールアドレスの更新
     // =========================
-    // TODO 暫定で入力後に即更新とするが、変更後に確認メールを送信する処理を後ほど追加する。
     public function update_email(UpdateMailRequest $request) {
       Log::debug('UserController.update_mail メールアドレスの更新');
       try {
@@ -180,12 +179,24 @@ class UserController extends Controller
     // ======================
     // プロフィール更新
     // ======================
-    public function update_profile(Request $request) {
+    public function update_profiles(Request $request) {
       Log::debug('【UserController】update_profile プロフィールの更新');
       try {
+        Log::debug($request);
+        // ログインユーザーの情報を取得
         $user = Auth::user();
+        // テストユーザーの場合は更新処理は行わない
+        if ($user->test_user_flg) {
+          session()->flash('session_error', 'テストユーザーはパスワードを変更できません。');
+          return response([], 403);
+        }
+  
+        Log::debug('更新処理を開始します。');
+        $user->organization = $request->organization;
+        $user->profile_text = $request->profile_text;
+        $user->save();
         
-        
+        return response()->json([], 200);
       } catch (\Exception $e) {
         session()->flash('session_error', 'プロフィール更新中にエラーが発生しました。時間を置いてやり直してください。');
         return response()->json([], 500);
