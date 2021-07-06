@@ -5236,7 +5236,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this2.errorsName = response.data.errors.name;
                 _this2.isUpdating = false; // テストユーザーなどで403が帰ってきた時
 
-                _context2.next = 22;
+                _context2.next = 21;
                 break;
 
               case 11:
@@ -5251,7 +5251,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }); // 500エラー時
 
 
-                _context2.next = 22;
+                _context2.next = 21;
                 break;
 
               case 15:
@@ -5264,20 +5264,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 19:
                 // 更新成功したらエラーメッセージは空にする
-                _this2.errorsName = []; // storeを更新
-
-                _this2.$store.dispatch('auth/currentUser'); // ページをリロードする
-
+                _this2.errorsName = []; // ページをリロードする
 
                 _this2.$router.go({
                   path: _this2.$router.currentRoute.path,
                   force: true
                 });
 
-              case 22:
+              case 21:
                 _this2.isUpdating = false;
 
-              case 23:
+              case 22:
               case "end":
                 return _context2.stop();
             }
@@ -5324,7 +5321,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this3.errorsEmail = response.data.errors.email;
                 _this3.isUpdating = false; // テストユーザーなどで403が帰ってきた時
 
-                _context3.next = 22;
+                _context3.next = 21;
                 break;
 
               case 11:
@@ -5339,7 +5336,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }); // 500エラー時
 
 
-                _context3.next = 22;
+                _context3.next = 21;
                 break;
 
               case 15:
@@ -5352,20 +5349,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 19:
                 // バリデーションエラーリストを空にする
-                _this3.errorsEmail = []; // storeを更新
-
-                _this3.$store.dispatch('auth/currentUser'); // ページをリロードする
-
+                _this3.errorsEmail = []; // ページをリロードする
 
                 _this3.$router.go({
                   path: _this3.$router.currentRoute.path,
                   force: true
                 });
 
-              case 22:
+              case 21:
                 _this3.isUpdating = false;
 
-              case 23:
+              case 22:
               case "end":
                 return _context3.stop();
             }

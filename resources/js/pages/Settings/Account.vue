@@ -156,8 +156,6 @@ export default {
       } else {
         // 更新成功したらエラーメッセージは空にする
         this.errorsName = [];
-        // storeを更新
-        this.$store.dispatch('auth/currentUser');
         // ページをリロードする
         this.$router.go({
           path: this.$router.currentRoute.path,
@@ -196,8 +194,6 @@ export default {
       } else {
         // バリデーションエラーリストを空にする
         this.errorsEmail = [];
-        // storeを更新
-        this.$store.dispatch('auth/currentUser');
         // ページをリロードする
         this.$router.go({
           path: this.$router.currentRoute.path,
