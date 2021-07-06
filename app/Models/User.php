@@ -21,7 +21,7 @@ class User extends Authenticatable
   
     // Jsonで表示させる項目
     protected $visible = [
-        'id', 'name', 'email', 'records', 'test_user_flg', 'profiles',
+        'id', 'name', 'email', 'records', 'test_user_flg',
     ];
     
     /**
@@ -50,13 +50,5 @@ class User extends Authenticatable
     {
       return $this->hasMany('App\Models\Record');
     }
-    
-    /**
-     * リレーション - profilesテーブル
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function profiles()
-    {
-      return $this->hasOne('App\Models\Profile');
-    }
+
 }
