@@ -12,9 +12,11 @@
   padding: 15px 20px;
   transition: background-color 0.5s;
   background: $color_Primary;
+  color: #fff;
+  font-weight: bold;
   &:hover {
     transition: background-color 0.5s;
-    background: #7eb1d6;
+    background: $color-PrimaryDark;
   }
   &:disabled {
     cursor: not-allowed;

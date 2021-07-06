@@ -1539,7 +1539,7 @@ input[type=checkbox] {
 
 .p-record__list--inner {
   background: #f2f5fa;
-  width: 60%;
+  width: 66%;
   margin: 0 auto;
   padding: 8px 28px;
   border-radius: 4px;
@@ -1923,12 +1923,14 @@ input[type=checkbox] {
   font-family: inherit;
   padding: 15px 20px;
   transition: background-color 0.5s;
-  background: #bce0f1;
+  background: #78b3cb;
+  color: #fff;
+  font-weight: bold;
 }
 
 .c-btn:hover {
   transition: background-color 0.5s;
-  background: #7eb1d6;
+  background: #3d8eb1;
 }
 
 .c-btn:disabled {
@@ -1988,7 +1990,7 @@ input[type=checkbox] {
 }
 
 .c-btn__course--add:hover {
-  background: #bce0f1;
+  background: #78b3cb;
   font-weight: bold;
 }
 

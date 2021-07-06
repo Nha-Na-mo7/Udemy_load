@@ -14,7 +14,7 @@
     // リストの大枠
     &--inner {
       background: $background-color_content-inner;
-      width: 60%;
+      width: 66%;
       @include mq($breakpoint: md) {
         width: 90%;
       }
