@@ -23,8 +23,11 @@ const state = () => ({
 const getters = {
   // ログインチェック
   check: (state) => !!state.user,
-  // ログインユーザーのnameを返し、それがnullの場合は空文字を返す
+  // ログインユーザーの各項目を返し、nullの場合は空文字を返す
   username: (state) => (state.user ? state.user.name : ''),
+  email: (state) => (state.user ? state.user.email : ''),
+  organization: (state) => (state.user ? state.user.organization : ''),
+  profile_text: (state) => (state.user ? state.user.profile_text : ''),
 };
 
 // ===============

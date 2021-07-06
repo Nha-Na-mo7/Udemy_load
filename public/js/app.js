@@ -5181,35 +5181,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.get("/user/info")["catch"](function (error) {
-                  return error.response || error;
-                });
+                _this.formName = _this.$store.getters['auth/username'];
+                _this.formEmail = _this.$store.getters['auth/email'];
+                _this.isLoading = false;
 
-              case 2:
-                response = _context.sent;
-
-                // エラーチェック
-                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_2__["OK"]) {
-                  // ユーザーネームをformNameに格納
-                  if (response.data.name !== null) {
-                    _this.formName = response.data.name;
-                  } // メールアドレスをformEmailに格納
-
-
-                  if (response.data.email !== null) {
-                    _this.formEmail = response.data.email;
-                  }
-
-                  _this.isLoading = false;
-                }
-
-              case 4:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -6047,22 +6027,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // ログイン中のユーザーのプロフィールを取得
-    getProf: function getProf() {
+    getProf: function getProf() {// const response = await axios
+      //     .get(`/user/info`)
+      //     .catch((error) => error.response || error);
+      //
+      // this.$store.dispatch('auth/currentUser')
+      // console.log(333)
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.get("/user/info")["catch"](function (error) {
-                  return error.response || error;
-                });
-
-              case 2:
-                response = _context.sent;
-
-              case 3:
               case "end":
                 return _context.stop();
             }
@@ -80347,9 +80323,18 @@ var getters = {
   check: function check(state) {
     return !!state.user;
   },
-  // ログインユーザーのnameを返し、それがnullの場合は空文字を返す
+  // ログインユーザーの各項目を返し、nullの場合は空文字を返す
   username: function username(state) {
     return state.user ? state.user.name : '';
+  },
+  email: function email(state) {
+    return state.user ? state.user.email : '';
+  },
+  organization: function organization(state) {
+    return state.user ? state.user.organization : '';
+  },
+  profile_text: function profile_text(state) {
+    return state.user ? state.user.profile_text : '';
   }
 }; // ===============
 // mutations

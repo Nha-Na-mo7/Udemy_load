@@ -122,22 +122,9 @@ export default {
   methods: {
     // ログイン中のユーザーデータを取得する
     async getUser() {
-      const response = await axios
-        .get(`/user/info`)
-        .catch((error) => error.response || error);
-
-      // エラーチェック
-      if (response.status === OK) {
-        // ユーザーネームをformNameに格納
-        if (response.data.name !== null) {
-          this.formName = response.data.name;
-        }
-        // メールアドレスをformEmailに格納
-        if (response.data.email !== null) {
-          this.formEmail = response.data.email;
-        }
-        this.isLoading = false;
-      }
+      this.formName = this.$store.getters['auth/username']
+      this.formEmail = this.$store.getters['auth/email']
+      this.isLoading = false;
     },
     // ユーザーネームの変更
     async updateName() {

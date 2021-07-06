@@ -86,10 +86,12 @@ export default {
   methods: {
     // ログイン中のユーザーのプロフィールを取得
     async getProf() {
-      const response = await axios
-          .get(`/user/info`)
-          .catch((error) => error.response || error);
-
+      // const response = await axios
+      //     .get(`/user/info`)
+      //     .catch((error) => error.response || error);
+      //
+      // this.$store.dispatch('auth/currentUser')
+      // console.log(333)
     },
 
     updateProfile() {
