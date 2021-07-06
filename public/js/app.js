@@ -2823,6 +2823,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2847,6 +2858,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     userName: function userName() {
       return this.username;
+    },
+    userOrganization: function userOrganization() {
+      var _this$user$organizati;
+
+      return (_this$user$organizati = this.user.organization) !== null && _this$user$organizati !== void 0 ? _this$user$organizati : '';
+    },
+    userProfileText: function userProfileText() {
+      var _this$user$profile_te;
+
+      return (_this$user$profile_te = this.user.profile_text) !== null && _this$user$profile_te !== void 0 ? _this$user$profile_te : '- プロフィールは設定されていません -';
     },
     isLoading: function isLoading() {
       return this.loading;
@@ -2897,9 +2918,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 10:
                 _this.user = response.data;
+                console.log(_this.user);
                 _this.loading = false;
 
-              case 12:
+              case 13:
               case "end":
                 return _context.stop();
             }
@@ -58970,6 +58992,16 @@ var render = function() {
                     _vm._s(this.userName) +
                     "さんのマイページ\n        "
                 )
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("div", { staticClass: "p-mypage__organization" }, [
+                  _c("p", [_vm._v(_vm._s(this.userOrganization))])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "p-mypage__profile" }, [
+                  _c("p", [_vm._v(_vm._s(this.userProfileText))])
+                ])
               ]),
               _vm._v(" "),
               _vm.isAuthUser

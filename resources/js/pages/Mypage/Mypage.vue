@@ -22,6 +22,17 @@
             {{ this.userName }}さんのマイページ
           </h2>
 
+          <div>
+            <!-- 所属企業・組織 -->
+            <div class="p-mypage__organization">
+              <p>{{ this.userOrganization }}</p>
+            </div>
+            <!-- 自己紹介 -->
+            <div class="p-mypage__profile">
+              <p>{{ this.userProfileText }}</p>
+            </div>
+          </div>
+
           <!-- ユーザー設定 -->
           <div class="u-text--center" v-if="isAuthUser">
             <RouterLink class="c-btn" to="/settings/profile">
@@ -67,6 +78,12 @@ export default {
     userName() {
       return this.username;
     },
+    userOrganization() {
+      return this.user.organization ?? '';
+    },
+    userProfileText() {
+      return this.user.profile_text ?? '- プロフィールは設定されていません -';
+    },
     isLoading() {
       return this.loading;
     },
@@ -95,6 +112,7 @@ export default {
         return false;
       }
       this.user = response.data;
+      console.log(this.user)
       this.loading = false;
     },
   },
