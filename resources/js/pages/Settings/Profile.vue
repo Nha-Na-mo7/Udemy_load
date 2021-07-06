@@ -112,15 +112,13 @@ export default {
           this.errorsOrganization = response.data.errors.organization;
           this.isUpdating = false;
           break;
-        // テストユーザーなどの時
+        // テストユーザー時、500エラー時
         case FORBIDDEN:
+        case INTERNAL_SERVER_ERROR:
           this.$router.go({
             path: this.$router.currentRoute.path,
             force: true,
           });
-          break;
-        // 500エラー
-        case INTERNAL_SERVER_ERROR:
           return false
         // エラーがない場合の処理
         default:

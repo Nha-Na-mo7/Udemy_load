@@ -6081,14 +6081,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 5:
                 response = _context2.sent;
                 _context2.t0 = response.status;
-                _context2.next = _context2.t0 === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"] ? 9 : _context2.t0 === _util_js__WEBPACK_IMPORTED_MODULE_2__["FORBIDDEN"] ? 13 : _context2.t0 === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"] ? 15 : 16;
+                _context2.next = _context2.t0 === _util_js__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"] ? 9 : _context2.t0 === _util_js__WEBPACK_IMPORTED_MODULE_2__["FORBIDDEN"] ? 13 : _context2.t0 === _util_js__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"] ? 13 : 15;
                 break;
 
               case 9:
                 _this2.errorsProfileText = response.data.errors.profile;
                 _this2.errorsOrganization = response.data.errors.organization;
                 _this2.isUpdating = false;
-                return _context2.abrupt("break", 18);
+                return _context2.abrupt("break", 17);
 
               case 13:
                 _this2.$router.go({
@@ -6096,12 +6096,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   force: true
                 });
 
-                return _context2.abrupt("break", 18);
-
-              case 15:
                 return _context2.abrupt("return", false);
 
-              case 16:
+              case 15:
                 // バリデーションエラーリストを空にする
                 _this2.errorsEmail = []; // ページをリロードする
 
@@ -6110,10 +6107,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   force: true
                 });
 
-              case 18:
+              case 17:
                 _this2.isUpdating = false;
 
-              case 19:
+              case 18:
               case "end":
                 return _context2.stop();
             }
