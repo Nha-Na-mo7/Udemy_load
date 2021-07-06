@@ -182,7 +182,6 @@ class UserController extends Controller
     public function update_profiles(Request $request) {
       Log::debug('【UserController】update_profile プロフィールの更新');
       try {
-        Log::debug($request);
         // ログインユーザーの情報を取得
         $user = Auth::user();
         // テストユーザーの場合は更新処理は行わない
@@ -190,12 +189,9 @@ class UserController extends Controller
           session()->flash('session_error', 'テストユーザーはパスワードを変更できません。');
           return response([], 403);
         }
-  
-        Log::debug('更新処理を開始します。');
-        $user->organization = $request->organization;
-        $user->profile_text = $request->profile_text;
+        $user->organization = $request->profiles['organization'];
+        $user->profile_text = $request->profiles['profileText'];
         $user->save();
-        
         return response()->json([], 200);
       } catch (\Exception $e) {
         session()->flash('session_error', 'プロフィール更新中にエラーが発生しました。時間を置いてやり直してください。');

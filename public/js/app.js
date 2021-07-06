@@ -6073,7 +6073,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _context2.next = 5;
                 return axios.post("/user/update/profiles", {
-                  profile: _this2.formProfiles
+                  profiles: _this2.formProfiles
                 })["catch"](function (error) {
                   return error.response || error;
                 });

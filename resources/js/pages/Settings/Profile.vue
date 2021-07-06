@@ -101,7 +101,7 @@ export default {
 
       // 更新処理
       const response = await axios
-          .post(`/user/update/profiles`, { profile: this.formProfiles })
+          .post(`/user/update/profiles`, { profiles: this.formProfiles })
           .catch((error) => error.response || error);
 
       // エラーチェック
