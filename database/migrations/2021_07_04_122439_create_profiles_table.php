@@ -14,10 +14,14 @@ class CreateProfilesTable extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->unique()->comment('ユーザーID');
             $table->string('organization')->nullable()->comment('所属企業・組織など');
             $table->text('profile_text')->nullable()->comment('自己紹介');
             $table->timestamps();
+  
+            // usersテーブルのidと紐付け
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
