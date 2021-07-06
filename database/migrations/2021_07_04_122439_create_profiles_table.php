@@ -14,7 +14,7 @@ class CreateProfilesTable extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->comment('ユーザーID');
+            $table->unsignedBigInteger('user_id')->unique()->comment('ユーザーID');
             $table->string('organization')->nullable()->comment('所属企業・組織など');
             $table->text('profile_text')->nullable()->comment('自己紹介');
             $table->timestamps();
