@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 // コンポーネント
 import RecordList from './pages/Records/RecordList.vue';
+import Search from './pages/Search/Search.vue';
 import Info from './pages/Info/Info.vue';
 import Mypage from './pages/Mypage/Mypage.vue';
 import RecordCreate from './pages/Records/RecordCreate.vue';
@@ -59,6 +60,10 @@ const routes = [
   {
     path: '/recordlist',
     component: RecordList,
+  },
+  {
+    path: '/search',
+    component: Search,
   },
   {
     path: '/login',
