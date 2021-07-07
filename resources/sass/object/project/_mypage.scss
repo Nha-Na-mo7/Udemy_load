@@ -10,6 +10,7 @@
     background: $background-color_content-inner;
     padding: 12px 0;
     border-radius: 4px;
+    border-top: 4px solid $color_Primary;
     box-shadow: #cdcdcd 0 0 10px;
     width: 49%;
     height: 100%;
@@ -19,9 +20,9 @@
     }
   }
   &__title {
-    text-align: center;
     font-size: $font-size_ll;
     font-weight: 700;
+    margin-left: 12px;
   }
   &__profiles {
     padding: 10px 15px;

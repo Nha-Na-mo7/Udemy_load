@@ -1445,6 +1445,7 @@ input[type=checkbox] {
   background: #f2f5fa;
   padding: 12px 0;
   border-radius: 4px;
+  border-top: 4px solid #78b3cb;
   box-shadow: #cdcdcd 0 0 10px;
   width: 49%;
   height: 100%;
@@ -1458,9 +1459,9 @@ input[type=checkbox] {
 }
 
 .p-mypage__title {
-  text-align: center;
   font-size: 20px;
   font-weight: 700;
+  margin-left: 12px;
 }
 
 .p-mypage__profiles {
@@ -1558,6 +1559,7 @@ input[type=checkbox] {
 }
 
 .p-record__list--inner {
+  border-top: 4px solid #78b3cb;
   background: #f2f5fa;
   width: 66%;
   margin: 0 auto;
