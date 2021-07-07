@@ -15,7 +15,9 @@
         <section class="p-setting__item">
           <div class="p-setting__flex">
             <div class="p-setting__input">
-              <label class="c-form__label" for="organization">所属企業・組織など</label>
+              <label class="c-form__label" for="organization">
+                <i class="fas fa-building c-icon__fa--default"></i> 所属企業・組織など
+              </label>
               <ul v-if="errorsOrganization">
                 <li class="c-error" v-for="error in errorsOrganization" :key="error">
                   <span>{{ error }}</span>
@@ -29,7 +31,9 @@
                   v-model="formProfiles.organization"
               />
 
-              <label class="c-form__label" for="profileText">自己紹介(200文字まで)</label>
+              <label class="c-form__label" for="profileText">
+                <i class="fas fa-comment c-icon__fa--default"></i> 自己紹介(200文字まで)
+              </label>
               <ul v-if="errorsProfileText">
                 <li class="c-error" v-for="error in errorsProfileText" :key="error">
                   <span>{{ error }}</span>

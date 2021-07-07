@@ -22,6 +22,9 @@
   }
   // margin-bottom
   &-mb {
+    &-s {
+      margin-bottom: $space_s;
+    }
     &-m {
       margin-bottom: $space_m;
     }

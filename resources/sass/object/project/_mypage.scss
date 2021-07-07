@@ -22,6 +22,21 @@
     font-size: $font-size_ll;
     font-weight: 700;
   }
+  &__profiles {
+    padding: 10px 15px;
+    &--organization {
+      margin-bottom: 8px;
+    }
+    &--proftext {
+      margin-bottom: 8px;
+      & p {
+        white-space: pre-line;
+        background: #fff;
+        border-radius: 4px;
+        padding: 8px 12px;
+      }
+    }
+  }
 
   // 一覧
   &__record-list {

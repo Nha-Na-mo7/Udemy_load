@@ -1462,6 +1462,25 @@ input[type=checkbox] {
   font-weight: 700;
 }
 
+.p-mypage__profiles {
+  padding: 10px 15px;
+}
+
+.p-mypage__profiles--organization {
+  margin-bottom: 8px;
+}
+
+.p-mypage__profiles--proftext {
+  margin-bottom: 8px;
+}
+
+.p-mypage__profiles--proftext p {
+  white-space: pre-line;
+  background: #fff;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
 .p-mypage__record-list--inner {
   background: #fff;
   margin: 0 auto;
@@ -2245,6 +2264,10 @@ input[type=checkbox] {
   font-size: 24px;
 }
 
+.c-icon__fa--default {
+  font-size: 16px;
+}
+
 .c-input {
   font-size: 20px;
   height: 100%;
@@ -2760,6 +2783,10 @@ input[type=checkbox] {
 
 .u-mt-50 {
   margin-top: 50px;
+}
+
+.u-mb-s {
+  margin-bottom: 5px;
 }
 
 .u-mb-m {

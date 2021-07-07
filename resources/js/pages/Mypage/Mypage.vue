@@ -22,13 +22,14 @@
             {{ this.userName }}さんのマイページ
           </h2>
 
-          <div>
+          <div class="p-mypage__profiles">
             <!-- 所属企業・組織 -->
-            <div class="p-mypage__organization">
-              <p>{{ this.userOrganization }}</p>
+            <div class="p-mypage__profiles--organization">
+              <p><i class="fas fa-building c-icon__fa--default"></i> {{ this.userOrganization }}</p>
             </div>
             <!-- 自己紹介 -->
-            <div class="p-mypage__profile">
+            <div class="p-mypage__profiles--proftext">
+              <h3 class="u-mb-s"><i class="fas fa-comment c-icon__fa--default"></i> 自己紹介</h3>
               <p>{{ this.userProfileText }}</p>
             </div>
           </div>

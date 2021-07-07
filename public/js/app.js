@@ -2834,6 +2834,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -5930,6 +5931,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -58994,12 +58999,19 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", [
-                _c("div", { staticClass: "p-mypage__organization" }, [
-                  _c("p", [_vm._v(_vm._s(this.userOrganization))])
+              _c("div", { staticClass: "p-mypage__profiles" }, [
+                _c("div", { staticClass: "p-mypage__profiles--organization" }, [
+                  _c("p", [
+                    _c("i", {
+                      staticClass: "fas fa-building c-icon__fa--default"
+                    }),
+                    _vm._v(" " + _vm._s(this.userOrganization))
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "p-mypage__profile" }, [
+                _c("div", { staticClass: "p-mypage__profiles--proftext" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
                   _c("p", [_vm._v(_vm._s(this.userProfileText))])
                 ])
               ]),
@@ -59044,7 +59056,17 @@ var render = function() {
         ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "u-mb-s" }, [
+      _c("i", { staticClass: "fas fa-comment c-icon__fa--default" }),
+      _vm._v(" 自己紹介")
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -61023,14 +61045,7 @@ var render = function() {
               _c("section", { staticClass: "p-setting__item" }, [
                 _c("div", { staticClass: "p-setting__flex" }, [
                   _c("div", { staticClass: "p-setting__input" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "c-form__label",
-                        attrs: { for: "organization" }
-                      },
-                      [_vm._v("所属企業・組織など")]
-                    ),
+                    _vm._m(0),
                     _vm._v(" "),
                     _vm.errorsOrganization
                       ? _c(
@@ -61076,14 +61091,7 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "c-form__label",
-                        attrs: { for: "profileText" }
-                      },
-                      [_vm._v("自己紹介(200文字まで)")]
-                    ),
+                    _vm._m(1),
                     _vm._v(" "),
                     _vm.errorsProfileText
                       ? _c(
@@ -61146,7 +61154,34 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "c-form__label", attrs: { for: "organization" } },
+      [
+        _c("i", { staticClass: "fas fa-building c-icon__fa--default" }),
+        _vm._v(" 所属企業・組織など\n            ")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "c-form__label", attrs: { for: "profileText" } },
+      [
+        _c("i", { staticClass: "fas fa-comment c-icon__fa--default" }),
+        _vm._v(" 自己紹介(200文字まで)\n            ")
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 

@@ -4,5 +4,8 @@
 .c-icon {
   &__fa {
     font-size: $font-size_xl;
+    &--default {
+      font-size: $font-size_default;
+    }
   }
 }
