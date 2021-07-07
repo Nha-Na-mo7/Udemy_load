@@ -59005,6 +59005,12 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "p-mypage__profiles" }, [
+                _c("div", { staticClass: "p-mypage__profiles--proftext" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(this.userProfileText))])
+                ]),
+                _vm._v(" "),
                 _c("div", { staticClass: "p-mypage__profiles--organization" }, [
                   _c("p", [
                     _c("i", {
@@ -59012,12 +59018,6 @@ var render = function() {
                     }),
                     _vm._v(" " + _vm._s(this.userOrganization))
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "p-mypage__profiles--proftext" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(this.userProfileText))])
                 ])
               ]),
               _vm._v(" "),

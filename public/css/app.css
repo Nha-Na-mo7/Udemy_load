@@ -1468,12 +1468,8 @@ input[type=checkbox] {
   padding: 10px 15px;
 }
 
-.p-mypage__profiles--organization {
-  margin-bottom: 8px;
-}
-
 .p-mypage__profiles--proftext {
-  margin-bottom: 8px;
+  margin-bottom: 15px;
 }
 
 .p-mypage__profiles--proftext p {
@@ -1481,6 +1477,10 @@ input[type=checkbox] {
   background: #fff;
   border-radius: 4px;
   padding: 8px 12px;
+}
+
+.p-mypage__profiles--organization {
+  margin-bottom: 8px;
 }
 
 .p-mypage__record-list--inner {

@@ -26,17 +26,17 @@
   }
   &__profiles {
     padding: 10px 15px;
-    &--organization {
-      margin-bottom: 8px;
-    }
     &--proftext {
-      margin-bottom: 8px;
+      margin-bottom: 15px;
       & p {
         white-space: pre-line;
         background: #fff;
         border-radius: 4px;
         padding: 8px 12px;
       }
+    }
+    &--organization {
+      margin-bottom: 8px;
     }
   }
 
