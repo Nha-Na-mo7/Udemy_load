@@ -97,24 +97,30 @@ export default {
     },
   },
   methods: {
-    // 指定したユーザーの情報を取得する
     async fetchUser() {
-      const response = await axios.get(`/user/info/${this.userName}`);
-
-      // ユーザーが存在しなかった時の処理
-      if (response.status === NOT_FOUND) {
-        this.nothingUser = true;
+      if(this.isAuthUser) {
+        // 自分のマイページの場合はstoreから情報を引き出し、余計な通信を行わない
+        this.user = this.$store.getters['auth/user']
         this.loading = false;
-        return false;
+      }else{
+        // 自分以外のマイページの時は指定したユーザーの情報を取得
+        const response = await axios.get(`/user/info/${this.userName}`);
+
+        switch (response.status) {
+          case NOT_FOUND:
+            this.nothingUser = true;
+            this.loading = false;
+            return false;
+          case OK:
+            this.user = response.data;
+            this.loading = false;
+            break;
+            // NOT_FOUND以外のエラーの場合
+          default:
+            this.$store.commit('error/setCode', response.status);
+            return false;
+        }
       }
-      // その他エラー時の処理
-      if (response.status !== OK) {
-        this.$store.commit('error/setCode', response.status);
-        return false;
-      }
-      this.user = response.data;
-      console.log(this.user)
-      this.loading = false;
     },
   },
   components: {

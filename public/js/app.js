@@ -2882,7 +2882,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
-    // 指定したユーザーの情報を取得する
     fetchUser: function fetchUser() {
       var _this = this;
 
@@ -2892,37 +2891,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.get("/user/info/".concat(_this.userName));
-
-              case 2:
-                response = _context.sent;
-
-                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_4__["NOT_FOUND"])) {
-                  _context.next = 7;
+                if (!_this.isAuthUser) {
+                  _context.next = 5;
                   break;
                 }
 
+                // 自分のマイページの場合はstoreから情報を引き出し、余計な通信を行わない
+                _this.user = _this.$store.getters['auth/user'];
+                _this.loading = false;
+                _context.next = 19;
+                break;
+
+              case 5:
+                _context.next = 7;
+                return axios.get("/user/info/".concat(_this.userName));
+
+              case 7:
+                response = _context.sent;
+                _context.t0 = response.status;
+                _context.next = _context.t0 === _util__WEBPACK_IMPORTED_MODULE_4__["NOT_FOUND"] ? 11 : _context.t0 === _util__WEBPACK_IMPORTED_MODULE_4__["OK"] ? 14 : 17;
+                break;
+
+              case 11:
                 _this.nothingUser = true;
                 _this.loading = false;
                 return _context.abrupt("return", false);
 
-              case 7:
-                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_4__["OK"])) {
-                  _context.next = 10;
-                  break;
-                }
+              case 14:
+                _this.user = response.data;
+                _this.loading = false;
+                return _context.abrupt("break", 19);
 
+              case 17:
                 _this.$store.commit('error/setCode', response.status);
 
                 return _context.abrupt("return", false);
 
-              case 10:
-                _this.user = response.data;
-                console.log(_this.user);
-                _this.loading = false;
-
-              case 13:
+              case 19:
               case "end":
                 return _context.stop();
             }
@@ -80496,6 +80501,9 @@ var getters = {
     return !!state.user;
   },
   // ログインユーザーの各項目を返し、nullの場合は空文字を返す
+  user: function user(state) {
+    return state.user ? state.user : '';
+  },
   username: function username(state) {
     return state.user ? state.user.name : '';
   },

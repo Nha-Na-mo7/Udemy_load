@@ -24,6 +24,7 @@ const getters = {
   // ログインチェック
   check: (state) => !!state.user,
   // ログインユーザーの各項目を返し、nullの場合は空文字を返す
+  user: (state) => (state.user ? state.user : ''),
   username: (state) => (state.user ? state.user.name : ''),
   email: (state) => (state.user ? state.user.email : ''),
   organization: (state) => (state.user ? state.user.organization : ''),
