@@ -1447,12 +1447,13 @@ input[type=checkbox] {
   border-radius: 4px;
   box-shadow: #cdcdcd 0 0 10px;
   width: 49%;
+  height: 100%;
 }
 
 @media screen and (max-width: 768px) {
   .p-mypage__column {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
 }
 
