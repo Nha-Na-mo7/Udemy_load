@@ -1844,6 +1844,13 @@ input[type=checkbox] {
 .p-search__btn {
   display: block;
   margin-left: 8px;
+  flex-basis: 20%;
+}
+
+@media screen and (max-width: 414px) {
+  .p-search__btn {
+    flex-basis: 30%;
+  }
 }
 
 .p-setting {
@@ -2246,17 +2253,16 @@ input[type=checkbox] {
 @media screen and (max-width: 414px) {
   .c-form__input {
     padding: 8px;
-    margin-bottom: 12px;
   }
 }
 
 .c-form__input--recordSearch {
-  width: 80%;
+  flex-basis: 80%;
 }
 
 @media screen and (max-width: 414px) {
   .c-form__input--recordSearch {
-    width: 100%;
+    flex-basis: 70%;
   }
 }
 

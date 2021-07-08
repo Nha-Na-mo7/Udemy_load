@@ -21,12 +21,11 @@
     }
     @include mq() {
       padding: 8px;
-      margin-bottom: 12px;
     }
     &--recordSearch {
-      width: 80%;
+      flex-basis: 80%;
       @include mq() {
-        width: 100%;
+        flex-basis: 70%;
       }
     }
   }

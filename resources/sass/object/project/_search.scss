@@ -19,5 +19,9 @@
   &__btn {
     display: block;
     margin-left: 8px;
+    flex-basis: 20%;
+    @include mq() {
+      flex-basis: 30%;
+    }
   }
 }
