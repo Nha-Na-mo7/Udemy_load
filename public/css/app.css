@@ -1827,10 +1827,20 @@ input[type=checkbox] {
   margin: 0 auto;
 }
 
+@media screen and (max-width: 768px) {
+  .p-search__container {
+    width: 90%;
+  }
+}
+
 @media screen and (max-width: 414px) {
   .p-search__container {
     padding: 0 24px;
   }
+}
+
+.p-search__result {
+  margin: 0 auto;
 }
 
 .p-search__form {

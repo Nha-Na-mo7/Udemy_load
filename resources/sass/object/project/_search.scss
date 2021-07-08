@@ -5,9 +5,15 @@
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
+    @include mq($breakpoint: md) {
+      width: 90%;
+    }
     @include mq() {
       padding: 0 24px;
     }
+  }
+  &__result {
+    margin: 0 auto;
   }
   &__form {
     display: flex;
