@@ -5079,6 +5079,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5097,7 +5098,63 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      isSearching: false,
+      errors: ''
+    };
+  },
+  components: {
+    Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   watch: {
     $route: {
       handler: function handler() {
@@ -60505,31 +60562,78 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "p-search" }, [
+    _c("div", { staticClass: "p-search__container" }, [
+      _c(
+        "form",
+        { staticClass: "p-search__form c-form", attrs: { action: "" } },
+        [
+          _c("input", {
+            staticClass: "c-form__input",
+            attrs: { type: "text" }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "p-search__btn c-btn",
+              on: { click: function($event) {} }
+            },
+            [
+              _c("i", { staticClass: "fas fa-search c-icon__fa--default" }),
+              _vm._v(" 検索\n        ")
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "p-search__result", attrs: { id: "searchResult" } },
+        [
+          _vm.isSearching
+            ? _c("div", [_c("Loading")], 1)
+            : _vm.errors
+            ? _c("div", { staticClass: "c-modal__error" }, [
+                _c("i", {
+                  staticClass: "fas fa-exclamation-circle c-modal__nothing--fa"
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "c-error" }, [
+                  _vm._v(_vm._s(_vm.errors))
+                ])
+              ])
+            : _c("div", { staticClass: "c-modal__nothing" }, [
+                _c("i", {
+                  staticClass: "fas fa-exclamation-circle c-modal__nothing--fa"
+                }),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "「xxxxxx」と一致するロードマップは見つかりませんでした。"
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [_vm._v("検索ワードを入れてください。")])
+              ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-search" }, [
-      _c("div", { staticClass: "p-search__container" }, [
-        _c(
-          "form",
-          { staticClass: "p-search__form c-form", attrs: { action: "" } },
-          [
-            _c("input", {
-              staticClass: "c-input",
-              attrs: { type: "text", name: "query" }
-            }),
-            _vm._v(" "),
-            _c("button", { staticClass: "p-search__btn c-btn" }, [
-              _c("i", { staticClass: "fas fa-search c-icon__fa--default" }),
-              _vm._v(" 検索\n      ")
-            ])
-          ]
-        )
-      ])
+    return _c("div", [
+      _c("h2", [_vm._v("ここに}paginationが入ります")]),
+      _vm._v(" "),
+      _c("button", { staticClass: "c-btn" }, [_vm._v("前へ")]),
+      _vm._v(" "),
+      _c("button", { staticClass: "c-btn" }, [_vm._v("次へ")])
     ])
   }
 ]
