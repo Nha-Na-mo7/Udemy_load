@@ -1525,10 +1525,15 @@ input[type=checkbox] {
   margin: 5px 0;
   line-height: 1.5;
   word-break: break-all;
+  color: #0066c0;
 }
 
 .p-mypage__record-list-item--title :hover {
   border-bottom: 1px solid #000;
+}
+
+.p-mypage__record-list-item--title:visited {
+  color: #ae7ad6;
 }
 
 .p-mypage__record-list-item--description {
@@ -1602,10 +1607,15 @@ input[type=checkbox] {
   margin-bottom: 5px;
   line-height: 1.5;
   word-break: break-all;
+  color: #0066c0;
 }
 
 .p-record__list-item--title :hover {
   border-bottom: 1px solid #000;
+}
+
+.p-record__list-item--title :visited {
+  color: #ae7ad6;
 }
 
 .p-record__list-item--username,

@@ -48,8 +48,12 @@
         margin-bottom: 5px;
         line-height: 1.5;
         word-break: break-all;
+        color: $font-color_link;
         :hover {
           border-bottom: 1px solid #000;
+        }
+        :visited {
+          color: $font-color_visited;
         }
       }
       &--username,
