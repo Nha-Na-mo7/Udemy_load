@@ -5,11 +5,18 @@
   background: $background-color_content-inner;
   // 一覧
   &__list {
-    padding-top: 60px;
     padding-bottom: 120px;
     margin: 0 auto;
     @include mq($breakpoint: md) {
       padding-top: 40px;
+    }
+    // 検索フォーム
+    &--search {
+      margin: 12px auto;
+      width: 66%;
+      @include mq($breakpoint: md) {
+        width: 90%;
+      }
     }
     // リストの大枠
     &--inner {

@@ -1,5 +1,22 @@
 <template>
   <div class="p-record__list">
+    <!-- 検索(コンポーネント化) -->
+    <div class="p-record__list--search">
+      <form action="" class="p-search__form c-form">
+        <input
+            type="text"
+            class="c-form__input c-form__input--recordSearch"
+        >
+        <button
+            class="p-search__btn c-btn"
+            @click=""
+        >
+          <i class="fas fa-search c-icon__fa--default"></i> 検索
+        </button>
+      </form>
+    </div>
+
+    <!-- みんなのロードマップ -->
     <div class="p-record__list--inner" id="records">
       <h2 class="p-record__list--title">みんなのロードマップ</h2>
       <Record

@@ -7,7 +7,7 @@
       <form action="" class="p-search__form c-form">
         <input
             type="text"
-            class="c-form__input"
+            class="c-form__input c-form__input--recordSearch"
         >
         <button
             class="p-search__btn c-btn"

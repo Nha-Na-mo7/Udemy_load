@@ -4476,6 +4476,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -59710,7 +59727,7 @@ var render = function() {
                 expression: "createData.recordForm.title"
               }
             ],
-            staticClass: "p-form__title p-form__item c-form__input",
+            staticClass: "p-form__title p-form__item c-form__input u-mb-xl",
             attrs: {
               type: "text",
               id: "record_title",
@@ -60160,6 +60177,31 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-record__list" }, [
+    _c("div", { staticClass: "p-record__list--search" }, [
+      _c(
+        "form",
+        { staticClass: "p-search__form c-form", attrs: { action: "" } },
+        [
+          _c("input", {
+            staticClass: "c-form__input c-form__input--recordSearch",
+            attrs: { type: "text" }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "p-search__btn c-btn",
+              on: { click: function($event) {} }
+            },
+            [
+              _c("i", { staticClass: "fas fa-search c-icon__fa--default" }),
+              _vm._v(" 検索\n      ")
+            ]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "p-record__list--inner", attrs: { id: "records" } },
@@ -60569,7 +60611,7 @@ var render = function() {
         { staticClass: "p-search__form c-form", attrs: { action: "" } },
         [
           _c("input", {
-            staticClass: "c-form__input",
+            staticClass: "c-form__input c-form__input--recordSearch",
             attrs: { type: "text" }
           }),
           _vm._v(" "),
@@ -60714,7 +60756,7 @@ var render = function() {
                             expression: "formName"
                           }
                         ],
-                        staticClass: "c-form__input",
+                        staticClass: "c-form__input u-mb-xl",
                         attrs: {
                           id: "name",
                           type: "text",
@@ -60924,7 +60966,7 @@ var render = function() {
             expression: "formPassword.password"
           }
         ],
-        staticClass: "c-form__input",
+        staticClass: "c-form__input u-mb-xl",
         attrs: { id: "password", type: "password" },
         domProps: { value: _vm.formPassword.password },
         on: {
@@ -60967,7 +61009,7 @@ var render = function() {
             expression: "formPassword.password_confirmation"
           }
         ],
-        staticClass: "c-form__input",
+        staticClass: "c-form__input u-mb-xl",
         attrs: { id: "password_confirmation", type: "password" },
         domProps: { value: _vm.formPassword.password_confirmation },
         on: {
@@ -61101,7 +61143,7 @@ var render = function() {
             expression: "formPassword.old_password"
           }
         ],
-        staticClass: "c-form__input",
+        staticClass: "c-form__input u-mb-xl",
         attrs: { id: "old_password", type: "password" },
         domProps: { value: _vm.formPassword.old_password },
         on: {
@@ -61141,7 +61183,7 @@ var render = function() {
             expression: "formPassword.password"
           }
         ],
-        staticClass: "c-form__input",
+        staticClass: "c-form__input u-mb-xl",
         attrs: { id: "password", type: "password" },
         domProps: { value: _vm.formPassword.password },
         on: {
@@ -61184,7 +61226,7 @@ var render = function() {
             expression: "formPassword.password_confirmation"
           }
         ],
-        staticClass: "c-form__input",
+        staticClass: "c-form__input u-mb-xl",
         attrs: { id: "password_confirmation", type: "password" },
         domProps: { value: _vm.formPassword.password_confirmation },
         on: {
@@ -61287,7 +61329,7 @@ var render = function() {
                           expression: "formProfiles.organization"
                         }
                       ],
-                      staticClass: "c-form__input",
+                      staticClass: "c-form__input u-mb-xl",
                       attrs: {
                         id: "organization",
                         type: "text",
@@ -61333,7 +61375,7 @@ var render = function() {
                           expression: "formProfiles.profileText"
                         }
                       ],
-                      staticClass: "c-form__input",
+                      staticClass: "c-form__input u-mb-xl",
                       attrs: {
                         id: "profileText",
                         type: "text",

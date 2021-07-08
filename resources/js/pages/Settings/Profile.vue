@@ -25,7 +25,7 @@
               </ul>
               <input
                   id="organization"
-                  class="c-form__input"
+                  class="c-form__input u-mb-xl"
                   type="text"
                   maxlength="32"
                   v-model="formProfiles.organization"
@@ -41,7 +41,7 @@
               </ul>
               <textarea
                   id="profileText"
-                  class="c-form__input"
+                  class="c-form__input u-mb-xl"
                   type="text"
                   maxlength="200"
                   rows="10"

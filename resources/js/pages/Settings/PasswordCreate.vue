@@ -21,7 +21,7 @@
       </ul>
       <input
         id="password"
-        class="c-form__input"
+        class="c-form__input u-mb-xl"
         type="password"
         v-model="formPassword.password"
       />
@@ -41,7 +41,7 @@
       </ul>
       <input
         id="password_confirmation"
-        class="c-form__input"
+        class="c-form__input u-mb-xl"
         type="password"
         v-model="formPassword.password_confirmation"
       />

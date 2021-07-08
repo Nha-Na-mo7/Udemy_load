@@ -1552,7 +1552,6 @@ input[type=checkbox] {
 }
 
 .p-record__list {
-  padding-top: 60px;
   padding-bottom: 120px;
   margin: 0 auto;
 }
@@ -1560,6 +1559,17 @@ input[type=checkbox] {
 @media screen and (max-width: 768px) {
   .p-record__list {
     padding-top: 40px;
+  }
+}
+
+.p-record__list--search {
+  margin: 12px auto;
+  width: 66%;
+}
+
+@media screen and (max-width: 768px) {
+  .p-record__list--search {
+    width: 90%;
   }
 }
 
@@ -1809,6 +1819,33 @@ input[type=checkbox] {
   width: 100%;
 }
 
+.p-search__container {
+  max-width: 1200px;
+  width: 66%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 414px) {
+  .p-search__container {
+    padding: 0 24px;
+  }
+}
+
+.p-search__form {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+  width: 100%;
+}
+
+.p-search__btn {
+  display: block;
+  margin-left: 8px;
+}
+
 .p-setting {
   width: 100%;
   background: #fff;
@@ -2009,6 +2046,7 @@ input[type=checkbox] {
   width: 100%;
   border: 4px dashed #cdcdcd;
   background: #fff;
+  color: #8a8a8a;
   padding: 32px 0;
   font-size: 1.6rem;
 }
@@ -2023,7 +2061,7 @@ input[type=checkbox] {
 
 .c-btn__course--add:hover {
   background: #78b3cb;
-  font-weight: bold;
+  color: #fff;
 }
 
 .c-btn__course--delete {
@@ -2195,7 +2233,6 @@ input[type=checkbox] {
   border-radius: 4px;
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
   font-size: 18px;
   background: #fff;
 }
@@ -2210,6 +2247,16 @@ input[type=checkbox] {
   .c-form__input {
     padding: 8px;
     margin-bottom: 12px;
+  }
+}
+
+.c-form__input--recordSearch {
+  width: 80%;
+}
+
+@media screen and (max-width: 414px) {
+  .c-form__input--recordSearch {
+    width: 100%;
   }
 }
 

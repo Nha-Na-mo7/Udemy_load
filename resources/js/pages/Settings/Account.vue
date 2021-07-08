@@ -30,7 +30,7 @@
               </ul>
               <input
                 id="name"
-                class="c-form__input"
+                class="c-form__input u-mb-xl"
                 type="text"
                 v-model="formName"
                 maxlength="32"

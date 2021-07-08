@@ -58,6 +58,7 @@
       width: 100%;
       border: 4px dashed $border-dark;
       background: #fff;
+      color: #8a8a8a;
       padding: 32px 0;
       font-size: 1.6rem;
       @include mq() {
@@ -67,7 +68,7 @@
       }
       &:hover {
         background: $color_Primary;
-        font-weight: bold;
+        color: #fff;
       }
     }
     // コース1つの削除
