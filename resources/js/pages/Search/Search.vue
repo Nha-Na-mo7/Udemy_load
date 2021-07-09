@@ -29,6 +29,12 @@
           <p class="c-error">{{ errors }}</p>
         </div>
 
+        <!-- pagination -->
+        <div>
+          <h2>ここにpaginationが入ります</h2>
+          <h2>全部で 10000000 の検索結果</h2>
+        </div>
+
         <!-- 結果コンポーネント一覧 -->
         <Result
             v-for="Record in records"

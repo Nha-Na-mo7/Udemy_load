@@ -5235,6 +5235,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -60835,13 +60841,15 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
           _vm._l(_vm.records, function(Record) {
             return _c("Result", { key: Record.id, attrs: { item: Record } })
           }),
           _vm._v(" "),
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(2)
         ],
         2
       )
@@ -60849,6 +60857,16 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("h2", [_vm._v("ここにpaginationが入ります")]),
+      _vm._v(" "),
+      _c("h2", [_vm._v("全部で 10000000 の検索結果")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

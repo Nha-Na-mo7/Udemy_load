@@ -13,9 +13,43 @@
     }
   }
   &__result {
-
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    @include mq() {
+      padding: 6px 10px;
+      margin-bottom: 5px;
+    }
     &--container {
       margin: 0 auto;
+    }
+    &--title {
+      font-size: $font-size_ll;
+      margin-bottom: 5px;
+      line-height: 1.5;
+      word-break: break-all;
+      color: $font-color_link;
+      :hover {
+        border-bottom: 1px solid #000;
+      }
+      :visited {
+        color: $font-color_visited;
+      }
+    }
+    &--username,
+    &--date {
+      font-size: $font-size_s;
+      color: #8a8a8a;
+    }
+    &--username {
+      font-weight: 700;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    &--description {
+      font-size: $font-size_s;
+      line-height: 1.5;
+      color: #8a8a8a;
     }
   }
   &__form {
