@@ -13,7 +13,10 @@
     }
   }
   &__result {
-    margin: 0 auto;
+
+    &--container {
+      margin: 0 auto;
+    }
   }
   &__form {
     display: flex;
