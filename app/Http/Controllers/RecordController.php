@@ -196,6 +196,24 @@ class RecordController extends Controller
     }
     
     // ==============
+    // 検索による一覧取得
+    // ==============
+    public function get_searchList() {
+        Log::debug('========');
+        Log::debug('検索取得');
+        Log::debug('========');
+        
+        // 検索ワード: q
+        // ソート: sort=created/old
+        $q = filter_input(INPUT_GET, 'q') ?: '';
+        $sort = filter_input(INPUT_GET, 'sort') ?: 'created';
+        Log::debug($q);
+        Log::debug($sort);
+        
+        return '';
+    }
+    
+    // ==============
     // ロードマップの削除
     // ==============
     public function delete(string $id) {

@@ -8,6 +8,7 @@
         <input
             type="text"
             class="c-form__input c-form__input--recordSearch"
+            v-model="searchParams.q"
         >
         <button
             class="p-search__btn c-btn"
@@ -36,11 +37,11 @@
         </div>
 
         <!-- 結果コンポーネント一覧 -->
-        <Result
-            v-for="Record in records"
-            :key="Record.id"
-            :item="Record"
-        />
+<!--        <Result-->
+<!--            v-for="Record in records"-->
+<!--            :key="Record.id"-->
+<!--            :item="Record"-->
+<!--        />-->
 
         <!-- 検索結果がない場合 -->
         <div class="c-modal__nothing">
@@ -69,21 +70,26 @@ export default {
     return {
       isSearching: false,
       errors: '',
+      searchParams: {
+        q: '',
+        sort: '',
+      },
       records: []
     }
   },
   methods: {
     // ロードマップ一覧の取得
     async fetchCourse() {
-      const response = await axios.get(`/records/index`);
+      const params = this.$route.query;
+      const response = await axios.get(`/records/search`, { params });
 
       // エラー時
       if (response.status !== OK) {
         this.$store.commit('error/setCode', response.status);
         return false;
       }
-
-      this.records = response.data;
+      console.log(response)
+      // this.records = response.data;
     },
   },
   components: {

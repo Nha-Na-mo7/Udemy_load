@@ -5241,6 +5241,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -5249,6 +5250,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       isSearching: false,
       errors: '',
+      searchParams: {
+        q: '',
+        sort: ''
+      },
       records: []
     };
   },
@@ -5258,19 +5263,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
+        var params, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.get("/records/index");
+                params = _this.$route.query;
+                _context.next = 3;
+                return axios.get("/records/search", {
+                  params: params
+                });
 
-              case 2:
+              case 3:
                 response = _context.sent;
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_3__["OK"])) {
-                  _context.next = 6;
+                  _context.next = 7;
                   break;
                 }
 
@@ -5278,10 +5286,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 6:
-                _this.records = response.data;
-
               case 7:
+                console.log(response); // this.records = response.data;
+
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -60802,8 +60810,25 @@ var render = function() {
         { staticClass: "p-search__form c-form", attrs: { action: "" } },
         [
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.searchParams.q,
+                expression: "searchParams.q"
+              }
+            ],
             staticClass: "c-form__input c-form__input--recordSearch",
-            attrs: { type: "text" }
+            attrs: { type: "text" },
+            domProps: { value: _vm.searchParams.q },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.searchParams, "q", $event.target.value)
+              }
+            }
           }),
           _vm._v(" "),
           _c(
@@ -60814,7 +60839,7 @@ var render = function() {
             },
             [
               _c("i", { staticClass: "fas fa-search c-icon__fa--default" }),
-              _vm._v(" 検索\n      ")
+              _vm._v(" 検索\n        ")
             ]
           )
         ]
@@ -60843,15 +60868,10 @@ var render = function() {
           _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
-          _vm._l(_vm.records, function(Record) {
-            return _c("Result", { key: Record.id, attrs: { item: Record } })
-          }),
-          _vm._v(" "),
           _vm._m(1),
           _vm._v(" "),
           _vm._m(2)
-        ],
-        2
+        ]
       )
     ])
   ])
