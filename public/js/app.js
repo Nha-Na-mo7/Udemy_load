@@ -5237,11 +5237,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -5287,9 +5282,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 7:
-                console.log(response); // this.records = response.data;
+                console.log(response);
+                _this.records = response.data;
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -60839,7 +60835,7 @@ var render = function() {
             },
             [
               _c("i", { staticClass: "fas fa-search c-icon__fa--default" }),
-              _vm._v(" 検索\n        ")
+              _vm._v(" 検索\n      ")
             ]
           )
         ]
@@ -60864,29 +60860,22 @@ var render = function() {
                   _vm._v(_vm._s(_vm.errors))
                 ])
               ])
+            : this.records
+            ? _vm._l(_vm.records, function(Record) {
+                return _c("Result", { key: Record.id, attrs: { item: Record } })
+              })
             : _vm._e(),
           _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2)
-        ]
+          _vm._m(1)
+        ],
+        2
       )
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h2", [_vm._v("ここにpaginationが入ります")]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("全部で 10000000 の検索結果")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

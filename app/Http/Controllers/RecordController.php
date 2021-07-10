@@ -210,7 +210,21 @@ class RecordController extends Controller
         Log::debug($q);
         Log::debug($sort);
         
-        return '';
+        // qが空文字の場合はSQL発行前にreturnする(そもそもここに通信されて来ないはずだが)
+        if ($q === '') return response([], 200);
+        // メタ文字をエスケープする
+        $query = '%' . addcslashes($q, '%_\\') . '%';
+        Log::debug($query);
+        
+        // $qに一致する文字列が含まれたタイトル・本文のロードまっぷを返却
+        $records = Record::where('title', 'LIKE', $query)
+            ->orWhere('description', 'LIKE', $query)
+            ->with(['owner'])
+            ->where('delete_flg', 0)
+            // ->orderBy(Record::CREATED_AT, 'desc')
+            ->get();
+        
+        return $records;
     }
     
     // ==============

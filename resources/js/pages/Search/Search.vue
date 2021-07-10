@@ -30,18 +30,13 @@
           <p class="c-error">{{ errors }}</p>
         </div>
 
-        <!-- pagination -->
-        <div>
-          <h2>ここにpaginationが入ります</h2>
-          <h2>全部で 10000000 の検索結果</h2>
-        </div>
-
         <!-- 結果コンポーネント一覧 -->
-<!--        <Result-->
-<!--            v-for="Record in records"-->
-<!--            :key="Record.id"-->
-<!--            :item="Record"-->
-<!--        />-->
+        <Result
+            v-else-if="this.records"
+            v-for="Record in records"
+            :key="Record.id"
+            :item="Record"
+        />
 
         <!-- 検索結果がない場合 -->
         <div class="c-modal__nothing">
@@ -89,7 +84,7 @@ export default {
         return false;
       }
       console.log(response)
-      // this.records = response.data;
+      this.records = response.data;
     },
   },
   components: {
