@@ -5236,14 +5236,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      isSearching: false,
+      isSearching: true,
+      isNothingResult: false,
+      resultDescription: '',
       errors: '',
       searchParams: {
         q: '',
@@ -5251,6 +5252,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       records: []
     };
+  },
+  computed: {
+    isResultDescription: function isResultDescription() {
+      return this.resultDescription;
+    }
   },
   methods: {
     // ロードマップ一覧の取得
@@ -5263,17 +5269,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                if (!(typeof _this.$route.query.q === 'undefined' || _this.$route.query.q === '')) {
+                  _context.next = 6;
+                  break;
+                }
+
+                console.log('クエリがありません');
+                _this.resultDescription = '検索ワードが入力されていません。';
+                _this.isNothingResult = true;
+                _this.isSearching = false;
+                return _context.abrupt("return", false);
+
+              case 6:
                 params = _this.$route.query;
-                _context.next = 3;
+                _context.next = 9;
                 return axios.get("/records/search", {
                   params: params
                 });
 
-              case 3:
+              case 9:
                 response = _context.sent;
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_3__["OK"])) {
-                  _context.next = 7;
+                  _context.next = 13;
                   break;
                 }
 
@@ -5281,11 +5299,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 7:
+              case 13:
                 console.log(response);
-                _this.records = response.data;
+                _this.records = response.data; // 検索結果が0件の場合
 
-              case 9:
+                if (response.data.length === 0) {
+                  _this.isNothingResult = true;
+                  _this.resultDescription = '検索ワードに一致するロードマップはありませんでした。';
+                }
+
+                _this.isSearching = false;
+
+              case 17:
               case "end":
                 return _context.stop();
             }
@@ -60864,11 +60889,17 @@ var render = function() {
             ? _vm._l(_vm.records, function(Record) {
                 return _c("Result", { key: Record.id, attrs: { item: Record } })
               })
+            : this.isNothingResult
+            ? _c("div", { staticClass: "c-modal__nothing" }, [
+                _c("i", {
+                  staticClass: "fas fa-exclamation-circle c-modal__nothing--fa"
+                }),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(this.isResultDescription))])
+              ])
             : _vm._e(),
           _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1)
+          _vm._m(0)
         ],
         2
       )
@@ -60876,22 +60907,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "c-modal__nothing" }, [
-      _c("i", {
-        staticClass: "fas fa-exclamation-circle c-modal__nothing--fa"
-      }),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("「xxxxxx」と一致するロードマップは見つかりませんでした。")
-      ]),
-      _vm._v(" "),
-      _c("p", [_vm._v("検索ワードを入れてください。")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

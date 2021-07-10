@@ -39,10 +39,9 @@
         />
 
         <!-- 検索結果がない場合 -->
-        <div class="c-modal__nothing">
+        <div v-else-if="this.isNothingResult" class="c-modal__nothing">
           <i class="fas fa-exclamation-circle c-modal__nothing--fa"></i>
-          <p>「xxxxxx」と一致するロードマップは見つかりませんでした。</p>
-          <p>検索ワードを入れてください。</p>
+          <p>{{ this.isResultDescription }}</p>
         </div>
 
         <!-- pagination -->
@@ -63,7 +62,9 @@ import {OK} from "../../util";
 export default {
   data() {
     return {
-      isSearching: false,
+      isSearching: true,
+      isNothingResult: false,
+      resultDescription: '',
       errors: '',
       searchParams: {
         q: '',
@@ -72,9 +73,23 @@ export default {
       records: []
     }
   },
+  computed: {
+    isResultDescription() {
+      return this.resultDescription
+    }
+  },
   methods: {
     // ロードマップ一覧の取得
     async fetchCourse() {
+      // クエリがない場合
+      if(typeof this.$route.query.q === 'undefined' || this.$route.query.q === '') {
+        console.log('クエリがありません')
+        this.resultDescription = '検索ワードが入力されていません。'
+        this.isNothingResult = true
+        this.isSearching = false
+        return false
+      }
+
       const params = this.$route.query;
       const response = await axios.get(`/records/search`, { params });
 
@@ -85,6 +100,13 @@ export default {
       }
       console.log(response)
       this.records = response.data;
+
+      // 検索結果が0件の場合
+      if (response.data.length === 0) {
+        this.isNothingResult = true;
+        this.resultDescription = '検索ワードに一致するロードマップはありませんでした。'
+      }
+      this.isSearching = false;
     },
   },
   components: {
