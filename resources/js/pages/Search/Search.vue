@@ -76,13 +76,19 @@ export default {
   computed: {
     isResultDescription() {
       return this.resultDescription
+    },
+    paramQuery() {
+      return this.$route.query.q
+    },
+    checkExistParamQuery() {
+      return typeof this.paramQuery === 'undefined' || this.paramQuery === ''
     }
   },
   methods: {
     // ロードマップ一覧の取得
     async fetchCourse() {
       // クエリがない場合
-      if(typeof this.$route.query.q === 'undefined' || this.$route.query.q === '') {
+      if(this.checkExistParamQuery) {
         this.resultDescription = '検索ワードが入力されていません。'
         this.isNothingResult = true
         this.isSearching = false
@@ -115,10 +121,10 @@ export default {
   watch: {
     $route: {
       async handler() {
+        // 検索結果の取得
         await this.fetchCourse()
-        const num = Math.random() * 10
-        console.log(num)
-        const title = num > 5 ? '検索' : '何も入っていません'
+        // クエリの有無によるtitleの変更
+        const title = this.checkExistParamQuery ? '検索' : `${this.paramQuery} の検索結果`
         document.title = `${title} |  UdemyLoad`
       },
       immediate: true,

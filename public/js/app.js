@@ -5256,6 +5256,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     isResultDescription: function isResultDescription() {
       return this.resultDescription;
+    },
+    paramQuery: function paramQuery() {
+      return this.$route.query.q;
+    },
+    checkExistParamQuery: function checkExistParamQuery() {
+      return typeof this.paramQuery === 'undefined' || this.paramQuery === '';
     }
   },
   methods: {
@@ -5269,7 +5275,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!(typeof _this.$route.query.q === 'undefined' || _this.$route.query.q === '')) {
+                if (!_this.checkExistParamQuery) {
                   _context.next = 5;
                   break;
                 }
@@ -5328,7 +5334,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var _this2 = this;
 
         return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-          var num, title;
+          var title;
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
@@ -5337,12 +5343,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return _this2.fetchCourse();
 
                 case 2:
-                  num = Math.random() * 10;
-                  console.log(num);
-                  title = num > 5 ? '検索' : '何も入っていません';
+                  // クエリの有無によるtitleの変更
+                  title = _this2.checkExistParamQuery ? '検索' : "".concat(_this2.paramQuery, " \u306E\u691C\u7D22\u7D50\u679C");
                   document.title = "".concat(title, " |  UdemyLoad");
 
-                case 6:
+                case 4:
                 case "end":
                   return _context2.stop();
               }
