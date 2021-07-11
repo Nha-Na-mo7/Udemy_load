@@ -5270,28 +5270,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 if (!(typeof _this.$route.query.q === 'undefined' || _this.$route.query.q === '')) {
-                  _context.next = 6;
+                  _context.next = 5;
                   break;
                 }
 
-                console.log('クエリがありません');
                 _this.resultDescription = '検索ワードが入力されていません。';
                 _this.isNothingResult = true;
                 _this.isSearching = false;
                 return _context.abrupt("return", false);
 
-              case 6:
+              case 5:
                 params = _this.$route.query;
-                _context.next = 9;
+                _context.next = 8;
                 return axios.get("/records/search", {
                   params: params
                 });
 
-              case 9:
+              case 8:
                 response = _context.sent;
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_3__["OK"])) {
-                  _context.next = 13;
+                  _context.next = 12;
                   break;
                 }
 
@@ -5299,18 +5298,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 13:
+              case 12:
                 console.log(response);
                 _this.records = response.data; // 検索結果が0件の場合
 
                 if (response.data.length === 0) {
-                  _this.isNothingResult = true;
                   _this.resultDescription = '検索ワードに一致するロードマップはありませんでした。';
+                  _this.isNothingResult = true;
                 }
 
                 _this.isSearching = false;
 
-              case 17:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -60885,10 +60884,6 @@ var render = function() {
                   _vm._v(_vm._s(_vm.errors))
                 ])
               ])
-            : this.records
-            ? _vm._l(_vm.records, function(Record) {
-                return _c("Result", { key: Record.id, attrs: { item: Record } })
-              })
             : this.isNothingResult
             ? _c("div", { staticClass: "c-modal__nothing" }, [
                 _c("i", {
@@ -60897,6 +60892,10 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", [_vm._v(_vm._s(this.isResultDescription))])
               ])
+            : this.records
+            ? _vm._l(_vm.records, function(Record) {
+                return _c("Result", { key: Record.id, attrs: { item: Record } })
+              })
             : _vm._e(),
           _vm._v(" "),
           _vm._m(0)
