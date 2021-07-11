@@ -5370,10 +5370,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       console.log(this.searchParams);
     },
     searchRecords: function searchRecords() {
-      // TODO 同じクエリパラメータでの検索時にエラーが出る問題発生中
       this.$router.push({
         query: this.searchParams
-      }); // preventDefault後はfetchCourseが働かないのでここでfetchする
+      })["catch"](function (err) {}); // preventDefault後はfetchCourseが働かないのでここでfetchする
 
       this.fetchCourse();
       this.updateTitle();

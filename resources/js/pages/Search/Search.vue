@@ -156,11 +156,10 @@ export default {
       console.log(this.searchParams)
     },
     searchRecords() {
-      // TODO 同じクエリパラメータでの検索時にエラーが出る問題発生中
       this.$router.push({
           query: this.searchParams,
         }
-      )
+      ).catch(err => {})
       // preventDefault後はfetchCourseが働かないのでここでfetchする
       this.fetchCourse()
       this.updateTitle()
