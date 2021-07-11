@@ -6,10 +6,12 @@
         <input
             type="text"
             class="c-form__input c-form__input--recordSearch"
+            v-model="searchParams.q"
         >
         <button
+            type="submit"
+            @click="searchRecords()"
             class="p-search__btn c-btn"
-            @click=""
         >
           <i class="fas fa-search c-icon__fa--default"></i> 検索
         </button>
@@ -82,6 +84,10 @@ export default {
       parPage: 10,
       currentPage: 1,
       lastPage: 0,
+
+      searchParams: {
+        q: '',
+      }
     };
   },
   computed: {
@@ -130,6 +136,15 @@ export default {
       }
 
       this.records = response.data;
+    },
+    // 検索ページへ遷移
+    searchRecords() {
+      alert(this.searchParams)
+      this.$router.push({
+            path: `/search`,
+            query: this.searchParams,
+          }
+      ).catch(err => {})
     },
     // ======================
     // ページネーション用

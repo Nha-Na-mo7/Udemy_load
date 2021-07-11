@@ -4493,6 +4493,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -4511,7 +4513,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate_
       records: [],
       parPage: 10,
       currentPage: 1,
-      lastPage: 0
+      lastPage: 0,
+      searchParams: {
+        q: ''
+      }
     };
   },
   computed: {
@@ -4585,6 +4590,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate_
           }
         }, _callee);
       }))();
+    },
+    // 検索ページへ遷移
+    searchRecords: function searchRecords() {
+      alert(this.searchParams);
+      this.$router.push({
+        path: "/search",
+        query: this.searchParams
+      })["catch"](function (err) {});
     },
     // ======================
     // ページネーション用
@@ -60379,15 +60392,37 @@ var render = function() {
         { staticClass: "p-search__form c-form", attrs: { action: "" } },
         [
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.searchParams.q,
+                expression: "searchParams.q"
+              }
+            ],
             staticClass: "c-form__input c-form__input--recordSearch",
-            attrs: { type: "text" }
+            attrs: { type: "text" },
+            domProps: { value: _vm.searchParams.q },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.searchParams, "q", $event.target.value)
+              }
+            }
           }),
           _vm._v(" "),
           _c(
             "button",
             {
               staticClass: "p-search__btn c-btn",
-              on: { click: function($event) {} }
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  return _vm.searchRecords()
+                }
+              }
             },
             [
               _c("i", { staticClass: "fas fa-search c-icon__fa--default" }),
