@@ -5276,8 +5276,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       sortState: 1,
       errors: '',
       searchParams: {
-        q: '',
-        sort: ''
+        sort: '',
+        q: ''
       },
       records: []
     };
@@ -5289,16 +5289,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     paramQuery: function paramQuery() {
       return this.$route.query.q;
     },
+    paramSort: function paramSort() {
+      return this.$route.query.sort;
+    },
     checkExistParamQuery: function checkExistParamQuery() {
       return typeof this.paramQuery === 'undefined' || this.paramQuery === '';
     },
     // ソート用パラメータはこちらで確認してください
     sortMenuWord: function sortMenuWord() {
-      switch (this.sortState) {
-        case 1:
+      switch (this.searchParams.sort) {
+        case 'created':
           return '新着順';
 
-        case 2:
+        case 'old':
           return '古い順';
 
         default:
@@ -5366,23 +5369,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    changeParamSort: function changeParamSort(sortId) {
-      this.sortState = sortId; // GETパラメータの作成
-
-      switch (sortId) {
-        case 1:
+    changeParamSort: function changeParamSort(sortWord) {
+      // GETパラメータの作成
+      switch (sortWord) {
+        case 'created':
           this.searchParams.sort = 'created';
           break;
 
-        case 2:
+        case 'old':
           this.searchParams.sort = 'old';
           break;
 
         default:
           this.searchParams.sort = '';
       }
-
-      console.log(this.searchParams);
     },
     searchRecords: function searchRecords() {
       this.$router.push({
@@ -5406,6 +5406,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     // 検索結果の取得
     this.fetchCourse();
+    this.changeParamSort(this.paramSort);
+    this.searchParams.q = this.paramQuery;
     this.updateTitle();
   }
 });
@@ -60962,7 +60964,7 @@ var render = function() {
               staticClass: "p-search__navigation--hideItem",
               on: {
                 click: function($event) {
-                  return _vm.changeParamSort(1)
+                  return _vm.changeParamSort("created")
                 }
               }
             },
@@ -60975,7 +60977,7 @@ var render = function() {
               staticClass: "p-search__navigation--hideItem",
               on: {
                 click: function($event) {
-                  return _vm.changeParamSort(2)
+                  return _vm.changeParamSort("old")
                 }
               }
             },

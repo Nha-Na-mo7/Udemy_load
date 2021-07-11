@@ -26,8 +26,8 @@
         </div>
         <!-- ボタンを押すと表示されるメニュー -->
         <ul class="p-search__navigation--hideMenu">
-          <li class="p-search__navigation--hideItem" @click="changeParamSort(1)">新着順</li>
-          <li class="p-search__navigation--hideItem" @click="changeParamSort(2)">古い順</li>
+          <li class="p-search__navigation--hideItem" @click="changeParamSort('created')">新着順</li>
+          <li class="p-search__navigation--hideItem" @click="changeParamSort('old')">古い順</li>
         </ul>
       </div>
 
@@ -81,8 +81,8 @@ export default {
       sortState: 1,
       errors: '',
       searchParams: {
-        q: '',
         sort: '',
+        q: '',
       },
       records: []
     }
@@ -94,15 +94,18 @@ export default {
     paramQuery() {
       return this.$route.query.q
     },
+    paramSort() {
+      return this.$route.query.sort
+    },
     checkExistParamQuery() {
       return typeof this.paramQuery === 'undefined' || this.paramQuery === ''
     },
     // ソート用パラメータはこちらで確認してください
     sortMenuWord() {
-      switch (this.sortState) {
-        case 1:
+      switch (this.searchParams.sort) {
+        case 'created':
           return '新着順'
-        case 2:
+        case 'old':
           return '古い順'
         default:
           return '新着順'
@@ -140,20 +143,18 @@ export default {
       }
       this.isSearching = false;
     },
-    changeParamSort(sortId) {
-      this.sortState = sortId;
+    changeParamSort(sortWord) {
       // GETパラメータの作成
-      switch (sortId) {
-        case 1:
+      switch (sortWord) {
+        case 'created':
           this.searchParams.sort = 'created'
           break;
-        case 2:
+        case 'old':
           this.searchParams.sort = 'old'
           break;
         default:
           this.searchParams.sort = ''
       }
-      console.log(this.searchParams)
     },
     searchRecords() {
       this.$router.push({
@@ -178,6 +179,8 @@ export default {
   mounted() {
     // 検索結果の取得
     this.fetchCourse()
+    this.changeParamSort(this.paramSort)
+    this.searchParams.q = this.paramQuery
     this.updateTitle()
   },
 }
