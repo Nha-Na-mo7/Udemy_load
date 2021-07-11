@@ -5264,6 +5264,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -60953,7 +60957,9 @@ var render = function() {
       _c("div", { staticClass: "p-search__navigation" }, [
         _c("div", { staticClass: "p-search__navigation--dropButton" }, [
           _c("button", { staticClass: "c-btn" }, [
-            _vm._v(_vm._s(this.sortMenuWord))
+            _c("i", { staticClass: "fas fa-sort-amount-down" }),
+            _vm._v("\n          " + _vm._s(this.sortMenuWord) + "\n          "),
+            _c("i", { staticClass: "fas fa-caret-down" })
           ])
         ]),
         _vm._v(" "),

@@ -22,7 +22,11 @@
       <!-- ソート用プルダウン -->
       <div class="p-search__navigation">
         <div class="p-search__navigation--dropButton">
-          <button class="c-btn">{{ this.sortMenuWord }}</button>
+          <button class="c-btn">
+            <i class="fas fa-sort-amount-down"></i>
+            {{ this.sortMenuWord }}
+            <i class="fas fa-caret-down"></i>
+          </button>
         </div>
         <!-- ボタンを押すと表示されるメニュー -->
         <ul class="p-search__navigation--hideMenu">
