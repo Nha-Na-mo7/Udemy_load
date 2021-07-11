@@ -5376,41 +5376,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }); // preventDefault後はfetchCourseが働かないのでここでfetchする
 
       this.fetchCourse();
+      this.updateTitle();
+    },
+    // ページタイトルの更新
+    updateTitle: function updateTitle() {
+      // クエリの有無によるtitleの変更
+      var title = this.checkExistParamQuery ? '検索' : "".concat(this.paramQuery, " \u306E\u691C\u7D22\u7D50\u679C");
+      document.title = "".concat(title, " |  UdemyLoad");
     }
   },
   components: {
     Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     Result: _Result_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  watch: {
-    $route: {
-      handler: function handler() {
-        var _this2 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-          var title;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-            while (1) {
-              switch (_context2.prev = _context2.next) {
-                case 0:
-                  _context2.next = 2;
-                  return _this2.fetchCourse();
-
-                case 2:
-                  // クエリの有無によるtitleの変更
-                  title = _this2.checkExistParamQuery ? '検索' : "".concat(_this2.paramQuery, " \u306E\u691C\u7D22\u7D50\u679C");
-                  document.title = "".concat(title, " |  UdemyLoad");
-
-                case 4:
-                case "end":
-                  return _context2.stop();
-              }
-            }
-          }, _callee2);
-        }))();
-      },
-      immediate: true
-    }
+  mounted: function mounted() {
+    // 検索結果の取得
+    this.fetchCourse();
+    this.updateTitle();
   }
 });
 

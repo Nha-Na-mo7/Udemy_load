@@ -162,24 +162,24 @@ export default {
         }
       )
       // preventDefault後はfetchCourseが働かないのでここでfetchする
-      this.fetchCourse();
-    }
+      this.fetchCourse()
+      this.updateTitle()
+    },
+    // ページタイトルの更新
+    updateTitle() {
+      // クエリの有無によるtitleの変更
+      const title = this.checkExistParamQuery ? '検索' : `${this.paramQuery} の検索結果`
+      document.title = `${title} |  UdemyLoad`
+    },
   },
   components: {
     Loading,
     Result,
   },
-  watch: {
-    $route: {
-      async handler() {
-        // 検索結果の取得
-        await this.fetchCourse()
-        // クエリの有無によるtitleの変更
-        const title = this.checkExistParamQuery ? '検索' : `${this.paramQuery} の検索結果`
-        document.title = `${title} |  UdemyLoad`
-      },
-      immediate: true,
-    },
+  mounted() {
+    // 検索結果の取得
+    this.fetchCourse()
+    this.updateTitle()
   },
 }
 </script>
