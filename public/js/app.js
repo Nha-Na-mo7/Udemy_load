@@ -5236,6 +5236,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5245,6 +5257,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       isSearching: true,
       isNothingResult: false,
       resultDescription: '',
+      sortState: 1,
       errors: '',
       searchParams: {
         q: '',
@@ -5262,6 +5275,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     checkExistParamQuery: function checkExistParamQuery() {
       return typeof this.paramQuery === 'undefined' || this.paramQuery === '';
+    },
+    // ソート用パラメータはこちらで確認してください
+    sortMenuWord: function sortMenuWord() {
+      switch (this.sortState) {
+        case 1:
+          return '新着順';
+
+        case 2:
+          return '古い順';
+
+        default:
+          return '新着順';
+      }
     }
   },
   methods: {
@@ -5322,6 +5348,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    changeParamSort: function changeParamSort(sortId) {
+      this.sortState = sortId; // GETパラメータの作成
+
+      switch (sortId) {
+        case 1:
+          this.searchParams.sort = 'created';
+          break;
+
+        case 2:
+          this.searchParams.sort = 'old';
+          break;
+
+        default:
+          this.searchParams.sort = '';
+      }
+
+      console.log(this.searchParams);
     }
   },
   components: {
@@ -60869,6 +60913,42 @@ var render = function() {
           )
         ]
       ),
+      _vm._v(" "),
+      _c("div", { staticClass: "p-search__navigation" }, [
+        _c("div", { staticClass: "p-search__navigation--dropButton" }, [
+          _c("button", { staticClass: "c-btn" }, [
+            _vm._v(_vm._s(this.sortMenuWord))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "p-search__navigation--hideMenu" }, [
+          _c(
+            "li",
+            {
+              staticClass: "p-search__navigation--hideItem",
+              on: {
+                click: function($event) {
+                  return _vm.changeParamSort(1)
+                }
+              }
+            },
+            [_vm._v("新着順")]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "p-search__navigation--hideItem",
+              on: {
+                click: function($event) {
+                  return _vm.changeParamSort(2)
+                }
+              }
+            },
+            [_vm._v("古い順")]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "div",

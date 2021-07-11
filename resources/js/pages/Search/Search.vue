@@ -18,6 +18,18 @@
         </button>
       </form>
 
+      <!-- ソート用プルダウン -->
+      <div class="p-search__navigation">
+        <div class="p-search__navigation--dropButton">
+          <button class="c-btn">{{ this.sortMenuWord }}</button>
+        </div>
+        <!-- ボタンを押すと表示されるメニュー -->
+        <ul class="p-search__navigation--hideMenu">
+          <li class="p-search__navigation--hideItem" @click="changeParamSort(1)">新着順</li>
+          <li class="p-search__navigation--hideItem" @click="changeParamSort(2)">古い順</li>
+        </ul>
+      </div>
+
       <!-- 検索結果一覧 -->
       <div id="searchResult" class="p-search__result--container">
         <div v-if="isSearching">
@@ -65,6 +77,7 @@ export default {
       isSearching: true,
       isNothingResult: false,
       resultDescription: '',
+      sortState: 1,
       errors: '',
       searchParams: {
         q: '',
@@ -82,6 +95,17 @@ export default {
     },
     checkExistParamQuery() {
       return typeof this.paramQuery === 'undefined' || this.paramQuery === ''
+    },
+    // ソート用パラメータはこちらで確認してください
+    sortMenuWord() {
+      switch (this.sortState) {
+        case 1:
+          return '新着順'
+        case 2:
+          return '古い順'
+        default:
+          return '新着順'
+      }
     }
   },
   methods: {
@@ -113,6 +137,21 @@ export default {
       }
       this.isSearching = false;
     },
+    changeParamSort(sortId) {
+      this.sortState = sortId;
+      // GETパラメータの作成
+      switch (sortId) {
+        case 1:
+          this.searchParams.sort = 'created'
+          break;
+        case 2:
+          this.searchParams.sort = 'old'
+          break;
+        default:
+          this.searchParams.sort = ''
+      }
+      console.log(this.searchParams)
+    }
   },
   components: {
     Loading,
