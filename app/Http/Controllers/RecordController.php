@@ -210,6 +210,19 @@ class RecordController extends Controller
         Log::debug($q);
         Log::debug($sort);
         
+        // ソート条件(随時追加予定)
+        $order = '';
+        $column = '';
+        switch ($sort){
+          case 'old':
+            $order = 'asc';
+            $column = 'CREATED_AT';
+            break;
+          default:
+            $order = 'desc';
+            $column = 'CREATED_AT';
+        }
+        
         // qが空文字の場合はSQL発行前にreturnする(そもそもここに通信されて来ないはずだが)
         if ($q === '') return response([], 200);
         // メタ文字をエスケープする
@@ -221,7 +234,7 @@ class RecordController extends Controller
             ->orWhere('description', 'LIKE', $query)
             ->with(['owner'])
             ->where('delete_flg', 0)
-            // ->orderBy(Record::CREATED_AT, 'desc')
+            ->orderBy($column, $order)
             ->get();
         
         return $records;
