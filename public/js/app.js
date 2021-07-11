@@ -5269,6 +5269,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 
+/*
+ * 早見表
+ * 新着順:created
+ * 古い順:old
+ */
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5298,19 +5304,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     checkExistParamQuery: function checkExistParamQuery() {
       return typeof this.paramQuery === 'undefined' || this.paramQuery === '';
-    },
-    // ソート用パラメータはこちらで確認してください
-    sortMenuWord: function sortMenuWord() {
-      switch (this.searchParams.sort) {
-        case 'created':
-          return '新着順';
-
-        case 'old':
-          return '古い順';
-
-        default:
-          return '新着順';
-      }
     }
   },
   methods: {
@@ -60908,87 +60901,96 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-search" }, [
     _c("div", { staticClass: "p-search__container" }, [
-      _c(
-        "form",
-        { staticClass: "p-search__form c-form", attrs: { action: "" } },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.searchParams.q,
-                expression: "searchParams.q"
-              }
-            ],
-            staticClass: "c-form__input c-form__input--recordSearch",
-            attrs: { type: "text" },
-            domProps: { value: _vm.searchParams.q },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.searchParams, "q", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "p-search__btn c-btn",
-              attrs: { type: "submit" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.searchRecords()
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "fas fa-search c-icon__fa--default" }),
-              _vm._v(" 検索\n      ")
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
       _c("div", { staticClass: "p-search__navigation" }, [
-        _c("div", { staticClass: "p-search__navigation--dropButton" }, [
-          _c("button", { staticClass: "c-btn" }, [
-            _c("i", { staticClass: "fas fa-sort-amount-down" }),
-            _vm._v("\n          " + _vm._s(this.sortMenuWord) + "\n          "),
-            _c("i", { staticClass: "fas fa-caret-down" })
-          ])
-        ]),
+        _c(
+          "form",
+          { staticClass: "p-search__form c-form", attrs: { action: "" } },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchParams.q,
+                  expression: "searchParams.q"
+                }
+              ],
+              staticClass: "c-form__input c-form__input--recordSearch",
+              attrs: { type: "text" },
+              domProps: { value: _vm.searchParams.q },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.searchParams, "q", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "p-search__btn c-btn",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.searchRecords()
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fas fa-search c-icon__fa--default" }),
+                _vm._v(" 検索\n        ")
+              ]
+            )
+          ]
+        ),
         _vm._v(" "),
-        _c("ul", { staticClass: "p-search__navigation--hideMenu" }, [
-          _c(
-            "li",
-            {
-              staticClass: "p-search__navigation--hideItem",
-              on: {
-                click: function($event) {
-                  return _vm.changeParamSort("created")
-                }
-              }
-            },
-            [_vm._v("新着順")]
-          ),
+        _c("div", { staticClass: "p-search__sort c-select__container" }, [
+          _c("label", [
+            _c(
+              "select",
+              {
+                staticClass: "c-select c-select__fs--sort",
+                attrs: { required: "", name: "sort" }
+              },
+              [
+                _c("option", { attrs: { value: "", disabled: "" } }, [
+                  _vm._v("並べ替え")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "option",
+                  {
+                    attrs: { value: "created" },
+                    on: {
+                      select: function($event) {
+                        return _vm.changeParamSort("created")
+                      }
+                    }
+                  },
+                  [_vm._v("新着順")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "option",
+                  {
+                    attrs: { value: "old" },
+                    on: {
+                      select: function($event) {
+                        return _vm.changeParamSort("old")
+                      }
+                    }
+                  },
+                  [_vm._v("古い順")]
+                )
+              ]
+            )
+          ]),
           _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "p-search__navigation--hideItem",
-              on: {
-                click: function($event) {
-                  return _vm.changeParamSort("old")
-                }
-              }
-            },
-            [_vm._v("古い順")]
-          )
+          _vm._m(0)
         ])
       ]),
       _vm._v(" "),
@@ -61025,7 +61027,7 @@ var render = function() {
               })
             : _vm._e(),
           _vm._v(" "),
-          _vm._m(0)
+          _vm._m(1)
         ],
         2
       )
@@ -61033,6 +61035,16 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "c-select__allow--container" }, [
+      _c("i", {
+        staticClass: "fas fa-caret-down c-select__allow c-select__allow--fs"
+      })
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

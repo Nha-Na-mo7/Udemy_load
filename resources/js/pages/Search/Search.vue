@@ -4,35 +4,35 @@
 <template>
   <div class="p-search">
     <div class="p-search__container">
-      <form action="" class="p-search__form c-form">
-        <input
-            type="text"
-            class="c-form__input c-form__input--recordSearch"
-            v-model="searchParams.q"
-        >
-        <button
-            type="submit"
-            @click.prevent="searchRecords()"
-            class="p-search__btn c-btn"
-        >
-          <i class="fas fa-search c-icon__fa--default"></i> 検索
-        </button>
-      </form>
-
-      <!-- ソート用プルダウン -->
       <div class="p-search__navigation">
-        <div class="p-search__navigation--dropButton">
-          <button class="c-btn">
-            <i class="fas fa-sort-amount-down"></i>
-            {{ this.sortMenuWord }}
-            <i class="fas fa-caret-down"></i>
+        <form action="" class="p-search__form c-form">
+          <input
+              type="text"
+              class="c-form__input c-form__input--recordSearch"
+              v-model="searchParams.q"
+          >
+          <button
+              type="submit"
+              @click.prevent="searchRecords()"
+              class="p-search__btn c-btn"
+          >
+            <i class="fas fa-search c-icon__fa--default"></i> 検索
           </button>
+        </form>
+        <!-- search sort -->
+        <div class="p-search__sort c-select__container">
+          <label>
+            <select required name="sort" class="c-select c-select__fs--sort">
+              <option class="" value disabled>並べ替え</option>
+              <option class="" value="created" @select="changeParamSort('created')">新着順</option>
+              <option class="" value="old" @select="changeParamSort('old')">古い順</option>
+            </select>
+          </label>
+          <!-- ▼ -->
+          <div class="c-select__allow--container">
+            <i class="fas fa-caret-down c-select__allow c-select__allow--fs"></i>
+          </div>
         </div>
-        <!-- ボタンを押すと表示されるメニュー -->
-        <ul class="p-search__navigation--hideMenu">
-          <li class="p-search__navigation--hideItem" @click="changeParamSort('created')">新着順</li>
-          <li class="p-search__navigation--hideItem" @click="changeParamSort('old')">古い順</li>
-        </ul>
       </div>
 
       <!-- 検索結果一覧 -->
@@ -72,10 +72,14 @@
   </div>
 </template>
 <script>
+/*
+ * 早見表
+ * 新着順:created
+ * 古い順:old
+ */
 import Loading from '../../components/Loading.vue';
 import Result from './Result.vue';
 import {OK} from "../../util";
-
 export default {
   data() {
     return {
@@ -104,17 +108,6 @@ export default {
     checkExistParamQuery() {
       return typeof this.paramQuery === 'undefined' || this.paramQuery === ''
     },
-    // ソート用パラメータはこちらで確認してください
-    sortMenuWord() {
-      switch (this.searchParams.sort) {
-        case 'created':
-          return '新着順'
-        case 'old':
-          return '古い順'
-        default:
-          return '新着順'
-      }
-    }
   },
   methods: {
     // ロードマップ一覧の取得

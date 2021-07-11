@@ -61,22 +61,16 @@
   }
   &__navigation {
     width: 100%;
-    text-align: right;
-
-    background: #8cdbf6;
-
-    &--dropButton {
-      padding: 5px 10px;
-      font-size: $font-size_default;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__sort {
+    width: 33%;
+    @include mq($breakpoint: md) {
+      width: 50%;
     }
-    &--hideMenu {
-      display: none;
-      max-width: 200px;
-      height: 100%;
-    }
-    &--hideItem{
-      border: 1px solid #8a8a8a;
-      padding: 8px 12px;
+    @include mq() {
       width: 100%;
     }
   }
