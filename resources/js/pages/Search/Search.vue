@@ -11,8 +11,9 @@
             v-model="searchParams.q"
         >
         <button
+            type="submit"
+            @click.prevent="searchRecords()"
             class="p-search__btn c-btn"
-            @click=""
         >
           <i class="fas fa-search c-icon__fa--default"></i> 検索
         </button>
@@ -119,6 +120,9 @@ export default {
         return false
       }
 
+      this.isNothingResult = false;
+      this.isSearching = true;
+
       const params = this.$route.query;
       const response = await axios.get(`/records/search`, { params });
 
@@ -127,7 +131,6 @@ export default {
         this.$store.commit('error/setCode', response.status);
         return false;
       }
-      console.log(response)
       this.records = response.data;
 
       // 検索結果が0件の場合
@@ -151,6 +154,15 @@ export default {
           this.searchParams.sort = ''
       }
       console.log(this.searchParams)
+    },
+    searchRecords() {
+      // TODO 同じクエリパラメータでの検索時にエラーが出る問題発生中
+      this.$router.push({
+          query: this.searchParams,
+        }
+      )
+      // preventDefault後はfetchCourseが働かないのでここでfetchする
+      this.fetchCourse();
     }
   },
   components: {

@@ -54,7 +54,6 @@ Route::get('/records/new', 'RecordController@index_create')->name('record.index'
 // ロードマップ詳細画面のビュー
 Route::get('/records/{any?}', 'RecordController@index')->name('record.index')->where('any', '.+');
 
-
 // 以下は認証必須
 Route::group(['middleware' => 'auth'], function() {
   // ==============

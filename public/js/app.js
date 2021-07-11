@@ -5248,6 +5248,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -5312,17 +5313,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 5:
+                _this.isNothingResult = false;
+                _this.isSearching = true;
                 params = _this.$route.query;
-                _context.next = 8;
+                _context.next = 10;
                 return axios.get("/records/search", {
                   params: params
                 });
 
-              case 8:
+              case 10:
                 response = _context.sent;
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_3__["OK"])) {
-                  _context.next = 12;
+                  _context.next = 14;
                   break;
                 }
 
@@ -5330,8 +5333,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 12:
-                console.log(response);
+              case 14:
                 _this.records = response.data; // 検索結果が0件の場合
 
                 if (response.data.length === 0) {
@@ -5341,7 +5343,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.isSearching = false;
 
-              case 16:
+              case 17:
               case "end":
                 return _context.stop();
             }
@@ -5366,6 +5368,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       console.log(this.searchParams);
+    },
+    searchRecords: function searchRecords() {
+      // TODO 同じクエリパラメータでの検索時にエラーが出る問題発生中
+      this.$router.push({
+        query: this.searchParams
+      }); // preventDefault後はfetchCourseが働かないのでここでfetchする
+
+      this.fetchCourse();
     }
   },
   components: {
@@ -60904,7 +60914,13 @@ var render = function() {
             "button",
             {
               staticClass: "p-search__btn c-btn",
-              on: { click: function($event) {} }
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.searchRecords()
+                }
+              }
             },
             [
               _c("i", { staticClass: "fas fa-search c-icon__fa--default" }),
