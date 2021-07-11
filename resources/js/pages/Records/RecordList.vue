@@ -7,6 +7,7 @@
             type="text"
             class="c-form__input c-form__input--recordSearch"
             v-model="searchParams.q"
+            required
         >
         <button
             type="submit"
@@ -139,7 +140,8 @@ export default {
     },
     // 検索ページへ遷移
     searchRecords() {
-      alert(this.searchParams)
+      // メインページからは空文字の時検索をさせない
+      if(this.searchParams.q === '') return;
       this.$router.push({
             path: `/search`,
             query: this.searchParams,

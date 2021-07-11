@@ -4495,6 +4495,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -4593,7 +4594,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('paginate', vuejs_paginate_
     },
     // 検索ページへ遷移
     searchRecords: function searchRecords() {
-      alert(this.searchParams);
+      // メインページからは空文字の時検索をさせない
+      if (this.searchParams.q === '') return;
       this.$router.push({
         path: "/search",
         query: this.searchParams
@@ -60401,7 +60403,7 @@ var render = function() {
               }
             ],
             staticClass: "c-form__input c-form__input--recordSearch",
-            attrs: { type: "text" },
+            attrs: { type: "text", required: "" },
             domProps: { value: _vm.searchParams.q },
             on: {
               input: function($event) {
