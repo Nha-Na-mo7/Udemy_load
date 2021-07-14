@@ -203,8 +203,10 @@ class RecordController extends Controller
         Log::debug('検索取得');
         Log::debug('========');
         
+        // ページ: page
         // 検索ワード: q
         // ソート: sort=created/old
+        // TODO 検索クエリが複数の場合
         $q = filter_input(INPUT_GET, 'q') ?: '';
         $sort = filter_input(INPUT_GET, 'sort') ?: 'created';
         Log::debug($q);
@@ -235,8 +237,9 @@ class RecordController extends Controller
             ->with(['owner'])
             ->where('delete_flg', 0)
             ->orderBy($column, $order)
-            ->get();
+            ->paginate();
         
+        Log::debug($records);
         return $records;
     }
     

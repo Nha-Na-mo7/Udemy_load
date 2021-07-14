@@ -5264,10 +5264,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 /*
  * 早見表
@@ -5287,7 +5283,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       errors: '',
       searchParams: {
         sort: '',
-        q: ''
+        q: '',
+        page: 1
       },
       records: []
     };
@@ -5338,9 +5335,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 10:
                 response = _context.sent;
+                console.log(response); // エラー時
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_3__["OK"])) {
-                  _context.next = 14;
+                  _context.next = 15;
                   break;
                 }
 
@@ -5348,17 +5346,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 14:
-                _this.records = response.data; // 検索結果が0件の場合
+              case 15:
+                _this.records = response.data.data; // 検索結果が0件の場合
 
-                if (response.data.length === 0) {
+                if (response.data.data.length === 0) {
                   _this.resultDescription = '検索ワードに一致するロードマップはありませんでした。';
                   _this.isNothingResult = true;
                 }
 
                 _this.isSearching = false;
 
-              case 17:
+              case 18:
               case "end":
                 return _context.stop();
             }
@@ -61025,9 +61023,7 @@ var render = function() {
             ? _vm._l(_vm.records, function(Record) {
                 return _c("Result", { key: Record.id, attrs: { item: Record } })
               })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm._m(1)
+            : _vm._e()
         ],
         2
       )
@@ -61043,18 +61039,6 @@ var staticRenderFns = [
       _c("i", {
         staticClass: "fas fa-caret-down c-select__allow c-select__allow--fs"
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h2", [_vm._v("ここにpaginationが入ります")]),
-      _vm._v(" "),
-      _c("button", { staticClass: "c-btn" }, [_vm._v("前へ")]),
-      _vm._v(" "),
-      _c("button", { staticClass: "c-btn" }, [_vm._v("次へ")])
     ])
   }
 ]

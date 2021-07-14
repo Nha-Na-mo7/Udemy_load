@@ -61,12 +61,8 @@
             :item="Record"
         />
 
-        <!-- pagination -->
-        <div>
-          <h2>ここにpaginationが入ります</h2>
-          <button class="c-btn">前へ</button>
-          <button class="c-btn">次へ</button>
-        </div>
+        <!-- TODO pagination -->
+
       </div>
     </div>
   </div>
@@ -91,6 +87,7 @@ export default {
       searchParams: {
         sort: '',
         q: '',
+        page: 1,
       },
       records: []
     }
@@ -125,16 +122,16 @@ export default {
 
       const params = this.$route.query;
       const response = await axios.get(`/records/search`, { params });
-
+      console.log(response)
       // エラー時
       if (response.status !== OK) {
         this.$store.commit('error/setCode', response.status);
         return false;
       }
-      this.records = response.data;
+      this.records = response.data.data;
 
       // 検索結果が0件の場合
-      if (response.data.length === 0) {
+      if (response.data.data.length === 0) {
         this.resultDescription = '検索ワードに一致するロードマップはありませんでした。'
         this.isNothingResult = true;
       }
