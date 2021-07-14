@@ -122,7 +122,6 @@ export default {
 
       const params = this.$route.query;
       const response = await axios.get(`/records/search`, { params });
-      console.log(response)
       // エラー時
       if (response.status !== OK) {
         this.$store.commit('error/setCode', response.status);
