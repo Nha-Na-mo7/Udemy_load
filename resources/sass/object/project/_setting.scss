@@ -8,11 +8,14 @@
   &__container {
     padding: 20px 30px;
     margin-bottom: $space_3l;
+    @include mq() {
+      padding: 10px 15px;
+    }
   }
   // 設定項目リスト
   &__list {
-    min-width: 120px;
-    margin-right: 30px;
+    min-width: 150px;
+    margin-right: $space_xl;
     @include mq($breakpoint: md) {
       text-align: center;
       margin-right: unset;
@@ -56,6 +59,10 @@
   &__input {
     width: 70%;
     padding-right: 15px;
+    @include mq($breakpoint: lg) {
+      width: 100%;
+      padding-right: unset;
+    }
   }
   &__btn {
     display: flex;
@@ -64,6 +71,9 @@
   &__flex {
     display: flex;
     justify-content: space-evenly;
+    @include mq($breakpoint: lg) {
+      flex-wrap: wrap;
+    }
   }
   &__updatename {
   }

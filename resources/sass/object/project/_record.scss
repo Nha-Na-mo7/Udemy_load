@@ -5,16 +5,24 @@
   background: $background-color_content-inner;
   // 一覧
   &__list {
-    padding-top: 60px;
     padding-bottom: 120px;
     margin: 0 auto;
     @include mq($breakpoint: md) {
       padding-top: 40px;
     }
+    // 検索フォーム
+    &--search {
+      margin: 12px auto;
+      width: 66%;
+      @include mq($breakpoint: md) {
+        width: 90%;
+      }
+    }
     // リストの大枠
     &--inner {
+      border-top: 4px solid $color_Primary;
       background: $background-color_content-inner;
-      width: 60%;
+      width: 66%;
       @include mq($breakpoint: md) {
         width: 90%;
       }
@@ -47,8 +55,12 @@
         margin-bottom: 5px;
         line-height: 1.5;
         word-break: break-all;
+        color: $font-color_link;
         :hover {
           border-bottom: 1px solid #000;
+        }
+        :visited {
+          color: $font-color_visited;
         }
       }
       &--username,

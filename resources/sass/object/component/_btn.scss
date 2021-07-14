@@ -12,9 +12,11 @@
   padding: 15px 20px;
   transition: background-color 0.5s;
   background: $color_Primary;
+  color: #fff;
+  font-weight: bold;
   &:hover {
     transition: background-color 0.5s;
-    background: #7eb1d6;
+    background: $color-PrimaryDark;
   }
   &:disabled {
     cursor: not-allowed;
@@ -56,6 +58,7 @@
       width: 100%;
       border: 4px dashed $border-dark;
       background: #fff;
+      color: #8a8a8a;
       padding: 32px 0;
       font-size: 1.6rem;
       @include mq() {
@@ -65,7 +68,7 @@
       }
       &:hover {
         background: $color_Primary;
-        font-weight: bold;
+        color: #fff;
       }
     }
     // コース1つの削除

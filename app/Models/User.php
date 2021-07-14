@@ -16,12 +16,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'organization', 'profile_text',
     ];
   
     // Jsonで表示させる項目
     protected $visible = [
-        'id', 'name', 'email', 'records', 'test_user_flg',
+        'id', 'name', 'email', 'records', 'organization', 'profile_text'
     ];
     
     /**
@@ -50,4 +50,5 @@ class User extends Authenticatable
     {
       return $this->hasMany('App\Models\Record');
     }
+
 }

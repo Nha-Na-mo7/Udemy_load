@@ -46,12 +46,13 @@ Route::get('/mypage/{any?}', 'MypageController@index')->name('mypage.index')->wh
 Route::get('/record/{id}/{owner_flg?}', 'RecordController@show')->name('record.show');
 // 一覧取得(ユーザーIDは任意)
 Route::get('/records/index/{id?}', 'RecordController@get_list')->where('id', '[\w]+');
+// 検索結果取得
+Route::get('/records/search', 'RecordController@get_searchList');
 
 // 投稿画面のビュー
 Route::get('/records/new', 'RecordController@index_create')->name('record.index');
 // ロードマップ詳細画面のビュー
 Route::get('/records/{any?}', 'RecordController@index')->name('record.index')->where('any', '.+');
-
 
 // 以下は認証必須
 Route::group(['middleware' => 'auth'], function() {
@@ -83,6 +84,8 @@ Route::group(['middleware' => 'auth'], function() {
   Route::post('/user/update/name', 'UserController@update_name');
   // メールアドレスの更新処理
   Route::post('/user/update/email', 'UserController@update_email');
+  // プロフィールの更新処理
+  Route::post('/user/update/profiles', 'UserController@update_profiles');
   // TODO メールアドレスのリセットを確定
   Route::get('/user/update/email/{token}', 'UserController@reset_email');
   // パスワードの新規登録

@@ -1,5 +1,25 @@
 <template>
   <div class="p-record__list">
+    <!-- 検索(コンポーネント化) -->
+    <div class="p-record__list--search">
+      <form action="" class="p-search__form c-form">
+        <input
+            type="text"
+            class="c-form__input c-form__input--recordSearch"
+            v-model="searchParams.q"
+            required
+        >
+        <button
+            type="submit"
+            @click="searchRecords()"
+            class="p-search__btn c-btn"
+        >
+          <i class="fas fa-search c-icon__fa--default"></i> 検索
+        </button>
+      </form>
+    </div>
+
+    <!-- みんなのロードマップ -->
     <div class="p-record__list--inner" id="records">
       <h2 class="p-record__list--title">みんなのロードマップ</h2>
       <Record
@@ -65,6 +85,10 @@ export default {
       parPage: 10,
       currentPage: 1,
       lastPage: 0,
+
+      searchParams: {
+        q: '',
+      }
     };
   },
   computed: {
@@ -113,6 +137,16 @@ export default {
       }
 
       this.records = response.data;
+    },
+    // 検索ページへ遷移
+    searchRecords() {
+      // メインページからは空文字の時検索をさせない
+      if(this.searchParams.q === '') return;
+      this.$router.push({
+            path: `/search`,
+            query: this.searchParams,
+          }
+      ).catch(err => {})
     },
     // ======================
     // ページネーション用

@@ -27,7 +27,7 @@
           <input
             type="text"
             id="record_title"
-            class="p-form__title p-form__item c-form__input"
+            class="p-form__title p-form__item c-form__input u-mb-xl"
             v-model="createData.recordForm.title"
             maxlength="100"
             placeholder="入力してください"

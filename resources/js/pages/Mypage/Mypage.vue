@@ -22,16 +22,27 @@
             {{ this.userName }}さんのマイページ
           </h2>
 
-          <!-- プロフィール編集 -->
+          <div class="p-mypage__profiles">
+            <!-- 自己紹介 -->
+            <div class="p-mypage__profiles--proftext">
+              <h3 class="u-mb-s"><i class="fas fa-comment c-icon__fa--default"></i> 自己紹介</h3>
+              <p>{{ this.userProfileText }}</p>
+            </div>
+            <!-- 所属企業・組織 -->
+            <div class="p-mypage__profiles--organization">
+              <p><i class="fas fa-building c-icon__fa--default"></i> {{ this.userOrganization }}</p>
+            </div>
+          </div>
+
+          <!-- ユーザー設定 -->
           <div class="u-text--center" v-if="isAuthUser">
-            <RouterLink class="c-btn" to="/settings/account">
-              <i class="fas fa-cog"></i> アカウント設定
+            <RouterLink class="c-btn" to="/settings/profile">
+              <i class="fas fa-cog"></i> ユーザー設定
             </RouterLink>
           </div>
         </div>
 
         <!-- 投稿記事一覧 -->
-        <!-- TODO 投稿した記事・コメントした記事をタブで切り替えられるようにする -->
         <div class="p-mypage__column">
           <h2 class="p-mypage__title u-mb-xl">投稿履歴</h2>
           <UserRecordList v-if="isExistUserObj" :user="this.user" />
@@ -68,6 +79,12 @@ export default {
     userName() {
       return this.username;
     },
+    userOrganization() {
+      return this.user.organization ?? '';
+    },
+    userProfileText() {
+      return this.user.profile_text ?? '- プロフィールは設定されていません -';
+    },
     isLoading() {
       return this.loading;
     },
@@ -80,23 +97,30 @@ export default {
     },
   },
   methods: {
-    // 指定したユーザーの情報を取得する
     async fetchUser() {
-      const response = await axios.get(`/user/info/${this.userName}`);
-
-      // ユーザーが存在しなかった時の処理
-      if (response.status === NOT_FOUND) {
-        this.nothingUser = true;
+      if(this.isAuthUser) {
+        // 自分のマイページの場合はstoreから情報を引き出し、余計な通信を行わない
+        this.user = this.$store.getters['auth/user']
         this.loading = false;
-        return false;
+      }else{
+        // 自分以外のマイページの時は指定したユーザーの情報を取得
+        const response = await axios.get(`/user/info/${this.userName}`);
+
+        switch (response.status) {
+          case NOT_FOUND:
+            this.nothingUser = true;
+            this.loading = false;
+            return false;
+          case OK:
+            this.user = response.data;
+            this.loading = false;
+            break;
+            // NOT_FOUND以外のエラーの場合
+          default:
+            this.$store.commit('error/setCode', response.status);
+            return false;
+        }
       }
-      // その他エラー時の処理
-      if (response.status !== OK) {
-        this.$store.commit('error/setCode', response.status);
-        return false;
-      }
-      this.user = response.data;
-      this.loading = false;
     },
   },
   components: {

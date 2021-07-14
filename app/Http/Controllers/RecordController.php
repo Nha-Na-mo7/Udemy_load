@@ -196,6 +196,54 @@ class RecordController extends Controller
     }
     
     // ==============
+    // 検索による一覧取得
+    // ==============
+    public function get_searchList() {
+        Log::debug('========');
+        Log::debug('検索取得');
+        Log::debug('========');
+        
+        // ページ: page
+        // 検索ワード: q
+        // ソート: sort=created/old
+        // TODO 検索クエリが複数の場合
+        $q = filter_input(INPUT_GET, 'q') ?: '';
+        $sort = filter_input(INPUT_GET, 'sort') ?: 'created';
+        Log::debug($q);
+        Log::debug($sort);
+        
+        // ソート条件(随時追加予定)
+        $order = '';
+        $column = '';
+        switch ($sort){
+          case 'old':
+            $order = 'asc';
+            $column = 'CREATED_AT';
+            break;
+          default:
+            $order = 'desc';
+            $column = 'CREATED_AT';
+        }
+        
+        // qが空文字の場合はSQL発行前にreturnする(そもそもここに通信されて来ないはずだが)
+        if ($q === '') return response([], 200);
+        // メタ文字をエスケープする
+        $query = '%' . addcslashes($q, '%_\\') . '%';
+        Log::debug($query);
+        
+        // $qに一致する文字列が含まれたタイトル・本文のロードまっぷを返却
+        $records = Record::where('title', 'LIKE', $query)
+            ->orWhere('description', 'LIKE', $query)
+            ->with(['owner'])
+            ->where('delete_flg', 0)
+            ->orderBy($column, $order)
+            ->paginate();
+        
+        Log::debug($records);
+        return $records;
+    }
+    
+    // ==============
     // ロードマップの削除
     // ==============
     public function delete(string $id) {

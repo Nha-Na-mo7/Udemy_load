@@ -10,17 +10,34 @@
     background: $background-color_content-inner;
     padding: 12px 0;
     border-radius: 4px;
+    border-top: 4px solid $color_Primary;
     box-shadow: #cdcdcd 0 0 10px;
     width: 49%;
-    @include mq() {
+    height: 100%;
+    @include mq($breakpoint: md) {
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
   }
   &__title {
-    text-align: center;
     font-size: $font-size_ll;
     font-weight: 700;
+    margin-left: 12px;
+  }
+  &__profiles {
+    padding: 10px 15px;
+    &--proftext {
+      margin-bottom: 15px;
+      & p {
+        white-space: pre-line;
+        background: #fff;
+        border-radius: 4px;
+        padding: 8px 12px;
+      }
+    }
+    &--organization {
+      margin-bottom: 8px;
+    }
   }
 
   // 一覧
@@ -60,8 +77,12 @@
         margin: $space_s 0;
         line-height: 1.5;
         word-break: break-all;
+        color: $font-color_link;
         :hover {
           border-bottom: 1px solid #000;
+        }
+        &:visited {
+          color: $font-color_visited;
         }
       }
       &--description {

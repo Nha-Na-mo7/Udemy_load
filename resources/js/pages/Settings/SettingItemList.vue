@@ -3,6 +3,12 @@
   <div class="p-setting__list">
     <ul class="p-setting__list--container">
       <li class="">
+        <RouterLink class="p-setting__list--item" to="/settings/profile">
+          <i class="fas fa-key"></i>
+          プロフィール
+        </RouterLink>
+      </li>
+      <li class="">
         <RouterLink class="p-setting__list--item" to="/settings/account">
           <i class="fas fa-cog"></i>
           アカウント
@@ -24,4 +30,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.router-link-active {
+  background: #d8d8d8;
+}
+</style>
