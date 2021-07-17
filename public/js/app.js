@@ -5346,8 +5346,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 14:
-                _this.records = response.data.data;
-                console.log(_this.records); // 検索結果が0件の場合
+                _this.records = response.data.data; // 検索結果が0件の場合
 
                 if (response.data.data.length === 0) {
                   _this.resultDescription = '検索ワードに一致するロードマップはありませんでした。';
@@ -5356,7 +5355,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.isSearching = false;
 
-              case 18:
+              case 17:
               case "end":
                 return _context.stop();
             }

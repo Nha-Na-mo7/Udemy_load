@@ -128,7 +128,6 @@ export default {
         return false;
       }
       this.records = response.data.data;
-      console.log(this.records)
 
       // 検索結果が0件の場合
       if (response.data.data.length === 0) {
