@@ -22,10 +22,10 @@
         <!-- search sort -->
         <div class="p-search__sort c-select__container">
           <label>
-            <select required name="sort" class="c-select c-select__fs--sort">
+            <select required name="sort" class="c-select c-select__fs--sort" @change="selectedOption">
               <option class="" value disabled>並べ替え</option>
-              <option class="" value="created" @select="changeParamSort('created')">新着順</option>
-              <option class="" value="old" @select="changeParamSort('old')">古い順</option>
+              <option class="" value="created">新着順</option>
+              <option class="" value="old">古い順</option>
             </select>
           </label>
           <!-- ▼ -->
@@ -136,9 +136,13 @@ export default {
       }
       this.isSearching = false;
     },
-    changeParamSort(sortWord) {
+    // オプション選択時、valueの値をGETパラメータとする
+    selectedOption(value) {
+      this.changeParamSort(value.target.value)
+    },
+    changeParamSort(value) {
       // GETパラメータの作成
-      switch (sortWord) {
+      switch (value) {
         case 'created':
           this.searchParams.sort = 'created'
           break;
